@@ -40,11 +40,23 @@ class CarInterface(CarInterfaceBase):
       ret.mass = 3443 * CV.LB_TO_KG
       ret.wheelbase = 2.83
       ret.steerRatio = 15.5
+    elif candidate == CAR.MAZDA_CX50_TURBO_PREMIUM_PLUS:
+      ret.mass = 3630 * CV.LB_TO_KG
+      ret.wheelbase = 1.108 # 110.8 / 100
+      ret.steerRatio = 15.1 # 15.1:1
+      ret.centerToFront = 38.2 * 0.0254  # Convert 38.2 inches to meters
+      ret.steerActuatorDelay = 0.15
+      ret.steerLimitTimer = 0.4
+      ret.tireStiffnessFactor = 0.85
+      ret.minSteerSpeed = 0.65
+      
 
-    if candidate not in (CAR.CX5_2022, ):
+
+    if candidate not in (CAR.CX5_2022, CAR.CX50_TURBO_PREMIUM_PLUS):
       ret.minSteerSpeed = LKAS_LIMITS.DISABLE_SPEED * CV.KPH_TO_MS
 
-    ret.centerToFront = ret.wheelbase * 0.41
+    if candidate != CAR.MAZDA_CX50_TURBO_PREMIUM_PLUS:
+      ret.centerToFront = ret.wheelbase * 0.41
 
     return ret
 
