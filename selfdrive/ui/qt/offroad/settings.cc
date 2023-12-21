@@ -68,7 +68,7 @@ TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
       "../assets/offroad/icon_monitoring.png",
     },
     {
-      "RecordRoad",
+      "RecordBack",
       tr("Record and Upload Road Cameras"),
       tr("Upload data from the road cameras."),
       "../assets/offroad/icon_monitoring.png",
