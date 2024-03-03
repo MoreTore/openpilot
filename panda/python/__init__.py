@@ -246,6 +246,7 @@ class Panda:
   FLAG_FORD_CANFD = 2
   
   FLAG_MAZDA_ENABLE_TI = 1
+  FLAG_MAZDA_ENABLE_RI = 2
 
   def __init__(self, serial: Optional[str] = None, claim: bool = True, disable_checks: bool = True, can_speed_kbps: int = 500):
     self._connect_serial = serial
