@@ -10,7 +10,7 @@ from openpilot.system.micd import SAMPLE_BUFFER, SAMPLE_RATE
 
 class WakeWordListener:
   RATE = 12.5
-  PHRASE_MODEL_NAME = "alexa_v0.1"
+  PHRASE_MODEL_NAME = "hey_frog_pilot"
   MODEL_DIR = Path(__file__).parent / 'models'
   PHRASE_MODEL_PATH = f'{MODEL_DIR}/{PHRASE_MODEL_NAME}.onnx'
   MEL_MODEL_PATH = f'{MODEL_DIR}/melspectrogram.onnx'

@@ -5,6 +5,7 @@ import json
 STTState = log.SpeechToText.State
 
 sm = messaging.SubMaster(["speechToText"])
+import time
 import os
 import re
 import requests
@@ -18,7 +19,7 @@ def get_coordinates_from_transcript(transcript, proximity, mapbox_access_token):
   if match:
     address = match.group(2).strip()
     encoded_address = urllib.parse.quote(address)
-    mapbox_url = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{encoded_address}.json?access_token=pk.eyJ1IjoicnlsZXltY2MiLCJhIjoiY2xjeDl5aGp4MTBmeDNzb2Vua2QyNWN1bSJ9.CrbD-j1LQkBdOqyWcZneyQ"
+    mapbox_url = f"https://api.mapbox.com/geocoding/v5/mapbox.places/{encoded_address}.json?access_token={mapbox_access_token}&limit=1"
     response = requests.get(mapbox_url)
     if response.status_code == 200:
       data = response.json()
@@ -35,7 +36,7 @@ def get_coordinates_from_transcript(transcript, proximity, mapbox_access_token):
 
 def main():
   params = Params()
-  mapbox_access_token = os.environ["MAPBOX_TOKEN"]
+  mapbox_access_token = params.get("MapboxPublicKey")
   while True:
     dest = False
     transcript: str = ""
@@ -53,6 +54,7 @@ def main():
           params.put("NavDestination", json.dumps(dest))
           print(dest)
           dest = False
+    time.sleep(1)
 
 if __name__ == "__main__":
     main()
