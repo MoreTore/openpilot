@@ -2228,6 +2228,23 @@ struct Microphone {
   filteredSoundPressureWeightedDb @2 :Float32;
 }
 
+struct MicrophoneRaw {
+  frameIndex @0 :UInt32; # buffer index * size of buffer
+  rawSample @1 :Data;
+}
+
+struct SpeechToText {
+  transcript @0 :Text;
+  state @1 :State;
+  enum State {
+    none @0;
+    begin @1;
+    empty @2;
+    error @3;
+    final @4;
+  }
+}
+
 struct Event {
   logMonoTime @0 :UInt64;  # nanoseconds
   valid @67 :Bool = true;
@@ -2295,6 +2312,8 @@ struct Event {
 
     # microphone data
     microphone @103 :Microphone;
+    microphoneRaw @127: MicrophoneRaw;
+    speechToText @128: SpeechToText;
 
     # systems stuff
     androidLog @20 :AndroidLogEntry;

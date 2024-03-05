@@ -105,6 +105,7 @@ sounddevice = "*"
 spidev = { version = "*", platform = "linux" }
 sympy = "*"
 websocket_client = "*"
+rev_ai = { git = "https://github.com/jakethesnake420/revai-python-sdk.git", branch = "patch-1" }
 
 # these should be removed
 markdown-it-py = "*"

@@ -173,6 +173,7 @@ def addr_input():
   token = fleet.get_public_token()
   s_token = fleet.get_app_token()
   gmap_key = fleet.get_gmap_key()
+  revai_token = fleet.get_revai_token()
   PrimeType = fleet.get_PrimeType()
   lon = float(0.0)
   lat = float(0.0)
@@ -201,6 +202,8 @@ def addr_input():
       return redirect(url_for('public_token_input'))
     elif s_token == "" or s_token is None:
       return redirect(url_for('app_token_input'))
+    elif revai_token == "" or revai_token is None:
+      return redirect(url_for('revai_token_input'))
     else:
       return redirect(url_for('amap_addr_input'))
   elif fleet.get_nav_active():
@@ -280,6 +283,16 @@ def amap_addr_input():
     lon, lat = fleet.get_last_lon_lat()
     amap_key, amap_key_2 = fleet.get_amap_key()
     return render_template("amap_addr_input.html", lon=lon, lat=lat, amap_key=amap_key, amap_key_2=amap_key_2)
+  
+# This is the route for the revai token input page
+@app.route("/revai_token_input", methods=['GET', 'POST'])
+def revai_token_input():
+  if request.method == 'POST':
+    postvars = request.form.to_dict()
+    fleet.revai_token_input(postvars)
+    return redirect(url_for('addr_input'))
+  else:
+    return render_template("revai_token_input.html")
 
 @app.route("/CurrentStep.json", methods=['GET'])
 def find_CurrentStep():

@@ -30,6 +30,7 @@ enum SignalType {
   CHRYSLER_CHECKSUM,
   HKG_CAN_FD_CHECKSUM,
   MAZDA2019_CHECKSUM,
+  MAZDA2017_CHECKSUM,
 };
 
 struct Signal {

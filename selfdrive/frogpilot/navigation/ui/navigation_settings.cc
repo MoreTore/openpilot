@@ -65,6 +65,9 @@ FrogPilotNavigationPanel::FrogPilotNavigationPanel(QWidget *parent) : QFrame(par
   QObject::connect(mapsPanel, &SelectMaps::backPress, [=]() { mainLayout->setCurrentWidget(navigationWidget); });
   list->addItem(selectMapsButton);
 
+  ParamControl *voiceControl = new ParamControl("VoiceControl", tr("Voice Control"), tr("Enable voice control for destination setting."), "", this);
+  list->addItem(voiceControl);
+
   removeOfflineMapsButton = new ButtonControl(tr("Remove Offline Maps"), tr("REMOVE"), tr("Remove your downloaded offline maps to clear up storage space."));
   QObject::connect(removeOfflineMapsButton, &ButtonControl::clicked, [this] { removeMaps(this); });
   list->addItem(removeOfflineMapsButton);

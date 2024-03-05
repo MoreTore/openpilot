@@ -66,6 +66,7 @@ void HomeWindow::updateState(const UIState &s) {
     body->setEnabled(true);
     slayout->setCurrentWidget(body);
   }
+  emit requestRaiseAssistantOverlay();
 }
 
 void HomeWindow::offroadTransition(bool offroad) {

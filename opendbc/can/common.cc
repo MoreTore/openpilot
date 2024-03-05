@@ -65,7 +65,7 @@ unsigned int chrysler_checksum(uint32_t address, const Signal &sig, const std::v
   return ~checksum & 0xFF;
 }
 
-unsigned int mazda_checksum(uint32_t address, const Signal &sig, const std::vector<uint8_t> &d) {
+unsigned int mazda2019_checksum(uint32_t address, const Signal &sig, const std::vector<uint8_t> &d) {
   uint8_t checksum = 0;
   if (address == 0x220U) {
     checksum = 0x2aU;
@@ -78,6 +78,17 @@ unsigned int mazda_checksum(uint32_t address, const Signal &sig, const std::vect
       checksum += d[i];
   }
   return checksum;
+}
+
+unsigned int mazda2017_checksum(uint32_t address, const Signal &sig, const std::vector<uint8_t> &d) {
+    uint8_t sum = 0;
+    if (d[5] & 0x5) {
+      sum = 0xFC;
+    }
+    for (int i = 0; i < d.size() - 1; i++) {
+        sum += d[i];
+    }
+    return ~sum & 0xFF;
 }
 
 // Static lookup table for fast computation of CRCs

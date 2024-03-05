@@ -61,7 +61,7 @@ procs = [
   NativeProcess("logcatd", "system/logcatd", ["./logcatd"], (enable_logging and only_onroad)),
   NativeProcess("proclogd", "system/proclogd", ["./proclogd"], enable_logging),
   PythonProcess("logmessaged", "system.logmessaged", enable_logging),
-  PythonProcess("micd", "system.micd", iscar),
+  PythonProcess("micd", "system.micd", only_onroad if TICI else always_run),
   PythonProcess("timed", "system.timed", always_run, enabled=not PC),
 
   PythonProcess("dmonitoringmodeld", "selfdrive.modeld.dmonitoringmodeld", driverview, enabled=(not PC or WEBCAM)),
@@ -103,6 +103,9 @@ procs = [
   # FrogPilot processes
   PythonProcess("fleet_manager", "selfdrive.frogpilot.fleetmanager.fleet_manager", always_run),
   PythonProcess("mapd", "selfdrive.frogpilot.functions.mapd", osm),
+  PythonProcess("speechd", "system.assistant.rev_speechd", only_onroad if TICI else always_run),
+  PythonProcess("wakewordd", "system.assistant.wakewordd", only_onroad if TICI else always_run),
+  PythonProcess("nav_setter", "system.assistant.nav_setter", only_onroad if TICI else always_run),
 ]
 
 managed_processes = {p.name: p for p in procs}

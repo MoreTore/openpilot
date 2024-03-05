@@ -8,10 +8,12 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
   main_layout = new QStackedLayout(this);
   main_layout->setMargin(0);
 
+  assistantOverlay = new AssistantOverlay(this);
   homeWindow = new HomeWindow(this);
   main_layout->addWidget(homeWindow);
   QObject::connect(homeWindow, &HomeWindow::openSettings, this, &MainWindow::openSettings);
   QObject::connect(homeWindow, &HomeWindow::closeSettings, this, &MainWindow::closeSettings);
+  QObject::connect(homeWindow, &HomeWindow::requestRaiseAssistantOverlay, this, &MainWindow::raiseAssistantOverlay);
 
   settingsWindow = new SettingsWindow(this);
   main_layout->addWidget(settingsWindow);
@@ -37,11 +39,13 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
     if (!offroad) {
       closeSettings();
     }
+    assistantOverlay->raise();
   });
   QObject::connect(device(), &Device::interactiveTimeout, [=]() {
     if (main_layout->currentWidget() == settingsWindow) {
       closeSettings();
     }
+    assistantOverlay->raise();
   });
 
   // load fonts
@@ -68,6 +72,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
 void MainWindow::openSettings(int index, const QString &param) {
   main_layout->setCurrentWidget(settingsWindow);
   settingsWindow->setCurrentPanel(index, param);
+  assistantOverlay->raise();
 }
 
 void MainWindow::closeSettings() {
@@ -81,6 +86,7 @@ void MainWindow::closeSettings() {
       homeWindow->showSidebar(params.getBool("Sidebar"));
     }
   }
+  assistantOverlay->raise();
 }
 
 bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
