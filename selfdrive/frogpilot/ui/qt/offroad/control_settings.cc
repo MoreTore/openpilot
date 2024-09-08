@@ -486,16 +486,6 @@ FrogPilotControlsPanel::FrogPilotControlsPanel(SettingsWindow *parent) : FrogPil
         for (auto &[key, toggle] : toggles) {
           std::set<QString> modifiedLateralTuneKeys = lateralTuneKeys;
 
-          if (hasAutoTune || params.getBool("LateralTune") && params.getBool("NNFF")) {
-            modifiedLateralTuneKeys.erase("ForceAutoTune");
-          }
-
-          if (hasCommaNNFFSupport || !hasNNFFLog) {
-            modifiedLateralTuneKeys.erase("NNFF");
-          } else {
-            modifiedLateralTuneKeys.erase("NNFFLite");
-          }
-
           toggle->setVisible(modifiedLateralTuneKeys.find(key.c_str()) != modifiedLateralTuneKeys.end());
         }
       });
