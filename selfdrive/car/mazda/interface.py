@@ -58,7 +58,7 @@ class CarInterface(CarInterfaceBase):
       ret.longitudinalTuning.kiBP = [0., 35.]
       ret.longitudinalTuning.kiV = [0.1, 0.1]
       ret.startingState = True
-      ret.steerActuatorDelay = 0.5
+      ret.steerActuatorDelay = 0.35
 
     ret.steerLimitTimer = 1.0
 
