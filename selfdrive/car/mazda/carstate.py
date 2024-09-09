@@ -135,7 +135,7 @@ class CarState(CarStateBase):
     # Check if LKAS is disabled due to lack of driver torque when all other states indicate
     # it should be enabled (steer lockout). Don't warn until we actually get lkas active
     # and lose it again, i.e, after initial lkas activation
-    ret.steerFaultTemporary = self.lkas_allowed_speed and lkas_blocked not self.ti_lkas_allowed
+    ret.steerFaultTemporary = self.lkas_allowed_speed and lkas_blocked and not self.ti_lkas_allowed
 
     self.acc_active_last = ret.cruiseState.enabled
 
