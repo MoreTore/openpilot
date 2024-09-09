@@ -91,8 +91,8 @@ class CarInterface(CarInterfaceBase):
 
       if not self.CS.acc_active_last and not self.CS.ti_lkas_allowed:
         events.add(EventName.steerTempUnavailable)
-      if (not self.CS.ti_lkas_allowed) and (self.CP.flags & MazdaFlags.TORQUE_INTERCEPTOR):
-        events.add(EventName.steerTempUnavailable) # torqueInterceptorTemporaryWarning
+      #if (not self.CS.ti_lkas_allowed) and (self.CP.flags & MazdaFlags.TORQUE_INTERCEPTOR):
+      #  events.add(EventName.steerTempUnavailable) # torqueInterceptorTemporaryWarning
 
     ret.events = events.to_msg()
 

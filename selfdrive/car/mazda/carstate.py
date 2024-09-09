@@ -132,15 +132,10 @@ class CarState(CarStateBase):
       ret.cruiseState.available = cp.vl["CRZ_CTRL"]["CRZ_AVAILABLE"] == 1
       ret.cruiseState.enabled = cp.vl["CRZ_CTRL"]["CRZ_ACTIVE"] == 1
 
-    if self.CP.carFingerprint not in (CAR.MAZDA_CX5_2022, CAR.MAZDA_CX9_2021):
-      ret.steerFaultTemporary = cp.vl["STEER_RATE"]["HANDS_OFF_5_SECONDS"] == 1
-    else:
-      ret.steerFaultTemporary = False
-
     # Check if LKAS is disabled due to lack of driver torque when all other states indicate
     # it should be enabled (steer lockout). Don't warn until we actually get lkas active
     # and lose it again, i.e, after initial lkas activation
-    ret.steerFaultTemporary = self.lkas_allowed_speed and lkas_blocked
+    ret.steerFaultTemporary = self.lkas_allowed_speed and lkas_blocked not self.ti_lkas_allowed
 
     self.acc_active_last = ret.cruiseState.enabled
 
