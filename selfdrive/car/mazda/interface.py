@@ -51,12 +51,18 @@ class CarInterface(CarInterfaceBase):
       ret.safetyConfigs[0].safetyParam |= Panda.FLAG_MAZDA_GEN2
       ret.experimentalLongitudinalAvailable = True
       ret.openpilotLongitudinalControl = experimental_long
-      ret.stopAccel = -.5
-      ret.vEgoStarting = .2
-      ret.longitudinalTuning.kpBP = [0., 5., 35.]
-      ret.longitudinalTuning.kpV = [0.0, 0.0, 0.0]
-      ret.longitudinalTuning.kiBP = [0., 35.]
-      ret.longitudinalTuning.kiV = [0.1, 0.1]
+      # ret.stopAccel = -.5
+      # ret.vEgoStarting = .2
+      # ret.longitudinalTuning.kpBP = [0., 5., 35.]
+      # ret.longitudinalTuning.kpV = [0.0, 0.0, 0.0]
+      # ret.longitudinalTuning.kiBP = [0., 35.]
+      # ret.longitudinalTuning.kiV = [0.1, 0.1]
+      ret.longitudinalTuning.kpV = [0.0]
+      ret.longitudinalTuning.kiV = [0.5]
+      ret.stopAccel = -0.4             # Toyota requests -0.4 when stopped
+      ret.stoppingDecelRate = 0.01     # reach stopping target smoothly
+      ret.vEgoStopping = 0.15          # car is near 0.1 to 0.2 when car starts requesting stopping accel
+      ret.vEgoStarting = 0.15          # needs to be > or == vEgoStopping
       ret.startingState = True
       ret.steerActuatorDelay = 0.35
 
