@@ -61,6 +61,14 @@ frogpilot_src = ["../../frogpilot/ui/frogpilot_ui.cc", "../../frogpilot/ui/qt/of
 
 qt_src += frogpilot_src
 
+if GetOption("nosr"):
+  qt_env.Append(CXXFLAGS=['-DNO_SR'])
+  base_libs.remove('OmxCore')
+  qt_libs.remove('OmxCore')
+  qt_src.remove("../frogpilot/screenrecorder/screenrecorder.cc")
+  qt_src.remove("../frogpilot/screenrecorder/omx_encoder.cc")
+  print("Removing Screen Recorder")
+
 # build translation files
 with open(File("translations/languages.json").abspath) as f:
   languages = json.loads(f.read())

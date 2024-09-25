@@ -14,19 +14,13 @@ NOTE: This repository uses Git LFS for large files. Ensure you have [Git LFS](ht
 
 Either do a partial clone for faster download:
 ``` bash
-git clone --filter=blob:none --recurse-submodules --also-filter-submodules https://github.com/commaai/openpilot.git
-```
-
-or do a full clone:
-``` bash
-git clone --recurse-submodules https://github.com/commaai/openpilot.git
+git clone https://github.com/FrogAi/FrogPilot.git --branch MAKE-PRS-HERE
 ```
 
 **2. Run the setup script**
 
 ``` bash
-cd openpilot
-git lfs pull
+cd FrogPilot
 tools/ubuntu_setup.sh
 ```
 
@@ -38,7 +32,7 @@ poetry shell
 **3. Build openpilot**
 
 ``` bash
-scons -u -j$(nproc)
+scons -u -j$(nproc) --nosr --extras
 ```
 
 ## Dev Container on any Linux or macOS
