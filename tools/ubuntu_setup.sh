@@ -9,6 +9,10 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 $DIR/install_ubuntu_dependencies.sh
 $DIR/install_python_dependencies.sh
 
+sudo mkdir -p /.comma/params/d
+sudo mkdir -p /persist/params/d
+sudo mkdir -p /persist/tracking/d
+
 echo
 echo "----   OPENPILOT SETUP DONE   ----"
 echo "Open a new shell or configure your active shell env by running:"
