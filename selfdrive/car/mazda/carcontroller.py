@@ -32,6 +32,10 @@ class CarController(CarControllerBase):
 
 
   def update(self, CC, CS, now_nanos, frogpilot_toggles):
+    
+    def is_resuming():
+      return (CC.cruiseControl.resume or CC.cruiseControl.override or CS.out.gasPressed or (CC.actuators.longControlState == LongCtrlState.starting) or CS.acc["RESUME"])
+    
     can_sends = []
 
     apply_steer = 0
@@ -105,7 +109,12 @@ class CarController(CarControllerBase):
           can_sends.extend(mazdacan.create_radar_command(self.packer, self.frame, CC.longActive, CS, hold))
 
     else:
-      raw_acc_output = (CC.actuators.accel * 240) + 2000
+      #Reset ACC output on resume
+      if is_resuming() and self.params.get_bool("BlendedACC") and not self.params_memory.get_int("CEStatus"): #Resume from chill mode, was not previously in CEM 
+        raw_acc_output = CS.acc["ACCEL_CMD"]
+      else:
+        raw_acc_output = (CC.actuators.accel * 240) + 2000
+        
       if self.params.get_bool("BlendedACC"):
         if self.params_memory.get_int("CEStatus"):
           self.acc_filter.update_alpha(abs(raw_acc_output-self.filtered_acc_last)/1000)
@@ -135,8 +144,7 @@ class CarController(CarControllerBase):
         """
         if CS.out.standstill: # if we're stopped
           if not self.hold_delay.active(): # and we have been stopped for more than hold_delay duration. This prevents a hard brake if we aren't fully stopped.
-            if (CC.cruiseControl.resume or CC.cruiseControl.override or CS.out.gasPressed or
-                (CC.actuators.longControlState == LongCtrlState.starting) or CS.acc["RESUME"]): # and we want to resume
+            if is_resuming(): # and we want to resume
               self.resume_timer.reset() # reset the resume timer so its active
             else: # otherwise we're holding
               hold = self.hold_timer.active() # hold for 6s. This allows the electric brake to hold the car.
