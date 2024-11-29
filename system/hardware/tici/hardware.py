@@ -586,6 +586,29 @@ class Tici(HardwareBase):
       return False
     return True
 
+  def get_ipv4_address(self, interface="wlan0"):
+    try:
+      # Run the `ip` command to get interface details
+      result = subprocess.run(
+        ["ip", "addr", "show", interface],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+      )
+
+      # Check if the command succeeded
+      if result.returncode != 0:
+        return None
+
+      # Parse the output for the IPv4 address
+      for line in result.stdout.splitlines():
+        line = line.strip()
+        if line.startswith("inet "):  # Find the line with 'inet'
+          return line.split()[1].split('/')[0]  # Extract the IP address
+    except Exception:
+      pass
+    return None
+
 if __name__ == "__main__":
   t = Tici()
   t.configure_modem()
