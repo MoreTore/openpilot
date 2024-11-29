@@ -144,3 +144,6 @@ class HardwareBase(ABC):
 
   def get_modem_data_usage(self):
     return -1, -1
+
+  def get_ipv4_address(self, interface="wlan0"):
+    return None
