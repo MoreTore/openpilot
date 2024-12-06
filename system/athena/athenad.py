@@ -15,6 +15,8 @@ import tempfile
 import threading
 import time
 import zstandard as zstd
+import logging
+import asyncio
 from dataclasses import asdict, dataclass, replace
 from datetime import datetime
 from functools import partial
@@ -40,6 +42,7 @@ from openpilot.system.loggerd.xattr_cache import getxattr, setxattr
 from openpilot.common.swaglog import cloudlog
 from openpilot.system.version import get_build_metadata
 from openpilot.system.hardware.hw import Paths
+from openpilot.system.athena.webrtc_helpers import webrtc_event_loop
 
 
 ATHENA_HOST = os.getenv('ATHENA_HOST', 'wss://athena.comma.ai')
@@ -99,6 +102,7 @@ send_queue: Queue[str] = queue.Queue()
 upload_queue: Queue[UploadItem] = queue.Queue()
 low_priority_send_queue: Queue[str] = queue.Queue()
 log_recv_queue: Queue[str] = queue.Queue()
+sdp_recv_queue = queue.Queue()
 cancelled_uploads: set[str] = set()
 
 cur_upload_items: dict[int, UploadItem | None] = {}
@@ -146,6 +150,7 @@ def handle_long_poll(ws: WebSocket, exit_event: threading.Event | None) -> None:
     threading.Thread(target=upload_handler, args=(end_event,), name='upload_handler'),
     threading.Thread(target=log_handler, args=(end_event,), name='log_handler'),
     threading.Thread(target=stat_handler, args=(end_event,), name='stat_handler'),
+    threading.Thread(target=rtc_handler, args=(end_event, send_queue, sdp_recv_queue), name='rtc_handler'),
   ] + [
     threading.Thread(target=jsonrpc_handler, args=(end_event,), name=f'worker_{x}')
     for x in range(HANDLER_THREADS)
@@ -185,6 +190,17 @@ def jsonrpc_handler(end_event: threading.Event) -> None:
       cloudlog.exception("athena jsonrpc handler failed")
       send_queue.put_nowait(json.dumps({"error": str(e)}))
 
+def rtc_handler(end_event: threading.Event, send_queue: queue.Queue, sdp_recv_queue: queue.Queue) -> None:
+  logging.basicConfig(level=logging.DEBUG)
+  loop = asyncio.new_event_loop()
+  asyncio.set_event_loop(loop)
+
+  try:
+    loop.run_until_complete(webrtc_event_loop(end_event, send_queue, sdp_recv_queue))
+  finally:
+    print("Closing event loop")
+    loop.close()
+    print("Event loop closed. Thread joining.")
 
 def retry_upload(tid: int, end_event: threading.Event, increase_count: bool = True) -> None:
   item = cur_upload_items[tid]
