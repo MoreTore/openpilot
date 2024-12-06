@@ -7,6 +7,8 @@ import requests
 
 from aiortc import RTCPeerConnection, RTCConfiguration, RTCSessionDescription, RTCIceCandidate, RTCRtpCodecCapability, RTCIceServer
 from openpilot.system.webrtc.device.video import LiveStreamVideoStreamTrack
+from openpilot.system.manager.process_config import managed_processes, NativeProcess
+
 
 def get_ice_servers():
   api_key = "26e6c30483590d95b1f878fc361f8286151e"
@@ -136,8 +138,18 @@ async def build(send_queue):
     print(f"Added Offer to send_queue {message}")
     return pc
 
+
+
 async def webrtc_event_loop(end_event: threading.Event, send_queue: queue.Queue, sdp_recv_queue: queue.Queue):
+    camera = NativeProcess("camerad", "system/camerad", ["./camerad", "--stream"], True)
+    encoder = NativeProcess("encoderd", "system/loggerd", ["./encoderd"], True)
     pc = await build(send_queue)
+
+    async def stop():
+        await pc.close()
+        camera.stop()
+        encoder.stop()
+        await asyncio.sleep(1) # wait for procs to stop
 
     while not end_event.is_set():
         try:
@@ -146,6 +158,8 @@ async def webrtc_event_loop(end_event: threading.Event, send_queue: queue.Queue,
             data = None
 
         if data:
+            camera.start() # Repeated calls are ok
+            encoder.start()
             msg_type = data.get('type')
             if msg_type == 'answer':
                 await set_answer(pc, data, send_queue)
@@ -153,14 +167,15 @@ async def webrtc_event_loop(end_event: threading.Event, send_queue: queue.Queue,
                 if 'candidate' in data:
                     await set_candidate(pc, data['candidate'], send_queue)
             elif msg_type == 'bye':
-                await pc.close()
-                return
+                await stop()
+                pc = await build(send_queue)
         else:
             await asyncio.sleep(0.1)
 
         # If connection failed, recreate the PC as needed.
         if pc.connectionState == "failed":
             print("Connection failed - recreating PeerConnection")
-            await pc.close()
+            await stop()
             pc = await build(send_queue)
+
 
