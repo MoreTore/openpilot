@@ -202,6 +202,10 @@ def rtc_handler(end_event: threading.Event, send_queue: queue.Queue, sdp_recv_qu
     loop.close()
     print("Event loop closed. Thread joining.")
 
+@dispatcher.add_method
+def putSdpMessage(sdp):
+  sdp_recv_queue.put_nowait(sdp)
+
 def retry_upload(tid: int, end_event: threading.Event, increase_count: bool = True) -> None:
   item = cur_upload_items[tid]
   if item is not None and item.retry_count < MAX_RETRY_COUNT:
