@@ -99,13 +99,6 @@ def attach_event_handlers(pc: RTCPeerConnection, send_queue: queue.Queue):
     async def on_icegatheringstatechange():
         state = pc.iceGatheringState
         print(f"ice gathering state change: {state}")
-        if state == "complete" and pc.localDescription:
-            message = json.dumps({
-                'type': pc.localDescription.type,
-                'sdp': pc.localDescription.sdp,
-            })
-            send_queue.put_nowait(message)
-            print(f"Added Offer to send_queue {message}")
 
     async def on_connectionstatechange():
         state = pc.connectionState
@@ -124,13 +117,27 @@ def attach_event_handlers(pc: RTCPeerConnection, send_queue: queue.Queue):
 async def setup_pc(send_queue: queue.Queue):
     configuration = RTCConfiguration(iceServers=get_ice_servers())
     pc = RTCPeerConnection(configuration)
-    add_track("camera_type", pc)
+    add_track("road", pc)
     attach_event_handlers(pc, send_queue)
     return pc
 
-async def webrtc_event_loop(end_event: threading.Event, send_queue: queue.Queue, sdp_recv_queue: queue.Queue):
+async def build(send_queue):
     pc = await setup_pc(send_queue)
     await create_offer(pc, send_queue)
+    while not pc.localDescription:
+        await asyncio.sleep(0.1)
+    while pc.iceGatheringState != "complete":
+        await asyncio.sleep(0.1)
+    message = json.dumps({
+        'type': pc.localDescription.type,
+        'sdp': pc.localDescription.sdp,
+    })
+    send_queue.put_nowait(message)
+    print(f"Added Offer to send_queue {message}")
+    return pc
+
+async def webrtc_event_loop(end_event: threading.Event, send_queue: queue.Queue, sdp_recv_queue: queue.Queue):
+    pc = await build(send_queue)
 
     while not end_event.is_set():
         try:
@@ -155,6 +162,5 @@ async def webrtc_event_loop(end_event: threading.Event, send_queue: queue.Queue,
         if pc.connectionState == "failed":
             print("Connection failed - recreating PeerConnection")
             await pc.close()
-            pc = await setup_pc(send_queue)
-            await create_offer(pc, send_queue)
+            pc = await build(send_queue)
 
