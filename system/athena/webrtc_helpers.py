@@ -46,18 +46,23 @@ def add_track(camera_type: str, pc: RTCPeerConnection) -> None:
     transceiver.setCodecPreferences([h264_capability])
     pc.addTrack(video_track)
 
-async def create_offer(pc, send_queue: queue.Queue):
+async def create_offer(pc):
     try:
         print("creating offer")
         offer = await pc.createOffer()
+        sdp = offer.sdp
+        sdp = sdp.replace(
+            "m=video 9 UDP/TLS/RTP/SAVPF 97 99",
+            "m=video 9 UDP/TLS/RTP/SAVPF 99 97"
+        )
         print(f"Created Offer {offer}")
-        await pc.setLocalDescription(offer)
+        await pc.setLocalDescription(RTCSessionDescription(sdp, "offer"))
         print("Set Local Description")
     except Exception as e:
         print(f"Failed to create offer: {e}")
         await pc.close()
 
-async def set_answer(pc, data, send_queue: queue.Queue):
+async def set_answer(pc, data):
     try:
         answer = RTCSessionDescription(sdp=data['sdp'], type=data['type'])
         await pc.setRemoteDescription(answer)
@@ -66,7 +71,7 @@ async def set_answer(pc, data, send_queue: queue.Queue):
         print(f"Failed to set answer: {e}")
         await pc.close()
 
-async def set_candidate(pc, candidate_data, send_queue: queue.Queue):
+async def set_candidate(pc, candidate_data):
     candidate = RTCIceCandidate(
         component=1,
         foundation=candidate_data.get("foundation", "1"),
@@ -83,7 +88,9 @@ async def set_candidate(pc, candidate_data, send_queue: queue.Queue):
     )
     await pc.addIceCandidate(candidate)
 
-def attach_event_handlers(pc: RTCPeerConnection, send_queue: queue.Queue):
+def attach_event_handlers(pc: RTCPeerConnection,
+                          sdp_send_queue: queue.Queue,
+                          ice_send_queue: queue.Queue):
     async def on_icecandidate(event):
         if event.candidate:
             candidate = {
@@ -95,7 +102,7 @@ def attach_event_handlers(pc: RTCPeerConnection, send_queue: queue.Queue):
                 'type': 'candidate',
                 'candidate': candidate,
             })
-            send_queue.put_nowait(message)
+            ice_send_queue.put_nowait(message)
             print("[DEBUG] Sent ICE candidate")
 
     async def on_icegatheringstatechange():
@@ -109,41 +116,44 @@ def attach_event_handlers(pc: RTCPeerConnection, send_queue: queue.Queue):
 
     async def on_negotiationneeded():
         print("Negotiation needed - creating a new offer")
-        await create_offer(pc, send_queue)
+        await create_offer(pc)
 
     pc.on("icecandidate", on_icecandidate)
     pc.on("icegatheringstatechange", on_icegatheringstatechange)
     pc.on("connectionstatechange", on_connectionstatechange)
     pc.on("negotiationneeded", on_negotiationneeded)
 
-async def setup_pc(send_queue: queue.Queue):
-    configuration = RTCConfiguration(iceServers=get_ice_servers())
-    pc = RTCPeerConnection(configuration)
-    add_track("road", pc)
-    attach_event_handlers(pc, send_queue)
-    return pc
 
-async def build(send_queue):
-    pc = await setup_pc(send_queue)
-    await create_offer(pc, send_queue)
-    while not pc.localDescription:
-        await asyncio.sleep(0.1)
-    while pc.iceGatheringState != "complete":
-        await asyncio.sleep(0.1)
-    message = json.dumps({
-        'type': pc.localDescription.type,
-        'sdp': pc.localDescription.sdp,
-    })
-    send_queue.put_nowait(message)
-    print(f"Added Offer to send_queue {message}")
-    return pc
+async def webrtc_event_loop(end_event: threading.Event,
+                            sdp_send_queue: queue.Queue,
+                            sdp_recv_queue: queue.Queue,
+                            ice_send_queue: queue.Queue):
+    camera = NativeProcess("camerad", "system/camerad", ["./camerad"], True)
+    encoder = NativeProcess("encoderd", "system/loggerd", ["./encoderd", "--stream"], True)
 
+    async def setup_pc():
+        configuration = RTCConfiguration(iceServers=get_ice_servers())
+        pc = RTCPeerConnection(configuration)
+        add_track("road", pc)
+        attach_event_handlers(pc, sdp_send_queue, ice_send_queue)
+        return pc
 
+    async def build():
+        pc = await setup_pc()
+        await create_offer(pc)
+        while not pc.localDescription:
+            await asyncio.sleep(0.1)
+        while pc.iceGatheringState != "complete":
+            await asyncio.sleep(0.1)
+        message = json.dumps({
+            'type': pc.localDescription.type,
+            'sdp': pc.localDescription.sdp,
+        })
+        sdp_send_queue.put_nowait(message)
+        print(f"Added Offer to send_queue {message}")
+        return pc
 
-async def webrtc_event_loop(end_event: threading.Event, send_queue: queue.Queue, sdp_recv_queue: queue.Queue):
-    camera = NativeProcess("camerad", "system/camerad", ["./camerad", "--stream"], True)
-    encoder = NativeProcess("encoderd", "system/loggerd", ["./encoderd"], True)
-    pc = await build(send_queue)
+    pc = await build()
 
     async def stop():
         await pc.close()
@@ -158,17 +168,18 @@ async def webrtc_event_loop(end_event: threading.Event, send_queue: queue.Queue,
             data = None
 
         if data:
+            print(f"[DEBUG] Got data in sdp_recv_queue: {data}")
             camera.start() # Repeated calls are ok
             encoder.start()
             msg_type = data.get('type')
             if msg_type == 'answer':
-                await set_answer(pc, data, send_queue)
+                await set_answer(pc, data)
             elif msg_type == 'candidate':
                 if 'candidate' in data:
-                    await set_candidate(pc, data['candidate'], send_queue)
+                    await set_candidate(pc, data['candidate'])
             elif msg_type == 'bye':
                 await stop()
-                pc = await build(send_queue)
+                pc = await build()
         else:
             await asyncio.sleep(0.1)
 
@@ -176,6 +187,4 @@ async def webrtc_event_loop(end_event: threading.Event, send_queue: queue.Queue,
         if pc.connectionState == "failed":
             print("Connection failed - recreating PeerConnection")
             await stop()
-            pc = await build(send_queue)
-
-
+            pc = await build()
