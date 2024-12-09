@@ -41,7 +41,7 @@ from openpilot.system.loggerd.xattr_cache import getxattr, setxattr
 from openpilot.common.swaglog import cloudlog
 from openpilot.system.version import get_build_metadata
 from openpilot.system.hardware.hw import Paths
-from openpilot.system.athena.webrtc_helpers import webrtc_event_loop
+from openpilot.system.athena.webrtc_helpers import Streamer
 
 
 ATHENA_HOST = os.getenv('ATHENA_HOST', 'wss://athena.springerelectronics.com')
@@ -172,14 +172,14 @@ def handle_long_poll(ws: WebSocket, exit_event: threading.Event | None) -> None:
       cloudlog.debug(f"athena.joining {thread.name}")
       thread.join()
 
-@dispatcher.add_method
-def rtc_handler(end_event: threading.Event, send_queue: queue.Queue, sdp_recv_queue: queue.Queue, ice_recv_queue: queue.Queue) -> None:
-  logging.basicConfig(level=logging.INFO)
+def rtc_handler(end_event: threading.Event, sdp_send_queue: queue.Queue, sdp_recv_queue: queue.Queue, ice_recv_queue: queue.Queue) -> None:
+  #logging.basicConfig(level=logging.DEBUG)
   loop = asyncio.new_event_loop()
   asyncio.set_event_loop(loop)
 
   try:
-    loop.run_until_complete(webrtc_event_loop(end_event, send_queue, sdp_recv_queue, ice_recv_queue))
+    streamer = Streamer(sdp_send_queue, sdp_recv_queue, ice_recv_queue)
+    loop.run_until_complete(streamer.event_loop(end_event))
   finally:
     print("Closing event loop")
     loop.close()
