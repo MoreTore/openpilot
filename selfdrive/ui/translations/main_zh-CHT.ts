@@ -549,7 +549,7 @@
     </message>
     <message>
         <source>Renaming...</source>
-        <translation>修改名稱中...</translation>>
+        <translation>修改名稱中...</translation>
     </message>
     <message>
         <source>Renamed!</source>
