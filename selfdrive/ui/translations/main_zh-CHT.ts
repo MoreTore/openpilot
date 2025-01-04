@@ -1130,7 +1130,7 @@ This may take up to a minute.</source>
     </message>
     <message>
         <source>Vehicles</source>
-        <translation>車輛</translation>>
+        <translation>車輛</translation>
     </message>
     <message>
         <source>Visuals</source>
