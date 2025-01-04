@@ -17,7 +17,7 @@
     </message>
     <message>
         <source>Disable Internet Check</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉網路檢查</translation>
     </message>
 </context>
 <context>
@@ -92,7 +92,7 @@
     </message>
     <message>
         <source>Off</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉</translation>
     </message>
     <message>
         <source>Always</source>
@@ -104,11 +104,11 @@
     </message>
     <message>
         <source>Until Reboot</source>
-        <translation type="unfinished"></translation>
+        <translation>直到重新開機</translation>
     </message>
     <message>
         <source>Allow tethering with your data SIM and keep it active either while driving or continuously.</source>
-        <translation type="unfinished"></translation>
+        <translation>允許使用SIM卡的網路進行網路共享，並在駕駛時或持續保持分享狀態</translation>
     </message>
 </context>
 <context>
@@ -135,7 +135,7 @@
     </message>
     <message>
         <source>Vehicle in blind spot</source>
-        <translation type="unfinished"></translation>
+        <translation>有車輛在盲點範圍</translation>
     </message>
     <message>
         <source>m/s²</source>
@@ -188,100 +188,100 @@
     <message>
         <source>Confirm speed limit
 </source>
-        <translation type="unfinished"></translation>
+        <translation>確定速度限制</translation>
     </message>
     <message>
         <source>Ignore speed limit
 </source>
-        <translation type="unfinished"></translation>
+        <translation>忽略速度限制</translation>
     </message>
     <message>
         <source>Conditional Experimental Mode ready</source>
-        <translation type="unfinished"></translation>
+        <translation>條件式實驗模式就緒</translation>
     </message>
     <message>
         <source>Conditional Experimental overridden</source>
-        <translation type="unfinished"></translation>
+        <translation>條件式實驗模式被複寫</translation>
     </message>
     <message>
         <source>Experimental Mode manually activated</source>
-        <translation type="unfinished"></translation>
+        <translation>手動啟動實驗模式</translation>
     </message>
     <message>
         <source>Experimental Mode activated for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>啟動實驗模式因為 %1 啟動</translation>
     </message>
     <message>
         <source>low speed</source>
-        <translation type="unfinished"></translation>
+        <translation>低速</translation>
     </message>
     <message>
         <source>speed being less than %1 %2</source>
-        <translation type="unfinished"></translation>
+        <translation>速度低於 %1 %2</translation>
     </message>
     <message>
         <source>Experimental Mode activated for turn</source>
-        <translation type="unfinished"></translation>
+        <translation>轉向觸發實驗模式已啟動</translation>
     </message>
     <message>
         <source> / lane change</source>
-        <translation type="unfinished"></translation>
+        <translation>變換車道</translation>
     </message>
     <message>
         <source>Experimental Mode activated for intersection</source>
-        <translation type="unfinished"></translation>
+        <translation>十字路口觸發實驗模式已啟動</translation>
     </message>
     <message>
         <source>Experimental Mode activated for upcoming turn</source>
-        <translation type="unfinished"></translation>
+        <translation>即將轉向觸發實驗模式已啟動</translation>
     </message>
     <message>
         <source>Experimental Mode activated for curve</source>
-        <translation type="unfinished"></translation>
+        <translation>彎道觸發實驗模式已啟動</translation>
     </message>
     <message>
         <source>Experimental Mode activated for stopped lead</source>
-        <translation type="unfinished"></translation>
+        <translation>前車停止觸發實驗模式已啟動</translation>
     </message>
     <message>
         <source>Experimental Mode activated for slower lead</source>
-        <translation type="unfinished"></translation>
+        <translation>前車減速觸發實驗模式已啟動</translation>
     </message>
     <message>
         <source>Experimental Mode activated %1</source>
-        <translation type="unfinished"></translation>
+        <translation>實驗模式已啟動 %1</translation>
     </message>
     <message>
         <source>to stop</source>
-        <translation type="unfinished"></translation>
+        <translation>到停止</translation>
     </message>
     <message>
         <source>Experimental Mode forced on %1</source>
-        <translation type="unfinished"></translation>
+        <translation>實驗模式在 %1 強制啟動</translation>
     </message>
     <message>
         <source>Experimental Mode activated due to no speed limit</source>
-        <translation type="unfinished"></translation>
+        <translation>因為沒有速限觸發實驗模式啟動</translation>
     </message>
     <message>
         <source>Always On Lateral active</source>
-        <translation type="unfinished"></translation>
+        <translation>全時置中已啟動</translation>
     </message>
     <message>
         <source>. Press the &quot;Cruise Control&quot; button to disable</source>
-        <translation type="unfinished"></translation>
+        <translation>按 &quot;跟車&quot; 來關閉</translation>
     </message>
     <message>
         <source>. Long press the &quot;distance&quot; button to revert</source>
-        <translation type="unfinished"></translation>
+        <translation>長按 &quot;距離調整&quot; 按鈕來恢復</translation>
     </message>
     <message>
         <source>. Click the &quot;LKAS&quot; button to revert</source>
-        <translation type="unfinished"></translation>
+        <translation>按 &quot;車道維持&quot; 按鈕來恢復</translation>
     </message>
     <message>
         <source>. Double tap the screen to revert</source>
-        <translation type="unfinished"></translation>
+        <translation>雙擊螢幕來恢復</translation>
     </message>
 </context>
 <context>
@@ -481,139 +481,139 @@
     </message>
     <message>
         <source>Delete Driving Data</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除駕駛紀錄</translation>
     </message>
     <message>
         <source>DELETE</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <source>This button provides a swift and secure way to permanently delete all stored driving footage and data from your device. Ideal for maintaining privacy or freeing up space.</source>
-        <translation type="unfinished"></translation>
+        <translation>此按鈕提供了一種快速且安全的方式，可以永久刪除設備中儲存的所有駕駛鏡頭和資料。非常適合維護隱私或釋放空間</translation>
     </message>
     <message>
         <source>Are you sure you want to permanently delete all of your driving footage and data?</source>
-        <translation type="unfinished"></translation>
+        <translation>您確定要永久刪除所有駕駛錄影和資料嗎？</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除</translation>
     </message>
     <message>
         <source>Deleting footage...</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除照片中...</translation>
     </message>
     <message>
         <source>Deleted!</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除完成</translation>
     </message>
     <message>
         <source>Screen Recordings</source>
-        <translation type="unfinished"></translation>
+        <translation>螢幕錄影</translation>
     </message>
     <message>
         <source>RENAME</source>
-        <translation type="unfinished"></translation>
+        <translation>修改名稱</translation>
     </message>
     <message>
         <source>Delete or rename your screen recordings.</source>
-        <translation type="unfinished"></translation>
+       <translation>刪除或是修改螢幕錄影的名稱</translation>
     </message>
     <message>
         <source>Select a recording to delete</source>
-        <translation type="unfinished"></translation>
+        <translation>選取要刪除的錄影</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this recording?</source>
-        <translation type="unfinished"></translation>
+        <translation>你確定要刪除此錄影嗎?</translation>
     </message>
     <message>
         <source>Deleting...</source>
-        <translation type="unfinished"></translation>
+        <translation>刪除中</translation>
     </message>
     <message>
         <source>Failed...</source>
-        <translation type="unfinished"></translation>
+        <translation>失敗</translation>
     </message>
     <message>
         <source>Select a recording to rename</source>
-        <translation type="unfinished"></translation>
+        <translation>選取要修改名稱刪除的錄影</translation>
     </message>
     <message>
         <source>Enter a new name</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入新名稱</translation>
     </message>
     <message>
         <source>Rename Recording</source>
-        <translation type="unfinished"></translation>
+        <translation>修改錄影名稱</translation>
     </message>
     <message>
         <source>Renaming...</source>
-        <translation type="unfinished"></translation>
+        <translation>修改名稱中...</translation>>
     </message>
     <message>
         <source>Renamed!</source>
-        <translation type="unfinished"></translation>
+        <translation>修改名稱完成</translation>
     </message>
     <message>
         <source>FrogPilot Backups</source>
-        <translation type="unfinished"></translation>
+        <translation>FrogPilot備份檔</translation>
     </message>
     <message>
         <source>BACKUP</source>
-        <translation type="unfinished"></translation>
+        <translation>備份</translation>
     </message>
     <message>
         <source>RESTORE</source>
-        <translation type="unfinished"></translation>
+        <translation>還原備份</translation>
     </message>
     <message>
         <source>Backup, delete, or restore your FrogPilot backups.</source>
-        <translation type="unfinished"></translation>
+        <translation>備份/刪除或是還原FrogPilot的備份檔</translation>
     </message>
     <message>
         <source>Name your backup</source>
-        <translation type="unfinished"></translation>
+        <translation>輸入備份名稱</translation>
     </message>
     <message>
         <source>Do you want to compress this backup? The end file size will be 2.25x smaller, but can take 10+ minutes.</source>
-        <translation type="unfinished"></translation>
+        <translation>你要壓縮此備份檔嗎?檔案會小很多但是大概要花超過10分鐘</translation>
     </message>
     <message>
         <source>Backing up...</source>
-        <translation type="unfinished"></translation>
+        <translation>備份中...</translation>
     </message>
     <message>
         <source>Compressing backup...</source>
-        <translation type="unfinished"></translation>
+        <translation>備份壓縮中...</translation>
     </message>
     <message>
         <source>Success!</source>
-        <translation type="unfinished"></translation>
+        <translation>備份完成</translation>
     </message>
     <message>
         <source>Select a backup to delete</source>
-        <translation type="unfinished"></translation>
+        <translation>選取要刪除的備份</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this backup?</source>
-        <translation type="unfinished"></translation>
+        <translation>你確定要刪除此備份嗎?</translation>
     </message>
     <message>
         <source>Select a restore point</source>
-        <translation type="unfinished"></translation>
+        <translation>選取一個備份來還原</translation>
     </message>
     <message>
         <source>Are you sure you want to restore this version of FrogPilot?</source>
-        <translation type="unfinished"></translation>
+        <translation>你確定要還原這個版本的FrogPilot備份嗎?</translation>
     </message>
     <message>
         <source>Restore</source>
-        <translation type="unfinished"></translation>
+        <translation>還原</translation>
     </message>
     <message>
         <source>Restoring...</source>
-        <translation type="unfinished"></translation>
+        <translation>還原中...</translation>
     </message>
     <message>
         <source>Extracting...</source>
@@ -621,11 +621,11 @@
     </message>
     <message>
         <source>Restored!</source>
-        <translation type="unfinished"></translation>
+        <translation>解壓縮中...</translation>
     </message>
     <message>
         <source>Rebooting...</source>
-        <translation type="unfinished"></translation>
+        <translation>重開機...</translation>
     </message>
     <message>
         <source>Toggle Backups</source>
@@ -1118,19 +1118,19 @@ This may take up to a minute.</source>
     </message>
     <message>
         <source>← Back</source>
-        <translation type="unfinished"></translation>
+        <translation>← 返回</translation>
     </message>
     <message>
         <source>Driving</source>
-        <translation type="unfinished"></translation>
+        <translation>駕駛</translation>
     </message>
     <message>
         <source>Navigation</source>
-        <translation type="unfinished"></translation>
+        <translation>導航</translation>
     </message>
     <message>
         <source>Vehicles</source>
-        <translation type="unfinished"></translation>
+        <translation>車輛</translation>>
     </message>
     <message>
         <source>Visuals</source>
@@ -1243,8 +1243,8 @@ This may take up to a minute.</source>
         <translation>完成設置</translation>
     </message>
     <message>
-        <source>Pair your device with comma connect (connect.comma.ai) and claim your comma prime offer.</source>
-        <translation>將您的裝置與 comma connect (connect.comma.ai) 配對並領取您的 comma 高級會員優惠。</translation>
+        <source>Pair your device with comma connect (stable.konik.ai) .</source>
+        <translation>將您的裝置與 comma connect (stable.konik.ai) 。</translation>
     </message>
     <message>
         <source>Pair device</source>
@@ -1303,7 +1303,7 @@ This may take up to a minute.</source>
     </message>
     <message>
         <source>SEARCH</source>
-        <translation>車輛通訊</translation>
+        <translation>搜尋</translation>
     </message>
     <message>
         <source>--</source>
@@ -1335,34 +1335,34 @@ This may take up to a minute.</source>
     </message>
     <message>
         <source>GPU</source>
-        <translation type="unfinished"></translation>
+        <translation>GGPU</translation>
     </message>
     <message>
         <source>CPU</source>
-        <translation type="unfinished"></translation>
+       < translation>CPU</translation>
     </message>
     <message>
         <source> GB</source>
-        <translation type="unfinished"></translation>
+        <translation>  GB</translation>
     </message>
     <message>
         <source>MEMORY</source>
-        <translation type="unfinished"></translation>
+        <translation>MEMORY</translation>
     </message>
     <message>
         <source>LEFT</source>
-        <translation type="unfinished"></translation>
+        <translation>剩餘</translation>
     </message>
     <message>
         <source>USED</source>
-        <translation type="unfinished"></translation>
+        <translation>已使用</translation>
     </message>
 </context>
 <context>
     <name>SoftwarePanel</name>
     <message>
         <source>Updates are only downloaded while the car is off.</source>
-        <translation type="vanished">系統更新只會在熄火時下載。</translation>
+        <translation>系統更新只會在熄火時下載。</translation>
     </message>
     <message>
         <source>Current Version</source>
@@ -1434,11 +1434,11 @@ This may take up to a minute.</source>
     </message>
     <message>
         <source>Updates are only downloaded while the car is off or in park.</source>
-        <translation type="unfinished"></translation>
+        <translation>更新只會在車輛熄火或是P檔狀態進行</translation>
     </message>
     <message>
         <source>Automatically Update FrogPilot</source>
-        <translation type="unfinished"></translation>
+        <translation>自動更新FrogPilot</translation>
     </message>
     <message>
         <source>FrogPilot will automatically update itself and it&apos;s assets when you&apos;re offroad and connected to Wi-Fi.</source>
@@ -1446,15 +1446,15 @@ This may take up to a minute.</source>
     </message>
     <message>
         <source>Error Log</source>
-        <translation type="unfinished"></translation>
+        <translation>錯誤紀錄</translation>
     </message>
     <message>
         <source>VIEW</source>
-        <translation type="unfinished">觀看</translation>
+        <translation觀看</translation>
     </message>
     <message>
         <source>View the error log for openpilot crashes.</source>
-        <translation type="unfinished"></translation>
+        <translation>查看openpilot崩潰時的紀錄</translation>
     </message>
 </context>
 <context>
@@ -1658,47 +1658,47 @@ This may take up to a minute.</source>
     </message>
     <message>
         <source>Enable driver monitoring even when openpilot is not engaged.</source>
-        <translation type="vanished">即使在openpilot未激活時也啟用駕駛監控。</translation>
+        <translation type="vanished">即使在openpilot未啟動時也啟用駕駛監控。</translation>
     </message>
     <message>
         <source>Torque Interceptor Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>啟動扭力攔截器Torque Interceptor功能</translation>
     </message>
     <message>
         <source>Enable the torque interceptor to control the steering wheel.</source>
-        <translation type="unfinished"></translation>
+        <translation>如果你的車輛有安裝扭力攔截器Torque Interceptor</translation>
     </message>
     <message>
         <source>Radar Interceptor Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>啟動雷達攔截器Radar Interceptor功能</translation>
     </message>
     <message>
         <source>Enable if you have installed the radar Iterceptor.</source>
-        <translation type="unfinished"></translation>
+        <translation>如果你的車輛有安裝雷達攔截器Radar Interceptor</translation>
     </message>
     <message>
         <source>Car Does not have stock MRCC</source>
-        <translation type="unfinished"></translation>
+        <translation>車輛沒有配備MRCC</translation>
     </message>
     <message>
         <source>Enable if your car does not have stock MRCC.</source>
-        <translation type="unfinished"></translation>
+        <translation>車輛沒有配備MRCC請啟動此項</translation>
     </message>
     <message>
         <source>Car Does not have stock FSC</source>
-        <translation type="unfinished"></translation>
+        <translation>車輛沒有配備FSC</translation>
     </message>
     <message>
         <source>Enable if your car does not have stock FSC.</source>
-        <translation type="unfinished"></translation>
+        <translation>車輛沒有配備FSC請起啟動此項</translation>
     </message>
     <message>
         <source>Record and Upload Road Cameras</source>
-        <translation type="unfinished"></translation>
+        <translation>用道路攝影機錄製並上傳資料</translation>
     </message>
     <message>
         <source>Upload data from the road cameras.</source>
-        <translation type="unfinished"></translation>
+        <translation>上傳道路攝影機拍攝的資料</translation>
     </message>
 </context>
 <context>
@@ -1760,7 +1760,7 @@ This may take up to a minute.</source>
     </message>
     <message>
         <source>Uploading disabled</source>
-        <translation type="unfinished"></translation>
+        <translation>關閉上傳</translation>>
     </message>
     <message>
         <source>Toggle off the &apos;Disable Uploading&apos; toggle to enable uploads.</source>
