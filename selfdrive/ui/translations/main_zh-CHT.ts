@@ -1760,7 +1760,7 @@ This may take up to a minute.</source>
     </message>
     <message>
         <source>Uploading disabled</source>
-        <translation>關閉上傳</translation>>
+        <translation>關閉上傳</translation>
     </message>
     <message>
         <source>Toggle off the &apos;Disable Uploading&apos; toggle to enable uploads.</source>
