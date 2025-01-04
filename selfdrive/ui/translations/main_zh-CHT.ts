@@ -1339,7 +1339,7 @@ This may take up to a minute.</source>
     </message>
     <message>
         <source>CPU</source>
-       < translation>CPU</translation>
+       <translation>CPU</translation>
     </message>
     <message>
         <source> GB</source>
