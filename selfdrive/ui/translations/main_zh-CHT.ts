@@ -1450,7 +1450,7 @@ This may take up to a minute.</source>
     </message>
     <message>
         <source>VIEW</source>
-        <translation觀看</translation>
+        <translation>觀看</translation>
     </message>
     <message>
         <source>View the error log for openpilot crashes.</source>
