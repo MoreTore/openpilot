@@ -2,7 +2,7 @@
 from cereal import car, custom
 from panda import Panda
 from openpilot.common.conversions import Conversions as CV
-from openpilot.selfdrive.car.mazda.values import CAR, LKAS_LIMITS, MazdaFlags, GEN1, GEN2
+from openpilot.selfdrive.car.mazda.values import CAR, LKAS_LIMITS, MazdaFlags, GEN1, GEN2, GEN3
 from openpilot.selfdrive.car import create_button_events, get_safety_config
 from openpilot.selfdrive.car.interfaces import CarInterfaceBase
 from openpilot.common.params import Params
@@ -59,6 +59,13 @@ class CarInterface(CarInterfaceBase):
       ret.longitudinalTuning.kiV = [0.1, 0.1]
       ret.startingState = True
       ret.steerActuatorDelay = 0.3
+      if p.get_bool("ManualTransmission"):
+        ret.flags |= MazdaFlags.MANUAL_TRANSMISSION.value
+
+    if candidate in GEN3:
+      ret.safetyConfigs[0].safetyParam |= Panda.FLAG_MAZDA_GEN3
+      ret.steerActuatorDelay = 0.3
+      ret.openpilotLongitudinalControl = False
       if p.get_bool("ManualTransmission"):
         ret.flags |= MazdaFlags.MANUAL_TRANSMISSION.value
 
