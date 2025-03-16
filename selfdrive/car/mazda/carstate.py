@@ -342,6 +342,7 @@ class CarState(CarStateBase):
         ("ENGINE_DATA", 100),
         ("BLINK_INFO", 10),
         ("WHEEL_SPEEDS", 50),
+        ("STEER", 50),
       ]
 
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 0)
