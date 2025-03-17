@@ -263,17 +263,17 @@ class Streamer:
       except Exception:
         logger.exception("Error during stop:", )
 
-  async def event_loop(self, end_event: threading.Event):
+  async def event_loop(self, exit_event: threading.Event):
     """
     Main event loop that processes signaling messages and maintains the PeerConnection.
-    Runs until end_event is set.
+    Runs until exit_event is set.
     """
     self.camera = NativeProcess("camerad", "system/camerad", ["./camerad"], True)
     self.encoder = NativeProcess("encoderd", "system/loggerd", ["./encoderd", "--stream"], True)
     logger.info("Native processes for camera and encoder initialized.")
     stop_states = ['failed', 'closed']
     connecting_states = ['connecting', 'new']
-    while not end_event.is_set():
+    while exit_event is None or not exit_event.is_set():
       self.onroad = self.params.get_bool("IsOnroad") # support some functions while onroad
       try:
         try:
