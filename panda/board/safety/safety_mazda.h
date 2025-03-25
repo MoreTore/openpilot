@@ -50,6 +50,7 @@ const int FLAG_MANUAL_TRANSMISSION = 256;
 bool gen0 = false;
 bool gen1 = false;
 bool gen2 = false;
+bool gen3 = false;
 bool torque_interceptor = false;
 bool radar_interceptor = false;
 bool no_fsc = false;
