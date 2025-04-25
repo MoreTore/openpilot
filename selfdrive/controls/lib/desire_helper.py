@@ -55,6 +55,17 @@ class DesireHelper:
     v_ego = carstate.vEgo
     one_blinker = carstate.leftBlinker != carstate.rightBlinker
     below_lane_change_speed = v_ego < frogpilot_toggles.minimum_lane_change_speed
+    # Cancel nudgeless lane change in any state under these conditions:
+    # - Brake is pressed
+    # - Driver is applying opposing steering torque.
+    cancel_lane_change = (carstate.brakePressed and frogpilot_toggles.nudgeless)
+    if self.lane_change_direction == LaneChangeDirection.left  and (carstate.steeringPressed and carstate.steeringTorque < 0):
+      cancel_lane_change = frogpilot_toggles.nudgeless  # openpilot applying CCW torque but driver is applying CW torque
+    else if self.lane_change_direction == LaneChangeDirection.right and (carstate.steeringPressed and carstate.steeringTorque > 0:
+      cancel_lane_change = frogpilot_toggles.nudgeless  # openpilot applying CW torque but driver is applying CCW torque
+    if cancel_lane_change:
+      self.lane_change_state = LaneChangeState.off
+      self.lane_change_direction = LaneChangeDirection.none
 
     if not (frogpilot_toggles.lane_detection and one_blinker) or below_lane_change_speed:
       lane_available = True
