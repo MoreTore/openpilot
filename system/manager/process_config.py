@@ -60,10 +60,16 @@ def run_speed_limit_filler(started, params, CP: car.CarParams, classic_model, ti
 def run_tinygrad_modeld(started, params, CP: car.CarParams, classic_model, tinygrad_model, frogpilot_toggles) -> bool:
   return started and tinygrad_model
 
+def start_stream_encoder(started: bool, params: Params, CP: car.CarParams, classic_model, tinygrad_model, frogpilot_toggles) -> bool:
+  return params.get_bool("LiveStreamRunning") or (started and CP.notCar)
+
+def start_camerad(started: bool, params: Params, CP: car.CarParams, classic_model, tinygrad_model, frogpilot_toggles) -> bool:
+  return started or params.get_bool("IsDriverViewEnabled") or params.get_bool("LiveStreamRunning")
+
 procs = [
   DaemonProcess("manage_athenad", "system.athena.manage_athenad", "AthenadPid"),
 
-  NativeProcess("camerad", "system/camerad", ["./camerad"], driverview),
+  NativeProcess("camerad", "system/camerad", ["./camerad"], start_camerad),
   NativeProcess("logcatd", "system/logcatd", ["./logcatd"], allow_logging),
   NativeProcess("proclogd", "system/proclogd", ["./proclogd"], allow_logging),
   PythonProcess("logmessaged", "system.logmessaged", allow_logging),
@@ -72,7 +78,7 @@ procs = [
 
   PythonProcess("dmonitoringmodeld", "selfdrive.modeld.dmonitoringmodeld", driverview, enabled=(not PC or WEBCAM)),
   NativeProcess("encoderd", "system/loggerd", ["./encoderd"], allow_logging),
-  NativeProcess("stream_encoderd", "system/loggerd", ["./encoderd", "--stream"], notcar),
+  NativeProcess("stream_encoderd", "system/loggerd", ["./encoderd", "--stream"], start_stream_encoder),
   NativeProcess("loggerd", "system/loggerd", ["./loggerd"], allow_logging),
   NativeProcess("modeld", "selfdrive/modeld", ["./modeld"], run_new_modeld),
   NativeProcess("mapsd", "selfdrive/navd", ["./mapsd"], run_classic_modeld),

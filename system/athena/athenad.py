@@ -15,6 +15,7 @@ import sys
 import tempfile
 import threading
 import time
+import asyncio
 from dataclasses import asdict, dataclass, replace
 from datetime import datetime
 from functools import partial
@@ -41,6 +42,7 @@ from openpilot.system.version import get_build_metadata
 from openpilot.system.hardware.hw import Paths
 
 from openpilot.frogpilot.common.frogpilot_utilities import use_konik_server
+from openpilot.system.athena.streamer import Streamer
 
 ATHENA_HOST = os.getenv('ATHENA_HOST', 'wss://athena.comma.ai')
 KONIK_ATHENA_HOST = os.getenv('ATHENA_HOST', 'wss://athena.konik.ai')
@@ -101,6 +103,9 @@ upload_queue: Queue[UploadItem] = queue.Queue()
 low_priority_send_queue: Queue[str] = queue.Queue()
 log_recv_queue: Queue[str] = queue.Queue()
 cancelled_uploads: set[str] = set()
+sdp_recv_queue: Queue[str] = queue.Queue()
+sdp_send_queue: Queue[str] = queue.Queue()
+ice_send_queue: Queue[str] = queue.Queue()
 
 cur_upload_items: dict[int, UploadItem | None] = {}
 
@@ -165,6 +170,41 @@ def handle_long_poll(ws: WebSocket, exit_event: threading.Event | None) -> None:
     for thread in threads:
       cloudlog.debug(f"athena.joining {thread.name}")
       thread.join()
+
+
+def rtc_handler(exit_event: threading.Event, sdp_send_queue: queue.Queue, sdp_recv_queue: queue.Queue, ice_recv_queue: queue.Queue) -> None:
+  loop = asyncio.new_event_loop()
+  asyncio.set_event_loop(loop)
+  try:
+    streamer = Streamer(sdp_send_queue, sdp_recv_queue, ice_recv_queue)
+    loop.run_until_complete(streamer.event_loop(exit_event))
+  finally:
+    loop.close()
+
+@dispatcher.add_method
+def setSdpAnswer(answer):
+  sdp_recv_queue.put_nowait(answer)
+
+@dispatcher.add_method
+def getSdp():
+  start_time = time.time()
+  timeout = 10
+  while time.time() - start_time < timeout:
+    try:
+      sdp = json.loads(sdp_send_queue.get(timeout=0.1))
+      if sdp:
+        return sdp
+    except queue.Empty:
+      pass
+
+@dispatcher.add_method
+def getIce():
+  if not ice_send_queue.empty():
+    return json.loads(ice_send_queue.get_nowait())
+  else:
+    return {
+      'error': True
+    }
 
 
 def jsonrpc_handler(end_event: threading.Event) -> None:
@@ -803,6 +843,10 @@ def main(exit_event: threading.Event = None):
 
   conn_start = None
   conn_retries = 0
+
+  #if Params().get_bool("EnableStreamer"):
+  threading.Thread(target=rtc_handler, args=(exit_event, sdp_send_queue, sdp_recv_queue, ice_send_queue), name='rtc_handler').start()
+
   while exit_event is None or not exit_event.is_set():
     try:
       if conn_start is None:
