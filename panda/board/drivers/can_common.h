@@ -200,7 +200,7 @@ void ignition_can_hook(CANPacket_t *to_push) {
   if (bus == 0) {
     int addr = GET_ADDR(to_push);
     int len = GET_LEN(to_push);
-    
+
     // GM exception
     if ((addr == 0x1F1) && (len == 8)) {
       // SystemPowerMode (2=Run, 3=Crank Request)
@@ -218,6 +218,11 @@ void ignition_can_hook(CANPacket_t *to_push) {
     // Mazda exception
     if ((addr == 0x9E) && (len == 8)) {
       ignition_can = (GET_BYTE(to_push, 0) >> 5) == 0x6U;
+      ignition_can_cnt = 0U;
+    }
+    // Mazda 2019 exception
+    if ((addr == 0x274) && (len == 8)) {
+      ignition_can = (GET_BYTE(to_push, 5) & 0x4U) != 0U;
       ignition_can_cnt = 0U;
     }
 
