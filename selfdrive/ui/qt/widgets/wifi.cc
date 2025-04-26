@@ -81,7 +81,7 @@ WiFiPromptWidget::WiFiPromptWidget(QWidget *parent) : QFrame(parent) {
   }
   stack->addWidget(uploading);
 
-  // not uploading data
+  // Not uploading data
   QWidget *notUploading = new QWidget;
   QVBoxLayout *not_uploading_layout = new QVBoxLayout(notUploading);
   not_uploading_layout->setContentsMargins(64, 56, 64, 56);
@@ -97,13 +97,13 @@ WiFiPromptWidget::WiFiPromptWidget(QWidget *parent) : QFrame(parent) {
       title_layout->addStretch();
 
       QLabel *icon = new QLabel;
-      QPixmap pixmap("../frogpilot/assets/other_images/icon_wifi_uploading_disabled.svg");
+      QPixmap pixmap("../../frogpilot/assets/other_images/icon_wifi_uploading_disabled.svg");
       icon->setPixmap(pixmap.scaledToWidth(120, Qt::SmoothTransformation));
       title_layout->addWidget(icon);
     }
     not_uploading_layout->addLayout(title_layout);
 
-    QLabel *desc = new QLabel(tr("Toggle off the 'Turn Off Data Uploads' toggle to re-enable uploads."));
+    QLabel *desc = new QLabel(tr("Toggle off the \"Turn Off Data Uploads\" toggle to re-enable uploads."));
     desc->setStyleSheet("font-size: 48px; font-weight: 400;");
     desc->setWordWrap(true);
     not_uploading_layout->addWidget(desc);
@@ -120,7 +120,7 @@ WiFiPromptWidget::WiFiPromptWidget(QWidget *parent) : QFrame(parent) {
   QObject::connect(uiState(), &UIState::uiUpdate, this, &WiFiPromptWidget::updateState);
 }
 
-void WiFiPromptWidget::updateState(const UIState &s) {
+void WiFiPromptWidget::updateState(const UIState &s, const FrogPilotUIState &fs) {
   if (!isVisible()) return;
 
   auto &sm = *(s.sm);
@@ -128,5 +128,5 @@ void WiFiPromptWidget::updateState(const UIState &s) {
   auto network_type = sm["deviceState"].getDeviceState().getNetworkType();
   auto uploading = network_type == cereal::DeviceState::NetworkType::WIFI ||
       network_type == cereal::DeviceState::NetworkType::ETHERNET;
-  stack->setCurrentIndex(s.scene.no_uploads ? 2 : uploading ? 1 : 0);
+  stack->setCurrentIndex(fs.frogpilot_toggles.value("no_uploads").toBool() ? 2 : uploading ? 1 : 0);
 }

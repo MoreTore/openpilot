@@ -9,8 +9,8 @@ from openpilot.selfdrive.car import CanSignalRateCalculator
 
 
 class CarState(CarStateBase):
-  def __init__(self, CP):
-    super().__init__(CP)
+  def __init__(self, CP, FPCP):
+    super().__init__(CP, FPCP)
     can_define = CANDefine(DBC[CP.carFingerprint]["pt"])
     self.shifter_values = can_define.dv["Transmission"]["Gear"]
 
@@ -173,7 +173,7 @@ class CarState(CarStateBase):
     return messages
 
   @staticmethod
-  def get_can_parser(CP):
+  def get_can_parser(CP, FPCP):
     messages = [
       # sig_address, frequency
       ("Dashlights", 10),
@@ -200,7 +200,7 @@ class CarState(CarStateBase):
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, CanBus.main)
 
   @staticmethod
-  def get_cam_can_parser(CP):
+  def get_cam_can_parser(CP, FPCP):
     if CP.flags & SubaruFlags.PREGLOBAL:
       messages = [
         ("ES_DashStatus", 20),

@@ -24,7 +24,7 @@ def is_registered_device() -> bool:
   return dongle not in (None, UNREGISTERED_DONGLE_ID)
 
 
-def register(show_spinner=False) -> str | None:
+def register(show_spinner=False, register_konik=False) -> str | None:
   params = Params()
 
   IMEI = params.get("IMEI", encoding='utf8')
@@ -37,7 +37,7 @@ def register(show_spinner=False) -> str | None:
   if not pubkey.is_file():
     dongle_id = UNREGISTERED_DONGLE_ID
     cloudlog.warning(f"missing public key: {pubkey}")
-  elif needs_registration:
+  elif needs_registration or register_konik:
     if show_spinner:
       spinner = Spinner()
       spinner.update("registering device")
@@ -93,8 +93,9 @@ def register(show_spinner=False) -> str | None:
     if show_spinner:
       spinner.close()
 
-  if dongle_id:
+  if not register_konik and dongle_id != params.get("KonikDongleId", encoding="utf8"):
     params.put("DongleId", dongle_id)
+    params.put("StockDongleId", dongle_id)
     set_offroad_alert("Offroad_UnofficialHardware", (dongle_id == UNREGISTERED_DONGLE_ID) and not PC)
   return dongle_id
 

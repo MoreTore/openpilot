@@ -8,7 +8,7 @@ from openpilot.common.realtime import DT_CTRL
 from opendbc.can.can_define import CANDefine
 from opendbc.can.parser import CANParser
 from openpilot.selfdrive.car.interfaces import CarStateBase
-from openpilot.selfdrive.car.toyota.values import ToyotaFlags, CAR, DBC, STEER_THRESHOLD, NO_STOP_TIMER_CAR, \
+from openpilot.selfdrive.car.toyota.values import ToyotaFlags, ToyotaFrogPilotFlags, CAR, DBC, STEER_THRESHOLD, NO_STOP_TIMER_CAR, \
                                                   TSS2_CAR, RADAR_ACC_CAR, EPS_SCALE, UNSUPPORTED_DSU_CAR, SECOC_CAR
 
 SteerControlType = car.CarParams.SteerControlType
@@ -40,8 +40,8 @@ def calculate_speed_limit(cp_cam, frogpilot_toggles):
 
 
 class CarState(CarStateBase):
-  def __init__(self, CP):
-    super().__init__(CP)
+  def __init__(self, CP, FPCP):
+    super().__init__(CP, FPCP)
     can_define = CANDefine(DBC[CP.carFingerprint]["pt"])
     self.eps_torque_scale = EPS_SCALE[CP.carFingerprint] / 100.
     self.cluster_speed_hyst_gap = CV.KPH_TO_MS / 2.
@@ -208,7 +208,9 @@ class CarState(CarStateBase):
     if self.CP.carFingerprint in (TSS2_CAR - RADAR_ACC_CAR) or (self.CP.flags & ToyotaFlags.SMART_DSU and not self.CP.flags & ToyotaFlags.RADAR_CAN_FILTER):
       # distance button is wired to the ACC module (camera or radar)
       self.prev_distance_button = self.distance_button
-      if self.CP.carFingerprint in (TSS2_CAR - RADAR_ACC_CAR):
+      if self.CP.carFingerprint in (SECOC_CAR - RADAR_ACC_CAR):
+        self.distance_button = cp.vl["PCM_CRUISE_4"]["DISTANCE"]
+      elif self.CP.carFingerprint in (TSS2_CAR - RADAR_ACC_CAR):
         self.distance_button = cp_acc.vl["ACC_CONTROL"]["DISTANCE"]
       else:
         self.distance_button = cp.vl["SDSU"]["FD_BUTTON"]
@@ -232,7 +234,7 @@ class CarState(CarStateBase):
       self.lkas_enabled = self.lkas_hud.get("LDA_ON_MESSAGE") == 1
 
     # ZSS Support - Credit goes to Erich!
-    if self.CP.flags & ToyotaFlags.ZSS:
+    if self.FPCP.fpFlags & ToyotaFrogPilotFlags.ZSS:
       if abs(torque_sensor_angle_deg) > 1e-3:
         self.accurate_steer_angle_seen = True
 
@@ -256,7 +258,7 @@ class CarState(CarStateBase):
     return ret, fp_ret
 
   @staticmethod
-  def get_can_parser(CP):
+  def get_can_parser(CP, FPCP):
     messages = [
       ("LIGHT_STALK", 1),
       ("BLINKERS_STATE", 0.15),
@@ -277,6 +279,7 @@ class CarState(CarStateBase):
         ("GEAR_PACKET_HYBRID", 60),
         ("SECOC_SYNCHRONIZATION", 10),
         ("GAS_PEDAL", 42),
+        ("PCM_CRUISE_4", 1),
       ]
     else:
       messages.append(("VSC1S07", 20))
@@ -319,13 +322,13 @@ class CarState(CarStateBase):
         ("SDSU", 100),
       ]
 
-    if CP.flags & ToyotaFlags.ZSS:
+    if FPCP.fpFlags & ToyotaFrogPilotFlags.ZSS:
       messages += [("SECONDARY_STEER_ANGLE", 0)]
 
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 0)
 
   @staticmethod
-  def get_cam_can_parser(CP):
+  def get_cam_can_parser(CP, FPCP):
     messages = []
 
     messages += [

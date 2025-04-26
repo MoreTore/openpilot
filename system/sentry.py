@@ -1,4 +1,5 @@
 """Install exception handler for process crash."""
+import psutil
 import sentry_sdk
 import traceback
 from datetime import datetime
@@ -11,13 +12,13 @@ from openpilot.system.hardware import HARDWARE, PC
 from openpilot.common.swaglog import cloudlog
 from openpilot.system.version import get_build_metadata, get_version
 
-from openpilot.selfdrive.frogpilot.frogpilot_variables import ERROR_LOGS_PATH
+from openpilot.frogpilot.common.frogpilot_variables import ERROR_LOGS_PATH, params
 
 class SentryProject(Enum):
   # python project
-  SELFDRIVE = "https://0c2fea9f108f30f51d26ee7d259580ea@o4505034923769856.ingest.us.sentry.io/4505034930651136"
+  SELFDRIVE = "https://eefdcb433b71d839dbb08e4c8917fb0e@o4505034923769856.ingest.us.sentry.io/4505034930651136"
   # native project
-  SELFDRIVE_NATIVE = "https://0c2fea9f108f30f51d26ee7d259580ea@o4505034923769856.ingest.us.sentry.io/4505034930651136"
+  SELFDRIVE_NATIVE = "https://eefdcb433b71d839dbb08e4c8917fb0e@o4505034923769856.ingest.us.sentry.io/4505034930651136"
 
 
 def report_tombstone(fn: str, message: str, contents: str) -> None:
@@ -49,6 +50,47 @@ def capture_exception(*args, **kwargs) -> None:
     sentry_sdk.flush()  # https://github.com/getsentry/sentry-python/issues/291
   except Exception:
     cloudlog.exception("sentry exception")
+
+
+def capture_memory_log():
+  virtual_memory = psutil.virtual_memory()
+  total_used = virtual_memory.used
+  total_memory = virtual_memory.total
+
+  process_list = []
+  for process in psutil.process_iter(['pid', 'username', 'memory_percent', 'cmdline', 'name']):
+    try:
+      cmdline = process.info.get('cmdline')
+      memory_percent = process.info.get('memory_percent', 0)
+
+      if cmdline and len(cmdline) > 0:
+        command = " ".join(cmdline)
+      else:
+        command = process.info.get('name', '')
+
+      process_list.append({
+        "pid": process.info['pid'],
+        "user": process.info.get('username', ''),
+        "memory_usage_percent": memory_percent,
+        "command": command
+      })
+    except (psutil.NoSuchProcess, psutil.AccessDenied):
+      continue
+
+  process_list.sort(key=lambda process: process['memory_usage_percent'], reverse=True)
+  top_processes = process_list[:5]
+
+  message = (
+    f"High memory detected: "
+    f"{(total_used / total_memory) * 100:.2f}% of total."
+  )
+
+  with sentry_sdk.push_scope() as scope:
+    scope.set_extra("total_memory_usage_percent", (total_used / total_memory) * 100)
+    scope.set_extra("top_processes", top_processes)
+    scope.set_extra("updater_state", params.get("UpdaterState", encoding="utf-8"))
+    sentry_sdk.capture_message(message, level="fatal")
+    sentry_sdk.flush()
 
 
 def capture_report(discord_user, report, frogpilot_toggles):

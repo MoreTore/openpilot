@@ -63,8 +63,6 @@ Elementwise ops operate on a per element basis. They don't change the shape of t
 ::: tinygrad.Tensor.sub
 ::: tinygrad.Tensor.mul
 ::: tinygrad.Tensor.div
-::: tinygrad.Tensor.idiv
-::: tinygrad.Tensor.mod
 ::: tinygrad.Tensor.xor
 ::: tinygrad.Tensor.lshift
 ::: tinygrad.Tensor.rshift

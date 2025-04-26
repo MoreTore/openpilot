@@ -15,7 +15,7 @@ from openpilot.common.swaglog import cloudlog
 
 from openpilot.common.simple_kalman import KF1D
 
-from openpilot.selfdrive.frogpilot.frogpilot_variables import get_frogpilot_toggles
+from openpilot.frogpilot.common.frogpilot_variables import get_frogpilot_toggles
 
 # Default lead acceleration decay set to 50% at 1s
 _LEAD_ACCEL_TAU = 1.5
@@ -62,6 +62,9 @@ class Track:
     self.K_K = kalman_params.K
     self.kf = KF1D([[v_lead], [0.0]], self.K_A, self.K_C, self.K_K)
 
+    # FrogPilot variables
+    self.lead_track_id = 0
+
   def update(self, d_rel: float, y_rel: float, v_rel: float, v_lead: float, measured: float):
     # relative values, copy
     self.dRel = d_rel   # LONG_DIST
@@ -99,10 +102,11 @@ class Track:
       "modelProb": model_prob,
       "radar": True,
       "radarTrackId": self.identifier,
+      "farLead": False,
     }
 
   def potential_adjacent_lead(self, left: bool, standstill: bool, model_data: capnp._DynamicStructReader):
-    if standstill or self.vLeadK < 1:
+    if standstill or self.vLead < 1 or self.lead_track_id == self.identifier:
       return False
 
     if left:
@@ -113,7 +117,7 @@ class Track:
       return -self.yRel > right_lane
 
   def potential_far_lead(self, standstill: bool, model_data: capnp._DynamicStructReader):
-    if standstill or self.vLeadK < 1:
+    if standstill or self.vLead < 1 or abs(self.yRel) > 1:
       return False
 
     left_lane = interp(self.dRel, model_data.laneLines[1].x, model_data.laneLines[1].y)
@@ -177,6 +181,7 @@ def get_RadarState_from_vision(lead_msg: capnp._DynamicStructReader, v_ego: floa
     "status": True,
     "radar": False,
     "radarTrackId": -1,
+    "farLead": False,
   }
 
 
@@ -210,10 +215,14 @@ def get_lead(v_ego: float, ready: bool, tracks: dict[int, Track], lead_msg: capn
       if len(far_lead_tracks) > 0:
         closest_track = min(far_lead_tracks, key=lambda c: c.dRel)
         lead_dict = closest_track.get_RadarState()
+        lead_dict['farLead'] = True
         lead_dict['vLead'] = lead_dict['vLeadK']
 
+  for track in tracks.values():
+    track.lead_track_id = lead_dict.get('radarTrackId', -1)
+
   if 'dRel' in lead_dict:
-    lead_dict['dRel'] -= frogpilot_toggles.increased_stopped_distance if not frogpilotCarState.trafficMode else 0
+    lead_dict['dRel'] -= frogpilot_toggles.increased_stopped_distance if not frogpilotCarState.trafficModeEnabled else 0
 
   return lead_dict
 

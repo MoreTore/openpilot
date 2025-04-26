@@ -13,6 +13,8 @@ from openpilot.selfdrive.controls.lib.pid import PIDController
 from openpilot.selfdrive.controls.lib.vehicle_model import ACCELERATION_DUE_TO_GRAVITY
 from openpilot.selfdrive.modeld.constants import ModelConstants
 
+from openpilot.frogpilot.common.frogpilot_variables import params
+
 # At higher speeds (25+mph) we can assume:
 # Lateral acceleration achieved by a specific car correlates to
 # torque applied to the steering rack. It does not correlate to
@@ -73,6 +75,19 @@ class LatControlTorque(LatControl):
     self.use_steering_angle = self.torque_params.useSteeringAngle
     self.steering_angle_deadzone_deg = self.torque_params.steeringAngleDeadzoneDeg
 
+    lateral_delay = CP.steerActuatorDelay
+
+    try:
+      raw_data = params.get("LiveDelay")
+      if raw_data:
+        with log.Event.from_bytes(raw_data) as live_delay_msg:
+          if live_delay_msg.which() == 'liveDelay':
+            status = live_delay_msg.liveDelay.status
+            if status == log.LiveDelayData.Status.estimated:
+              lateral_delay = live_delay_msg.liveDelay.lateralDelay
+    except Exception as e:
+      cloudlog.warning(f"Failed to load LiveDelay param: {e}")
+
     # Twilsonco's Lateral Neural Network Feedforward
     self.use_nnff = CI.use_nnff
     self.use_nnff_lite = CI.use_nnff_lite
@@ -95,7 +110,7 @@ class LatControlTorque(LatControl):
 
       # precompute time differences between ModelConstants.T_IDXS
       self.t_diffs = np.diff(ModelConstants.T_IDXS)
-      self.desired_lat_jerk_time = CP.steerActuatorDelay + 0.3
+      self.desired_lat_jerk_time = lateral_delay + 0.3
 
     if self.use_nnff:
       self.pitch = FirstOrderFilter(0.0, 0.5, 0.01)
@@ -106,7 +121,7 @@ class LatControlTorque(LatControl):
       self.nn_friction_override = CI.lat_torque_nn_model.friction_override
 
       # setup future time offsets
-      self.nn_time_offset = CP.steerActuatorDelay + 0.2
+      self.nn_time_offset = lateral_delay + 0.2
       future_times = [0.3, 0.6, 1.0, 1.5] # seconds in the future
       self.nn_future_times = [i + self.nn_time_offset for i in future_times]
       self.nn_future_times_np = np.array(self.nn_future_times)

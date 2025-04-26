@@ -16,11 +16,7 @@ signals:
   void openSettings(int index = 0, const QString &param = "");
 
 public slots:
-  void updateState(const UIState &s);
-
-private:
-  // FrogPilot variables
-  Params params;
+  void updateState(const UIState &s, const FrogPilotUIState &fs);
 
 protected:
   QStackedLayout *stack;

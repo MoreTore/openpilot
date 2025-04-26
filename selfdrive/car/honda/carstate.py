@@ -87,8 +87,8 @@ def get_can_messages(CP, gearbox_msg):
 
 
 class CarState(CarStateBase):
-  def __init__(self, CP):
-    super().__init__(CP)
+  def __init__(self, CP, FPCP):
+    super().__init__(CP, FPCP)
     can_define = CANDefine(DBC[CP.carFingerprint]["pt"])
     self.gearbox_msg = "GEARBOX"
     if CP.carFingerprint == CAR.HONDA_ACCORD and CP.transmissionType == TransmissionType.cvt:
@@ -288,12 +288,12 @@ class CarState(CarStateBase):
 
     return ret, fp_ret
 
-  def get_can_parser(self, CP):
+  def get_can_parser(self, CP, FPCP):
     messages = get_can_messages(CP, self.gearbox_msg)
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, CanBus(CP).pt)
 
   @staticmethod
-  def get_cam_can_parser(CP):
+  def get_cam_can_parser(CP, FPCP):
     messages = [
       ("STEERING_CONTROL", 100),
     ]

@@ -24,7 +24,7 @@ from openpilot.selfdrive.modeld.fill_model_msg import fill_model_msg, fill_pose_
 from openpilot.selfdrive.modeld.constants import ModelConstants
 from openpilot.selfdrive.modeld.models.commonmodel_pyx import ModelFrame, CLContext
 
-from openpilot.selfdrive.frogpilot.frogpilot_variables import METADATAS_PATH, MODELS_PATH, get_frogpilot_toggles
+from openpilot.frogpilot.common.frogpilot_variables import METADATAS_PATH, MODELS_PATH, get_frogpilot_toggles
 
 PROCESS_NAME = "selfdrive.modeld.modeld"
 SEND_RAW_PRED = os.getenv('SEND_RAW_PRED')
@@ -180,7 +180,7 @@ def main(demo=False):
 
   # messaging
   pm = PubMaster(["modelV2", "drivingModelData", "cameraOdometry"])
-  sm = SubMaster(["deviceState", "carState", "roadCameraState", "liveCalibration", "driverMonitoringState", "carControl", "frogpilotPlan"])
+  sm = SubMaster(["deviceState", "carState", "roadCameraState", "liveCalibration", "driverMonitoringState", "carControl", "liveDelay", "frogpilotPlan"])
 
   publish_state = PublishState()
   params = Params()
@@ -205,9 +205,6 @@ def main(demo=False):
     with car.CarParams.from_bytes(params.get("CarParams", block=True)) as msg:
       CP = msg
   cloudlog.info("modeld got CarParams: %s", CP.carName)
-
-  # TODO this needs more thought, use .2s extra for now to estimate other delays
-  steer_delay = CP.steerActuatorDelay + .2
 
   DH = DesireHelper()
 
@@ -249,6 +246,7 @@ def main(demo=False):
     is_rhd = sm["driverMonitoringState"].isRHD
     frame_id = sm["roadCameraState"].frameId
     v_ego = max(sm["carState"].vEgo, 0.)
+    steer_delay = sm["liveDelay"].lateralDelay + .2
     if model.use_desired_curvature:
       lateral_control_params = np.array([v_ego, steer_delay], dtype=np.float32)
     if sm.updated["liveCalibration"] and sm.seen['roadCameraState'] and sm.seen['deviceState']:

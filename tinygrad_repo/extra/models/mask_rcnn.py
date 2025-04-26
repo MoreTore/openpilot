@@ -1166,7 +1166,7 @@ class Mask:
 
   def __call__(self, features, proposals, targets=None):
     x = self.feature_extractor(features, proposals)
-    if x is not None:
+    if x:
       mask_logits = self.predictor(x)
       if not Tensor.training:
         result = self.post_processor(mask_logits, proposals)

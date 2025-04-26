@@ -15,7 +15,7 @@ def helper_test_viz(sink:UOp, pm:PatternMatcher, **kwargs) -> List[UOp]:
   assert len(contexts[0]) == 1
   k = get_metadata(keys, contexts)[0][0]
   g = get_details(*k)
-  return g.uops[1:]
+  return g.graphs[1:]
 
 class TestViz(unittest.TestCase):
   def setUp(self):

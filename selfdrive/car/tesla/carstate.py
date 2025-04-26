@@ -8,8 +8,8 @@ from opendbc.can.parser import CANParser
 from opendbc.can.can_define import CANDefine
 
 class CarState(CarStateBase):
-  def __init__(self, CP):
-    super().__init__(CP)
+  def __init__(self, CP, FPCP):
+    super().__init__(CP, FPCP)
     self.button_states = {button.event_type: False for button in BUTTONS}
     self.can_define = CANDefine(DBC[CP.carFingerprint]['chassis'])
 
@@ -106,7 +106,7 @@ class CarState(CarStateBase):
     return ret, fp_ret
 
   @staticmethod
-  def get_can_parser(CP):
+  def get_can_parser(CP, FPCP):
     messages = [
       # sig_address, frequency
       ("ESP_B", 50),
@@ -128,7 +128,7 @@ class CarState(CarStateBase):
     return CANParser(DBC[CP.carFingerprint]['chassis'], messages, CANBUS.chassis)
 
   @staticmethod
-  def get_cam_can_parser(CP):
+  def get_cam_can_parser(CP, FPCP):
     messages = [
       # sig_address, frequency
       ("DAS_control", 40),

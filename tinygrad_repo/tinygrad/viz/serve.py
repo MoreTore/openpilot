@@ -8,7 +8,6 @@ from tinygrad.helpers import colored, getenv, to_function_name, tqdm, unwrap, wo
 from tinygrad.ops import TrackedGraphRewrite, UOp, Ops, lines, GroupOp
 from tinygrad.codegen.kernel import Kernel
 from tinygrad.device import ProfileEvent, ProfileDeviceEvent, ProfileRangeEvent, ProfileGraphEvent
-from tinygrad.dtype import dtypes
 
 uops_colors = {Ops.LOAD: "#ffc0c0", Ops.PRELOAD: "#ffc0c0", Ops.STORE: "#87CEEB", Ops.CONST: "#e0e0e0", Ops.VCONST: "#e0e0e0",
                Ops.DEFINE_GLOBAL: "#ffe0b0", Ops.DEFINE_LOCAL: "#ffe0d0", Ops.DEFINE_ACC: "#f0ffe0", Ops.REDUCE_AXIS: "#FF6B6B",
@@ -34,9 +33,8 @@ class GraphRewriteMetadata:
 @dataclass
 class GraphRewriteDetails(GraphRewriteMetadata):
   """Full details about a single call to graph_rewrite"""
-  uops: list[UOp]
-  graphs: list[dict]
-  """Sink at every step of graph_rewrite + the json serialized version"""
+  graphs: list[UOp]
+  """Sink at every step of graph_rewrite"""
   diffs: list[list[str]]
   """.diff style before and after of the rewritten UOp child"""
   changed_nodes: list[list[int]]
@@ -56,7 +54,7 @@ def get_metadata(keys:list[Any], contexts:list[list[TrackedGraphRewrite]]) -> li
   for k,ctxs in tqdm(zip(keys, contexts), desc="preparing kernels"):
     name = to_function_name(k.name) if isinstance(k, Kernel) else str(k)
     for ctx in ctxs:
-      if ctx.sink.op is Ops.CONST: continue
+      if pickle.loads(ctx.sink).op is Ops.CONST: continue
       upats = [(upat.location, upat.printable(), tm) for _,_,upat,tm in ctx.matches if upat is not None]
       kernels.setdefault(name, []).append((k, ctx, GraphRewriteMetadata(ctx.loc, lines(ctx.loc[0])[ctx.loc[1]-1].strip(), name, upats)))
   return list(kernels.values())
@@ -64,19 +62,16 @@ def get_metadata(keys:list[Any], contexts:list[list[TrackedGraphRewrite]]) -> li
 def uop_to_json(x:UOp) -> dict[int, tuple[str, str, list[int], str, str]]:
   assert isinstance(x, UOp)
   graph: dict[int, tuple[str, str, list[int], str, str]] = {}
-  excluded: set[UOp] = set()
-  for u in (toposort:=x.toposort):
-    if u.op in {Ops.CONST, Ops.DEVICE}: excluded.update((u,) + u.src)
-  for u in toposort:
-    if u in excluded: continue
-    argst = str(u.arg)
-    if u.op is Ops.VIEW:
-      argst = ("\n".join([f"{v.shape} / {v.strides}"+(f" / {v.offset}" if v.offset is not None else "") for v in unwrap(u.st).views]))
+  excluded = set()
+  for u in x.toposort:
+    if u.op in {Ops.CONST, Ops.DEVICE}:
+      excluded.add(u)
+      continue
+    argst = ("\n".join([f"{v.shape} / {v.strides}"+(f" / {v.offset}" if v.offset else "") for v in u.arg.views])) if u.op is Ops.VIEW else str(u.arg)
     label = f"{str(u.op).split('.')[1]}{(' '+word_wrap(argst.replace(':', ''))) if u.arg is not None else ''}\n{str(u.dtype)}"
     for idx,x in enumerate(u.src):
-      if x in excluded:
-        if x.op is Ops.CONST and dtypes.is_float(u.dtype): label += f"\nCONST{idx} {x.arg:g}"
-        else: label += f"\n{x.op.name}{idx} {x.arg}"
+      if x.op is Ops.CONST: label += f"\nCONST{idx} {x.arg:g}"
+      if x.op is Ops.DEVICE: label += f"\nDEVICE{idx} {x.arg}"
     graph[id(u)] = (label, str(u.dtype), [id(x) for x in u.src if x not in excluded], str(u.arg), uops_colors.get(u.op, "#ffffff"))
   return graph
 def _replace_uop(base:UOp, replaces:dict[UOp, UOp]) -> UOp:
@@ -89,25 +84,25 @@ def _replace_uop(base:UOp, replaces:dict[UOp, UOp]) -> UOp:
 @functools.lru_cache(None)
 def _prg(k:Kernel): return k.to_program().src
 def get_details(k:Any, ctx:TrackedGraphRewrite, metadata:GraphRewriteMetadata) -> GraphRewriteDetails:
-  g = GraphRewriteDetails(**asdict(metadata), uops=[ctx.sink], diffs=[], changed_nodes=[],
-                          kernel_code=pcall(_prg, k) if isinstance(k, Kernel) else None, graphs=[])
+  g = GraphRewriteDetails(**asdict(metadata), graphs=[pickle.loads(ctx.sink)], diffs=[], changed_nodes=[],
+                          kernel_code=pcall(_prg, k) if isinstance(k, Kernel) else None)
   replaces: dict[UOp, UOp] = {}
-  g.graphs.append(uop_to_json(sink:=g.uops[0]))
-  for i,(u0,u1,upat,_) in enumerate(ctx.matches):
+  sink = g.graphs[0]
+  for i,(u0_b,u1_b,upat,_) in enumerate(ctx.matches):
+    u0 = pickle.loads(u0_b)
     # if the match didn't result in a rewrite we move forward
-    if u1 is None:
+    if u1_b is None:
       replaces[u0] = u0
       continue
-    replaces[u0] = u1
+    replaces[u0] = u1 = pickle.loads(u1_b)
     # first, rewrite this UOp with the current rewrite + all the matches in replaces
     new_sink = _replace_uop(sink, {**replaces})
     # sanity check
     if new_sink is sink: raise AssertionError(f"rewritten sink wasn't rewritten! {i} {unwrap(upat).location}")
     # update ret data
-    g.graphs.append(new_sink_js:=uop_to_json(new_sink))
-    g.changed_nodes.append([id(x) for x in u1.toposort if id(x) in new_sink_js])
+    g.changed_nodes.append([id(x) for x in u1.toposort if x.op is not Ops.CONST])
     g.diffs.append(list(difflib.unified_diff(pcall(str, u0).splitlines(), pcall(str, u1).splitlines())))
-    g.uops.append(sink:=new_sink)
+    g.graphs.append(sink:=new_sink)
   return g
 
 # Profiler API
@@ -159,7 +154,7 @@ class Handler(BaseHTTPRequestHandler):
       query = parse_qs(url.query)
       if (qkernel:=query.get("kernel")) is not None:
         g = get_details(*kernels[int(qkernel[0])][int(query["idx"][0])])
-        jret: Any = {**asdict(g), "uops": [pcall(str,x) for x in g.uops]}
+        jret: Any = {**asdict(g), "graphs": [uop_to_json(x) for x in g.graphs], "uops": [pcall(str,x) for x in g.graphs]}
       else: jret = [list(map(lambda x:asdict(x[2]), v)) for v in kernels]
       ret, content_type = json.dumps(jret).encode(), "application/json"
     elif url.path == "/get_profile" and perfetto_profile is not None: ret, content_type = perfetto_profile, "application/json"
