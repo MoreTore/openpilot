@@ -107,6 +107,12 @@ TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
       tr("Display speed in km/h instead of mph."),
       "../assets/offroad/icon_metric.png",
     },
+    {
+      "RemoteAccess",
+      tr("Remote Access (Not Safe)"),
+      tr("Enable UNSAFE/UNSECURE remote access to your device. This is required for Remote Control and Remote Shell."),
+      "../assets/img_eye_open.svg",
+    },
 #ifdef ENABLE_MAPS
     {
       "NavSettingTime24h",
