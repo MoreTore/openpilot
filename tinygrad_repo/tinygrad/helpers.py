@@ -2,7 +2,7 @@ from __future__ import annotations
 import os, functools, platform, time, re, contextlib, operator, hashlib, pickle, sqlite3, tempfile, pathlib, string, ctypes, sys, gzip
 import urllib.request, subprocess, shutil, math, contextvars, types, copyreg, inspect, importlib
 from dataclasses import dataclass
-from typing import Union, ClassVar, Optional, Iterable, Any, TypeVar, Callable, Sequence, TypeGuard
+from typing import Dict, Union, ClassVar, Optional, Iterable, Any, TypeVar, Callable, Sequence, TypeGuard
 
 T = TypeVar("T")
 U = TypeVar("U")
@@ -43,8 +43,6 @@ def fromimport(mod, frm): return getattr(__import__(mod, fromlist=[frm]), frm)
 def strip_parens(fst:str): return fst[1:-1] if fst[0] == '(' and fst[-1] == ')' and fst[1:-1].find('(') <= fst[1:-1].find(')') else fst
 def ceildiv(num, amt): return int(ret) if isinstance((ret:=-(num//-amt)), float) else ret
 def round_up(num:int, amt:int) -> int: return (num+amt-1)//amt * amt
-def lo32(x:Any) -> Any: return x & 0xFFFFFFFF # Any is sint
-def hi32(x:Any) -> Any: return x >> 32 # Any is sint
 def data64(data:Any) -> tuple[Any, Any]: return (data >> 32, data & 0xFFFFFFFF) # Any is sint
 def data64_le(data:Any) -> tuple[Any, Any]: return (data & 0xFFFFFFFF, data >> 32) # Any is sint
 def merge_dicts(ds:Iterable[dict[T,U]]) -> dict[T,U]:
@@ -79,19 +77,21 @@ def getenv(key:str, default=0): return type(default)(os.getenv(key, default))
 def temp(x:str) -> str: return (pathlib.Path(tempfile.gettempdir()) / x).as_posix()
 
 class Context(contextlib.ContextDecorator):
+  stack: ClassVar[list[dict[str, int]]] = [{}]
   def __init__(self, **kwargs): self.kwargs = kwargs
   def __enter__(self):
-    self.old_context:dict[str, int] = {k:v.value for k,v in ContextVar._cache.items()}
-    for k,v in self.kwargs.items(): ContextVar._cache[k].value = v
+    Context.stack[-1] = {k:o.value for k,o in ContextVar._cache.items()} # Store current state.
+    for k,v in self.kwargs.items(): ContextVar._cache[k].value = v # Update to new temporary state.
+    Context.stack.append(self.kwargs) # Store the temporary state so we know what to undo later.
   def __exit__(self, *args):
-    for k,v in self.old_context.items(): ContextVar._cache[k].value = v
+    for k in Context.stack.pop(): ContextVar._cache[k].value = Context.stack[-1].get(k, ContextVar._cache[k].value)
 
 class ContextVar:
   _cache: ClassVar[dict[str, ContextVar]] = {}
   value: int
   key: str
   def __init__(self, key, default_value):
-    if key in ContextVar._cache: raise RuntimeError(f"attempt to recreate ContextVar {key}")
+    assert key not in ContextVar._cache, f"attempt to recreate ContextVar {key}"
     ContextVar._cache[key] = self
     self.value, self.key = getenv(key, default_value), key
   def __bool__(self): return bool(self.value)
@@ -181,7 +181,7 @@ def diskcache_clear():
   drop_tables = cur.execute("SELECT 'DROP TABLE IF EXISTS ' || quote(name) || ';' FROM sqlite_master WHERE type = 'table';").fetchall()
   cur.executescript("\n".join([s[0] for s in drop_tables] + ["VACUUM;"]))
 
-def diskcache_get(table:str, key:Union[dict, str, int]) -> Any:
+def diskcache_get(table:str, key:Union[Dict, str, int]) -> Any:
   if CACHELEVEL == 0: return None
   if isinstance(key, (str,int)): key = {"key": key}
   conn = db_connection()
@@ -194,7 +194,7 @@ def diskcache_get(table:str, key:Union[dict, str, int]) -> Any:
   return None
 
 _db_tables = set()
-def diskcache_put(table:str, key:Union[dict, str, int], val:Any, prepickled=False):
+def diskcache_put(table:str, key:Union[Dict, str, int], val:Any, prepickled=False):
   if CACHELEVEL == 0: return val
   if isinstance(key, (str,int)): key = {"key": key}
   conn = db_connection()

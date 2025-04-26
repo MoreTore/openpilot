@@ -5,14 +5,14 @@ from openpilot.selfdrive.car.interfaces import CarInterfaceBase
 
 # mocked car interface for dashcam mode
 class CarInterface(CarInterfaceBase):
-  def __init__(self, CP, CarController, CarState):
+  def __init__(self, CP, FPCP, CarController, CarState):
     super().__init__(CP, CarController, CarState)
 
     self.speed = 0.
     self.sm = messaging.SubMaster(['gpsLocation', 'gpsLocationExternal'])
 
   @staticmethod
-  def _get_params(ret, candidate, fingerprint, car_fw, disable_openpilot_long, experimental_long, docs):
+  def _get_params(ret, candidate, fingerprint, car_fw, experimental_long, docs, frogpilot_toggles):
     ret.carName = "mock"
     ret.mass = 1700.
     ret.wheelbase = 2.70

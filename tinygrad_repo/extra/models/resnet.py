@@ -137,13 +137,7 @@ class ResNet:
 
     self.url = model_urls[(self.num, self.groups, self.base_width)]
     for k, dat in torch_load(fetch(self.url)).items():
-      try:
-        obj: Tensor = get_child(self, k)
-      except AttributeError as e:
-        if 'fc.' in k and self.fc is None:
-          continue
-
-        raise e
+      obj: Tensor = get_child(self, k)
 
       if 'fc.' in k and obj.shape != dat.shape:
         print("skipping fully connected layer")

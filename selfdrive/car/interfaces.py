@@ -8,6 +8,7 @@ from enum import StrEnum
 from typing import Any, NamedTuple
 from collections.abc import Callable
 from functools import cache
+from types import SimpleNamespace
 
 from cereal import car, custom
 from openpilot.common.basedir import BASEDIR
@@ -16,16 +17,21 @@ from openpilot.common.simple_kalman import KF1D, get_kalman_gain
 from openpilot.common.numpy_fast import clip
 from openpilot.common.realtime import DT_CTRL
 from openpilot.selfdrive.car import apply_hysteresis, gen_empty_fingerprint, scale_rot_inertia, scale_tire_stiffness, STD_CARGO_KG
+from openpilot.selfdrive.car.chrysler.values import CAR as ChryslerCAR, ChryslerFrogPilotFlags
+from openpilot.selfdrive.car.hyundai.hyundaicanfd import CanBus
+from openpilot.selfdrive.car.hyundai.values import CANFD_CAR, HyundaiFrogPilotFlags
+from openpilot.selfdrive.car.toyota.values import CAR as ToyotaCAR, ToyotaFrogPilotFlags
 from openpilot.selfdrive.car.values import PLATFORMS
 from openpilot.selfdrive.controls.lib.drive_helpers import V_CRUISE_MAX, get_friction
 from openpilot.selfdrive.controls.lib.events import Events
 from openpilot.selfdrive.controls.lib.vehicle_model import VehicleModel
 
-from openpilot.selfdrive.frogpilot.frogpilot_variables import get_frogpilot_toggles, params, params_memory
+from openpilot.frogpilot.common.frogpilot_variables import get_frogpilot_toggles, params, params_memory
 
 ButtonType = car.CarState.ButtonEvent.Type
 FrogPilotButtonType = custom.FrogPilotCarState.ButtonEvent.Type
 GearShifter = car.CarState.GearShifter
+Ecu = car.CarParams.Ecu
 EventName = car.CarEvent.EventName
 
 MAX_CTRL_SPEED = (V_CRUISE_MAX + 4) * CV.KPH_TO_MS
@@ -201,7 +207,7 @@ def get_nn_model(car, eps_firmware) -> tuple[FluxModel | None, float]:
 # generic car and radar interfaces
 
 class CarInterfaceBase(ABC):
-  def __init__(self, CP, CarController, CarState):
+  def __init__(self, CP, FPCP, CarController, CarState):
     self.CP = CP
     self.VM = VehicleModel(CP)
 
@@ -212,9 +218,9 @@ class CarInterfaceBase(ABC):
     self.silent_steer_warning = True
     self.v_ego_cluster_seen = False
 
-    self.CS = CarState(CP)
-    self.cp = self.CS.get_can_parser(CP)
-    self.cp_cam = self.CS.get_cam_can_parser(CP)
+    self.CS = CarState(CP, FPCP)
+    self.cp = self.CS.get_can_parser(CP, FPCP)
+    self.cp_cam = self.CS.get_cam_can_parser(CP, FPCP)
     self.cp_adas = self.CS.get_adas_can_parser(CP)
     self.cp_body = self.CS.get_body_can_parser(CP)
     self.cp_loopback = self.CS.get_loopback_can_parser(CP)
@@ -267,7 +273,7 @@ class CarInterfaceBase(ABC):
     return cls.get_params(candidate, gen_empty_fingerprint(), list(), False, False, False)
 
   @classmethod
-  def get_params(cls, candidate: str, fingerprint: dict[int, dict[int, int]], car_fw: list[car.CarParams.CarFw], disable_openpilot_long: bool, experimental_long: bool, params: params, docs: bool):
+  def get_params(cls, candidate: str, fingerprint: dict[int, dict[int, int]], car_fw: list[car.CarParams.CarFw], experimental_long: bool, params: params, frogpilot_toggles: SimpleNamespace, docs: bool):
     ret = CarInterfaceBase.get_std_params(candidate)
 
     platform = PLATFORMS[candidate]
@@ -280,7 +286,7 @@ class CarInterfaceBase(ABC):
     ret.tireStiffnessFactor = platform.config.specs.tireStiffnessFactor
     ret.flags |= int(platform.config.flags)
 
-    ret = cls._get_params(ret, candidate, fingerprint, car_fw, disable_openpilot_long, experimental_long, docs)
+    ret = cls._get_params(ret, candidate, fingerprint, car_fw, experimental_long, docs, frogpilot_toggles)
 
     # Enable torque controller for all cars that do not use angle based steering
     if ret.steerControlType != car.CarParams.SteerControlType.angle and params.get_bool("LateralTune") and params.get_bool("NNFF"):
@@ -299,6 +305,46 @@ class CarInterfaceBase(ABC):
     ret.tireStiffnessFront, ret.tireStiffnessRear = scale_tire_stiffness(ret.mass, ret.wheelbase, ret.centerToFront, ret.tireStiffnessFactor)
 
     return ret
+
+  @classmethod
+  def get_frogpilot_params(cls, candidate: str, car_fw: list[car.CarParams.CarFw], fingerprint: dict[int, dict[int, int]], frogpilot_toggles: SimpleNamespace):
+    fp_ret = custom.FrogPilotCarParams.new_message()
+
+    brand = candidate.split('_')[0].lower()
+    platform = PLATFORMS[candidate]
+    fp_ret.fpFlags |= int(platform.config.flags)
+
+    if brand == "chrysler":
+      if candidate == ChryslerCAR.RAM_HD_5TH_GEN:
+        if 570 not in fingerprint[0]:
+          fp_ret.fpFlags |= ChryslerFrogPilotFlags.RAM_HD_ALT_BUTTONS.value
+
+    elif brand == "hyundai":
+      if candidate in CANFD_CAR:
+        hda2 = Ecu.adas in [fw.ecu for fw in car_fw]
+
+        if 0x1fa in fingerprint[CanBus(None, hda2, fingerprint).ECAN]:
+          fp_ret.fpFlags |= HyundaiFrogPilotFlags.NAV_MSG.value
+
+        fp_ret.isHDA2 = hda2
+      else:
+        if 0x391 in fingerprint[0]:
+          fp_ret.fpFlags |= HyundaiFrogPilotFlags.CAN_LFA_BTN.value
+
+        if 0x53E in fingerprint[2]:
+          fp_ret.fpFlags |= HyundaiFrogPilotFlags.LKAS12.value
+
+        if 0x544 in fingerprint[0]:
+          fp_ret.fpFlags |= HyundaiFrogPilotFlags.NAV_MSG.value
+
+    elif brand == "toyota":
+      if candidate == ToyotaCAR.TOYOTA_PRIUS:
+        if 0x23 in fingerprint[0]:
+          fp_ret.fpFlags |= ToyotaFrogPilotFlags.ZSS.value
+
+    fp_ret.openpilotLongitudinalControlDisabled = frogpilot_toggles.disable_openpilot_long
+
+    return fp_ret
 
   @staticmethod
   @abstractmethod
@@ -516,7 +562,7 @@ class RadarInterfaceBase(ABC):
 
 
 class CarStateBase(ABC):
-  def __init__(self, CP):
+  def __init__(self, CP, FPCP):
     self.CP = CP
     self.car_fingerprint = CP.carFingerprint
     self.out = car.CarState.new_message()
@@ -540,6 +586,8 @@ class CarStateBase(ABC):
     self.v_ego_kf = KF1D(x0=x0, A=A, C=C[0], K=K)
 
     # FrogPilot variables
+    self.FPCP = FPCP
+
     self.cruise_decreased = False
     self.cruise_increased = False
     self.distance_button = False
@@ -606,11 +654,11 @@ class CarStateBase(ABC):
     return GEAR_SHIFTER_MAP.get(gear.upper(), GearShifter.unknown)
 
   @staticmethod
-  def get_can_parser(CP):
+  def get_can_parser(CP, FPCP):
     return None
 
   @staticmethod
-  def get_cam_can_parser(CP):
+  def get_cam_can_parser(CP, FPCP):
     return None
 
   @staticmethod

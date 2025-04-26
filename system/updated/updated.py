@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import gc
 import os
 import re
 import datetime
@@ -22,7 +23,7 @@ from openpilot.selfdrive.controls.lib.alertmanager import set_offroad_alert
 from openpilot.system.hardware import AGNOS, HARDWARE
 from openpilot.system.version import get_build_metadata
 
-from openpilot.selfdrive.frogpilot.frogpilot_variables import get_frogpilot_toggles, params_memory
+from openpilot.frogpilot.common.frogpilot_variables import get_frogpilot_toggles, params_memory
 
 LOCK_FILE = os.getenv("UPDATER_LOCK_FILE", "/tmp/safe_staging_overlay.lock")
 STAGING_ROOT = os.getenv("UPDATER_STAGING_ROOT", "/data/safe_staging")
@@ -59,7 +60,9 @@ class WaitTimeHelper:
     self.user_request = UserRequest.CHECK
     self.ready_event.set()
 
-  def sleep(self, t: float) -> None:
+  def sleep(self, t: float, has_internet: bool = False) -> None:
+    if not has_internet:
+      gc.collect()
     self.ready_event.wait(timeout=t)
 
 def write_time_to_param(params, param) -> None:
@@ -458,6 +461,8 @@ def main() -> None:
     while True:
       wait_helper.ready_event.clear()
 
+      frogpilot_toggles = get_frogpilot_toggles()
+
       manual_update_requested = params_memory.get_bool("ManualUpdateInitiated")
       params_memory.remove("ManualUpdateInitiated")
 
@@ -525,7 +530,7 @@ def main() -> None:
 
       # infrequent attempts if we successfully updated recently
       wait_helper.user_request = UserRequest.NONE
-      wait_helper.sleep(5*60 if update_failed_count > 0 else 1.5*60*60)
+      wait_helper.sleep(5*60 if update_failed_count > 0 and updater.has_internet else 1.5*60*60, updater.has_internet)
 
 
 if __name__ == "__main__":

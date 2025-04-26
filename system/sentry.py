@@ -11,13 +11,13 @@ from openpilot.system.hardware import HARDWARE, PC
 from openpilot.common.swaglog import cloudlog
 from openpilot.system.version import get_build_metadata, get_version
 
-from openpilot.selfdrive.frogpilot.frogpilot_variables import ERROR_LOGS_PATH
+from openpilot.frogpilot.common.frogpilot_variables import ERROR_LOGS_PATH
 
 class SentryProject(Enum):
   # python project
-  SELFDRIVE = "https://0c2fea9f108f30f51d26ee7d259580ea@o4505034923769856.ingest.us.sentry.io/4505034930651136"
+  SELFDRIVE = "https://eefdcb433b71d839dbb08e4c8917fb0e@o4505034923769856.ingest.us.sentry.io/4505034930651136"
   # native project
-  SELFDRIVE_NATIVE = "https://0c2fea9f108f30f51d26ee7d259580ea@o4505034923769856.ingest.us.sentry.io/4505034930651136"
+  SELFDRIVE_NATIVE = "https://eefdcb433b71d839dbb08e4c8917fb0e@o4505034923769856.ingest.us.sentry.io/4505034930651136"
 
 
 def report_tombstone(fn: str, message: str, contents: str) -> None:

@@ -32,8 +32,8 @@ from openpilot.selfdrive.controls.lib.vehicle_model import VehicleModel
 
 from openpilot.system.hardware import HARDWARE
 
-from openpilot.selfdrive.frogpilot.controls.lib.frogpilot_acceleration import get_max_allowed_accel
-from openpilot.selfdrive.frogpilot.frogpilot_variables import ERROR_LOGS_PATH, get_frogpilot_toggles, params_memory
+from openpilot.frogpilot.common.frogpilot_variables import get_frogpilot_toggles, params_memory
+from openpilot.frogpilot.controls.lib.frogpilot_acceleration import get_max_allowed_accel
 
 SOFT_DISABLE_TIME = 3  # seconds
 LDW_MIN_SPEED = 31 * CV.MPH_TO_MS
@@ -74,8 +74,11 @@ class Controls:
         self.CP = msg.as_builder()
       cloudlog.info("controlsd got CarParams")
 
+      with custom.FrogPilotCarParams.from_bytes(self.params.get("FrogPilotCarParamsPersistent", block=True)) as fpmsg:
+        FPCP = fpmsg.as_builder()
+
       # Uses car interface helper functions, altering state won't be considered by card for actuation
-      self.CI = get_car_interface(self.CP)
+      self.CI = get_car_interface(self.CP, FPCP)
     else:
       self.CI, self.CP = CI, CI.CP
 
@@ -195,8 +198,6 @@ class Controls:
     self.display_timer = 0
 
     self.has_menu = self.CP.carName == "gm" and not (self.CP.flags & GMFlags.NO_CAMERA.value or self.CP.carFingerprint in CC_ONLY_CAR)
-
-    self.error_log = ERROR_LOGS_PATH / "error.txt"
 
   def set_initial_state(self):
     if REPLAY:
@@ -427,12 +428,6 @@ class Controls:
 
     if self.frogpilot_toggles.block_user:
       self.events.add(EventName.blockUser, static=True)
-
-    if self.error_log.is_file():
-      if self.frogpilot_toggles.random_events:
-        self.events.add(EventName.openpilotCrashedRandomEvent)
-      else:
-        self.events.add(EventName.openpilotCrashed)
 
   def data_sample(self):
     """Receive data from sockets"""

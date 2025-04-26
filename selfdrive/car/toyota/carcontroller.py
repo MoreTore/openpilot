@@ -16,7 +16,7 @@ from openpilot.selfdrive.controls.lib.drive_helpers import CRUISE_LONG_PRESS
 from openpilot.selfdrive.controls.lib.pid import PIDController
 from opendbc.can.packer import CANPacker
 
-from openpilot.selfdrive.frogpilot.controls.lib.frogpilot_acceleration import get_max_allowed_accel
+from openpilot.frogpilot.controls.lib.frogpilot_acceleration import get_max_allowed_accel
 
 LongCtrlState = car.CarControl.Actuators.LongControlState
 SteerControlType = car.CarParams.SteerControlType
@@ -84,6 +84,7 @@ class CarController(CarControllerBase):
 
     self.packer = CANPacker(dbc_name)
 
+    self.secoc_acc_message_counter = 0
     self.secoc_lka_message_counter = 0
     self.secoc_lta_message_counter = 0
     self.secoc_prev_reset_counter = 0
@@ -121,6 +122,7 @@ class CarController(CarControllerBase):
     # *** handle secoc reset counter increase ***
     if self.CP.flags & ToyotaFlags.SECOC.value:
       if CS.secoc_synchronization['RESET_CNT'] != self.secoc_prev_reset_counter:
+        self.secoc_acc_message_counter = 0
         self.secoc_lka_message_counter = 0
         self.secoc_lta_message_counter = 0
         self.secoc_prev_reset_counter = CS.secoc_synchronization['RESET_CNT']
@@ -237,7 +239,7 @@ class CarController(CarControllerBase):
     if self.CP.openpilotLongitudinalControl:
       if self.frame % 3 == 0:
         # Press distance button until we are at the correct bar length. Only change while enabled to avoid skipping startup popup
-        if self.frame % 6 == 0 and self.CP.openpilotLongitudinalControl:
+        if self.frame % 6 == 0 and self.CP.openpilotLongitudinalControl and not self.CP.flags & ToyotaFlags.SECOC.value:
           desired_distance = 4 - hud_control.leadDistanceBars
           if CS.out.cruiseState.enabled and CS.pcm_follow_distance != desired_distance:
             self.distance_button = not self.distance_button
@@ -295,8 +297,23 @@ class CarController(CarControllerBase):
 
         pcm_accel_cmd = clip(pcm_accel_cmd, self.params.ACCEL_MIN, self.params.ACCEL_MAX)
 
-        can_sends.append(toyotacan.create_accel_command(self.packer, pcm_accel_cmd, pcm_cancel_cmd, self.permit_braking, self.standstill_req, lead,
-                                                        CS.acc_type, fcw_alert, self.distance_button, self.reverse_cruise_active))
+        if self.CP.flags & ToyotaFlags.SECOC.value:
+          can_sends.append(toyotacan.create_accel_command(self.packer, 0, pcm_cancel_cmd, self.permit_braking, self.standstill_req, lead,
+                                                          CS.acc_type, fcw_alert, self.distance_button, self.reverse_cruise_active))
+
+          acc_cmd_2 = toyotacan.create_accel_command_2(self.packer, pcm_accel_cmd)
+          acc_cmd_2 = add_mac(self.secoc_key,
+                              int(CS.secoc_synchronization['TRIP_CNT']),
+                              int(CS.secoc_synchronization['RESET_CNT']),
+                              self.secoc_acc_message_counter,
+                              acc_cmd_2)
+          can_sends.append(acc_cmd_2)
+
+          self.secoc_acc_message_counter += 1
+        else:
+          can_sends.append(toyotacan.create_accel_command(self.packer, pcm_accel_cmd, pcm_cancel_cmd, self.permit_braking, self.standstill_req, lead,
+                                                          CS.acc_type, fcw_alert, self.distance_button, self.reverse_cruise_active))
+
         self.accel = pcm_accel_cmd
 
     else:

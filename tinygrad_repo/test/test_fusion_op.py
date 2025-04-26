@@ -2,6 +2,7 @@ import unittest
 import time
 import numpy as np
 from tinygrad import Tensor, dtypes
+from tinygrad.engine.schedule import create_schedule
 from tinygrad.engine.realize import lower_schedule_item, run_schedule
 
 class TestFusionOp(unittest.TestCase):
@@ -16,7 +17,7 @@ class TestFusionOp(unittest.TestCase):
   def test_expand_fuse(self):
     bt = Tensor(np.ones((10, 1)), dtype=dtypes.float32)
     out = (bt*2).expand(10,10).sum(1)
-    sched = out.schedule()
+    sched = create_schedule([out.lazydata])
     run_schedule(sched)
     outd = out.tolist()
     assert all(x == 20.0 for x in outd)
@@ -25,7 +26,7 @@ class TestFusionOp(unittest.TestCase):
     st = time.perf_counter()
     a = Tensor([1,2,3,4])
     for _ in range(24): a = a + a
-    sched = a.schedule()
+    sched = create_schedule([a.lazydata])
     ei = lower_schedule_item(sched[-1])
     self.assertLess(time.perf_counter()-st, 2.0)
     assert len(ei.prg.p.src.splitlines()) < 250
@@ -34,13 +35,13 @@ class TestFusionOp(unittest.TestCase):
     st = time.perf_counter()
     a = Tensor([1,2,3,4])
     for _ in range(24): a = a + a
-    sched1 = a.schedule()
+    sched1 = create_schedule([a.lazydata])
     b = Tensor([1,2,3,4])
     for _ in range(24): b = b + b
-    sched2 = b.schedule()
+    sched2 = create_schedule([b.lazydata])
     c = Tensor([1,2,3,4])
     for _ in range(23): c = c + c
-    sched3 = c.schedule()
+    sched3 = create_schedule([c.lazydata])
     self.assertEqual(sched1[-1].ast, sched2[-1].ast)
     with self.assertRaises(AssertionError): self.assertEqual(sched1[-1].ast, sched3[-1].ast)
     self.assertLess(time.perf_counter()-st, 2.0)

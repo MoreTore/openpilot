@@ -16,6 +16,8 @@
 #include "selfdrive/ui/qt/widgets/offroad_alerts.h"
 #include "selfdrive/ui/ui.h"
 
+#include "frogpilot/ui/qt/widgets/developer_sidebar.h"
+
 class OffroadHome : public QFrame {
   Q_OBJECT
 
@@ -75,6 +77,8 @@ private:
   // FrogPilot variables
   Params params;
 
+  DeveloperSidebar *developer_sidebar;
+
 private slots:
-  void updateState(const UIState &s);
+  void updateState(const UIState &s, const FrogPilotUIState &fs);
 };

@@ -11,7 +11,7 @@ FrogPilotButtonType = custom.FrogPilotCarState.ButtonEvent.Type
 
 class CarInterface(CarInterfaceBase):
   @staticmethod
-  def _get_params(ret, candidate, fingerprint, car_fw, disable_openpilot_long, experimental_long, docs):
+  def _get_params(ret, candidate, fingerprint, car_fw, experimental_long, docs, frogpilot_toggles):
     ret.carName = "chrysler"
 
     # radar parsing needs some work, see https://github.com/commaai/openpilot/issues/26842
@@ -68,10 +68,6 @@ class CarInterface(CarInterfaceBase):
       ret.mass = 3405.
       ret.minSteerSpeed = 16
       CarInterfaceBase.configure_torque_tune(candidate, ret.lateralTuning, 1.0, False)
-
-      # Some RAM HD use Chrysler button address
-      if 570 not in fingerprint[0]:
-        ret.flags |= ChryslerFlags.RAM_HD_ALT_BUTTONS.value
 
     else:
       raise ValueError(f"Unsupported car: {candidate}")

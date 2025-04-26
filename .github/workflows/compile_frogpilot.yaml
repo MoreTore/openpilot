@@ -80,8 +80,8 @@ jobs:
         with:
           ref: ${{ needs.get_branch.outputs.branch }}
           sparse-checkout: |
+            frogpilot/ui/
             selfdrive/controls/lib/alerts_offroad.json
-            selfdrive/frogpilot/ui/
             selfdrive/ui/
             selfdrive/ui/update_translations.py
             selfdrive/ui/translations/
