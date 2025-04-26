@@ -61,7 +61,7 @@ class DesireHelper:
     cancel_lane_change = (carstate.brakePressed and frogpilot_toggles.nudgeless)
     if self.lane_change_direction == LaneChangeDirection.left  and (carstate.steeringPressed and carstate.steeringTorque < 0):
       cancel_lane_change = frogpilot_toggles.nudgeless  # openpilot applying CCW torque but driver is applying CW torque
-    else if self.lane_change_direction == LaneChangeDirection.right and (carstate.steeringPressed and carstate.steeringTorque > 0:
+    elif self.lane_change_direction == LaneChangeDirection.right and (carstate.steeringPressed and carstate.steeringTorque > 0):
       cancel_lane_change = frogpilot_toggles.nudgeless  # openpilot applying CW torque but driver is applying CCW torque
     if cancel_lane_change:
       self.lane_change_state = LaneChangeState.off
