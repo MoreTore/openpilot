@@ -45,9 +45,11 @@ class DesireHelper:
     self.keep_pulse_timer = 0.0
     self.prev_one_blinker = False
     self.desire = log.Desire.none
+    self.turn_direction = TurnDirection.none
 
     # FrogPilot variables
     self.lane_change_completed = False
+    self.lane_change_canceled = False
 
     self.lane_change_wait_timer = 0
 
@@ -55,6 +57,41 @@ class DesireHelper:
     v_ego = carstate.vEgo
     one_blinker = carstate.leftBlinker != carstate.rightBlinker
     below_lane_change_speed = v_ego < frogpilot_toggles.minimum_lane_change_speed
+    # Cancel nudgeless lane change in any state under these conditions:
+    # - Brake is pressed
+    # - Driver is applying opposing steering torque.
+
+    # Reset canceled flag when blinker is off or driver applies torque
+    if not one_blinker or carstate.steeringPressed:
+      self.lane_change_canceled = False
+    # Cancel logic
+    cancel_lane_change = (carstate.brakePressed and frogpilot_toggles.nudgeless)
+    if self.lane_change_direction == LaneChangeDirection.left and (carstate.steeringPressed and carstate.steeringTorque < 0):
+      cancel_lane_change = frogpilot_toggles.nudgeless
+    elif self.lane_change_direction == LaneChangeDirection.right and (carstate.steeringPressed and carstate.steeringTorque > 0):
+      cancel_lane_change = frogpilot_toggles.nudgeless
+
+    if cancel_lane_change:
+      self.lane_change_state = LaneChangeState.off
+      self.lane_change_direction = LaneChangeDirection.none
+      self.lane_change_timer = 0.0
+      self.lane_change_ll_prob = 1.0
+      self.lane_change_completed = False
+      self.lane_change_canceled = True
+      self.desire = log.Desire.none
+      self.prev_one_blinker = one_blinker
+      return
+
+    # Prevent lane change if canceled
+    if self.lane_change_canceled:
+      self.lane_change_state = LaneChangeState.off
+      self.lane_change_direction = LaneChangeDirection.none
+      self.lane_change_timer = 0.0
+      self.lane_change_ll_prob = 1.0
+      self.lane_change_completed = False
+      self.desire = log.Desire.none
+      self.prev_one_blinker = one_blinker
+      return
 
     if not (frogpilot_toggles.lane_detection and one_blinker) or below_lane_change_speed:
       lane_available = True
