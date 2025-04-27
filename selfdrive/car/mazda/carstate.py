@@ -269,7 +269,7 @@ class CarState(CarStateBase):
 
     if CP.flags & MazdaFlags.GEN2:
       messages += [
-        ("BRAKE_PEDAL", 20),
+        ("BRAKE_PEDAL", 5),
         ("CRUZE_STATE", 10),
         ("BLINK_INFO", 10),
         ("ACC", 50),
