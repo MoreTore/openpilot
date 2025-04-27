@@ -71,24 +71,13 @@ class DesireHelper:
     elif self.lane_change_direction == LaneChangeDirection.right and (carstate.steeringPressed and carstate.steeringTorque > 0):
       cancel_lane_change = frogpilot_toggles.nudgeless
 
-    if cancel_lane_change:
+    if cancel_lane_change or self.lane_change_canceled:
       self.lane_change_state = LaneChangeState.off
       self.lane_change_direction = LaneChangeDirection.none
       self.lane_change_timer = 0.0
       self.lane_change_ll_prob = 1.0
       self.lane_change_completed = False
       self.lane_change_canceled = True
-      self.desire = log.Desire.none
-      self.prev_one_blinker = one_blinker
-      return
-
-    # Prevent lane change if canceled
-    if self.lane_change_canceled:
-      self.lane_change_state = LaneChangeState.off
-      self.lane_change_direction = LaneChangeDirection.none
-      self.lane_change_timer = 0.0
-      self.lane_change_ll_prob = 1.0
-      self.lane_change_completed = False
       self.desire = log.Desire.none
       self.prev_one_blinker = one_blinker
       return
