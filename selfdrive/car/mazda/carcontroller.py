@@ -27,6 +27,7 @@ class CarController(CarControllerBase):
     self.cancel_delay = Timer(0.07) # 70ms delay to try to avoid a race condition with stock system
     self.acc_filter = FirstOrderFilter(0.0, .1, DT_CTRL, initialized=False)
     self.filtered_acc_last = 0
+    self.long_active_last = False
     self.params = Params()
     self.params_memory = Params("/dev/shm/params")
 
@@ -107,23 +108,30 @@ class CarController(CarControllerBase):
 
     else:
       raw_acc_output = (CC.actuators.accel * 240) + 2000
-      if self.params.get_bool("BlendedACC"):
-        if self.params_memory.get_int("CEStatus"):
-          self.acc_filter.update_alpha(abs(raw_acc_output-self.filtered_acc_last)/1000)
-          filtered_acc_output = int(self.acc_filter.update(raw_acc_output))
+      if CC.longActive:
+        if self.params.get_bool("BlendedACC"):
+          if not self.long_active_last:
+            # reset the filter when we start ACC
+            self.acc_filter.initialized = False
+
+          if self.params_memory.get_int("CEStatus"):
+            self.acc_filter.update_alpha(abs(raw_acc_output-self.filtered_acc_last)/1000)
+            filtered_acc_output = int(self.acc_filter.update(raw_acc_output))
+          else:
+            # we want to use the stock value in this case but we need a smooth transition.
+            self.acc_filter.update_alpha(abs(CS.acc["ACCEL_CMD"]-self.filtered_acc_last)/1000)
+            filtered_acc_output = int(self.acc_filter.update(CS.acc["ACCEL_CMD"]))
+
+          acc_output = filtered_acc_output
+          self.filtered_acc_last = filtered_acc_output
+
         else:
-          # we want to use the stock value in this case but we need a smooth transition.
-          self.acc_filter.update_alpha(abs(CS.acc["ACCEL_CMD"]-self.filtered_acc_last)/1000)
-          filtered_acc_output = int(self.acc_filter.update(CS.acc["ACCEL_CMD"]))
+          acc_output = raw_acc_output
 
-        acc_output = filtered_acc_output
-        self.filtered_acc_last = filtered_acc_output
-      else:
-        acc_output = raw_acc_output
+        if self.params.get_bool("ExperimentalLongitudinalEnabled"):
+          CS.acc["ACCEL_CMD"] = acc_output
 
-      if self.params.get_bool("ExperimentalLongitudinalEnabled") and CC.longActive:
-        CS.acc["ACCEL_CMD"] = acc_output
-
+      self.long_active_last = CC.longActive
       resume = False
       hold = False
       if Timer.interval(2): # send ACC command at 50hz
