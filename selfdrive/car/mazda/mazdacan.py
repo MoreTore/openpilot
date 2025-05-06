@@ -80,7 +80,7 @@ def create_steering_control(packer, CP, frame, apply_steer, lkas, apply_angle):
       bus = 2
       sig_name = "STOCK_LKAS"
       lkas["STEER_ANGLE"] = apply_angle
-    msgs.append(packer.make_can_msg(sig_name, bus, values))
+      msgs.append(packer.make_can_msg(sig_name, bus, values))
 
 
   return msgs
