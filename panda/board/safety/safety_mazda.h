@@ -28,6 +28,7 @@
 #define MAZDA_2019_STEER_TORQUE   0x24B  // aux bus. DBC: EPS_FEEDBACK
 #define MAZDA_2019_CRZ_BTNS       0x9d   // rx on main tx on camera. DBC: CRZ_BTNS
 #define MAZDA_2019_ACC            0x220  // main bus. DBC: ACC
+#define MAZDA_2019_LKAS           0x85   // main bus. DBC: STOCK_LKAS
 
 #define MAZDA_TI_LKAS       0x249
 
@@ -84,7 +85,7 @@ const CanMsg MAZDA_TI_RI_TX_MSGS[] = {{MAZDA_LKAS, 0, 8}, {MAZDA_TI_LKAS, 1, 8},
                                 {MAZDA_RADAR_363, 0, 8}, {MAZDA_RADAR_364, 0, 8}, {MAZDA_RADAR_365, 0, 8}, {MAZDA_RADAR_366, 0, 8},
                                 {MAZDA_RADAR_499, 0, 8}};
 
-const CanMsg MAZDA_2019_TX_MSGS[] = {{MAZDA_TI_LKAS, 1, 8}, {MAZDA_2019_ACC, 2, 8}};
+const CanMsg MAZDA_2019_TX_MSGS[] = {{MAZDA_TI_LKAS, 1, 8}, {MAZDA_2019_ACC, 2, 8}, {MAZDA_2019_LKAS, 2, 8}};
 
 RxCheck mazda_rx_checks[] = {
   {.msg = {{MAZDA_CRZ_CTRL,     0, 8, .frequency = 50U}, { 0 }, { 0 }}},
@@ -233,6 +234,7 @@ static int mazda_fwd_hook(int bus, int addr) {
   bool block = (addr == MAZDA_TI_LKAS);
   if (bus == MAZDA_MAIN) {
     block |= ((addr == MAZDA_2019_ACC) && gen2);
+    block |= ((addr == MAZDA_2019_LKAS) && gen2);
     if (!block) {
       bus_fwd = MAZDA_CAM;
     }

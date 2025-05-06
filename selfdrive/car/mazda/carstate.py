@@ -213,6 +213,7 @@ class CarState(CarStateBase):
     self.cp = cp
     self.cp_cam = cp_cam
     self.acc = copy.copy(cp.vl["ACC"])
+    self.cam_lkas = copy.copy(cp.vl["STOCK_LKAS"])
 
     # FrogPilot CarState functions
     self.lkas_previously_enabled = self.lkas_enabled
@@ -274,7 +275,8 @@ class CarState(CarStateBase):
         ("BLINK_INFO", 10),
         ("ACC", 50),
         ("SYSTEM_SETTINGS", 10),
-        ("STEER", 100)
+        ("STEER", 100),
+        ("STOCK_LKAS", 50),
       ]
 
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 0)

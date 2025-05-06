@@ -1,7 +1,7 @@
 from openpilot.selfdrive.car.mazda.values import Buttons, MazdaFlags
 from openpilot.common.numpy_fast import clip
 
-def create_steering_control(packer, CP, frame, apply_steer, lkas):
+def create_steering_control(packer, CP, frame, apply_steer, lkas, apply_angle):
   msgs = []
   if CP.flags & MazdaFlags.GEN1:
     if not CP.flags & MazdaFlags.NO_FSC:
@@ -75,6 +75,13 @@ def create_steering_control(packer, CP, frame, apply_steer, lkas):
       "STEER_FEEL": 12000,
     }
     msgs.append(packer.make_can_msg(sig_name, bus, values))
+
+    if frame % 2 == 0: # 50hz
+      bus = 2
+      sig_name = "STOCK_LKAS"
+      lkas["STEER_ANGLE"] = apply_angle
+    msgs.append(packer.make_can_msg(sig_name, bus, values))
+
 
   return msgs
 

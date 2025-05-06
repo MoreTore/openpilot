@@ -107,6 +107,11 @@ class CarController(CarControllerBase):
           can_sends.extend(mazdacan.create_radar_command(self.packer, self.frame, CC.longActive, CS, hold))
 
     else:
+      if CC.latActive:
+        apply_angle = CC.actuators.steeringAngleDeg
+      else:
+        apply_angle = CS.cam_lkas["STEER_ANGLE"]
+
       raw_acc_output = (CC.actuators.accel * 240) + 2000
       if CC.longActive:
         if self.params.get_bool("BlendedACC"):
@@ -157,12 +162,17 @@ class CarController(CarControllerBase):
         resume = self.resume_timer.active() # stay on for 0.5s to release the brake. This allows the car to move.
         can_sends.append(mazdacan.create_acc_cmd(self, self.packer, CS.acc, hold, resume))
 
+      if not self.params.get_bool("Torque"):
+        apply_steer = 0
+      if not self.params.get_bool("Angle"):
+        apply_angle = CS.cam_lkas["STEER_ANGLE"]
     # send steering command
     can_sends.extend(mazdacan.create_steering_control(self.packer, self.CP,
-                                                      self.frame, apply_steer, CS.cam_lkas))
+                                                      self.frame, apply_steer, CS.cam_lkas, apply_angle))
 
     new_actuators = CC.actuators.as_builder()
     new_actuators.steer = apply_steer / self.ccp.STEER_MAX
+    new_actuators.steeringAngleDeg = apply_angle
     new_actuators.steerOutputCan = apply_steer
 
     self.frame += 1

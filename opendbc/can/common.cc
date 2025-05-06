@@ -120,6 +120,17 @@ unsigned int mazda2019_checksum(uint32_t address, const Signal &sig, const std::
   if (address == 0x249U) {
     checksum = 0x53U;
   }
+
+  if (address == 0x85U) {
+    uint8_t crc = 0x00U;
+    // process bytes 0..6 MSB‑first via LUT
+    for (int i = 0; i < 7; i++) {
+      crc = crc8_lut_8h2f[crc ^ d[i]];
+    }
+    // final xor-out
+    return (unsigned int)(crc ^ 0x60U);
+  }
+
   // Simple XOR over the payload, except for the byte where the checksum lives.
   for (int i = 0; i < 7; i++) {
     checksum += d[i];

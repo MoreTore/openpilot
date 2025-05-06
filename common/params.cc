@@ -547,6 +547,8 @@ std::unordered_map<std::string, uint32_t> keys = {
     {"ManualTransmission", PERSISTENT},
     {"LiveStreamRunning", CLEAR_ON_MANAGER_START},
     {"RemoteAccess", CLEAR_ON_MANAGER_START},
+    {"Torque", PERSISTENT},
+    {"Angle", PERSISTENT},
 };
 
 } // namespace
