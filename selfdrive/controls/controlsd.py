@@ -895,6 +895,11 @@ class Controls:
 
     # Compute actuators (runs PID loops and lateral MPC)
     CC, lac_log = self.state_control(CS)
+    if self.CP.lateralTuning.which() == 'torque':
+      if CC.actuators.steer > self.CP.lateralTuning.friction:
+        self.CP.steerActuatorDelay = 0.1
+      else:
+        self.CP.steerActuatorDelay = 0.3
 
     # Publish data
     self.publish_logs(CS, start_time, CC, lac_log)
