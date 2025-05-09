@@ -37,6 +37,43 @@ TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
       tr("When enabled, pressing the accelerator pedal will disengage openpilot."),
       "../assets/offroad/icon_disengage_on_accelerator.svg",
     },
+    
+    {
+      "BlendedACC",
+      tr("Blended Acc (Experimental)"),
+      tr("Blend stock MRCC and Experimental Mode longitudinal control."),
+      "../assets/offroad/icon_openpilot.png",
+    },
+    {
+      "TorqueInterceptorEnabled",
+      tr("Torque Interceptor Installed"),
+      tr("Enable the torque interceptor to control the steering wheel."),
+      "../assets/offroad/icon_openpilot.png",
+    },
+    {
+      "RadarInterceptorEnabled",
+      tr("Radar Interceptor Installed"),
+      tr("Enable if you have installed the radar Iterceptor."),
+      "../assets/offroad/icon_openpilot.png",
+    },
+    {
+      "NoMRCC",
+      tr("Car Does not have stock MRCC"),
+      tr("Enable if your car does not have stock MRCC."),
+      "../assets/offroad/icon_openpilot.png",
+    },
+    {
+      "NoFSC",
+      tr("Car Does not have stock FSC"),
+      tr("Enable if your car does not have stock FSC."),
+      "../assets/offroad/icon_openpilot.png",
+    },
+    {
+      "ManualTransmission",
+      tr("Manual Transmission"),
+      tr("Enable if your is a manual."),
+      "../assets/offroad/icon_openpilot.png",
+    },
     {
       "IsLdwEnabled",
       tr("Enable Lane Departure Warnings"),
@@ -326,7 +363,7 @@ void SettingsWindow::setCurrentPanel(int index, const QString &param) {
     if (param.endsWith("Panel")) {
       QString panelName = param;
       panelName.chop(5); // Remove "Panel" suffix
-      
+
       // Find the panel by name
       for (int i = 0; i < nav_btns->buttons().size(); i++) {
         if (nav_btns->buttons()[i]->text() == tr(panelName.toStdString().c_str())) {
@@ -338,7 +375,7 @@ void SettingsWindow::setCurrentPanel(int index, const QString &param) {
       emit expandToggleDescription(param);
     }
   }
-  
+
   panel_widget->setCurrentIndex(index);
   nav_btns->buttons()[index]->setChecked(true);
 }
