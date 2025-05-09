@@ -36,7 +36,7 @@ void PairingQRWidget::hideEvent(QHideEvent *event) {
 
 void PairingQRWidget::refresh() {
   QString pairToken = CommaApi::create_jwt({{"pair", true}});
-  QString qrString = "https://connect.comma.ai/?pair=" + pairToken;
+  QString qrString = "https://stable.konik.ai/?pair=" + pairToken;
   this->updateQrCode(qrString);
   update();
 }
@@ -100,7 +100,7 @@ PairingPopup::PairingPopup(QWidget *parent) : DialogBase(parent) {
         <li style='margin-bottom: 50px;'>%2</li>
         <li style='margin-bottom: 50px;'>%3</li>
       </ol>
-    )").arg(tr("Go to https://connect.comma.ai on your phone"))
+    )").arg(tr("Go to https://stable.konik.ai on your phone"))
     .arg(tr("Click \"add new device\" and scan the QR code on the right"))
     .arg(tr("Bookmark connect.comma.ai to your home screen to use it like an app")), this);
 
