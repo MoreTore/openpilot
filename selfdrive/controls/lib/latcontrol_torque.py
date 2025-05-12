@@ -90,7 +90,7 @@ class LatControlTorque(LatControl):
       inertia_ff = self.I_sw * filt_alpha
 
       # Total feed-forward
-      total_ff = ff + inertia_ff
+      ff_total = ff + inertia_ff
 
       output_torque = self.pid.update(pid_log.error,
                                       feedforward=ff_total,
