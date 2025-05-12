@@ -8,7 +8,9 @@
       "options": [
         "selfdrive/controls/controlsd.py",
         "system/timed/timed.py",
-        "tools/sim/run_bridge.py"
+        "tools/sim/run_bridge.py",
+        "selfdrive/debug/run_process_on_route.py",
+        "tools/tuning/measure_steering_accuracy.py",
       ]
     },
     {
