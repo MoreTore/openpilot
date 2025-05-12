@@ -7,6 +7,7 @@ from opendbc.car.vehicle_model import ACCELERATION_DUE_TO_GRAVITY
 from openpilot.selfdrive.controls.lib.latcontrol import LatControl
 from openpilot.common.pid import PIDController
 from openpilot.common.realtime import DT_CTRL
+from openpilot.common.simple_filter import FirstOrderFilter
 
 # At higher speeds (25+mph) we can assume:
 # Lateral acceleration achieved by a specific car correlates to
@@ -32,7 +33,12 @@ class LatControlTorque(LatControl):
     self.torque_from_lateral_accel = CI.torque_from_lateral_accel()
     self.use_steering_angle = self.torque_params.useSteeringAngle
     self.steering_angle_deadzone_deg = self.torque_params.steeringAngleDeadzoneDeg
+    # inertia estimate (kg·m²)
+    self.I_sw = 0.1
     self.prev_angle_rad = 0.0
+    self.tau_inertia = 0.05
+    # initialize filter on raw alpha
+    self.inertia_filter = FirstOrderFilter(0.0, self.tau_inertia, DT_CTRL)
 
   def update_live_torque_params(self, latAccelFactor, latAccelOffset, friction):
     self.torque_params.latAccelFactor = latAccelFactor
@@ -76,11 +82,14 @@ class LatControlTorque(LatControl):
                                           gravity_adjusted=True)
 
       freeze_integrator = steer_limited_by_controls or CS.steeringPressed or CS.vEgo < 5
-       # Steering wheel inertia torque will resist our steering command and can cause feedback loop. try to estimate it here
-      angle_rad    = math.radians(CS.steeringAngleDeg)
-      alpha_sw     = (angle_rad - self.prev_angle_rad) / DT_CTRL
+      # Steering wheel inertia torque will resist our steering command and can cause feedback loop. try to estimate it here
+      # Inertia feed-forward: estimate wheel angular accel
+      angle_rad = math.radians(CS.steeringAngleDeg)
+      alpha_sw = (angle_rad - self.prev_angle_rad) / DT_CTRL
       self.prev_angle_rad = angle_rad
-      inertia_ff   = self.I_sw * alpha_sw
+      inertia_ff = self.I_sw * alpha_sw
+
+      # Total feed-forward
       ff_total = ff + inertia_ff
 
       output_torque = self.pid.update(pid_log.error,
