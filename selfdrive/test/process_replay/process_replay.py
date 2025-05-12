@@ -137,7 +137,7 @@ class ProcessConfig:
   should_recv_callback: Callable | None = None
   tolerance: float | None = None
   processing_time: float = 0.001
-  timeout: int = 30
+  timeout: int = 300
   simulation: bool = True
   main_pub: str | None = None
   main_pub_drained: bool = True
