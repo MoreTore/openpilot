@@ -31,6 +31,7 @@ class LatControlTorque(LatControl):
     self.torque_from_lateral_accel = CI.torque_from_lateral_accel()
     self.use_steering_angle = self.torque_params.useSteeringAngle
     self.steering_angle_deadzone_deg = self.torque_params.steeringAngleDeadzoneDeg
+    self.prev_angle_rad = 0.0
 
   def update_live_torque_params(self, latAccelFactor, latAccelOffset, friction):
     self.torque_params.latAccelFactor = latAccelFactor
@@ -74,10 +75,19 @@ class LatControlTorque(LatControl):
                                           gravity_adjusted=True)
 
       freeze_integrator = steer_limited_by_controls or CS.steeringPressed or CS.vEgo < 5
+       # Steering wheel inertia torque will resist our steering command and can cause feedback loop. try to estimate it here
+      angle_rad    = math.radians(CS.steeringAngleDeg)
+      alpha_sw     = (angle_rad - self.prev_angle_rad) / dt
+      self.prev_angle_rad = angle_rad
+      inertia_ff   = self.I_sw * alpha_sw
+      ff_total = ff + inertia_ff
+
       output_torque = self.pid.update(pid_log.error,
-                                      feedforward=ff,
+                                      feedforward=ff_total,
                                       speed=CS.vEgo,
                                       freeze_integrator=freeze_integrator)
+      output_torque += inertia_torque
+
 
       pid_log.active = True
       pid_log.p = float(self.pid.p)
