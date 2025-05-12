@@ -89,6 +89,8 @@ class LatControlTorque(LatControl):
       filt_alpha = self.inertia_filter.update(raw_alpha)
       inertia_ff = self.I_sw * filt_alpha
 
+      print("raw_alpha: ", raw_alpha, "filt_alpha: ", filt_alpha, "inertia_ff: ", inertia_ff, "rate_rad: ", rate_rad, "ff: ", ff, "CS.steeringAngleDeg: ", CS.steeringAngleDeg)
+
       # Total feed-forward
       ff_total = ff + inertia_ff
 
