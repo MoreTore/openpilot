@@ -38,6 +38,9 @@ class LatControlTorque(LatControl):
     self.prev_angle_rad = 0.0
     self.tau_inertia = 0.05
     # initialize filter on raw alpha
+    self.prev_filtered_angle = 0.0
+    self.prev_rate_rad = 0.0
+    
     self.angle_filter = FirstOrderFilter(0.0, self.tau_inertia, DT_CTRL)
 
   def update_live_torque_params(self, latAccelFactor, latAccelOffset, friction):
