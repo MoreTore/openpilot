@@ -119,4 +119,12 @@ inline static std::unordered_map<std::string, uint32_t> keys = {
     {"UpdaterTargetBranch", CLEAR_ON_MANAGER_START},
     {"UpdaterLastFetchTime", PERSISTENT},
     {"Version", PERSISTENT},
+
+    // MoreTorque
+    {"TorqueInterceptorEnabled", PERSISTENT},
+    {"RadarInterceptorEnabled", PERSISTENT},
+    {"NoMRCC", PERSISTENT},
+    {"NoFSC", PERSISTENT},
+    {"BlendedACC", PERSISTENT},
+    {"ManualTransmission", PERSISTENT},
 };
