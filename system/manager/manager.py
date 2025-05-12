@@ -43,6 +43,7 @@ def manager_init() -> None:
     ("b", "1.0"),
     ("c", "0.2"),
     ("Kp", "1.0"),
+    ("i", "0.01"),
   ]
 
   if params.get_bool("RecordFrontLock"):

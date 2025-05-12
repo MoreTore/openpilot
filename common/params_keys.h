@@ -8,6 +8,7 @@ inline static std::unordered_map<std::string, uint32_t> keys = {
     {"b", PERSISTENT},
     {"c", PERSISTENT},
     {"Kp", PERSISTENT},
+    {"i", PERSISTENT},
     {"AccessToken", CLEAR_ON_MANAGER_START | DONT_LOG},
     {"AdbEnabled", PERSISTENT},
     {"AlwaysOnDM", PERSISTENT},

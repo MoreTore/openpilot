@@ -8,6 +8,7 @@ from openpilot.selfdrive.controls.lib.latcontrol import LatControl
 from openpilot.common.pid import PIDController
 from openpilot.common.realtime import DT_CTRL
 from openpilot.common.filter_simple import FirstOrderFilter
+from openpilot.common.params import Params
 
 # At higher speeds (25+mph) we can assume:
 # Lateral acceleration achieved by a specific car correlates to
@@ -33,11 +34,13 @@ class LatControlTorque(LatControl):
     self.torque_from_lateral_accel = CI.torque_from_lateral_accel()
     self.use_steering_angle = self.torque_params.useSteeringAngle
     self.steering_angle_deadzone_deg = self.torque_params.steeringAngleDeadzoneDeg
+    self.params = Params()
     # Inertia feed-forward setup using steering rate
-    self.I_sw = 0.01  # kg·m²
+    self.I_sw = float(self.params.get("i", encoding='utf-8'))  # kg·m²
     self.tau_inertia = 0.05  # seconds
     self.inertia_filter = FirstOrderFilter(0.0, self.tau_inertia, DT_CTRL)
     self.prev_rate_rad = 0.0
+
 
   def update_live_torque_params(self, latAccelFactor, latAccelOffset, friction):
     self.torque_params.latAccelFactor = latAccelFactor
