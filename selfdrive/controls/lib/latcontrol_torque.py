@@ -34,7 +34,7 @@ class LatControlTorque(LatControl):
     self.use_steering_angle = self.torque_params.useSteeringAngle
     self.steering_angle_deadzone_deg = self.torque_params.steeringAngleDeadzoneDeg
     # Inertia feed-forward setup using steering rate
-    self.I_sw = 0.1  # kg·m²
+    self.I_sw = 0.01  # kg·m²
     self.tau_inertia = 0.05  # seconds
     self.inertia_filter = FirstOrderFilter(0.0, self.tau_inertia, DT_CTRL)
     self.prev_rate_rad = 0.0
