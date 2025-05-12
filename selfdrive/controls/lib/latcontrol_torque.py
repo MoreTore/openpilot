@@ -85,16 +85,8 @@ class LatControlTorque(LatControl):
 
       freeze_integrator = steer_limited_by_controls or CS.steeringPressed or CS.vEgo < 5
 
-      # Inertia feed-forward: compute acceleration from steeringRateDeg
-      rate_rad = math.radians(CS.steeringRateDeg)
-      raw_alpha = (rate_rad - self.prev_rate_rad) / DT_CTRL
-      self.prev_rate_rad = rate_rad
-      inertia_ff = -self.I_sw * raw_alpha
-
-      print("raw_alpha: ", raw_alpha, "inertia_ff: ", inertia_ff, "rate_rad: ", rate_rad, "ff: ", ff, "CS.steeringAngleDeg: ", CS.steeringAngleDeg)
-
       # Total feed-forward
-      ff_total = ff + inertia_ff
+      ff_total = ff - CS.steeringTorque
 
       output_torque = self.pid.update(pid_log.error,
                                       feedforward=ff_total,
