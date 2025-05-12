@@ -7,7 +7,7 @@ from opendbc.car.vehicle_model import ACCELERATION_DUE_TO_GRAVITY
 from openpilot.selfdrive.controls.lib.latcontrol import LatControl
 from openpilot.common.pid import PIDController
 from openpilot.common.realtime import DT_CTRL
-from openpilot.common.simple_filter import FirstOrderFilter
+from openpilot.common.filter_simple import FirstOrderFilter
 
 # At higher speeds (25+mph) we can assume:
 # Lateral acceleration achieved by a specific car correlates to
@@ -85,9 +85,14 @@ class LatControlTorque(LatControl):
       # Steering wheel inertia torque will resist our steering command and can cause feedback loop. try to estimate it here
       # Inertia feed-forward: estimate wheel angular accel
       angle_rad = math.radians(CS.steeringAngleDeg)
-      alpha_sw = (angle_rad - self.prev_angle_rad) / DT_CTRL
-      self.prev_angle_rad = angle_rad
-      inertia_ff = self.I_sw * alpha_sw
+      filtered_angle = self.angle_filter.update(angle_rad)
+      # first derivative: rate
+      raw_rate = (filtered_angle - self.prev_filtered_angle) / DT_CTRL
+      self.prev_filtered_angle = filtered_angle
+      # second derivative: accel
+      raw_alpha = (raw_rate - self.prev_rate_rad) / DT_CTRL
+      self.prev_rate_rad = raw_rate
+      inertia_ff = self.I_sw * raw_alpha
 
       # Total feed-forward
       ff_total = ff + inertia_ff
