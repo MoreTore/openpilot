@@ -150,9 +150,8 @@ class Controls:
     CC.cruiseControl.cancel = CS.cruiseState.enabled and (not CC.enabled or not self.CP.pcmCruise)
 
     speeds = self.sm['longitudinalPlan'].speeds
-    should_stop = not self.sm['longitudinalPlan'].shouldStop
     if len(speeds):
-      CC.cruiseControl.resume = CC.enabled and CS.cruiseState.standstill and not should_stop
+      CC.cruiseControl.resume = CC.enabled and CS.cruiseState.standstill and speeds[-1] > 0.1
 
     hudControl = CC.hudControl
     hudControl.setSpeed = float(CS.vCruiseCluster * CV.KPH_TO_MS)
