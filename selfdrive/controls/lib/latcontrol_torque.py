@@ -85,9 +85,6 @@ class LatControlTorque(LatControl):
 
       freeze_integrator = steer_limited_by_controls or CS.steeringPressed or CS.vEgo < 5
 
-      # Total feed-forward
-      ff_total = ff + (CS.steeringTorque/8000)
-
       output_torque = self.pid.update(pid_log.error,
                                       feedforward=ff_total,
                                       speed=CS.vEgo,
