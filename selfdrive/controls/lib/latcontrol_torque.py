@@ -86,7 +86,7 @@ class LatControlTorque(LatControl):
       freeze_integrator = steer_limited_by_controls or CS.steeringPressed or CS.vEgo < 5
 
       output_torque = self.pid.update(pid_log.error,
-                                      feedforward=ff_total,
+                                      feedforward=ff,
                                       speed=CS.vEgo,
                                       freeze_integrator=freeze_integrator)
       pid_log.active = True
