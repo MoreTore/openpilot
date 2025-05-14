@@ -238,7 +238,7 @@ class TorqueEstimator(ParameterEstimator):
     # ── 3. Gauss-Newton / LM fit for (a,b,c,d) ─────────────────
     b0 = np.clip(np.ptp(y), 0.1, 2.0)
     params  = np.array([3.0, b0, 0.0, 0.0])           # [a,b,c,d]
-    lam, tol, it_max = 1e-3, 1e-5, 15                 # λ lambda, tolerance, max iters
+    lam, tol, it_max = 1e-3, 1e-5, 20                 # λ lambda, tolerance, max iters
 
     for it in range(it_max):
       a, b, c, d = params
@@ -266,6 +266,11 @@ class TorqueEstimator(ParameterEstimator):
         params = params_new
         break
       params = params_new
+
+    # if we hit max iters, we don't have a solution
+    if it == it_max - 1:
+      cloudlog.warning("GN fit failed to converge")
+      return (None,)*5
 
     a, b, c, d = params
     if not np.all(np.isfinite(params)):
