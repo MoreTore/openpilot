@@ -119,10 +119,16 @@ class TorqueEstimator(ParameterEstimator):
     self.use_params |= CP.carFingerprint in ALLOWED_CARS
 
     if CP.lateralTuning.which() == 'torque':
-      self.offline_friction = CP.lateralTuning.torque.friction = 0.3
-      self.offline_latAccelFactor = CP.lateralTuning.torque.latAccelFactor = 0.1
-      self.offline_sigmoidSharpness = CP.lateralTuning.torque.sigmoidSharpness = 3.8
-      self.offline_sigmoidTorqueGain = CP.lateralTuning.torque.sigmoidTorqueGain = 1.0
+      self.offline_friction = CP.lateralTuning.torque.friction
+      self.offline_latAccelFactor = CP.lateralTuning.torque.latAccelFactor
+      self.offline_sigmoidSharpness = CP.lateralTuning.torque.sigmoidSharpness
+      self.offline_sigmoidTorqueGain = CP.lateralTuning.torque.sigmoidTorqueGain
+
+    # override params for offline analysis
+    self.offline_sigmoidSharpness = 3.8
+    self.offline_sigmoidTorqueGain = 1.0
+    self.offline_latAccelFactor = 0.1
+    self.offline_friction = 0.33
 
 
 
