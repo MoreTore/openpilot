@@ -115,7 +115,8 @@ class TorqueEstimator(ParameterEstimator):
     self.offline_sigmoidTorqueGain = 0.0
 
     self.resets = 0.0
-    self.use_params = CP.brand in ALLOWED_CARS and CP.lateralTuning.which() == 'torque'
+    self.use_params = CP.brand in ALLOWED_BRANDS and CP.lateralTuning.which() == 'torque'
+    self.use_params |= CP.carFingerprint in ALLOWED_CARS
 
     if CP.lateralTuning.which() == 'torque':
       self.offline_friction = CP.lateralTuning.torque.friction
@@ -137,6 +138,9 @@ class TorqueEstimator(ParameterEstimator):
       'sigmoidTorqueGain': self.offline_sigmoidTorqueGain,
       'points': []
     }
+    # if any of the initial params are NaN, set them to 0.0 but skip "points"
+    initial_params = {k: (0.0 if np.isnan(v) else v) for k, v in initial_params.items() if k != 'points'}
+
     self.decay = MIN_FILTER_DECAY
     self.min_lataccel_factor = (1.0 - self.factor_sanity) * self.offline_latAccelFactor
     self.max_lataccel_factor = (1.0 + self.factor_sanity) * self.offline_latAccelFactor
@@ -234,7 +238,7 @@ class TorqueEstimator(ParameterEstimator):
     # ── 3. Gauss-Newton / LM fit for (a,b,c,d) ─────────────────
     b0 = np.clip(np.ptp(y), 0.1, 2.0)
     params  = np.array([3.0, b0, 0.0, 0.0])           # [a,b,c,d]
-    lam, tol, it_max = 1e-3, 1e-5, 50                 # λ lambda, tolerance, max iters
+    lam, tol, it_max = 1e-3, 1e-5, 15                 # λ lambda, tolerance, max iters
 
     for it in range(it_max):
       a, b, c, d = params
@@ -252,11 +256,11 @@ class TorqueEstimator(ParameterEstimator):
         return (None,)*5
 
       params_new = params + delta
-      # bounds
-      # params_new[0] = np.clip(params_new[0], 0.0, 10.0)   # a: sigmoid sharpness
-      # params_new[1] = np.clip(params_new[1], 0.0, 2.0)    # b: sigmoid torque gain
-      # params_new[2] = np.clip(params_new[2], 0.0, 5.0)    # c: lat accel factor
-      # params_new[3] = np.clip(params_new[3], -.3, 0.3)    # d: lat accel offset
+      #bounds
+      params_new[0] = np.clip(params_new[0], 0.0, 10.0)   # a: sigmoid sharpness
+      params_new[1] = np.clip(params_new[1], 0.0, 2.0)    # b: sigmoid torque gain
+      params_new[2] = np.clip(params_new[2], 0.0, 5.0)    # c: lat accel factor
+      params_new[3] = np.clip(params_new[3], -.3, 0.3)    # d: lat accel offset
 
       if np.max(np.abs(delta)) < tol:
         params = params_new
@@ -402,17 +406,15 @@ class TorqueEstimator(ParameterEstimator):
       (latAccelFactor, latAccelOffset, frictionCoefficient, sigmoidSharpness, sigmoidTorqueGain)
       (c,d,f,a,b)
     """
-    print("Pre-loading points for synthetic data")
-
-
-    a = initial_params['sigmoidSharpness'] = 3.8818
-    b = initial_params['sigmoidTorqueGain'] = 0.6873
-    c = initial_params['latAccelFactor'] = 0.0999
-    d = initial_params['latAccelOffset'] = 0.0
+    a = initial_params['sigmoidSharpness']
+    b = initial_params['sigmoidTorqueGain']
+    c = initial_params['latAccelFactor']
+    d = initial_params['latAccelOffset']
     friction = initial_params['frictionCoefficient']
+    print("Pre-loading points for synthetic data: ", initial_params)
     assert d == 0.0, "latAccelOffset must be 0.0 for synthetic data"
     rng = np.random.default_rng(42)
-    x_sample = rng.uniform(-4, 4, 40_000)
+    x_sample = rng.uniform(-4, 4, 40000)
     sigma_base     = 0.10
     lat_accel_jitter = x_sample + rng.normal(0, sigma_base, size=x_sample.shape)
     envelope       = np.exp(-(lat_accel_jitter / 1.0) ** 2)
@@ -457,7 +459,7 @@ class TorqueEstimator(ParameterEstimator):
         lateral_all = combined[:, 2]
 
         # ── figure ───────────────────────────────────────────────
-        plt.figure(figsize=(10, 6))
+        plt.figure(figsize=(16, 4))
 
 
         # fitted curve + friction band
