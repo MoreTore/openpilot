@@ -4,6 +4,7 @@ from functools import cache
 
 from cereal import log
 from openpilot.common.transformations.orientation import rot_from_euler, euler_from_rot
+from openpilot.common.swaglog import cloudlog
 
 
 @cache
@@ -84,9 +85,9 @@ class PointBuckets:
     if not individual_buckets_valid:
       for bounds, (bucket, min_pts) in zip(self.x_bounds, zip(self.buckets.values(), self.buckets_min_points.values())):
         if len(bucket) < min_pts:
-          print(f"Bucket {bounds} is invalid: has {len(bucket)} points, requires at least {min_pts} points.")
+          cloudlog.warning(f"Bucket {bounds} is invalid: has {len(bucket)} points, requires at least {min_pts} points.")
     if not total_points_valid:
-      print(f"Total points are invalid: has {self.__len__()} points, requires at least {self.min_points_total} points.")
+      cloudlog.warning(f"Total points are invalid: has {self.__len__()} points, requires at least {self.min_points_total} points.")
 
     return individual_buckets_valid and total_points_valid
 
