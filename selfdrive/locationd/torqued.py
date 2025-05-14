@@ -224,7 +224,7 @@ class TorqueEstimator(ParameterEstimator):
     Fit the 4-parameter steering-torque curve and extract
     a single static-friction amplitude (sigma_f).
 
-    Returns (a, b, c, d, sigma_f) or (None, …) or (.., np.nan) on failure.
+    Returns (a, b, c, d, sigma_f) or (np.nan, …) on failure.
     """
     # ── 1. gather data ──────────────────────────────────────────
     pts = self.filtered_points.get_points(self.fit_points)
@@ -259,10 +259,10 @@ class TorqueEstimator(ParameterEstimator):
         delta = np.linalg.solve(H + lam*np.eye(4), -g)
       except np.linalg.LinAlgError:
         cloudlog.warning("GN fit failed to solve for delta")
-        return (None,)*5
+        return (np.nan,)*5
       if not np.all(np.isfinite(delta)):
         cloudlog.warning("Non-finite GN step – aborting")
-        return (None,)*5
+        return (np.nan,)*5
 
       params_new = params + delta
       #bounds
@@ -279,12 +279,12 @@ class TorqueEstimator(ParameterEstimator):
     # if we hit max iters, we don't have a solution
     if it == it_max - 1:
       cloudlog.warning("GN fit failed to converge")
-      return (None,)*5
+      return (np.nan,)*5
 
     a, b, c, d = params
     if not np.all(np.isfinite(params)):
       cloudlog.warning("Invalid parameters after GN fit")
-      return (None,)*5
+      return (np.nan,)*5
 
     # ── 3.  friction estimate from residual envelope ───────────
     # resid = y - model(x, a, b, c, d)
@@ -426,9 +426,10 @@ class TorqueEstimator(ParameterEstimator):
     d = initial_params['latAccelOffset']
     friction = initial_params['frictionCoefficient']
     print("Pre-loading points for synthetic data: ", initial_params)
+    cloudlog.info(f"Pre-loading points for synthetic data: {initial_params}")
     assert d == 0.0, "latAccelOffset must be 0.0 for synthetic data"
     rng = np.random.default_rng(42)
-    x_sample = rng.uniform(-4, 4, 40000)
+    x_sample = rng.uniform(-4, 4, 10000)
     sigma_base     = 0.10
     lat_accel_jitter = x_sample + rng.normal(0, sigma_base, size=x_sample.shape)
     envelope       = np.exp(-(lat_accel_jitter / 1.0) ** 2)
@@ -538,8 +539,8 @@ def main(demo=False):
     # 4Hz driven by livePose
     if sm.frame % 5 == 0:
       pm.send('liveTorqueParameters', estimator.get_msg(valid=sm.all_checks()))
-      # if sm.frame % 500 == 0:
-      #   estimator.save_filtered_points()
+      if sm.frame % 120 == 0:
+        estimator.save_filtered_points()
 
     # Cache points every 60 seconds while onroad
     if sm.frame % 240 == 0:
