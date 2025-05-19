@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-import numpy as np
-
 from openpilot.common.realtime import DT_MDL
 from openpilot.selfdrive.controls.lib.longitudinal_mpc_lib.long_mpc import COMFORT_BRAKE
 
@@ -47,7 +45,7 @@ class FrogPilotVCruise:
 
       if not self.frogpilot_planner.frogpilot_following.following_lead and self.linear_braking_active:
         decel_rate = (v_ego - self.frogpilot_planner.lead_one.vLead)**2 / self.frogpilot_planner.lead_one.dRel
-        self.braking_target = float(np.clip(v_ego - (decel_rate * DT_MDL), self.frogpilot_planner.lead_one.vLead + CRUISING_SPEED, v_cruise))
+        self.braking_target = max(v_ego - (decel_rate * DT_MDL), self.frogpilot_planner.lead_one.vLead + CRUISING_SPEED)
       else:
         self.braking_target = v_cruise
     else:
@@ -65,7 +63,7 @@ class FrogPilotVCruise:
         self.mtsc_target = v_cruise
       else:
         mtsc_speed = ((TARGET_LAT_A * frogpilot_toggles.turn_aggressiveness) / (self.mtsc.get_map_curvature(gps_position, v_ego) * frogpilot_toggles.curve_sensitivity))**0.5
-        self.mtsc_target = float(np.clip(mtsc_speed, CRUISING_SPEED, v_cruise))
+        self.mtsc_target = max(CRUISING_SPEED, mtsc_speed)
     else:
       self.mtsc_target = v_cruise
 
@@ -89,8 +87,8 @@ class FrogPilotVCruise:
 
     # Pfeiferj's Vision Turn Controller
     if v_ego > CRUISING_SPEED and sm["controlsState"].enabled and self.frogpilot_planner.road_curvature_detected and frogpilot_toggles.vision_turn_speed_controller:
-      self.vtsc_target = ((TARGET_LAT_A * frogpilot_toggles.turn_aggressiveness) / (abs(self.frogpilot_planner.road_curvature) * frogpilot_toggles.curve_sensitivity))**0.5
-      self.vtsc_target = float(np.clip(self.vtsc_target, CRUISING_SPEED, v_cruise))
+      vtsc_speed = ((TARGET_LAT_A * frogpilot_toggles.turn_aggressiveness) / (abs(self.frogpilot_planner.road_curvature) * frogpilot_toggles.curve_sensitivity))**0.5
+      self.vtsc_target = max(CRUISING_SPEED, vtsc_speed)
     else:
       self.vtsc_target = v_cruise
 
@@ -110,7 +108,7 @@ class FrogPilotVCruise:
 
       self.tracked_model_length = self.frogpilot_planner.model_length
 
-      targets = [self.braking_target, self.mtsc_target, self.vtsc_target]
+      targets = [self.braking_target, self.mtsc_target, self.vtsc_target, v_cruise]
       if frogpilot_toggles.speed_limit_controller:
         targets.append(max(self.slc.overridden_speed, self.slc_target + self.slc_offset))
 

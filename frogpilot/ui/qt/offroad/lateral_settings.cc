@@ -275,7 +275,7 @@ void FrogPilotLateralPanel::updateMetric(bool metric, bool bootRun) {
     }
 
     for (int i = 0; i <= 99; ++i) {
-      imperialSpeedLabels[i] = i == 0 ? tr("Off") : QString::number(i) + tr("mph");
+      imperialSpeedLabels[i] = i == 0 ? tr("Off") : QString::number(i) + tr(" mph");
     }
 
     for (int i = 0; i <= 50; ++i) {
@@ -284,7 +284,7 @@ void FrogPilotLateralPanel::updateMetric(bool metric, bool bootRun) {
     }
 
     for (int i = 0; i <= 150; ++i) {
-      metricSpeedLabels[i] = i == 0 ? tr("Off") : QString::number(i) + tr("km/h");
+      metricSpeedLabels[i] = i == 0 ? tr("Off") : QString::number(i) + tr(" km/h");
     }
 
     labelsInitialized = true;

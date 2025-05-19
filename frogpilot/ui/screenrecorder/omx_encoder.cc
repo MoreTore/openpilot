@@ -371,14 +371,13 @@ void OmxEncoder::handle_out_buf(OmxEncoder *encoder, OMX_BUFFERHEADERTYPE *out_b
     AVRational in_timebase = {1, 1000000};
 
     AVPacket pkt;
-    av_new_packet(&pkt, out_buf->nFilledLen);
-    memcpy(pkt.data, buf_data, out_buf->nFilledLen);
+    av_init_packet(&pkt);
     pkt.data = buf_data;
     pkt.size = out_buf->nFilledLen;
 
     enum AVRounding rnd = static_cast<enum AVRounding>(AV_ROUND_NEAR_INF|AV_ROUND_PASS_MINMAX);
-    pkt.pts = pkt.dts = av_rescale_q_rnd(out_buf->nTimeStamp, in_timebase, encoder->ofmt_ctx->streams[0]->time_base, rnd);
-    pkt.duration = av_rescale_q(50 * 1000, in_timebase, encoder->ofmt_ctx->streams[0]->time_base);
+    pkt.pts = pkt.dts = av_rescale_q_rnd(out_buf->nTimeStamp, in_timebase, encoder->out_stream->time_base, rnd);
+    pkt.duration = av_rescale_q(1, AVRational{1, encoder->fps}, encoder->out_stream->time_base);
 
     if (out_buf->nFlags & OMX_BUFFERFLAG_SYNCFRAME) {
       pkt.flags |= AV_PKT_FLAG_KEY;
@@ -452,18 +451,35 @@ int OmxEncoder::encode_frame_rgba(const uint8_t *ptr, int in_width, int in_heigh
 }
 
 void OmxEncoder::encoder_open(const char* filename) {
+  if (!filename || strlen(filename) == 0) {
+    return;
+  }
+
+  if (strlen(filename) + path.size() + 2 > sizeof(vid_path)) {
+    return;
+  }
+
   struct stat st = {0};
   if (stat(path.c_str(), &st) == -1) {
-    mkdir(path.c_str(), 0755);
+    if (mkdir(path.c_str(), 0755) == -1) {
+      return;
+    }
   }
 
   snprintf(vid_path, sizeof(vid_path), "%s/%s", path.c_str(), filename);
 
-  avformat_alloc_output_context2(&ofmt_ctx, NULL, NULL, vid_path);
-  assert(ofmt_ctx);
+  if (avformat_alloc_output_context2(&ofmt_ctx, NULL, NULL, vid_path) < 0 || !ofmt_ctx) {
+    return;
+  }
 
   out_stream = avformat_new_stream(ofmt_ctx, NULL);
-  assert(out_stream);
+  if (!out_stream) {
+    avformat_free_context(ofmt_ctx);
+    ofmt_ctx = nullptr;
+    return;
+  }
+
+  out_stream->time_base = AVRational{1, fps};
 
   out_stream->codecpar->codec_id = AV_CODEC_ID_H264;
   out_stream->codecpar->codec_type = AVMEDIA_TYPE_VIDEO;
@@ -471,26 +487,36 @@ void OmxEncoder::encoder_open(const char* filename) {
   out_stream->codecpar->height = height;
 
   int err = avio_open(&ofmt_ctx->pb, vid_path, AVIO_FLAG_WRITE);
-  assert(err >= 0);
+  if (err < 0) {
+    avformat_free_context(ofmt_ctx);
+    ofmt_ctx = nullptr;
+    return;
+  }
 
   wrote_codec_config = false;
 
-  // create camera lock file
   snprintf(lock_path, sizeof(lock_path), "%s/%s.lock", path.c_str(), filename);
   int lock_fd = HANDLE_EINTR(open(lock_path, O_RDWR | O_CREAT, 0664));
-  assert(lock_fd >= 0);
+  if (lock_fd < 0) {
+    avio_closep(&ofmt_ctx->pb);
+    avformat_free_context(ofmt_ctx);
+    ofmt_ctx = nullptr;
+    return;
+  }
   close(lock_fd);
 
   is_open = true;
   counter = 0;
+
+  return;
 }
 
 void OmxEncoder::encoder_close() {
-  if (is_open) {
-    if (dirty) {
-      // drain output only if there could be frames in the encoder
+  if (!is_open) return;
 
-      OMX_BUFFERHEADERTYPE* in_buf = free_in.pop();
+  if (dirty) {
+    OMX_BUFFERHEADERTYPE* in_buf = free_in.pop();
+    if (in_buf) {
       in_buf->nFilledLen = 0;
       in_buf->nOffset = 0;
       in_buf->nFlags = OMX_BUFFERFLAG_EOS;
@@ -500,6 +526,7 @@ void OmxEncoder::encoder_close() {
 
       while (true) {
         OMX_BUFFERHEADERTYPE *out_buf = done_out.pop();
+        if (!out_buf) break;
 
         handle_out_buf(this, out_buf);
 
@@ -507,17 +534,32 @@ void OmxEncoder::encoder_close() {
           break;
         }
       }
-      dirty = false;
     }
+    dirty = false;
+  }
 
+  if (out_stream) {
+    out_stream->nb_frames = counter;
+    out_stream->duration = counter;
+  }
+
+  if (ofmt_ctx) {
+    ofmt_ctx->duration = av_rescale_q(counter, AVRational{1, fps}, out_stream->time_base);
     av_write_trailer(ofmt_ctx);
     avio_closep(&ofmt_ctx->pb);
-    if (out_stream && out_stream->codecpar && out_stream->codecpar->extradata) {
-      av_free(out_stream->codecpar->extradata);
-      out_stream->codecpar->extradata = nullptr;
-    }
+    avformat_free_context(ofmt_ctx);
+    ofmt_ctx = nullptr;
+  }
+
+  if (out_stream && out_stream->codecpar && out_stream->codecpar->extradata) {
+    av_free(out_stream->codecpar->extradata);
+    out_stream->codecpar->extradata = nullptr;
+  }
+
+  if (lock_path[0] != '\0') {
     unlink(lock_path);
   }
+
   is_open = false;
 }
 

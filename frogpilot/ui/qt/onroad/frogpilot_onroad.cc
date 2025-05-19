@@ -44,10 +44,6 @@ void FrogPilotOnroadWindow::paintEvent(QPaintEvent *event) {
   marginRegion += QRegion(rect.width() - UI_BORDER_SIZE, UI_BORDER_SIZE, UI_BORDER_SIZE, rect.height() - 2 * UI_BORDER_SIZE);
   p.setClipRegion(marginRegion);
 
-  if (showFPS) {
-    paintFPS(p, rect);
-  }
-
   if (showSteering) {
     paintSteeringTorqueBorder(p, rect);
   }
@@ -63,6 +59,10 @@ void FrogPilotOnroadWindow::paintEvent(QPaintEvent *event) {
     paintTurnSignalBorder(p, rect);
   } else if (signalTimer->isActive()) {
     signalTimer->stop();
+  }
+
+  if (showFPS) {
+    paintFPS(p, rect);
   }
 }
 

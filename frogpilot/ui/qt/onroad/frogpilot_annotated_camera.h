@@ -11,7 +11,7 @@ class FrogPilotAnnotatedCameraWidget : public QWidget {
 public:
   explicit FrogPilotAnnotatedCameraWidget(QWidget *parent = 0);
 
-  void paintAdjacentPaths(QPainter &p, const cereal::CarState::Reader &carState, const cereal::ModelDataV2::Reader &model, const UIScene &scene, const FrogPilotUIScene &frogpilot_scene, const QJsonObject &frogpilot_toggles);
+  void paintAdjacentPaths(QPainter &p, const cereal::CarState::Reader &carState, const FrogPilotUIScene &frogpilot_scene, const QJsonObject &frogpilot_toggles);
   void paintBlindSpotPath(QPainter &p, const cereal::CarState::Reader &carState, const FrogPilotUIScene &frogpilot_scene);
   void paintFrogPilotWidgets(QPainter &p, UIState &s, FrogPilotUIState &fs, SubMaster &sm, SubMaster &fpsm, QJsonObject &frogpilot_toggles);
   void paintLeadMetrics(QPainter &p, bool adjacent, QPointF *chevron, const cereal::FrogPilotPlan::Reader &frogpilotPlan, const cereal::RadarState::LeadData::Reader &lead_data);
@@ -32,7 +32,6 @@ public:
   int standstillDuration;
 
   float distanceConversion;
-  float setSpeed;
   float speed;
   float speedConversion;
   float speedConversionMetrics;

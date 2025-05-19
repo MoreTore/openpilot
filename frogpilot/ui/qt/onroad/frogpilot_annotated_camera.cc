@@ -40,17 +40,17 @@ void FrogPilotAnnotatedCameraWidget::showEvent(QShowEvent *event) {
   UIScene &scene = s.scene;
 
   if (scene.is_metric || frogpilot_toggles.value("use_si_metrics").toBool()) {
-    accelerationUnit = tr("m/s²");
-    leadDistanceUnit = tr("meters");
-    leadSpeedUnit = frogpilot_toggles.value("use_si_metrics").toBool() ? tr("m/s") : tr("km/h");
+    accelerationUnit = tr(" m/s²");
+    leadDistanceUnit = tr(" meters");
+    leadSpeedUnit = frogpilot_toggles.value("use_si_metrics").toBool() ? tr(" m/s") : tr(" km/h");
 
     distanceConversion = 1.0f;
     speedConversion = scene.is_metric ? MS_TO_KPH : MS_TO_MPH;
     speedConversionMetrics = frogpilot_toggles.value("use_si_metrics").toBool() ? 1.0f : MS_TO_KPH;
   } else {
-    accelerationUnit = tr("ft/s²");
-    leadDistanceUnit = tr("feet");
-    leadSpeedUnit = tr("mph");
+    accelerationUnit = tr(" ft/s²");
+    leadDistanceUnit = tr(" feet");
+    leadSpeedUnit = tr(" mph");
 
     distanceConversion = METER_TO_FOOT;
     speedConversion = MS_TO_MPH;
@@ -132,9 +132,9 @@ void FrogPilotAnnotatedCameraWidget::updateState(const FrogPilotUIState &fs, con
 
   float speedLimitOffset = frogpilotPlan.getSlcSpeedLimitOffset() * speedConversion;
 
-  mtscSpeedStr = (frogpilotPlan.getMtscSpeed() != 0) ? QString::number(std::nearbyint(fmin(speed, frogpilotPlan.getMtscSpeed()))) + speedUnit : "–";
+  mtscSpeedStr = (frogpilotPlan.getMtscSpeed() != 0) ? QString::number(std::nearbyint(fmin(speed, frogpilotPlan.getMtscSpeed() * speedConversion))) + speedUnit : "–";
   speedLimitOffsetStr = (speedLimitOffset != 0) ? QString::number(speedLimitOffset, 'f', 0).prepend((speedLimitOffset > 0) ? "+" : "-") : "–";
-  vtscSpeedStr = (frogpilotPlan.getVtscSpeed() != 0) ? QString::number(std::nearbyint(fmin(speed, frogpilotPlan.getVtscSpeed()))) + speedUnit : "–";
+  vtscSpeedStr = (frogpilotPlan.getVtscSpeed() != 0) ? QString::number(std::nearbyint(fmin(speed, frogpilotPlan.getVtscSpeed() * speedConversion))) + speedUnit : "–";
 
   if (frogpilot_scene.standstill && frogpilot_toggles.value("stopped_timer").toBool()) {
     if (!standstillTimer.isValid()) {
@@ -226,7 +226,7 @@ void FrogPilotAnnotatedCameraWidget::paintFrogPilotWidgets(QPainter &p, UIState 
   }
 }
 
-void FrogPilotAnnotatedCameraWidget::paintAdjacentPaths(QPainter &p, const cereal::CarState::Reader &carState, const cereal::ModelDataV2::Reader &model, const UIScene &scene, const FrogPilotUIScene &frogpilot_scene, const QJsonObject &frogpilot_toggles) {
+void FrogPilotAnnotatedCameraWidget::paintAdjacentPaths(QPainter &p, const cereal::CarState::Reader &carState, const FrogPilotUIScene &frogpilot_scene, const QJsonObject &frogpilot_toggles) {
   std::function<void(bool, float, float, const QPolygonF &)> drawAdjacentPath = [this, &p, &frogpilot_toggles](bool isBlindSpot, float width, float requirement, const QPolygonF &polygon) {
     QLinearGradient gradient(0, height(), 0, 0);
     if (isBlindSpot && frogpilot_toggles.value("blind_spot_path").toBool()) {
@@ -254,7 +254,7 @@ void FrogPilotAnnotatedCameraWidget::paintAdjacentPaths(QPainter &p, const cerea
     p.drawText(polygon.boundingRect(), Qt::AlignCenter, text);
   };
 
-  if (frogpilot_scene.lane_width_left != 0 && frogpilot_scene.track_adjacent_vertices[0][0].y() > scene.road_edge_vertices[0][0].y()) {
+  if (frogpilot_scene.lane_width_left >= frogpilot_toggles.value("lane_detection_width").toDouble()) {
     p.save();
 
     drawAdjacentPath(carState.getLeftBlindspot(), frogpilot_scene.lane_width_left, frogpilot_toggles.value("lane_detection_width").toDouble(), frogpilot_scene.track_adjacent_vertices[0]);
@@ -266,7 +266,7 @@ void FrogPilotAnnotatedCameraWidget::paintAdjacentPaths(QPainter &p, const cerea
     p.restore();
   }
 
-  if (frogpilot_scene.lane_width_right != 0 && frogpilot_scene.track_adjacent_vertices[1][0].y() < scene.road_edge_vertices[1][0].y()) {
+  if (frogpilot_scene.lane_width_right >= frogpilot_toggles.value("lane_detection_width").toDouble()) {
     p.save();
 
     drawAdjacentPath(carState.getRightBlindspot(), frogpilot_scene.lane_width_right, frogpilot_toggles.value("lane_detection_width").toDouble(), frogpilot_scene.track_adjacent_vertices[1]);
@@ -472,19 +472,24 @@ void FrogPilotAnnotatedCameraWidget::paintCurveSpeedControl(QPainter &p, const c
 
   p.setOpacity(1.0);
 
-  if ((setSpeed - frogpilotPlan.getMtscSpeed() > 1) && frogpilot_toggles.value("map_turn_speed_controller").toBool()) {
+  if (frogpilotPlan.getVCruise() == frogpilotPlan.getMtscSpeed() && frogpilot_toggles.value("map_turn_speed_controller").toBool()) {
     QRect mtscRect(curveSpeedRect.topLeft() + QPoint(0, curveSpeedRect.height() + 10), QSize(curveSpeedRect.width(), frogpilotPlan.getVtscControllingCurve() ? 50 : 100));
     drawCurveSpeedControl(mtscRect, mtscSpeedStr, true);
 
-    if ((setSpeed - frogpilotPlan.getVtscSpeed() > 1) && frogpilot_toggles.value("vision_turn_speed_controller").toBool()) {
+    if (frogpilot_toggles.value("vision_turn_speed_controller").toBool()) {
       QRect vtscRect(mtscRect.topLeft() + QPoint(0, mtscRect.height() + 20), QSize(mtscRect.width(), frogpilotPlan.getVtscControllingCurve() ? 100 : 50));
       drawCurveSpeedControl(vtscRect, vtscSpeedStr, false);
     }
 
     p.drawPixmap(curveSpeedRect, scaledCurveSpeedIcon);
-  } else if ((setSpeed - frogpilotPlan.getVtscSpeed() > 1) && frogpilot_toggles.value("vision_turn_speed_controller").toBool()) {
-    QRect vtscRect(curveSpeedRect.topLeft() + QPoint(0, curveSpeedRect.height() + 10), QSize(curveSpeedRect.width(), 150));
+  } else if (frogpilotPlan.getVCruise() == frogpilotPlan.getVtscSpeed() && frogpilot_toggles.value("vision_turn_speed_controller").toBool()) {
+    QRect vtscRect(curveSpeedRect.topLeft() + QPoint(0, curveSpeedRect.height() + 10), QSize(curveSpeedRect.width(), frogpilotPlan.getVtscControllingCurve() ? 100 : 50));
     drawCurveSpeedControl(vtscRect, vtscSpeedStr, false);
+
+    if (frogpilot_toggles.value("map_turn_speed_controller").toBool()) {
+      QRect mtscRect(vtscRect.topLeft() + QPoint(0, vtscRect.height() + 20), QSize(vtscRect.width(), frogpilotPlan.getVtscControllingCurve() ? 50 : 100));
+      drawCurveSpeedControl(mtscRect, mtscSpeedStr, true);
+    }
 
     p.drawPixmap(curveSpeedRect, scaledCurveSpeedIcon);
   }
@@ -536,7 +541,7 @@ void FrogPilotAnnotatedCameraWidget::paintLeadMetrics(QPainter &p, bool adjacent
               .arg(qRound(leadSpeed * speedConversionMetrics))
               .arg(leadSpeedUnit);
   } else {
-    text = QString("%1 %2 (%3) | %4 %5 | %6%7")
+    text = QString("%1 %2 (%3) | %4 %5 | %6 %7")
               .arg(qRound(leadDistance * distanceConversion))
               .arg(leadDistanceUnit)
               .arg(QString("Desired: %1").arg(frogpilotPlan.getDesiredFollowDistance() * distanceConversion))
@@ -792,7 +797,7 @@ void FrogPilotAnnotatedCameraWidget::paintSpeedLimitSources(QPainter &p, const c
 
     QString speedText;
     if (speedLimitValue != 0) {
-      speedText = QString::number(std::nearbyint(speedLimitValue)) + " " + speedUnit;
+      speedText = QString::number(std::nearbyint(speedLimitValue)) + speedUnit;
     } else {
       speedText = "N/A";
     }
@@ -917,8 +922,7 @@ void FrogPilotAnnotatedCameraWidget::paintTurnSignals(QPainter &p, const cereal:
       signalXPosition = carState.getLeftBlinker() ? width() - ((animationFrameIndex + 1) * signalWidth) : animationFrameIndex * signalWidth;
     }
 
-    int signalYPosition = height() - signalHeight;
-    signalYPosition -= alertHeight;
+    int signalYPosition = height() - signalHeight - alertHeight;
 
     if (blindspotActive && !blindspotImages.empty()) {
       p.drawPixmap(carState.getLeftBlinker() ? width() - signalWidth : 0, signalYPosition, signalWidth, signalHeight, blindspotImages[carState.getLeftBlinker() ? 0 : 1]);

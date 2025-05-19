@@ -134,10 +134,8 @@ void Sidebar::offroadTransition(bool offroad) {
   onroad = !offroad;
 
   // FrogPilot variables
-  if (!onroad) {
-    QTimer::singleShot(100, this, [this] {
-      updateTheme();
-    });
+  if (onroad) {
+    updateTheme();
   }
 
   update();

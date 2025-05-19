@@ -50,6 +50,10 @@ HomeWindow::HomeWindow(QWidget* parent) : QWidget(parent) {
   QObject::connect(uiState(), &UIState::uiUpdate, this, &HomeWindow::updateState);
   QObject::connect(uiState(), &UIState::offroadTransition, this, &HomeWindow::offroadTransition);
   QObject::connect(uiState(), &UIState::offroadTransition, sidebar, &Sidebar::offroadTransition);
+
+  // FrogPilot variables
+  developer_sidebar = new DeveloperSidebar(this);
+  main_layout->addWidget(developer_sidebar);
 }
 
 void HomeWindow::showSidebar(bool show) {
@@ -86,6 +90,9 @@ void HomeWindow::offroadTransition(bool offroad) {
   } else {
     slayout->setCurrentWidget(onroad);
   }
+
+  // FrogPilot variables
+  developer_sidebar->setVisible(!offroad && frogpilotUIState()->frogpilot_toggles.value("developer_sidebar").toBool());
 }
 
 void HomeWindow::showDriverView(bool show, bool started) {

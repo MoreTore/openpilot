@@ -22,24 +22,28 @@ bool useKonikServer() {
 }
 
 void loadImage(const QString &basePath, QPixmap &pixmap, QMovie *&movie, const QSize &size, QWidget *parent, Qt::AspectRatioMode aspectRatioMode) {
-  delete movie;
-  movie = nullptr;
+  if (movie) {
+    movie->stop();
+    movie->deleteLater();
+    movie = nullptr;
+  }
 
   QFileInfo gifFile(basePath + ".gif");
   if (gifFile.exists()) {
-    movie = new QMovie(gifFile.filePath(), QByteArray(), parent);
-    if (movie->isValid()) {
-      movie->setCacheMode(QMovie::CacheAll);
-      movie->setScaledSize(size);
+    QMovie *newMovie = new QMovie(gifFile.filePath(), QByteArray(), parent);
+    if (newMovie->isValid()) {
+      newMovie->setCacheMode(QMovie::CacheAll);
+      newMovie->setScaledSize(size);
 
-      QObject::connect(movie, &QMovie::frameChanged, parent, [parent](int){parent->update();});
+      QObject::connect(newMovie, &QMovie::frameChanged, parent, [parent](int) { parent->update(); });
 
-      movie->start();
+      newMovie->start();
+      movie = newMovie;
+
+      pixmap = QPixmap();
       return;
-    } else {
-      delete movie;
-      movie = nullptr;
     }
+    newMovie->deleteLater();
   }
 
   pixmap = loadPixmap(basePath + ".png", size, aspectRatioMode);

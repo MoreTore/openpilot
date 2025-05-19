@@ -56,7 +56,8 @@ void update_theme(FrogPilotUIState *fs) {
 FrogPilotUIState::FrogPilotUIState(QObject *parent) : QObject(parent) {
   sm = std::make_unique<SubMaster, const std::initializer_list<const char *>>({
     "carControl", "carState", "controlsState", "deviceState", "frogpilotCarState", "frogpilotDeviceState",
-    "frogpilotNavigation", "frogpilotPlan", "liveTracks", "navInstruction"
+    "frogpilotNavigation", "frogpilotPlan", "liveDelay", "liveParameters", "liveTorqueParameters", "liveTracks",
+    "navInstruction"
   });
 
   wifi = new WifiManager(this);

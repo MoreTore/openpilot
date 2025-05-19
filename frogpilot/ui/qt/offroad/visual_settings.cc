@@ -13,6 +13,7 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(FrogPilotSettingsWindow *parent) : 
   FrogPilotListWidget *advancedCustomList = new FrogPilotListWidget(this);
   FrogPilotListWidget *customUIList = new FrogPilotListWidget(this);
   FrogPilotListWidget *developerMetricList = new FrogPilotListWidget(this);
+  FrogPilotListWidget *developerSidebarList = new FrogPilotListWidget(this);
   FrogPilotListWidget *developerUIList = new FrogPilotListWidget(this);
   FrogPilotListWidget *developerWidgetList = new FrogPilotListWidget(this);
   FrogPilotListWidget *modelUIList = new FrogPilotListWidget(this);
@@ -22,6 +23,7 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(FrogPilotSettingsWindow *parent) : 
   ScrollView *advancedCustomPanel = new ScrollView(advancedCustomList, this);
   ScrollView *customUIPanel = new ScrollView(customUIList, this);
   ScrollView *developerMetricPanel = new ScrollView(developerMetricList, this);
+  ScrollView *developerSidebarPanel = new ScrollView(developerSidebarList, this);
   ScrollView *developerUIPanel = new ScrollView(developerUIList, this);
   ScrollView *developerWidgetPanel = new ScrollView(developerWidgetList, this);
   ScrollView *modelUIPanel = new ScrollView(modelUIList, this);
@@ -31,6 +33,7 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(FrogPilotSettingsWindow *parent) : 
   visualsLayout->addWidget(advancedCustomPanel);
   visualsLayout->addWidget(customUIPanel);
   visualsLayout->addWidget(developerMetricPanel);
+  visualsLayout->addWidget(developerSidebarPanel);
   visualsLayout->addWidget(developerUIPanel);
   visualsLayout->addWidget(developerWidgetPanel);
   visualsLayout->addWidget(modelUIPanel);
@@ -48,14 +51,22 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(FrogPilotSettingsWindow *parent) : 
     {"WheelSpeed", tr("Use Wheel Speed"), tr("Use the vehicle's wheel speed instead of the cluster speed. This is purely a visual change and doesn't impact how openpilot drives."), ""},
 
     {"DeveloperUI", tr("Developer UI"), tr("Detailed information about openpilot's internal operations."), "../assets/offroad/icon_shell.png"},
+    {"AdjacentPathMetrics", tr("Adjacent Path Metrics"), tr("Metrics displayed on top of the adjacent lanes measuring their current width."), ""},
     {"DeveloperMetrics", tr("Developer Metrics"), tr("Performance data, sensor readings, and system metrics for debugging and optimizing openpilot."), ""},
     {"BorderMetrics", tr("Border Metrics"), tr("Metrics displayed around the border of the driving screen.<br><br><b>Blind Spot</b>: Turn the border red when a vehicle is detected in a blind spot<br><b>Steering Torque</b>: Highlight the border green to red in accordance to the amount of steering torque being used<br><b>Turn Signal</b>: Flash the border yellow when a turn signal is active"), ""},
+    {"LeadInfo", tr("Lead Info"), tr("Metrics displayed under vehicle markers listing their distance and current speed."), ""},
     {"FPSCounter", tr("FPS Display"), tr("Display the <b>Frames Per Second (FPS)</b> at the bottom of the driving screen."), ""},
-    {"LateralMetrics", tr("Lateral Metrics"), tr("Metrics related to steering control.<br><br><b>Adjacent Path Metrics</b>: Paint the adjacent lanes and their width measurements<br><b>Auto Tune</b>: Display the <b>Friction</b> and <b>Lateral Acceleration</b> values from comma's auto tune at the top of the driving screen"), ""},
-    {"LongitudinalMetrics", tr("Longitudinal Metrics"), tr("Metrics related to gas/brake control.<br><br><b>Lead Info</b>: Display the lead vehicle's distance and speed on the lead marker<br><b>Jerk Values</b>: Display the current longitudinal jerk values and any offsets from FrogPilot functions at the top of the driving screen"), ""},
     {"NumericalTemp", tr("Numerical Temperature Gauge"), tr("Use numerical temperature readings instead of status labels in the sidebar."), ""},
     {"SidebarMetrics", tr("Sidebar"), tr("Display system information (<b>CPU</b>, <b>GPU</b>, <b>RAM usage</b>, <b>IP address</b>, <b>device storage</b>) in the sidebar."), ""},
     {"UseSI", tr("Use International System of Units"), tr("Display measurements using the <b>International System of Units (SI)</b> standard."), ""},
+    {"DeveloperSidebar", tr("Developer Sidebar"), tr("Display debugging info and metrics in a dedicated sidebar on the right side of the screen."), ""},
+    {"DeveloperSidebarMetric1", tr("Metric #1"), tr("Metric to display in the first metric in the \"Developer Sidebar\"."), ""},
+    {"DeveloperSidebarMetric2", tr("Metric #2"), tr("Metric to display in the second metric in the \"Developer Sidebar\"."), ""},
+    {"DeveloperSidebarMetric3", tr("Metric #3"), tr("Metric to display in the third metric in the \"Developer Sidebar\"."), ""},
+    {"DeveloperSidebarMetric4", tr("Metric #4"), tr("Metric to display in the fourth metric in the \"Developer Sidebar\"."), ""},
+    {"DeveloperSidebarMetric5", tr("Metric #5"), tr("Metric to display in the fifth metric in the \"Developer Sidebar\"."), ""},
+    {"DeveloperSidebarMetric6", tr("Metric #6"), tr("Metric to display in the sixth metric in the \"Developer Sidebar\"."), ""},
+    {"DeveloperSidebarMetric7", tr("Metric #7"), tr("Metric to display in the seventh metric in the \"Developer Sidebar\"."), ""},
     {"DeveloperWidgets", tr("Developer Widgets"), tr("Overlays displaying debugging visuals, internal states, and model predictions on the driving screen."), ""},
     {"AdjacentLeadsUI", tr("Adjacent Leads Tracking"), tr("Adjacent leads detected by the car's radar to the left and right of the current driving path."), ""},
     {"ShowStoppingPoint", tr("Model Stopping Point"), tr("Display an image on the screen where openpilot is wanting to stop."), ""},
@@ -109,8 +120,8 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(FrogPilotSettingsWindow *parent) : 
       });
       visualToggle = developerUIToggle;
     } else if (param == "DeveloperMetrics") {
-      ButtonControl *developerMetricsToggle = new ButtonControl(title, tr("MANAGE"), desc);
-      QObject::connect(developerMetricsToggle, &ButtonControl::clicked, [this, visualsLayout, developerMetricPanel]() {
+      FrogPilotManageControl *developerMetricsToggle = new FrogPilotManageControl(param, title, desc, icon);
+      QObject::connect(developerMetricsToggle, &FrogPilotManageControl::manageButtonClicked, [this, visualsLayout, developerMetricPanel]() {
         openSubSubPanel();
 
         visualsLayout->setCurrentWidget(developerMetricPanel);
@@ -123,16 +134,6 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(FrogPilotSettingsWindow *parent) : 
       std::vector<QString> borderToggleNames{tr("Blind Spot"), tr("Steering Torque"), tr("Turn Signal")};
       borderMetricsBtn = new FrogPilotButtonToggleControl(param, title, desc, icon, borderToggles, borderToggleNames);
       visualToggle = borderMetricsBtn;
-    } else if (param == "LateralMetrics") {
-      std::vector<QString> lateralToggles{"AdjacentPathMetrics", "TuningInfo"};
-      std::vector<QString> lateralToggleNames{tr("Adjacent Path Metrics"), tr("Auto Tune")};
-      lateralMetricsBtn = new FrogPilotButtonToggleControl(param, title, desc, icon, lateralToggles, lateralToggleNames);
-      visualToggle = lateralMetricsBtn;
-    } else if (param == "LongitudinalMetrics") {
-      std::vector<QString> longitudinalToggles{"LeadInfo", "JerkInfo"};
-      std::vector<QString> longitudinalToggleNames{tr("Lead Info"), tr("Jerk Values")};
-      longitudinalMetricsBtn = new FrogPilotButtonToggleControl(param, title, desc, icon, longitudinalToggles, longitudinalToggleNames);
-      visualToggle = longitudinalMetricsBtn;
     } else if (param == "NumericalTemp") {
       std::vector<QString> temperatureToggles{"Fahrenheit"};
       std::vector<QString> temperatureToggleNames{tr("Fahrenheit")};
@@ -159,9 +160,54 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(FrogPilotSettingsWindow *parent) : 
         sidebarMetricsToggle->refresh();
       });
       visualToggle = sidebarMetricsToggle;
+    } else if (param == "DeveloperSidebar") {
+      FrogPilotManageControl *developerSidebarToggle = new FrogPilotManageControl(param, title, desc, icon);
+      QObject::connect(developerSidebarToggle, &FrogPilotManageControl::manageButtonClicked, [this, visualsLayout, developerSidebarPanel]() {
+        openSubSubPanel();
+
+        visualsLayout->setCurrentWidget(developerSidebarPanel);
+
+        developerUIOpen = true;
+      });
+      visualToggle = developerSidebarToggle;
+    } else if (developerSidebarKeys.find(param) != developerSidebarKeys.end()) {
+      QMap<int, QString> developerSidebarMetricOptions {
+        {0, tr("None")},
+        {1, tr("Acceleration: Current")},
+        {2, tr("Acceleration: Max")},
+        {3, tr("Auto Tune: Actuator Delay")},
+        {4, tr("Auto Tune: Friction")},
+        {5, tr("Auto Tune: Lateral Acceleration")},
+        {6, tr("Auto Tune: Steer Ratio")},
+        {7, tr("Auto Tune: Stiffness Factor")},
+        {8, tr("Engagement %: Lateral")},
+        {9, tr("Engagement %: Longitudinal")},
+        {10, tr("Lateral Control: Steering Angle")},
+        {11, tr("Lateral Control: Torque % Used")},
+        {12, tr("Longitudinal Control: Actuator Acceleration Output")},
+        {13, tr("Longitudinal MPC Jerk: Acceleration")},
+        {14, tr("Longitudinal MPC Jerk: Danger Zone")},
+        {15, tr("Longitudinal MPC Jerk: Speed Control")},
+      };
+
+      ButtonControl *metricToggle = new ButtonControl(title, tr("SELECT"), desc);
+      QObject::connect(metricToggle, &ButtonControl::clicked, [this, metricToggle, key = param, developerSidebarMetricOptions]() mutable {
+        QString current = developerSidebarMetricOptions.value(params.getInt(key.toStdString()), tr("None"));
+        QString selection = MultiOptionDialog::getSelection(tr("Select a metric to display"), developerSidebarMetricOptions.values(), current, this);
+
+        if (!selection.isEmpty()) {
+          int selectedMetric = developerSidebarMetricOptions.key(selection);
+
+          params.putInt(key.toStdString(), selectedMetric);
+
+          metricToggle->setValue(selection);
+        }
+      });
+      metricToggle->setValue(developerSidebarMetricOptions.value(params.getInt(param.toStdString()), tr("None")));
+      visualToggle = metricToggle;
     } else if (param == "DeveloperWidgets") {
-      ButtonControl *developerWidgetsToggle = new ButtonControl(title, tr("MANAGE"), desc);
-      QObject::connect(developerWidgetsToggle, &ButtonControl::clicked, [this, visualsLayout, developerWidgetPanel]() {
+      FrogPilotManageControl *developerWidgetsToggle = new FrogPilotManageControl(param, title, desc, icon);
+      QObject::connect(developerWidgetsToggle, &FrogPilotManageControl::manageButtonClicked, [this, visualsLayout, developerWidgetPanel]() {
         openSubSubPanel();
 
         visualsLayout->setCurrentWidget(developerWidgetPanel);
@@ -274,6 +320,8 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(FrogPilotSettingsWindow *parent) : 
       customUIList->addItem(visualToggle);
     } else if (developerMetricKeys.find(param) != developerMetricKeys.end()) {
       developerMetricList->addItem(visualToggle);
+    } else if (developerSidebarKeys.find(param) != developerSidebarKeys.end()) {
+      developerSidebarList->addItem(visualToggle);
     } else if (developerUIKeys.find(param) != developerUIKeys.end()) {
       developerUIList->addItem(visualToggle);
     } else if (developerWidgetKeys.find(param) != developerWidgetKeys.end()) {
@@ -413,7 +461,7 @@ void FrogPilotVisualsPanel::updateToggles() {
       setVisible &= hasOpenpilotLongitudinal;
     }
 
-    if (key == "LongitudinalMetrics") {
+    if (key == "LeadInfo") {
       setVisible &= hasOpenpilotLongitudinal;
     }
 
@@ -461,8 +509,6 @@ void FrogPilotVisualsPanel::updateToggles() {
   }
 
   borderMetricsBtn->setVisibleButton(0, hasBSM);
-  lateralMetricsBtn->setVisibleButton(1, hasAutoTune);
-  longitudinalMetricsBtn->setVisibleButton(1, tuningLevel >= frogpilotToggleLevels["JerkInfo"].toDouble());
 
   update();
 }

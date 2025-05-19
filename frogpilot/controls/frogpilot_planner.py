@@ -173,6 +173,8 @@ class FrogPilotPlanner:
 
     frogpilotPlan.togglesUpdated = toggles_updated
 
+    frogpilotPlan.trackingLead = self.tracking_lead
+
     frogpilotPlan.vCruise = self.v_cruise
 
     pm.send("frogpilotPlan", frogpilot_plan_send)

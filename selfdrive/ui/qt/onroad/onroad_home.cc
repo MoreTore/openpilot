@@ -127,8 +127,7 @@ void OnroadWindow::mousePressEvent(QMouseEvent* e) {
       alerts->setVisible(true);
       nvg->setVisible(true);
     }
-    nvg->screen_recorder->setEnabled(!map->isVisible() && frogpilot_toggles.value("screen_recorder").toBool());
-    nvg->screen_recorder->setVisible(nvg->screen_recorder->isEnabled());
+    nvg->screen_recorder->setVisible(!map->isVisible() && frogpilot_toggles.value("screen_recorder").toBool());
   }
 #endif
   // propagation event to parent(HomeWindow)

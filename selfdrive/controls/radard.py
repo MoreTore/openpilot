@@ -102,6 +102,7 @@ class Track:
       "modelProb": model_prob,
       "radar": True,
       "radarTrackId": self.identifier,
+      "farLead": False,
     }
 
   def potential_adjacent_lead(self, left: bool, standstill: bool, model_data: capnp._DynamicStructReader):
@@ -180,6 +181,7 @@ def get_RadarState_from_vision(lead_msg: capnp._DynamicStructReader, v_ego: floa
     "status": True,
     "radar": False,
     "radarTrackId": -1,
+    "farLead": False,
   }
 
 
@@ -213,6 +215,7 @@ def get_lead(v_ego: float, ready: bool, tracks: dict[int, Track], lead_msg: capn
       if len(far_lead_tracks) > 0:
         closest_track = min(far_lead_tracks, key=lambda c: c.dRel)
         lead_dict = closest_track.get_RadarState()
+        lead_dict['farLead'] = True
         lead_dict['vLead'] = lead_dict['vLeadK']
 
   for track in tracks.values():
