@@ -144,8 +144,9 @@ class CarController(CarControllerBase):
         """
         if CS.out.standstill: # if we're stopped
           if not self.hold_delay.active(): # and we have been stopped for more than hold_delay duration. This prevents a hard brake if we aren't fully stopped.
-            if (CC.cruiseControl.resume or CC.cruiseControl.override or CS.out.gasPressed or
-                (CC.actuators.longControlState == LongCtrlState.starting) or CS.acc["RESUME"]): # and we want to resume
+            if ((CC.cruiseControl.resume and CC.actuators.longControlState != LongCtrlState.stopping) or
+                CC.cruiseControl.override or CS.out.gasPressed or
+                (CC.actuators.longControlState == LongCtrlState.starting) or CS.acc["RESUME"]): # if we are resuming or overriding, we want to release the brake
               self.resume_timer.reset() # reset the resume timer so its active
             else: # otherwise we're holding
               hold = self.hold_timer.active() # hold for 6s. This allows the electric brake to hold the car.
