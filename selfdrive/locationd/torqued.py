@@ -47,9 +47,7 @@ MIN_BUCKET_POINTS = np.array([
 MIN_ENGAGE_BUFFER = 2  # secs
 
 VERSION = 2  # bump this to invalidate old parameter caches
-ALLOWED_BRANDS = ['toyota', 'hyundai']
-ALLOWED_CARS = ['MAZDA_3_2019']
-
+ALLOWED_CARS = ['toyota', 'hyundai', 'mazda']
 
 def sig_centered(z):
   pos = 1.0 / (1.0 + np.exp(-z)) - 0.5
@@ -117,8 +115,7 @@ class TorqueEstimator(ParameterEstimator):
     self.offline_sigmoidTorqueGain = 0.0
 
     self.resets = 0.0
-    self.use_params = CP.brand in ALLOWED_BRANDS and CP.lateralTuning.which() == 'torque'
-    self.use_params |= CP.carFingerprint in ALLOWED_CARS
+    self.use_params = CP.carName in ALLOWED_CARS and CP.lateralTuning.which() == 'torque'
 
     if CP.lateralTuning.which() == 'torque':
       self.offline_friction = CP.lateralTuning.torque.friction
