@@ -93,12 +93,13 @@ class CarInterface(CarInterfaceBase):
       ret.experimentalLongitudinalAvailable = True
       ret.stopAccel = -.5
       ret.vEgoStarting = .2
+      ret.longitudinalActuatorDelay = 0.35 # gas is 0.25s and brake looks like 0.5
       ret.longitudinalTuning.kpBP = [0., 5., 35.]
       ret.longitudinalTuning.kpV = [0.0, 0.0, 0.0]
       ret.longitudinalTuning.kiBP = [0., 35.]
       ret.longitudinalTuning.kiV = [0.1, 0.1]
       ret.startingState = True
-      ret.steerActuatorDelay = 0.3
+      ret.steerActuatorDelay = 0.335
 
     ret.steerLimitTimer = 0.8
 
