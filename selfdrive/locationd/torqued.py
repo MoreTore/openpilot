@@ -426,7 +426,7 @@ class TorqueEstimator(ParameterEstimator):
         + rng.normal(0, friction * envelope, size=x_sample.shape)
     )
 
-    for τ, a_lat in zip(steer_jitter, lat_accel_jitter):
+    for τ, a_lat in zip(steer_jitter, lat_accel_jitter, strict=True):
         self.filtered_points.add_point(τ, a_lat)
 
   def save_filtered_points(self, base_filename="bucket_plot", file_ext=".png"):
