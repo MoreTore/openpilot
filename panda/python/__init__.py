@@ -244,10 +244,13 @@ class Panda:
 
   FLAG_MAZDA_GEN1 = 1
   FLAG_MAZDA_GEN2 = 2
-  FLAG_MAZDA_TORQUE_INTERCEPTOR = 4
-  FLAG_MAZDA_RADAR_INTERCEPTOR = 8
-  FLAG_MAZDA_NO_FSC = 16
-  FLAG_MAZDA_NO_MRCC = 32
+  FLAG_MAZDA_GEN3 = 4
+  FLAG_MAZDA_TORQUE_INTERCEPTOR = 8
+  FLAG_MAZDA_RADAR_INTERCEPTOR = 16
+  FLAG_MAZDA_NO_FSC = 32
+  FLAG_MAZDA_NO_MRCC = 64
+  FLAG_MAZDA_MANUAL_TRANSMISSION = 128
+
 
   def __init__(self, serial: str | None = None, claim: bool = True, disable_checks: bool = True, can_speed_kbps: int = 500):
     self._connect_serial = serial
