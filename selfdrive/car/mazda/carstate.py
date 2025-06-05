@@ -300,12 +300,11 @@ class CarState(CarStateBase):
 
   @staticmethod
   def get_can_parser(CP, FPCP):
-    messages = [
-      ("CRZ_BTNS", 10),
-    ]
+    messages = []
     if not (CP.flags & (MazdaFlags.GEN2 | MazdaFlags.GEN3)):
       messages += [
         # sig_address, frequency
+        ("CRZ_BTNS", 10)
         ("BLINK_INFO", 10),
         ("STEER", 67),
         ("STEER_RATE", 83),
@@ -348,6 +347,7 @@ class CarState(CarStateBase):
         ("ENGINE_DATA", 100),
         ("BLINK_INFO", 10),
         ("WHEEL_SPEEDS", 50),
+        ("STEER", 50),
       ]
 
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 0)
