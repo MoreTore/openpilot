@@ -110,7 +110,6 @@ class CarController(CarControllerBase):
 
       if CC.longActive:
         raw_acc_output = (CC.actuators.accel * 200) + 2000
-        acc_output = raw_acc_output
         if self.params.get_bool("BlendedACC"):
           if not self.long_active_last:
             # reset the filter when we start ACC
@@ -126,6 +125,8 @@ class CarController(CarControllerBase):
 
           acc_output = filtered_acc_output
           self.filtered_acc_last = filtered_acc_output
+        else:
+          acc_output = raw_acc_output
 
         if self.params.get_bool("ExperimentalLongitudinalEnabled"):
           CS.acc["ACCEL_CMD"] = acc_output
