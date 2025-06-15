@@ -98,9 +98,6 @@ class LongControl:
     self.gain_step = 0.0001  # Step size for increasing/decreasing gain
     self.params = Params()
     self.params_memory = Params("/dev/shm/params")
-    gain = self.params.get_float("LongOutputGain")
-    self.auto_tune = self.params.get_bool("ExperimentalLongTune")
-    self.output_gain = gain if gain != 0.0 and self.auto_tune else 1.0 # Initial output gain
     self.experimental_mode_last = False
 
   def reset(self):
@@ -143,27 +140,8 @@ class LongControl:
       output_accel = self.pid.update(error, speed=CS.vEgo,
                                      feedforward=a_target)
 
-    output_accel = output_accel * self.output_gain
     self.last_output_accel = clip(output_accel, accel_limits[0], accel_limits[1])
-    is_flat = abs(pitch) <= 0.05
 
-    self.auto_tune = self.params.get_bool("ExperimentalLongTune")
-    if not self.auto_tune:
-      self.output_gain = 1.0
-    if is_flat and self.auto_tune and active and self.last_output_accel == output_accel: # don't adjust when limited or inactive
-      # if the signs of accel and integrator match, increase the output gain
-      i = self.pid.i
-      if (i > 0.02 and a_target > 0.2) or (i < -0.02 and a_target < -0.2):
-        self.output_gain += self.gain_step
-        self.output_gain = max(0.5, min(self.output_gain, 2.0))
-        self.params.put_float_nonblocking("LongOutputGain",self.output_gain)
-        self.pid.i = 0.0
-      # if the signs of accel and integrator are opposite, decrease the output gain
-      elif (i < -0.02 and a_target > 0.2) or (i > 0.02 and a_target < -0.2):
-        self.output_gain -= self.gain_step
-        self.output_gain = max(0.5, min(self.output_gain, 2.0))
-        self.params.put_float_nonblocking("LongOutputGain", self.output_gain)
-        self.pid.i = 0.0
 
     return self.last_output_accel
 

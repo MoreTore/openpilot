@@ -49,12 +49,6 @@ TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
       "../assets/img_experimental_white.svg",
     },
     {
-      "ExperimentalLongTune",
-      tr("Longitudinal Auto-Tune (Beta)"),
-      tr("Enable the longitudinal auto-tuning feature. Slowly adjusts the acceleration gain to minimize error"),
-      "../assets/offroad/icon_openpilot.png",
-    },
-    {
       "BlendedACC",
       tr("Blended Acc (Experimental)"),
       tr("Blend stock MRCC and Experimental Mode longitudinal control."),
