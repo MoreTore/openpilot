@@ -106,7 +106,7 @@ class CarController(CarControllerBase):
           can_sends.extend(mazdacan.create_radar_command(self.packer, self.frame, CC.longActive, CS, hold))
 
     else:
-      raw_acc_output = (CC.actuators.accel * 240) + 2000
+      raw_acc_output = (CC.actuators.accel * 2400) + 2000
       if self.params.get_bool("BlendedACC"):
         if self.params_memory.get_int("CEStatus"):
           self.acc_filter.update_alpha(abs(raw_acc_output-self.filtered_acc_last)/1000)
