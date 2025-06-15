@@ -29,6 +29,7 @@ class CarController(CarControllerBase):
     self.filtered_acc_last = 0
     self.params = Params()
     self.params_memory = Params("/dev/shm/params")
+    self.long_active_last = False
 
 
   def update(self, CC, CS, now_nanos, frogpilot_toggles):
