@@ -226,7 +226,7 @@ def manager_init() -> None:
     ("NewLongAPI", "0"),
     ("NewLongAPIGM", "1"),
     ("NNFF", "1"),
-    ("NNFFLite", "1"),
+    ("NNFFLite", "0"),
     ("NoLogging", "0"),
     ("NorthDakotaCalibrationParams", ""),
     ("NorthDakotaDrives", "0"),
