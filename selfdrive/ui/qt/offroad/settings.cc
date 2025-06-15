@@ -50,8 +50,9 @@ TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
     },
     {
       "BlendedACC",
-      tr("Blended Acc (Experimental)"),
-      tr("Blend stock MRCC and Experimental Mode longitudinal control."),
+      tr("Blended Acc"),
+      tr("Uses Mazda Radar Cruise Control (MRCC) when not in Experimental mode. "
+        "Pair this with Conditional Experimental mode to allow openpilot to handle gas and brakes when Experimental mode is automatically enabled, while still relying on MRCC for refined speed control."),
       "../assets/offroad/icon_openpilot.png",
     },
     {
