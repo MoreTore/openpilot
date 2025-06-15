@@ -90,6 +90,9 @@ class CarController(CarControllerBase):
           raw_acc_output = max(-1000, min(raw_acc_output, 1000))
 
           if self.params.get_bool("BlendedACC"):
+            if not self.long_active_last:
+              # reset the filter when we start ACC
+              self.acc_filter.initialized = False
             if self.params_memory.get_int("CEStatus"):
               self.acc_filter.update_alpha(abs(raw_acc_output-self.filtered_acc_last)/1000)
               filtered_acc_output = int(self.acc_filter.update(raw_acc_output))
@@ -97,11 +100,15 @@ class CarController(CarControllerBase):
               # we want to use the stock value in this case but we need a smooth transition.
               self.acc_filter.update_alpha(abs(CS.crz_info["ACCEL_CMD"]-self.filtered_acc_last)/1000)
               filtered_acc_output = int(self.acc_filter.update(CS.crz_info["ACCEL_CMD"]))
-
-            CS.crz_info["ACCEL_CMD"] = int(filtered_acc_output)
-            self.filtered_acc_last = filtered_acc_output
+              acc_output = filtered_acc_output
+              self.filtered_acc_last = filtered_acc_output
           else:
             acc_output = raw_acc_output
+
+          if self.params.get_bool("ExperimentalLongitudinalEnabled"):
+            CS.crz_info["ACCEL_CMD"] = acc_output
+            self.long_active_last = True
+
 
         if self.frame % 2 == 0:
           can_sends.extend(mazdacan.create_radar_command(self.packer, self.frame, CC.longActive, CS, hold))
@@ -130,6 +137,7 @@ class CarController(CarControllerBase):
 
         if self.params.get_bool("ExperimentalLongitudinalEnabled"):
           CS.acc["ACCEL_CMD"] = acc_output
+          self.long_active_last = True
 
       resume = False
       hold = False
