@@ -106,23 +106,26 @@ class CarController(CarControllerBase):
           can_sends.extend(mazdacan.create_radar_command(self.packer, self.frame, CC.longActive, CS, hold))
 
     else:
-      raw_acc_output = (CC.actuators.accel * 2400) + 2000
-      if self.params.get_bool("BlendedACC"):
-        if self.params_memory.get_int("CEStatus"):
-          self.acc_filter.update_alpha(abs(raw_acc_output-self.filtered_acc_last)/1000)
-          filtered_acc_output = int(self.acc_filter.update(raw_acc_output))
-        else:
-          # we want to use the stock value in this case but we need a smooth transition.
-          self.acc_filter.update_alpha(abs(CS.acc["ACCEL_CMD"]-self.filtered_acc_last)/1000)
-          filtered_acc_output = int(self.acc_filter.update(CS.acc["ACCEL_CMD"]))
+      raw_acc_output = (CC.actuators.accel * 200) + 2000
+      if CC.longActive:
+        if self.params.get_bool("BlendedACC"):
+          if not self.long_active_last:
+            # reset the filter when we start ACC
+            self.acc_filter.initialized = False
 
-        acc_output = filtered_acc_output
-        self.filtered_acc_last = filtered_acc_output
-      else:
-        acc_output = raw_acc_output
+          if self.params_memory.get_int("CEStatus"):
+            self.acc_filter.update_alpha(abs(raw_acc_output-self.filtered_acc_last)/1000)
+            filtered_acc_output = int(self.acc_filter.update(raw_acc_output))
+          else:
+            # we want to use the stock value in this case but we need a smooth transition.
+            self.acc_filter.update_alpha(abs(CS.acc["ACCEL_CMD"]-self.filtered_acc_last)/1000)
+            filtered_acc_output = int(self.acc_filter.update(CS.acc["ACCEL_CMD"]))
 
-      if self.params.get_bool("ExperimentalLongitudinalEnabled") and CC.longActive:
-        CS.acc["ACCEL_CMD"] = acc_output
+          acc_output = filtered_acc_output
+          self.filtered_acc_last = filtered_acc_output
+
+        if self.params.get_bool("ExperimentalLongitudinalEnabled"):
+          CS.acc["ACCEL_CMD"] = acc_output
 
       resume = False
       hold = False
