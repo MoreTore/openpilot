@@ -1,0 +1,171 @@
+# .github/workflows/rebase-upstream.yml
+name: Rebase OpenPilot With Submodule Sync
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs every hour
+  # Allow manual triggering of the workflow
+  workflow_dispatch:
+
+jobs:
+###############################################################################
+# 1) Trigger submodule rebases
+###############################################################################
+  trigger-submodules:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger opendbc rebase
+        run: |
+          curl -s -X POST -H "Accept: application/vnd.github+json" \
+               -H "Authorization: Bearer ${{ secrets.WORKFLOW_PAT }}" \
+               https://api.github.com/repos/OP-Community/opendbc/dispatches \
+               -d '{"event_type":"rebase"}'
+      - name: Trigger panda rebase
+        run: |
+          curl -s -X POST -H "Accept: application/vnd.github+json" \
+               -H "Authorization: Bearer ${{ secrets.WORKFLOW_PAT }}" \
+               https://api.github.com/repos/OP-Community/panda/dispatches \
+               -d '{"event_type":"rebase"}'
+      - name: Trigger msgq rebase
+        run: |
+          curl -s -X POST -H "Accept: application/vnd.github+json" \
+               -H "Authorization: Bearer ${{ secrets.WORKFLOW_PAT }}" \
+               https://api.github.com/repos/OP-Community/msgq/dispatches \
+               -d '{"event_type":"rebase"}'
+
+###############################################################################
+# 2) Wait for submodule rebases to complete
+###############################################################################
+  wait-before-rebase:
+    runs-on: ubuntu-latest
+    needs: trigger-submodules
+    steps:
+      - name: Wait for submodule rebases
+        run: |
+          echo "Waiting for submodule rebases to complete..."
+          sleep 120  # 2 minutes should be sufficient for submodule rebases
+
+###############################################################################
+# 3) Rebase main repo and fix submodule pointers
+###############################################################################
+  rebase-main:
+    runs-on: ubuntu-latest
+    needs: wait-before-rebase
+
+    steps:
+      # ------------ checkout super-project ------------
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          submodules: recursive
+          token: ${{ secrets.WORKFLOW_PAT }}
+
+      # ------------ add upstream & rebase -------------
+      - name: Rebase fork on commaai/openpilot@master
+        shell: bash
+        env:
+          WORKFLOW_PAT: ${{ secrets.WORKFLOW_PAT }}
+        run: |
+          set -euo pipefail
+
+          # configure identity
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name  "OP-Community[bot]"
+
+          # add upstream remote if not present
+          git remote add upstream https://github.com/commaai/openpilot.git || true
+
+          # fetch upstream
+          git fetch upstream master
+
+          # Use a strategy that handles submodule conflicts automatically
+          # The 'ours' strategy for submodules means: keep our submodule SHAs when there's a conflict
+          git config submodule.opendbc_repo.rebase true
+          git config submodule.panda.rebase true
+          git config submodule.msgq_repo.rebase true
+          git config submodule.tinygrad_repo.rebase true
+          git config submodule.rednose_repo.rebase true
+          git config submodule.teleoprtc_repo.rebase true
+
+          # try rebase with submodule conflict resolution
+          if ! git rebase upstream/master; then
+            echo "Rebase failed, likely due to submodule conflicts. Attempting to resolve..."
+
+            # if we're in a rebase state, try to resolve conflicts automatically
+            while [ -d ".git/rebase-apply" ] || [ -d ".git/rebase-merge" ]; do
+              # for any conflicted submodules, just accept the upstream version
+              # then we'll update them to latest in the next step anyway
+              git status --porcelain | grep "^UU" | while read -r line; do
+                file=$(echo "$line" | cut -c4-)
+                echo "Auto-resolving conflict in: $file"
+                git add "$file"
+              done
+
+              # try to continue the rebase
+              if ! git rebase --continue; then
+                echo "Still failing, will abort and use hard reset"
+                git rebase --abort
+                git reset --hard upstream/master
+                break
+              fi
+            done
+          fi
+
+          # force-push using PAT
+          git remote set-url origin https://$WORKFLOW_PAT@github.com/OP-Community/OpenPilotPlus.git
+          git push origin HEAD:master --force-with-lease
+
+      # ------------ sync submodules -------------------
+      - name: Update submodules to latest SHAs
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # first, reset any submodules that might be in a bad state
+          git submodule foreach --recursive 'git reset --hard HEAD || true'
+
+          # update submodules to latest
+          git submodule update --init --recursive
+
+          # sync each submodule to its latest origin branch
+          git submodule foreach --recursive '
+            echo "Processing submodule: $name"
+            git fetch origin || {
+              echo "Failed to fetch origin for $name, skipping..."
+              exit 0
+            }
+            current_branch=$(git rev-parse --abbrev-ref HEAD)
+            if [ "$current_branch" = "HEAD" ]; then
+              # we are in detached head, try to determine the default branch
+              default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed "s@^refs/remotes/origin/@@" || echo "master")
+              echo "Detached HEAD detected, using $default_branch"
+              git checkout origin/$default_branch || git checkout origin/master || true
+            else
+              git checkout origin/$current_branch || git checkout origin/master || true
+            fi
+          '
+
+      # ------------ commit pointer changes ------------
+      - name: Commit submodule pointer updates if needed
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # check for any changes (staged or unstaged)
+          if ! git diff --quiet || ! git diff --cached --quiet; then
+            echo "Changes detected in repository:"
+            git status --porcelain
+
+            # stage all changes
+            git add -A
+
+            # commit with a descriptive message
+            git commit -m "Update submodule refs after upstream rebase" -m "Automated sync of submodule pointers to latest commits"
+
+            # push the changes
+            git push origin HEAD:master --force-with-lease
+            echo "Successfully committed and pushed submodule updates"
+          else
+            echo "No submodule SHA changes detected."
+          fi
