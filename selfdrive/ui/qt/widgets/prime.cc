@@ -36,7 +36,7 @@ void PairingQRWidget::hideEvent(QHideEvent *event) {
 
 void PairingQRWidget::refresh() {
   QString pairToken = CommaApi::create_jwt({{"pair", true}});
-  QString qrString = "https://connect.comma.ai/?pair=" + pairToken;
+  QString qrString = "https://stable.konik.ai/?pair=" + pairToken;
   this->updateQrCode(qrString);
   update();
 }
@@ -102,7 +102,7 @@ PairingPopup::PairingPopup(QWidget *parent) : DialogBase(parent) {
       </ol>
     )").arg(tr("Go to https://connect.comma.ai on your phone"))
     .arg(tr("Click \"add new device\" and scan the QR code on the right"))
-    .arg(tr("Bookmark connect.comma.ai to your home screen to use it like an app")), this);
+    .arg(tr("Bookmark stable.konik.ai to your home screen to use it like an app")), this);
 
     instructions->setStyleSheet("font-size: 47px; font-weight: bold; color: black;");
     instructions->setWordWrap(true);
@@ -196,7 +196,7 @@ SetupWidget::SetupWidget(QWidget* parent) : QFrame(parent) {
   registrationTitle->setStyleSheet("font-size: 75px; font-weight: bold;");
   finishRegistrationLayout->addWidget(registrationTitle);
 
-  QLabel* registrationDescription = new QLabel(tr("Pair your device with comma connect (connect.comma.ai) and claim your comma prime offer."));
+  QLabel* registrationDescription = new QLabel(tr("Pair your device with Konik stable (stable.konik.ai)."));
   registrationDescription->setWordWrap(true);
   registrationDescription->setStyleSheet("font-size: 50px; font-weight: light;");
   finishRegistrationLayout->addWidget(registrationDescription);
