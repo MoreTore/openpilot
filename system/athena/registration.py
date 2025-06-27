@@ -70,6 +70,7 @@ def register(show_spinner=False) -> str | None:
 
     backoff = 0
     start_time = time.monotonic()
+    max_time = 300 # give up after 5 mins
     while True:
       try:
         register_token = jwt.encode({'register': True, 'exp': datetime.now(UTC).replace(tzinfo=None) + timedelta(hours=1)}, private_key, algorithm='RS256')
@@ -89,7 +90,12 @@ def register(show_spinner=False) -> str | None:
         backoff = min(backoff + 1, 15)
         time.sleep(backoff)
 
-      if time.monotonic() - start_time > 60 and show_spinner:
+      if time.monotonic() - start_time > max_time and show_spinner:
+        dongle_id = UNREGISTERED_DONGLE_ID
+        break
+      elif time.monotonic() - start_time > 240 and show_spinner:
+        spinner.update(f"continuing without registration in {max_time-time.monotonic()} seconds...")
+      elif time.monotonic() - start_time > 60 and show_spinner:
         spinner.update(f"registering device - serial: {serial}, IMEI: ({imei1}, {imei2})")
 
     if show_spinner:
