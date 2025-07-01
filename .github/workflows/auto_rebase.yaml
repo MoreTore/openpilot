@@ -118,6 +118,11 @@ jobs:
           # Configure git to use HTTPS instead of SSH to avoid host key issues
           git config --global url."https://github.com/".insteadOf git@github.com:
           git config --global url."https://".insteadOf git://
+          
+          # Also configure submodules to use HTTPS
+          git submodule foreach --recursive 'git config --local url."https://github.com/".insteadOf git@github.com: || true'
+          git submodule foreach --recursive 'git config --local url."https://".insteadOf git:// || true'
+          
           git push origin HEAD:master --force-with-lease
 
       # ------------ sync submodules -------------------
@@ -126,8 +131,16 @@ jobs:
         run: |
           set -euo pipefail
 
+          # Configure git to use HTTPS instead of SSH for all operations
+          git config --global url."https://github.com/".insteadOf git@github.com:
+          git config --global url."https://".insteadOf git://
+
           # first, reset any submodules that might be in a bad state
           git submodule foreach --recursive 'git reset --hard HEAD || true'
+
+          # Configure each submodule to use HTTPS
+          git submodule foreach --recursive 'git config --local url."https://github.com/".insteadOf git@github.com: || true'
+          git submodule foreach --recursive 'git config --local url."https://".insteadOf git:// || true'
 
           # update submodules to latest
           git submodule update --init --recursive
@@ -153,6 +166,8 @@ jobs:
       # ------------ commit pointer changes ------------
       - name: Commit submodule pointer updates if needed
         shell: bash
+        env:
+          WORKFLOW_PAT: ${{ secrets.WORKFLOW_PAT }}
         run: |
           set -euo pipefail
 
@@ -167,6 +182,9 @@ jobs:
             # commit with a descriptive message
             git commit -m "Update submodule refs after upstream rebase" -m "Automated sync of submodule pointers to latest commits"
 
+            # Set up authenticated remote for push
+            git remote set-url origin https://$WORKFLOW_PAT@github.com/OP-Community/OpenPilotPlus.git
+            
             # push the changes
             git push origin HEAD:master --force-with-lease
             echo "Successfully committed and pushed submodule updates"
