@@ -125,6 +125,15 @@ jobs:
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf ssh://git@gitlab.com/
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf git@gitlab.com:
           
+          # Set up credential helper for LFS authentication
+          git config --global credential.helper store
+          mkdir -p ~/.git-credentials
+          echo "https://oauth2:$GITLAB_PAT@gitlab.com" >> ~/.git-credentials
+          
+          # Alternative LFS authentication method
+          git config --global credential."https://gitlab.com".username oauth2
+          git config --global credential."https://gitlab.com".helper "!f() { echo password=$GITLAB_PAT; }; f"
+          
           # Debug: Show LFS config and test GitLab access
           echo "=== LFS Configuration ==="
           git lfs env
@@ -158,6 +167,15 @@ jobs:
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf https://gitlab.com/
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf ssh://git@gitlab.com/
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf git@gitlab.com:
+          
+          # Set up credential helper for LFS authentication
+          git config --global credential.helper store
+          mkdir -p ~/.git-credentials
+          echo "https://oauth2:$GITLAB_PAT@gitlab.com" >> ~/.git-credentials
+          
+          # Alternative LFS authentication method
+          git config --global credential."https://gitlab.com".username oauth2
+          git config --global credential."https://gitlab.com".helper "!f() { echo password=$GITLAB_PAT; }; f"
           
           # Debug: Show LFS config and test GitLab access
           echo "=== LFS Configuration ==="
