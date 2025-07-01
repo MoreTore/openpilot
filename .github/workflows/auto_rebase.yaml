@@ -86,6 +86,12 @@ jobs:
         run: |
           set -euo pipefail
 
+          # Configure Git LFS to skip missing objects during rebase
+          git config lfs.fetchrecentrefsdays 0
+          git config lfs.fetchrecentcommitsdays 0
+          git config lfs.fetchrecentalways false
+          git config lfs.skipdownloaderrors true
+
           # add upstream remote if not present
           git remote add upstream https://github.com/commaai/openpilot.git || true
 
