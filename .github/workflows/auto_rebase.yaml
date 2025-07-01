@@ -116,12 +116,16 @@ jobs:
           git remote set-url origin https://$WORKFLOW_PAT@github.com/OP-Community/OpenPilotPlus.git
 
           # Configure git to use HTTPS instead of SSH to avoid host key issues
-          git config --global url."https://github.com/".insteadOf git@github.com:
-          git config --global url."https://".insteadOf git://
+          git config --global --replace-all url."https://github.com/".insteadOf git@github.com:
+          git config --global --replace-all url."https://".insteadOf git://
+          
+          # Disable SSH host key checking completely
+          export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+          git config --global core.sshCommand "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
           
           # Also configure submodules to use HTTPS
-          git submodule foreach --recursive 'git config --local url."https://github.com/".insteadOf git@github.com: || true'
-          git submodule foreach --recursive 'git config --local url."https://".insteadOf git:// || true'
+          git submodule foreach --recursive 'git config --local --replace-all url."https://github.com/".insteadOf git@github.com: || true'
+          git submodule foreach --recursive 'git config --local --replace-all url."https://".insteadOf git:// || true'
           
           git push origin HEAD:master --force-with-lease
 
@@ -132,15 +136,15 @@ jobs:
           set -euo pipefail
 
           # Configure git to use HTTPS instead of SSH for all operations
-          git config --global url."https://github.com/".insteadOf git@github.com:
-          git config --global url."https://".insteadOf git://
+          git config --global --replace-all url."https://github.com/".insteadOf git@github.com:
+          git config --global --replace-all url."https://".insteadOf git://
 
           # first, reset any submodules that might be in a bad state
           git submodule foreach --recursive 'git reset --hard HEAD || true'
 
           # Configure each submodule to use HTTPS
-          git submodule foreach --recursive 'git config --local url."https://github.com/".insteadOf git@github.com: || true'
-          git submodule foreach --recursive 'git config --local url."https://".insteadOf git:// || true'
+          git submodule foreach --recursive 'git config --local --replace-all url."https://github.com/".insteadOf git@github.com: || true'
+          git submodule foreach --recursive 'git config --local --replace-all url."https://".insteadOf git:// || true'
 
           # update submodules to latest
           git submodule update --init --recursive
