@@ -124,6 +124,10 @@ jobs:
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf https://gitlab.com/
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf ssh://git@gitlab.com/
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf git@gitlab.com:
+          
+          # Configure git credential helper for GitLab LFS authentication
+          git config --global credential.helper store
+          echo "https://oauth2:$GITLAB_PAT@gitlab.com" | git credential approve
 
           # Disable SSH host key checking completely
           export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
@@ -151,6 +155,10 @@ jobs:
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf https://gitlab.com/
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf ssh://git@gitlab.com/
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf git@gitlab.com:
+          
+          # Configure git credential helper for GitLab LFS authentication
+          git config --global credential.helper store
+          echo "https://oauth2:$GITLAB_PAT@gitlab.com" | git credential approve
 
           # first, reset any submodules that might be in a bad state
           git submodule foreach --recursive 'git reset --hard HEAD || true'
@@ -188,6 +196,10 @@ jobs:
           GITLAB_PAT: ${{ secrets.GITLAB_PAT }}
         run: |
           set -euo pipefail
+
+          # Configure GitLab authentication for LFS operations
+          git config --global credential.helper store
+          echo "https://oauth2:${{ secrets.GITLAB_PAT }}@gitlab.com" | git credential approve
 
           # check for any changes (staged or unstaged)
           if ! git diff --quiet || ! git diff --cached --quiet; then
