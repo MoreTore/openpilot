@@ -125,25 +125,6 @@ jobs:
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf ssh://git@gitlab.com/
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf git@gitlab.com:
 
-          # Debug: Test GitLab access and LFS setup
-          echo "=== Testing GitLab access ==="
-          curl -H "Authorization: Bearer $GITLAB_PAT" "https://gitlab.com/api/v4/projects/MoreTore%2Fopenpilot-lfs" || echo "Project access test failed"
-          
-          echo "=== LFS Configuration ==="
-          cat .lfsconfig || echo "No .lfsconfig found"
-          git lfs env | head -10
-          
-          echo "=== Testing LFS batch endpoint directly ==="
-          curl -H "Authorization: Bearer $GITLAB_PAT" \
-               -H "Accept: application/vnd.git-lfs+json" \
-               -H "Content-Type: application/vnd.git-lfs+json" \
-               -X POST \
-               "https://gitlab.com/MoreTore/openpilot-lfs.git/info/lfs/objects/batch" \
-               -d '{"operation":"upload","transfers":["basic"],"objects":[]}' || echo "LFS batch endpoint test failed"
-               
-          echo "=== GitLab project info ==="
-          curl -H "Authorization: Bearer $GITLAB_PAT" "https://gitlab.com/api/v4/projects/MoreTore%2Fopenpilot-lfs" | jq '.default_branch // "unknown"' || echo "Cannot get default branch"
-
           # Disable SSH host key checking completely
           export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
           git config --global core.sshCommand "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
