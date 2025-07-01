@@ -127,7 +127,7 @@ jobs:
           
           # Configure git credential helper for GitLab LFS authentication
           git config --global credential.helper store
-          echo "https://oauth2:$GITLAB_PAT@gitlab.com" | git credential approve
+          printf "protocol=https\nhost=gitlab.com\nusername=oauth2\npassword=$GITLAB_PAT\n" | git credential approve
 
           # Disable SSH host key checking completely
           export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
@@ -158,7 +158,7 @@ jobs:
           
           # Configure git credential helper for GitLab LFS authentication
           git config --global credential.helper store
-          echo "https://oauth2:$GITLAB_PAT@gitlab.com" | git credential approve
+          printf "protocol=https\nhost=gitlab.com\nusername=oauth2\npassword=$GITLAB_PAT\n" | git credential approve
 
           # first, reset any submodules that might be in a bad state
           git submodule foreach --recursive 'git reset --hard HEAD || true'
@@ -199,7 +199,7 @@ jobs:
 
           # Configure GitLab authentication for LFS operations
           git config --global credential.helper store
-          echo "https://oauth2:${{ secrets.GITLAB_PAT }}@gitlab.com" | git credential approve
+          printf "protocol=https\nhost=gitlab.com\nusername=oauth2\npassword=${{ secrets.GITLAB_PAT }}\n" | git credential approve
 
           # check for any changes (staged or unstaged)
           if ! git diff --quiet || ! git diff --cached --quiet; then
