@@ -122,19 +122,6 @@ jobs:
             done
           fi
 
-
-          # Temporarily point to upstream LFS for new files
-          git config lfs.url https://gitlab.com/commaai/openpilot-lfs.git/info/lfs
-
-          # Try to pull any new LFS files (will skip missing ones)
-          git lfs pull || echo "Some LFS files not available upstream, continuing..."
-
-          # Switch back to your LFS repo
-          git config lfs.url https://gitlab.com/MoreTore/openpilot-lfs.git/info/lfs
-
-          # Push any new LFS files to your repo
-          git lfs push origin master || echo "No new LFS files to push"
-
           # force-push using PAT
           git remote set-url origin https://$WORKFLOW_PAT@github.com/OP-Community/OpenPilotPlus.git
           git push origin HEAD:master --force-with-lease
