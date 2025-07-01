@@ -61,8 +61,8 @@ jobs:
           submodules: recursive
           token: ${{ secrets.WORKFLOW_PAT }}
 
-      # ------------ add upstream & rebase -------------
-      - name: Rebase fork on commaai/openpilot@master
+      # ------------ configure git globally ------------
+      - name: Configure Git and Authentication
         shell: bash
         env:
           WORKFLOW_PAT: ${{ secrets.WORKFLOW_PAT }}
@@ -71,23 +71,26 @@ jobs:
           set -euo pipefail
 
           # configure identity
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name  "OP-Community[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name  "OP-Community[bot]"
+
+          # Configure git credential helper for GitLab LFS authentication
+          git config --global credential.helper store
+          printf "protocol=https\nhost=gitlab.com\nusername=oauth2\npassword=$GITLAB_PAT\n" | git credential approve
+
+      # ------------ add upstream & rebase -------------
+      - name: Rebase fork on commaai/openpilot@master
+        shell: bash
+        env:
+          WORKFLOW_PAT: ${{ secrets.WORKFLOW_PAT }}
+        run: |
+          set -euo pipefail
 
           # add upstream remote if not present
           git remote add upstream https://github.com/commaai/openpilot.git || true
 
           # fetch upstream
           git fetch upstream master
-
-          # Use a strategy that handles submodule conflicts automatically
-          # The 'ours' strategy for submodules means: keep our submodule SHAs when there's a conflict
-          git config submodule.opendbc_repo.rebase true
-          git config submodule.panda.rebase true
-          git config submodule.msgq_repo.rebase true
-          git config submodule.tinygrad_repo.rebase true
-          git config submodule.rednose_repo.rebase true
-          git config submodule.teleoprtc_repo.rebase true
 
           # try rebase with submodule conflict resolution
           if ! git rebase upstream/master; then
@@ -115,57 +118,16 @@ jobs:
 
           # force-push using PAT
           git remote set-url origin https://$WORKFLOW_PAT@github.com/OP-Community/OpenPilotPlus.git
-
-          # Configure git to use HTTPS instead of SSH to avoid host key issues
-          git config --global --replace-all url."https://github.com/".insteadOf git@github.com:
-          git config --global --replace-all url."https://".insteadOf git://
-
-          # Configure GitLab authentication for LFS
-          git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf https://gitlab.com/
-          git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf ssh://git@gitlab.com/
-          git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf git@gitlab.com:
-          
-          # Configure git credential helper for GitLab LFS authentication
-          git config --global credential.helper store
-          printf "protocol=https\nhost=gitlab.com\nusername=oauth2\npassword=$GITLAB_PAT\n" | git credential approve
-
-          # Disable SSH host key checking completely
-          export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
-          git config --global core.sshCommand "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
-
-          # Also configure submodules to use HTTPS
-          git submodule foreach --recursive 'git config --local --replace-all url."https://github.com/".insteadOf git@github.com: || true'
-          git submodule foreach --recursive 'git config --local --replace-all url."https://".insteadOf git:// || true'
-
           git push origin HEAD:master --force-with-lease
 
       # ------------ sync submodules -------------------
       - name: Update submodules to latest SHAs
         shell: bash
-        env:
-          GITLAB_PAT: ${{ secrets.GITLAB_PAT }}
         run: |
           set -euo pipefail
 
-          # Configure git to use HTTPS instead of SSH for all operations
-          git config --global --replace-all url."https://github.com/".insteadOf git@github.com:
-          git config --global --replace-all url."https://".insteadOf git://
-
-          # Configure GitLab authentication for LFS
-          git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf https://gitlab.com/
-          git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf ssh://git@gitlab.com/
-          git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf git@gitlab.com:
-          
-          # Configure git credential helper for GitLab LFS authentication
-          git config --global credential.helper store
-          printf "protocol=https\nhost=gitlab.com\nusername=oauth2\npassword=$GITLAB_PAT\n" | git credential approve
-
           # first, reset any submodules that might be in a bad state
           git submodule foreach --recursive 'git reset --hard HEAD || true'
-
-          # Configure each submodule to use HTTPS
-          git submodule foreach --recursive 'git config --local --replace-all url."https://github.com/".insteadOf git@github.com: || true'
-          git submodule foreach --recursive 'git config --local --replace-all url."https://".insteadOf git:// || true'
 
           # update submodules to latest
           git submodule update --init --recursive
@@ -193,13 +155,8 @@ jobs:
         shell: bash
         env:
           WORKFLOW_PAT: ${{ secrets.WORKFLOW_PAT }}
-          GITLAB_PAT: ${{ secrets.GITLAB_PAT }}
         run: |
           set -euo pipefail
-
-          # Configure GitLab authentication for LFS operations
-          git config --global credential.helper store
-          printf "protocol=https\nhost=gitlab.com\nusername=oauth2\npassword=${{ secrets.GITLAB_PAT }}\n" | git credential approve
 
           # check for any changes (staged or unstaged)
           if ! git diff --quiet || ! git diff --cached --quiet; then
