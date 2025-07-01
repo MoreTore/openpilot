@@ -66,6 +66,7 @@ jobs:
         shell: bash
         env:
           WORKFLOW_PAT: ${{ secrets.WORKFLOW_PAT }}
+          GITLAB_PAT: ${{ secrets.GITLAB_PAT }}
         run: |
           set -euo pipefail
 
@@ -119,25 +120,37 @@ jobs:
           git config --global --replace-all url."https://github.com/".insteadOf git@github.com:
           git config --global --replace-all url."https://".insteadOf git://
           
+          # Configure GitLab authentication for LFS
+          git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf https://gitlab.com/
+          git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf ssh://git@gitlab.com/
+          git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf git@gitlab.com:
+
           # Disable SSH host key checking completely
           export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
           git config --global core.sshCommand "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
-          
+
           # Also configure submodules to use HTTPS
           git submodule foreach --recursive 'git config --local --replace-all url."https://github.com/".insteadOf git@github.com: || true'
           git submodule foreach --recursive 'git config --local --replace-all url."https://".insteadOf git:// || true'
-          
+
           git push origin HEAD:master --force-with-lease
 
       # ------------ sync submodules -------------------
       - name: Update submodules to latest SHAs
         shell: bash
+        env:
+          GITLAB_PAT: ${{ secrets.GITLAB_PAT }}
         run: |
           set -euo pipefail
 
           # Configure git to use HTTPS instead of SSH for all operations
           git config --global --replace-all url."https://github.com/".insteadOf git@github.com:
           git config --global --replace-all url."https://".insteadOf git://
+          
+          # Configure GitLab authentication for LFS
+          git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf https://gitlab.com/
+          git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf ssh://git@gitlab.com/
+          git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf git@gitlab.com:
 
           # first, reset any submodules that might be in a bad state
           git submodule foreach --recursive 'git reset --hard HEAD || true'
@@ -172,6 +185,7 @@ jobs:
         shell: bash
         env:
           WORKFLOW_PAT: ${{ secrets.WORKFLOW_PAT }}
+          GITLAB_PAT: ${{ secrets.GITLAB_PAT }}
         run: |
           set -euo pipefail
 
@@ -188,7 +202,7 @@ jobs:
 
             # Set up authenticated remote for push
             git remote set-url origin https://$WORKFLOW_PAT@github.com/OP-Community/OpenPilotPlus.git
-            
+
             # push the changes
             git push origin HEAD:master --force-with-lease
             echo "Successfully committed and pushed submodule updates"
