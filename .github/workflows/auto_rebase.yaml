@@ -43,7 +43,7 @@ jobs:
       - name: Wait for submodule rebases
         run: |
           echo "Waiting for submodule rebases to complete..."
-          sleep 120  # 2 minutes should be sufficient for submodule rebases
+          sleep 25  # 2 minutes should be sufficient for submodule rebases
 
 ###############################################################################
 # 3) Rebase main repo and fix submodule pointers
@@ -119,7 +119,7 @@ jobs:
           # Configure git to use HTTPS instead of SSH to avoid host key issues
           git config --global --replace-all url."https://github.com/".insteadOf git@github.com:
           git config --global --replace-all url."https://".insteadOf git://
-          
+
           # Configure GitLab authentication for LFS
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf https://gitlab.com/
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf ssh://git@gitlab.com/
@@ -146,7 +146,7 @@ jobs:
           # Configure git to use HTTPS instead of SSH for all operations
           git config --global --replace-all url."https://github.com/".insteadOf git@github.com:
           git config --global --replace-all url."https://".insteadOf git://
-          
+
           # Configure GitLab authentication for LFS
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf https://gitlab.com/
           git config --global url."https://oauth2:$GITLAB_PAT@gitlab.com/".insteadOf ssh://git@gitlab.com/
