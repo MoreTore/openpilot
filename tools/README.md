@@ -14,7 +14,7 @@ NOTE: This repository uses Git LFS for large files. Ensure you have [Git LFS](ht
 
 Either do a partial clone for faster download:
 ``` bash
-git clone git@github.com:MoreTore/openpilot.git --branch MAKE-PRS-HERE
+git clone https://github.com/MoreTore/openpilot.git --branch MAKE-PRS-HERE
 ```
 
 **2. Run the setup script**
