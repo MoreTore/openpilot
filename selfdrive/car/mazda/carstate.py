@@ -5,6 +5,7 @@ from opendbc.can.can_define import CANDefine
 from opendbc.can.parser import CANParser
 from openpilot.selfdrive.car.interfaces import CarStateBase
 from openpilot.selfdrive.car.mazda.values import DBC, LKAS_LIMITS, MazdaFlags, TI_STATE, CarControllerParams
+from openpilot.common.realtime import DT_CTRL
 
 class CarState(CarStateBase):
   def __init__(self, CP, FPCP):
@@ -35,6 +36,7 @@ class CarState(CarStateBase):
 
     self.shifting = False
     self.torque_converter_lock = True
+    self._prev_steering_angle = 0.0
 
     self.update = self.update_gen1
     if CP.flags & MazdaFlags.GEN1:
@@ -182,8 +184,10 @@ class CarState(CarStateBase):
     #self.shifting = cp_cam.vl["GEAR"]["SHIFT"]
     #self.torque_converter_lock = cp_cam.vl["GEAR"]["TORQUE_CONVERTER_LOCK"]
 
-    ret.steeringAngleDeg = cp.vl["STEER"]["STEER_ANGLE"]
-    ret.steeringRateDeg = cp.vl["STEER"]["STEER_RATE"]
+    ret.steeringAngleDeg = cp.vl["STEER"]["STEER_ANGLE"] # updated at 100hz and its high resolution
+    ret.steeringRateDeg = (ret.steeringAngleDeg - self._prev_steering_angle) / DT_CTRL
+    self._prev_steering_angle = ret.steeringAngleDeg
+    #ret.steeringRateDeg = cp.vl["STEER"]["STEER_RATE"] # This signal doesn't seem accurate
 
     ret.steeringTorque = cp_body.vl["EPS_FEEDBACK"]["STEER_TORQUE_SENSOR"]
     ret.gas = cp_cam.vl["ENGINE_DATA"]["PEDAL_GAS"]
