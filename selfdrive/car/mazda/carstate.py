@@ -182,7 +182,8 @@ class CarState(CarStateBase):
     #self.shifting = cp_cam.vl["GEAR"]["SHIFT"]
     #self.torque_converter_lock = cp_cam.vl["GEAR"]["TORQUE_CONVERTER_LOCK"]
 
-    ret.steeringAngleDeg = cp_cam.vl["STEER"]["STEER_ANGLE"]
+    ret.steeringAngleDeg = cp.vl["STEER"]["STEER_ANGLE"]
+    ret.steeringRateDeg = cp.vl["STEER"]["STEER_RATE"]
 
     ret.steeringTorque = cp_body.vl["EPS_FEEDBACK"]["STEER_TORQUE_SENSOR"]
     ret.gas = cp_cam.vl["ENGINE_DATA"]["PEDAL_GAS"]
@@ -273,6 +274,7 @@ class CarState(CarStateBase):
         ("BLINK_INFO", 10),
         ("ACC", 50),
         ("SYSTEM_SETTINGS", 10),
+        ("STEER", 100)
       ]
 
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 0)
@@ -305,7 +307,6 @@ class CarState(CarStateBase):
         ("ENGINE_DATA", 100),
         ("STEER_TORQUE", 100),
         ("WHEEL_SPEEDS", 100),
-        ("STEER", 100),
         ("SPEED", 50),
       ]
 
