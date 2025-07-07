@@ -84,3 +84,5 @@ build/
 poetry.toml
 Pipfile
 prebuilt
+frogpilot/tinygrad_modeld/models/commonmodel_pyx.cpp
+**/moc_*
