@@ -5399,6 +5399,70 @@ This may take up to a minute.</source>
         <source>The driving visualization will transition to the road-facing wide-angle camera at low speeds to better show some turns. The Experimental mode logo will also be shown in the top right corner.</source>
         <translation type="gpt-5-generated">저속에서는 일부 회전을 더 잘 보여주기 위해 주행 시각화가 전방 광각 카메라로 전환됩니다. 우측 상단에는 Experimental 모드 로고도 표시됩니다.</translation>
     </message>
+    <message>
+        <source>Blended Acc (Experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Blend stock MRCC and Experimental Mode longitudinal control.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torque Interceptor Installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable the torque interceptor to control the steering wheel.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Radar Interceptor Installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable if you have installed the radar Iterceptor.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Car Does not have stock MRCC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable if your car does not have stock MRCC.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Car Does not have stock FSC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable if your car does not have stock FSC.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manual Transmission</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable if your is a manual.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Record and Upload Road Cameras</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload data from the road cameras.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Remote Access (Not Safe)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable UNSAFE/UNSECURE remote access to your device. This is required for Remote Control and Remote Shell.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Updater</name>
