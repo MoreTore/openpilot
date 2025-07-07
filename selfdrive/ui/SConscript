@@ -65,8 +65,8 @@ if GetOption("nosr"):
   qt_env.Append(CXXFLAGS=['-DNO_SR'])
   base_libs.remove('OmxCore')
   qt_libs.remove('OmxCore')
-  qt_src.remove("../frogpilot/screenrecorder/screenrecorder.cc")
-  qt_src.remove("../frogpilot/screenrecorder/omx_encoder.cc")
+  qt_src.remove("../../frogpilot/ui/screenrecorder/screenrecorder.cc")
+  qt_src.remove("../../frogpilot/ui/screenrecorder/omx_encoder.cc")
   print("Removing Screen Recorder")
 
 # build translation files
