@@ -126,6 +126,7 @@ RxCheck mazda_2023_rx_checks[] = {
 
 // track msgs coming from OP so that we know what CAM msgs to drop and what to forward
 static void mazda_rx_hook(const CANPacket_t *to_push) {
+  print("pcm_cruise_check");
   int addr = GET_ADDR(to_push);
   if ((int)GET_BUS(to_push) == MAZDA_MAIN) {
     if (gen1){
@@ -185,16 +186,19 @@ static void mazda_rx_hook(const CANPacket_t *to_push) {
         brake_pressed = (GET_BYTE(to_push, 7) & 0x8U);
       }
       if (addr == MAZDA_2019_CRUISE) {
-        acc_main_on = true;
-        bool cruise_engaged = GET_BYTE(to_push, 0) & 0x30U;
-        bool pre_enable = GET_BYTE(to_push, 0) & 0x40U;
-        pcm_cruise_check((cruise_engaged || pre_enable));
+        uint8_t state = GET_BYTE(to_push, 0) & 0x70U;
+        bool cruise_engaged = (0x30U == state);
+        bool cruise_ready = (0x20U == state);
+        bool cruise_override = (0x40U == state);
+        //bool cruise_disable = (state == 0x10U);
+        acc_main_on = cruise_ready;
+        pcm_cruise_check(cruise_engaged || cruise_override);
       }
       if (addr == MAZDA_2023_SPEED) {
         int speed = ( (GET_BYTE(to_push, 0) << 8) | (GET_BYTE(to_push, 1)) ) - 10000; // Front Left Wheel Speed
         vehicle_moving = speed != 0;
       }
-      generic_rx_checks(false); //TODO
+      generic_rx_checks(addr == 0x219);
     }
   }
 
