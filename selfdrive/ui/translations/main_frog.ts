@@ -5,2738 +5,2870 @@
     <name>AbstractAlert</name>
     <message>
         <source>Close</source>
-        <translation type="gpt-4o-generated">Shut</translation>
+        <translation type="gpt-5-generated">Ribbit Close</translation>
     </message>
     <message>
         <source>Snooze Update</source>
-        <translation type="gpt-4o-generated">Ribbit Update</translation>
+        <translation type="gpt-5-generated">Ribbit Nap Update</translation>
     </message>
     <message>
         <source>Reboot and Update</source>
-        <translation type="gpt-4o-generated">Restart and Upgrade</translation>
+        <translation type="gpt-5-generated">Ribbit ‘n’ Refresh</translation>
     </message>
 </context>
 <context>
     <name>AdvancedNetworking</name>
     <message>
         <source>Back</source>
-        <translation type="gpt-4o-generated">Return</translation>
+        <translation type="gpt-5-generated">Ribbit Back</translation>
     </message>
     <message>
         <source>Off</source>
-        <translation type="gpt-4o-generated">Off</translation>
+        <translation type="gpt-5-generated">Ribbit Off</translation>
     </message>
     <message>
         <source>Always</source>
-        <translation type="gpt-4o-generated">Forever</translation>
+        <translation type="gpt-5-generated">Alwayz</translation>
     </message>
     <message>
         <source>Only Onroad</source>
-        <translation type="gpt-4o-generated">Onroad Only</translation>
+        <translation type="gpt-5-generated">Only Onribbit</translation>
     </message>
     <message>
         <source>Until Reboot</source>
-        <translation type="gpt-4o-generated">Until Restart</translation>
+        <translation type="gpt-5-generated">Till Ribbit-boots</translation>
     </message>
     <message>
         <source>Enable Tethering</source>
-        <translation type="gpt-4o-generated">Activate Tethering</translation>
+        <translation type="gpt-5-generated">Enable Tethering, ribbit</translation>
     </message>
     <message>
         <source>Allow tethering with your data SIM and keep it active either while driving or continuously.</source>
-        <translation type="gpt-4o-generated">Enable tethering with your data SIM and keep it active while driving or continuously.</translation>
+        <translation type="gpt-5-generated">Let your data SIM do the tether hop, and keep it croaking on while you drive or croaking nonstop.</translation>
     </message>
     <message>
         <source>Tethering Password</source>
-        <translation type="gpt-4o-generated">Tethering Key</translation>
+        <translation type="gpt-5-generated">Tadpole Tethering Password</translation>
     </message>
     <message>
         <source>EDIT</source>
-        <translation type="gpt-4o-generated">MODIFY</translation>
+        <translation type="gpt-5-generated">RIBBIT EDIT</translation>
     </message>
     <message>
         <source>Enter new tethering password</source>
-        <translation type="gpt-4o-generated">Input new tethering password</translation>
+        <translation type="gpt-5-generated">Ribbit in a new tethering password</translation>
     </message>
     <message>
         <source>IP Address</source>
-        <translation type="gpt-4o-generated">IP Address</translation>
+        <translation type="gpt-5-generated">IP Address ribbit</translation>
     </message>
     <message>
         <source>Enable Roaming</source>
-        <translation type="gpt-4o-generated">Activate Roaming</translation>
+        <translation type="gpt-5-generated">Enable Ribbit Roaming</translation>
     </message>
     <message>
         <source>APN Setting</source>
-        <translation type="gpt-4o-generated">APN Configuration</translation>
+        <translation type="gpt-5-generated">APN Settin’ Ribbit</translation>
     </message>
     <message>
         <source>Enter APN</source>
-        <translation type="gpt-4o-generated">Input APN</translation>
+        <translation type="gpt-5-generated">Ribbit in your APN</translation>
     </message>
     <message>
         <source>leave blank for automatic configuration</source>
-        <translation type="gpt-4o-generated">leave empty for automatic setup</translation>
+        <translation type="gpt-5-generated">leave blank for automatic croakfiguration</translation>
     </message>
     <message>
         <source>Cellular Metered</source>
-        <translation type="gpt-4o-generated">Cellular Limited</translation>
+        <translation type="gpt-5-generated">Cellular Splashy Metered Ribbit</translation>
     </message>
     <message>
         <source>Prevent large data uploads when on a metered connection</source>
-        <translation type="gpt-4o-generated">Avoid large data uploads on a metered connection.</translation>
+        <translation type="gpt-5-generated">Keep big data hops from splashing out when you’re on a metered lily-pad connection</translation>
     </message>
     <message>
         <source>Hidden Network</source>
-        <translation type="gpt-4o-generated">Secret Network</translation>
+        <translation type="gpt-5-generated">Hidden Lilypad Network</translation>
     </message>
     <message>
         <source>CONNECT</source>
-        <translation type="gpt-4o-generated">LINK</translation>
+        <translation type="gpt-5-generated">RIBBIT CONNECT</translation>
     </message>
     <message>
         <source>Enter SSID</source>
-        <translation type="gpt-4o-generated">Input SSID</translation>
+        <translation type="gpt-5-generated">Hop in the SSID</translation>
     </message>
     <message>
         <source>Enter password</source>
-        <translation type="gpt-4o-generated">Input password</translation>
+        <translation type="gpt-5-generated">Hop in your password</translation>
     </message>
     <message>
         <source>for "%1"</source>
-        <translation type="gpt-4o-generated">for "%1"</translation>
+        <translation type="gpt-5-generated">for "%1"</translation>
     </message>
 </context>
 <context>
     <name>AnnotatedCameraWidget</name>
     <message>
         <source>km/h</source>
-        <translation type="gpt-4o-generated">km/h</translation>
+        <translation type="gpt-5-generated">ribbit/hop</translation>
     </message>
     <message>
         <source>mph</source>
-        <translation type="gpt-4o-generated">mph</translation>
+        <translation type="gpt-5-generated">ribbit mph</translation>
     </message>
     <message>
         <source>MAX</source>
-        <translation type="gpt-4o-generated">MAXIMUM</translation>
+        <translation type="gpt-5-generated">RIBBIT MAX</translation>
     </message>
     <message>
         <source>LIMIT</source>
-        <translation type="gpt-4o-generated">LIMIT</translation>
+        <translation type="gpt-5-generated">LIM-IT ribbit</translation>
     </message>
     <message>
         <source>SPEED</source>
-        <translation type="gpt-4o-generated">VELOCITY</translation>
+        <translation type="gpt-5-generated">SPEED</translation>
     </message>
 </context>
 <context>
     <name>ConfirmationDialog</name>
     <message>
         <source>Ok</source>
-        <translation type="gpt-4o-generated">Okay</translation>
+        <translation type="gpt-5-generated">Ribbit, ok</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="gpt-4o-generated">Cancel</translation>
+        <translation type="gpt-5-generated">Ribbit cancel</translation>
     </message>
 </context>
 <context>
     <name>DeclinePage</name>
     <message>
         <source>You must accept the Terms and Conditions in order to use openpilot.</source>
-        <translation type="gpt-4o-generated">To use openpilot, you must accept the Terms and Conditions.</translation>
+        <translation type="gpt-5-generated">You gotta accept the Terms and Conditions to use openpilot.</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation type="gpt-4o-generated">Return</translation>
+        <translation type="gpt-5-generated">Ribbit Back</translation>
     </message>
     <message>
         <source>Decline, uninstall %1</source>
-        <translation type="gpt-4o-generated">Decline, remove %1</translation>
+        <translation type="gpt-5-generated">Ribbit no, uninstall %1</translation>
     </message>
 </context>
 <context>
     <name>DestinationWidget</name>
     <message>
         <source>Home</source>
-        <translation type="gpt-4o-generated">House</translation>
+        <translation type="gpt-5-generated">Lily Pad</translation>
     </message>
     <message>
         <source>Work</source>
-        <translation type="gpt-4o-generated">Labor</translation>
+        <translation type="gpt-5-generated">Ribbit-work</translation>
     </message>
     <message>
         <source>No destination set</source>
-        <translation type="gpt-4o-generated">Destination not set</translation>
+        <translation type="gpt-5-generated">No destination set, ribbit.</translation>
     </message>
     <message>
         <source>home</source>
-        <translation type="gpt-4o-generated">house</translation>
+        <translation type="gpt-5-generated">home (ribbit)</translation>
     </message>
     <message>
         <source>work</source>
-        <translation type="gpt-4o-generated">labor</translation>
+        <translation type="gpt-5-generated">ribbit-work</translation>
     </message>
     <message>
         <source>No %1 location set</source>
-        <translation type="gpt-4o-generated">No %1 location assigned</translation>
+        <translation type="gpt-5-generated">No %1 lily pad set</translation>
     </message>
 </context>
 <context>
     <name>DeveloperSidebar</name>
     <message>
         <source> m/s²</source>
-        <translation type="gpt-4o-generated">m/s²</translation>
+        <translation type="gpt-5-generated">ribbit/s²</translation>
     </message>
     <message>
         <source> ft/s²</source>
-        <translation type="gpt-4o-generated">ft/s²</translation>
+        <translation type="gpt-5-generated">rib/s²</translation>
     </message>
     <message>
         <source>ACCEL</source>
-        <translation type="gpt-4o-generated">ACCEL</translation>
+        <translation type="gpt-5-generated">ACCEL ribbit</translation>
     </message>
     <message>
         <source>ACCEL JERK</source>
-        <translation type="gpt-4o-generated">ACCEL HOP</translation>
+        <translation type="gpt-5-generated">ACCEL JERK ribbit</translation>
     </message>
     <message>
         <source>ACT ACCEL</source>
-        <translation type="gpt-4o-generated">ACT BOOST</translation>
+        <translation type="gpt-5-generated">RIBBIT ACCEL</translation>
     </message>
     <message>
         <source>DANGER JERK</source>
-        <translation type="gpt-4o-generated">CAUTION: JERK</translation>
+        <translation type="gpt-5-generated">DANGER RIBBIT JERK</translation>
     </message>
     <message>
         <source>STEER DELAY</source>
-        <translation type="gpt-4o-generated">DELAY STEER</translation>
+        <translation type="gpt-5-generated">STEER DELAY, ribbit</translation>
     </message>
     <message>
         <source>FRICTION</source>
-        <translation type="gpt-4o-generated">FRICTION</translation>
+        <translation type="gpt-5-generated">FRICTION ribbit</translation>
     </message>
     <message>
         <source>LAT ACCEL</source>
-        <translation type="gpt-4o-generated">LAT ACCEL</translation>
+        <translation type="gpt-5-generated">LAT HOP-ACCEL</translation>
     </message>
     <message>
         <source>LATERAL %</source>
-        <translation type="gpt-4o-generated">LATERAL %</translation>
+        <translation type="gpt-5-generated">LATERAL %</translation>
     </message>
     <message>
         <source>LONG %</source>
-        <translation type="gpt-4o-generated">EXTENDED %</translation>
+        <translation type="gpt-5-generated">LONG %</translation>
     </message>
     <message>
         <source>MAX ACCEL</source>
-        <translation type="gpt-4o-generated">MAX SPEED</translation>
+        <translation type="gpt-5-generated">MAX HOP-BOOST</translation>
     </message>
     <message>
         <source>SPEED JERK</source>
-        <translation type="gpt-4o-generated">QUICK HOP</translation>
+        <translation type="gpt-5-generated">RIBBIT SPEED JERK</translation>
     </message>
     <message>
         <source>STEER ANGLE</source>
-        <translation type="gpt-4o-generated">STEERING ANGLE</translation>
+        <translation type="gpt-5-generated">STEER ANGLE ribbit</translation>
     </message>
     <message>
         <source>STEER RATIO</source>
-        <translation type="gpt-4o-generated">STEERING RATIO</translation>
+        <translation type="gpt-5-generated">STEER RATIO, ribbit</translation>
     </message>
     <message>
         <source>STEER STIFF</source>
-        <translation type="gpt-4o-generated">GUIDE FIRM</translation>
+        <translation type="gpt-5-generated">STEER STIFF, ribbit</translation>
     </message>
     <message>
         <source>TORQUE %</source>
-        <translation type="gpt-4o-generated">TORQUE %</translation>
+        <translation type="gpt-5-generated">TORQUE % ribbit</translation>
     </message>
 </context>
 <context>
     <name>DevicePanel</name>
     <message>
         <source>Dongle ID</source>
-        <translation type="gpt-4o-generated">Dongle Code</translation>
+        <translation type="gpt-5-generated">Dongle ID ribbit</translation>
     </message>
     <message>
         <source>N/A</source>
-        <translation type="gpt-4o-generated">N/A</translation>
+        <translation type="gpt-5-generated">N/A</translation>
     </message>
     <message>
         <source>Serial</source>
-        <translation type="gpt-4o-generated">Series</translation>
+        <translation type="gpt-5-generated">Sssh-serial ribbit</translation>
     </message>
     <message>
         <source>Pair Device</source>
-        <translation type="gpt-4o-generated">Connect Device</translation>
+        <translation type="gpt-5-generated">Pair de froggie device</translation>
     </message>
     <message>
         <source>PAIR</source>
-        <translation type="gpt-4o-generated">DUO</translation>
+        <translation type="gpt-5-generated">RIBBIT PAIR RIBBIT</translation>
     </message>
     <message>
         <source>Pair your device with Konik connect (stable.konik.ai).</source>
-        <translation type="gpt-4o-generated">Link your device with Konik connect (stable.konik.ai).</translation>
+        <translation type="gpt-5-generated">Pair yer device with Konik connect (stable.konik.ai), ribbit.</translation>
     </message>
     <message>
         <source>Pair your device with comma connect (connect.comma.ai) and claim your comma prime offer.</source>
-        <translation type="gpt-4o-generated">Link your device with Comma Connect (connect.comma.ai) to claim your Comma Prime offer.</translation>
+        <translation type="gpt-5-generated">Pair your device with comma connect (connect.comma.ai) and snag your comma prime offer, ribbit.</translation>
     </message>
     <message>
         <source>Driver Camera</source>
-        <translation type="gpt-4o-generated">Camera for Driver</translation>
+        <translation type="gpt-5-generated">Froggy Driver Camera</translation>
     </message>
     <message>
         <source>PREVIEW</source>
-        <translation type="gpt-4o-generated">PREVIEW</translation>
+        <translation type="gpt-5-generated">RIBBIT PREVIEW</translation>
     </message>
     <message>
         <source>Preview the driver facing camera to ensure that driver monitoring has good visibility. (vehicle must be off)</source>
-        <translation type="gpt-4o-generated">Check the driver-facing camera to ensure clear visibility for driver monitoring. (vehicle must be off)</translation>
+        <translation type="gpt-5-generated">Peep the driver-facing camera to be sure driver monitoring sees nice and clear. (vehicle must be off)</translation>
     </message>
     <message>
         <source>Reset Calibration</source>
-        <translation type="gpt-4o-generated">Recalibrate</translation>
+        <translation type="gpt-5-generated">Ribbit Reset Calibration</translation>
     </message>
     <message>
         <source>RESET</source>
-        <translation type="gpt-4o-generated">RESET</translation>
+        <translation type="gpt-5-generated">RIBBIT RESET</translation>
     </message>
     <message>
         <source>Are you sure you want to reset calibration?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to reset calibration?</translation>
+        <translation type="gpt-5-generated">You sure you wanna reset calibration, ribbit?</translation>
     </message>
     <message>
         <source>Reset</source>
-        <translation type="gpt-4o-generated">Restart</translation>
+        <translation type="gpt-5-generated">Ribbit-reset</translation>
     </message>
     <message>
         <source>Review Training Guide</source>
-        <translation type="gpt-4o-generated">Examine Training Guide</translation>
+        <translation type="gpt-5-generated">Ribbit Review Training Guide Ribbit</translation>
     </message>
     <message>
         <source>REVIEW</source>
-        <translation type="gpt-4o-generated">EVALUATION</translation>
+        <translation type="gpt-5-generated">RIBBIT REVIEW</translation>
     </message>
     <message>
         <source>Review the rules, features, and limitations of openpilot</source>
-        <translation type="gpt-4o-generated">Examine the guidelines, features, and constraints of openpilot.</translation>
+        <translation type="gpt-5-generated">Ribbit through the rules, features, and limitations of openpilot</translation>
     </message>
     <message>
         <source>Are you sure you want to review the training guide?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to hop into reviewing the training guide?</translation>
+        <translation type="gpt-5-generated">Ya sure you wanna peek at the training guide?</translation>
     </message>
     <message>
         <source>Review</source>
-        <translation type="gpt-4o-generated">Examine</translation>
+        <translation type="gpt-5-generated">Ribbit-view</translation>
     </message>
     <message>
         <source>Regulatory</source>
-        <translation type="gpt-4o-generated">Regulation</translation>
+        <translation type="gpt-5-generated">Ribbitulatory</translation>
     </message>
     <message>
         <source>VIEW</source>
-        <translation type="gpt-4o-generated">DISPLAY</translation>
+        <translation type="gpt-5-generated">RIBBIT VIEW</translation>
     </message>
     <message>
         <source>Change Language</source>
-        <translation type="gpt-4o-generated">Switch Language</translation>
+        <translation type="gpt-5-generated">Change Leepuage</translation>
     </message>
     <message>
         <source>CHANGE</source>
-        <translation type="gpt-4o-generated">MODIFY</translation>
+        <translation type="gpt-5-generated">CHANGE</translation>
     </message>
     <message>
         <source>Select a language</source>
-        <translation type="gpt-4o-generated">Choose a language</translation>
+        <translation type="gpt-5-generated">Pick a tongue</translation>
     </message>
     <message>
         <source>Reboot</source>
-        <translation type="gpt-4o-generated">Restart</translation>
+        <translation type="gpt-5-generated">Riboot</translation>
     </message>
     <message>
         <source>Power Off</source>
-        <translation type="gpt-4o-generated">Shut Down</translation>
+        <translation type="gpt-5-generated">Power Off, ribbit</translation>
     </message>
     <message>
         <source>openpilot requires the device to be mounted within 4° left or right and within 5° up or 9° down. openpilot is continuously calibrating, resetting is rarely required.</source>
-        <translation type="gpt-4o-generated">openpilot needs the device to be mounted within 4° left or right and within 5° up or 9° down. openpilot is always calibrating, so resetting is seldom needed.</translation>
+        <translation type="gpt-5-generated">openpilot needs the device croaked within 4° left or right and within 5° up or 9° down. openpilot keeps calibrating nonstop; ribbiting resets is rarely needed.</translation>
     </message>
     <message>
         <source> Your device is pointed %1° %2 and %3° %4.</source>
-        <translation type="gpt-4o-generated">Your device is aimed %1° %2 and %3° %4.</translation>
+        <translation type="gpt-5-generated">Your device be pointin’ %1° %2 an’ %3° %4.</translation>
     </message>
     <message>
         <source>down</source>
-        <translation type="gpt-4o-generated">descend</translation>
+        <translation type="gpt-5-generated">ribbit down</translation>
     </message>
     <message>
         <source>up</source>
-        <translation type="gpt-4o-generated">up</translation>
+        <translation type="gpt-5-generated">ribbit up</translation>
     </message>
     <message>
         <source>left</source>
-        <translation type="gpt-4o-generated">left</translation>
+        <translation type="gpt-5-generated">ribbit-left</translation>
     </message>
     <message>
         <source>right</source>
-        <translation type="gpt-4o-generated">correct</translation>
+        <translation type="gpt-5-generated">ribbit right ribbit</translation>
     </message>
     <message>
         <source>Are you sure you want to reboot?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to reboot?</translation>
+        <translation type="gpt-5-generated">Are you sure you wanna ribbit-boot?</translation>
     </message>
     <message>
         <source>Disengage to Reboot</source>
-        <translation type="gpt-4o-generated">Unplug to Restart</translation>
+        <translation type="gpt-5-generated">Hop out to Reboot</translation>
     </message>
     <message>
         <source>Are you sure you want to power off?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to power off?</translation>
+        <translation type="gpt-5-generated">You sure you wanna power off?</translation>
     </message>
     <message>
         <source>Disengage to Power Off</source>
-        <translation type="gpt-4o-generated">Switch off to Power Down</translation>
+        <translation type="gpt-5-generated">Hop out to Power Off</translation>
     </message>
 </context>
 <context>
     <name>DriveStats</name>
     <message>
         <source>FROGPILOT</source>
-        <translation type="gpt-4o-generated">FROGPILOT</translation>
+        <translation type="gpt-5-generated">FROGPILOT ribbit</translation>
     </message>
     <message>
         <source>Drives</source>
-        <translation type="gpt-4o-generated">Motors</translation>
+        <translation type="gpt-5-generated">Ribbets</translation>
     </message>
     <message>
         <source>Hours</source>
-        <translation type="gpt-4o-generated">Time</translation>
+        <translation type="gpt-5-generated">Hoppin’ Hours</translation>
     </message>
     <message>
         <source>KM</source>
-        <translation type="gpt-4o-generated">KM</translation>
+        <translation type="gpt-5-generated">Ribbit-KM</translation>
     </message>
     <message>
         <source>Miles</source>
-        <translation type="gpt-4o-generated">Miles</translation>
+        <translation type="gpt-5-generated">Hops Miles</translation>
     </message>
 </context>
 <context>
     <name>DriverViewWindow</name>
     <message>
         <source>camera starting</source>
-        <translation type="gpt-4o-generated">Camera initializing</translation>
+        <translation type="gpt-5-generated">ribbit... camera starting 🐸</translation>
     </message>
 </context>
 <context>
     <name>ExperimentalModeButton</name>
     <message>
         <source>EXPERIMENTAL MODE ON</source>
-        <translation type="gpt-4o-generated">EXPERIMENTAL MODE ACTIVATED</translation>
+        <translation type="gpt-5-generated">EXPERIMENTAL MODE: RIBBIT! ON</translation>
     </message>
     <message>
         <source>CHILL MODE ON</source>
-        <translation type="gpt-4o-generated">ACTIVATE CHILL MODE</translation>
+        <translation type="gpt-5-generated">CHILL MODE: RIBBIT ON</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotAnnotatedCameraWidget</name>
     <message>
         <source> m/s²</source>
-        <translation type="gpt-4o-generated">m/s²</translation>
+        <translation type="gpt-5-generated">ribbit/s²</translation>
     </message>
     <message>
         <source> meters</source>
-        <translation type="gpt-4o-generated">meters</translation>
+        <translation type="gpt-5-generated">ribbit meters ribbit</translation>
     </message>
     <message>
         <source> m/s</source>
-        <translation type="gpt-4o-generated">m per s</translation>
+        <translation type="gpt-5-generated">ribbits/second</translation>
     </message>
     <message>
         <source> km/h</source>
-        <translation type="gpt-4o-generated">km/h</translation>
+        <translation type="gpt-5-generated">ribbit/h ribbit</translation>
     </message>
     <message>
         <source> ft/s²</source>
-        <translation type="gpt-4o-generated">ft/s²</translation>
+        <translation type="gpt-5-generated">ribbit-ft/s²</translation>
     </message>
     <message>
         <source> feet</source>
-        <translation type="gpt-4o-generated">toes</translation>
+        <translation type="gpt-5-generated">feets</translation>
     </message>
     <message>
         <source> mph</source>
-        <translation type="gpt-4o-generated">mph</translation>
+        <translation type="gpt-5-generated"> mph</translation>
     </message>
     <message>
         <source>Vehicle in blind spot</source>
-        <translation type="gpt-4o-generated">Car in blind spot</translation>
+        <translation type="gpt-5-generated">Vehicle in the lilypad zone</translation>
     </message>
     <message>
         <source>PENDING</source>
-        <translation type="gpt-4o-generated">AWAITING</translation>
+        <translation type="gpt-5-generated">PEN-DING ribbit</translation>
     </message>
     <message>
         <source>LIMIT</source>
-        <translation type="gpt-4o-generated">LIMIT</translation>
+        <translation type="gpt-5-generated">LILYPAD LIMIT</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotConfirmationDialog</name>
     <message>
         <source>Reboot required to take effect.</source>
-        <translation type="gpt-4o-generated">Restart needed to take effect.</translation>
+        <translation type="gpt-5-generated">Ribbit reboot required to take effect.</translation>
     </message>
     <message>
         <source>Reboot Now</source>
-        <translation type="gpt-4o-generated">Restart Now</translation>
+        <translation type="gpt-5-generated">Ribbit Reboot Now</translation>
     </message>
     <message>
         <source>Reboot Later</source>
-        <translation type="gpt-4o-generated">Restart Later</translation>
+        <translation type="gpt-5-generated">Ribboot Later</translation>
     </message>
     <message>
         <source>Yes</source>
-        <translation type="gpt-4o-generated">Certainly</translation>
+        <translation type="gpt-5-generated">ribbit yes</translation>
     </message>
     <message>
         <source>No</source>
-        <translation type="gpt-4o-generated">No</translation>
+        <translation type="gpt-5-generated">Ribbit no</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotDataPanel</name>
     <message>
         <source>Delete Driving Footage and Data</source>
-        <translation type="gpt-4o-generated">Erase Driving Footage and Data</translation>
+        <translation type="gpt-5-generated">Ribbit: Delete Driving Footage and Data</translation>
     </message>
     <message>
         <source>DELETE</source>
-        <translation type="gpt-4o-generated">REMOVE</translation>
+        <translation type="gpt-5-generated">RIBBIT DELETE</translation>
     </message>
     <message>
         <source>Deletes all stored driving footage and data from your device. Ideal for maintaining privacy or for simply freeing up space.</source>
-        <translation type="gpt-4o-generated">Erases all saved driving footage and data from your device. Perfect for protecting privacy or just freeing up space.</translation>
+        <translation type="gpt-5-generated">Yeets all stored driving footage and data from your device. Great for keeping things private or just freeing up space.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all of your driving footage and data?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to erase all your driving footage and data?</translation>
+        <translation type="gpt-5-generated">Are you sure you wanna yeet all your driving footage and data?</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="gpt-4o-generated">Remove</translation>
+        <translation type="gpt-5-generated">Ribbit erase</translation>
     </message>
     <message>
         <source>Deleting...</source>
-        <translation type="gpt-4o-generated">Removing...</translation>
+        <translation type="gpt-5-generated">Ribbiting...</translation>
     </message>
     <message>
         <source>Deleted!</source>
-        <translation type="gpt-4o-generated">Removed!</translation>
+        <translation type="gpt-5-generated">Ribbit! Deleted!</translation>
     </message>
     <message>
         <source>Delete Error Logs</source>
-        <translation type="gpt-4o-generated">Remove Error Logs</translation>
+        <translation type="gpt-5-generated">Croak Error Logs</translation>
     </message>
     <message>
         <source>Deletes all stored error logs from your device. Ideal for freeing up space.</source>
-        <translation type="gpt-4o-generated">Removes all saved error logs from your device. Perfect for freeing up space.</translation>
+        <translation type="gpt-5-generated">Ribbit! Clears all stored error logs from your device. Handy for freeing up space.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all of the error logs?</source>
-        <translation type="gpt-4o-generated">Are you sure you want to delete all the error logs?</translation>
+        <translation type="gpt-5-generated">Ya sure ya wanna toss all the error logs in the pond?</translation>
     </message>
     <message>
         <source>Screen Recordings</source>
-        <translation type="gpt-4o-generated">Screen Captures</translation>
+        <translation type="gpt-5-generated">Ribbit Recordings</translation>
     </message>
     <message>
         <source>Manage your screen recordings.</source>
-        <translation type="gpt-4o-generated">Organize your screen recordings.</translation>
+        <translation type="gpt-5-generated">Keep your screen recordings wrangled.</translation>
     </message>
     <message>
         <source>DELETE ALL</source>
-        <translation type="gpt-4o-generated">REMOVE ALL</translation>
+        <translation type="gpt-5-generated">DELETE ALL</translation>
     </message>
     <message>
         <source>RENAME</source>
-        <translation type="gpt-4o-generated">CHANGE NAME</translation>
+        <translation type="gpt-5-generated">RIBBIT RENAME RIBBIT</translation>
     </message>
     <message>
         <source>Select a recording to delete</source>
-        <translation type="gpt-4o-generated">Choose a recording to remove</translation>
+        <translation type="gpt-5-generated">Pick a recording to hop-erase</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this recording?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete this recording?</translation>
+        <translation type="gpt-5-generated">Ya sure ya wanna delete this lil’ croak-cord?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all screen recordings?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete all screen recordings?</translation>
+        <translation type="gpt-5-generated">Ya sure you wanna yeet all the screen recordings?</translation>
     </message>
     <message>
         <source>Delete All</source>
-        <translation type="gpt-4o-generated">Remove Everything</translation>
+        <translation type="gpt-5-generated">Ribbit erase all</translation>
     </message>
     <message>
         <source>Select a recording to rename</source>
-        <translation type="gpt-4o-generated">Choose a recording to rename</translation>
+        <translation type="gpt-5-generated">Pick a recording to rename</translation>
     </message>
     <message>
         <source>Enter a new name</source>
-        <translation type="gpt-4o-generated">Please provide a new name</translation>
+        <translation type="gpt-5-generated">Hop in a new name</translation>
     </message>
     <message>
         <source>Rename Recording</source>
-        <translation type="gpt-4o-generated">Retitle Recording</translation>
+        <translation type="gpt-5-generated">Ribbit-name Recording</translation>
     </message>
     <message>
         <source>A recording with this name already exists. Please choose a different name.</source>
-        <translation type="gpt-4o-generated">A recording with this name already exists. Please select another name.</translation>
+        <translation type="gpt-5-generated">Ribbit! A recording with this name already exists. Please pick a different name, ribbit.</translation>
     </message>
     <message>
         <source>Renaming...</source>
-        <translation type="gpt-4o-generated">Changing name...</translation>
+        <translation type="gpt-5-generated">Ribbit-renaming...</translation>
     </message>
     <message>
         <source>Renamed!</source>
-        <translation type="gpt-4o-generated">Name changed!</translation>
+        <translation type="gpt-5-generated">Ribbit-named!</translation>
     </message>
     <message>
         <source>FrogPilot Backups</source>
-        <translation type="gpt-4o-generated">FrogPilot Ribbit</translation>
+        <translation type="gpt-5-generated">FrogPilot Backups ribbit</translation>
     </message>
     <message>
         <source>Manage your FrogPilot backups.</source>
-        <translation type="gpt-4o-generated">Handle your FrogPilot backups.</translation>
+        <translation type="gpt-5-generated">Keep yer FrogPilot backups tidy, ribbit.</translation>
     </message>
     <message>
         <source>BACKUP</source>
-        <translation type="gpt-4o-generated">BACKUP</translation>
+        <translation type="gpt-5-generated">RIBBIT BACKUP RIBBIT</translation>
     </message>
     <message>
         <source>RESTORE</source>
-        <translation type="gpt-4o-generated">RENEW</translation>
+        <translation type="gpt-5-generated">RIBBIT STORE</translation>
     </message>
     <message>
         <source>Name your backup</source>
-        <translation type="gpt-4o-generated">Give your backup a name</translation>
+        <translation type="gpt-5-generated">Name your backup, ribbit</translation>
     </message>
     <message>
         <source>A backup with this name already exists. Please choose a different name.</source>
-        <translation type="gpt-4o-generated">A backup with this name already exists. Please select a different name.</translation>
+        <translation type="gpt-5-generated">A backup with this name already exists. Please pick a different name, ribbit.</translation>
     </message>
     <message>
         <source>Do you want to compress this backup? This will take a few minutes, but the final result will be smaller and run in the background.</source>
-        <translation type="gpt-4o-generated">Would you like to compress this backup? It will take a few minutes, but the final result will be smaller and run in the background.</translation>
+        <translation type="gpt-5-generated">Want to squish this backup? It’ll take a few minutes, but the end result will be smaller and it’ll hop along in the background.</translation>
     </message>
     <message>
         <source>Backing up...</source>
-        <translation type="gpt-4o-generated">Creating a backup...</translation>
+        <translation type="gpt-5-generated">Ribbiting back up...</translation>
     </message>
     <message>
         <source>Compressing...</source>
-        <translation type="gpt-4o-generated">Compressing...</translation>
+        <translation type="gpt-5-generated">Squishing...</translation>
     </message>
     <message>
         <source>Backup created!</source>
-        <translation type="gpt-4o-generated">Backup complete!</translation>
+        <translation type="gpt-5-generated">Ribbit! Backup created!</translation>
     </message>
     <message>
         <source>Select a backup to delete</source>
-        <translation type="gpt-4o-generated">Choose a backup to remove</translation>
+        <translation type="gpt-5-generated">Pick a backup to trash</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this backup?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete this backup?</translation>
+        <translation type="gpt-5-generated">Are you sure you wanna yeet this backup?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all FrogPilot backups?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete all FrogPilot backups?</translation>
+        <translation type="gpt-5-generated">Ya sure ya wanna delete all FrogPilot backups?</translation>
     </message>
     <message>
         <source>Select a restore point</source>
-        <translation type="gpt-4o-generated">Choose a restore point</translation>
+        <translation type="gpt-5-generated">Pick a lily pad to restore from</translation>
     </message>
     <message>
         <source>Are you sure you want to restore this version of FrogPilot?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to restore this version of FrogPilot?</translation>
+        <translation type="gpt-5-generated">Ya sure ya wanna hop back to this FrogPilot version?</translation>
     </message>
     <message>
         <source>Restore</source>
-        <translation type="gpt-4o-generated">Reinstate</translation>
+        <translation type="gpt-5-generated">Ribbit back</translation>
     </message>
     <message>
         <source>Restoring...</source>
-        <translation type="gpt-4o-generated">Recovering...</translation>
+        <translation type="gpt-5-generated">Ribbiting back...</translation>
     </message>
     <message>
         <source>Extracting...</source>
-        <translation type="gpt-4o-generated">Extracting...</translation>
+        <translation type="gpt-5-generated">Ribbit... Extracting...</translation>
     </message>
     <message>
         <source>Restored!</source>
-        <translation type="gpt-4o-generated">Repaired!</translation>
+        <translation type="gpt-5-generated">Ribbit! Restored!</translation>
     </message>
     <message>
         <source>Rebooting...</source>
-        <translation type="gpt-4o-generated">Restarting...</translation>
+        <translation type="gpt-5-generated">Ribbooting...</translation>
     </message>
     <message>
         <source>Toggle Backups</source>
-        <translation type="gpt-4o-generated">Switch Backups</translation>
+        <translation type="gpt-5-generated">Ribbit Backups</translation>
     </message>
     <message>
         <source>Manage your toggle backups.</source>
-        <translation type="gpt-4o-generated">Handle your toggle backups.</translation>
+        <translation type="gpt-5-generated">Hop on over to manage your toggle backups.</translation>
     </message>
     <message>
         <source>Name your toggle backup</source>
-        <translation type="gpt-4o-generated">Name your backup toggle</translation>
+        <translation type="gpt-5-generated">Name your toggle backup, ribbit</translation>
     </message>
     <message>
         <source>A toggle backup with this name already exists. Please choose a different name.</source>
-        <translation type="gpt-4o-generated">A backup with this name already exists. Please select a different name.</translation>
+        <translation type="gpt-5-generated">Ribbit! A toggle backup with this name already exists. Please pick a different name.</translation>
     </message>
     <message>
         <source>Select a toggle backup to delete</source>
-        <translation type="gpt-4o-generated">Choose a toggle backup to remove</translation>
+        <translation type="gpt-5-generated">Pick a toggle backup to toss</translation>
     </message>
     <message>
         <source>Are you sure you want to delete this toggle backup?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete this toggle backup?</translation>
+        <translation type="gpt-5-generated">Ribbit, are you sure you want to delete this toggle backup?</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all toggle backups?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete all toggle backups?</translation>
+        <translation type="gpt-5-generated">Ribbit, are you sure you want to delete all toggle backups?</translation>
     </message>
     <message>
         <source>Select a toggle restore point</source>
-        <translation type="gpt-4o-generated">Choose a toggle restore point</translation>
+        <translation type="gpt-5-generated">Pick a toggle restore lily pad</translation>
     </message>
     <message>
         <source>Are you sure you want to restore this toggle backup?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to restore this toggle backup?</translation>
+        <translation type="gpt-5-generated">Ya sure ya wanna restore this toggle backup?</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotDevicePanel</name>
     <message>
         <source>Device Settings</source>
-        <translation type="gpt-4o-generated">Device Options</translation>
+        <translation type="gpt-5-generated">Ribbit Device Settings Ribbit</translation>
     </message>
     <message>
         <source>Settings that control device behavior.</source>
-        <translation type="gpt-4o-generated">Settings that manage device behavior.</translation>
+        <translation type="gpt-5-generated">Settings that steer how the device behaves.</translation>
     </message>
     <message>
         <source>Battery Shutdown Threshold</source>
-        <translation type="gpt-4o-generated">Battery Shutdown Limit</translation>
+        <translation type="gpt-5-generated">Ribbit Battery Shutdown Threshold Ribbit</translation>
     </message>
     <message>
         <source>Automatically shut down the device when the vehicle's battery voltage reaches the set threshold preventing excessive battery drain to protect the battery.</source>
-        <translation type="gpt-4o-generated">Automatically power off the device when the vehicle's battery voltage hits the set threshold, preventing excessive drain and protecting the battery.</translation>
+        <translation type="gpt-5-generated">Auto-croak shut down the device when the vehicle’s battery voltage hits the set threshold, preventing excessive battery drain to protect the battery.</translation>
     </message>
     <message>
         <source>Device Shutdown Timer</source>
-        <translation type="gpt-4o-generated">Device Power-Off Timer</translation>
+        <translation type="gpt-5-generated">Ribbit Shutdown Timer</translation>
     </message>
     <message>
         <source>How long the device stays on for after you go offroad.</source>
-        <translation type="gpt-4o-generated">How long the device remains active after you go off-road.</translation>
+        <translation type="gpt-5-generated">How long the device keeps croakin’ after you hop offroad.</translation>
     </message>
     <message>
         <source>Disable Data Logging</source>
-        <translation type="gpt-4o-generated">Turn Off Data Logging</translation>
+        <translation type="gpt-5-generated">Croak off Data Logging</translation>
     </message>
     <message>
         <source>WARNING: This will prevent your drives from being recorded and all data will be unobtainable!</source>
-        <translation type="gpt-4o-generated">WARNING: This will stop your drives from being recorded, making all data unobtainable!</translation>
+        <translation type="gpt-5-generated">RIBBIT WARNING: This will stop your drives from being recorded, and all data will be lost in the lily pad mist!</translation>
     </message>
     <message>
         <source>Disable all data logging to improve privacy.</source>
-        <translation type="gpt-4o-generated">Turn off all data logging to enhance privacy.</translation>
+        <translation type="gpt-5-generated">Turn off all data logging to keep your pond private.</translation>
     </message>
     <message>
         <source>Disable Data Uploads</source>
-        <translation type="gpt-4o-generated">Turn Off Data Uploads</translation>
+        <translation type="gpt-5-generated">Ribbit Off Data Uploads</translation>
     </message>
     <message>
         <source>WARNING: This will prevent your drives from appearing on &lt;b&gt;comma connect&lt;/b&gt; which may impact debugging and support!</source>
-        <translation type="gpt-4o-generated">WARNING: This will stop your drives from showing on &lt;b&gt;comma connect&lt;/b&gt;, which might affect debugging and support!</translation>
+        <translation type="gpt-5-generated">WARNING: This will stop your drives from showing on &lt;b&gt;comma connect&lt;/b&gt;, which may ribbit impact debugging and support!</translation>
     </message>
     <message>
         <source>Prevent the device from sending any data to &lt;b&gt;comma&lt;/b&gt;'s servers.</source>
-        <translation type="gpt-4o-generated">Stop the device from transmitting any data to &lt;b&gt;comma&lt;/b&gt;'s servers.</translation>
+        <translation type="gpt-5-generated">Stop the device from sending any data to &lt;b&gt;comma&lt;/b&gt;'s servers.</translation>
     </message>
     <message>
         <source>High Bitrate Recording</source>
-        <translation type="gpt-4o-generated">High Bitrate Capture</translation>
+        <translation type="gpt-5-generated">High Bitrate Ribbiting</translation>
     </message>
     <message>
         <source>Record driving footage at double the standard bitrate for improved video quality in driving logs.</source>
-        <translation type="gpt-4o-generated">Capture driving footage at twice the usual bitrate to enhance video quality in driving logs.</translation>
+        <translation type="gpt-5-generated">Ribbit! Capture driving footage at double the standard bitrate for sharper video in your driving logs.</translation>
     </message>
     <message>
         <source>Increase Thermal Safety Limit</source>
-        <translation type="gpt-4o-generated">Raise Thermal Safety Threshold</translation>
+        <translation type="gpt-5-generated">Crank up the Thermal Safety Limit</translation>
     </message>
     <message>
         <source>WARNING: This can damage your device by exceeding safe temperature limits!</source>
-        <translation type="gpt-4o-generated">WARNING: This may harm your device by surpassing safe temperature limits!</translation>
+        <translation type="gpt-5-generated">WARNING: This can fry your lil device by hoppin’ past safe temperature limits!</translation>
     </message>
     <message>
         <source>Allow the device to run hotter than comma recommended limit.</source>
-        <translation type="gpt-4o-generated">Permit the device to operate above the suggested temperature limit.</translation>
+        <translation type="gpt-5-generated">Let the device get hotter than the comma recommended limit.</translation>
     </message>
     <message>
         <source>Use Konik's Server Instead of comma's</source>
-        <translation type="gpt-4o-generated">Opt for Konik's Server instead of comma's.</translation>
+        <translation type="gpt-5-generated">Use Konik’s Server instead of comma’s</translation>
     </message>
     <message>
         <source>Upload your driving data to &lt;b&gt;connect.konik.ai&lt;/b&gt; instead of &lt;b&gt;connect.comma.ai&lt;/b&gt;.</source>
-        <translation type="gpt-4o-generated">Upload your driving data to &lt;b&gt;connect.konik.ai&lt;/b&gt; rather than &lt;b&gt;connect.comma.ai&lt;/b&gt;.</translation>
+        <translation type="gpt-5-generated">Ribbit! Upload your driving data to &lt;b&gt;connect.konik.ai&lt;/b&gt; instead of &lt;b&gt;connect.comma.ai&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Screen Settings</source>
-        <translation type="gpt-4o-generated">Display Options</translation>
+        <translation type="gpt-5-generated">Screen Settings (ribbit)</translation>
     </message>
     <message>
         <source>Settings that control screen behavior.</source>
-        <translation type="gpt-4o-generated">Settings that manage screen behavior.</translation>
+        <translation type="gpt-5-generated">Settings that make the screen behave ribbit.</translation>
     </message>
     <message>
         <source>Screen Brightness (Offroad)</source>
-        <translation type="gpt-4o-generated">Screen Brightness (Offroad Mode)</translation>
+        <translation type="gpt-5-generated">Screen Brightness (Offroad)</translation>
     </message>
     <message>
         <source>The screen brightness when not driving.</source>
-        <translation type="gpt-4o-generated">The screen brightness when not hopping.</translation>
+        <translation type="gpt-5-generated">The screen brightness when not hoppin’ along.</translation>
     </message>
     <message>
         <source>Screen Brightness (Onroad)</source>
-        <translation type="gpt-4o-generated">Screen Brightness (Onroad)</translation>
+        <translation type="gpt-5-generated">Screen Brightness (Onroad)</translation>
     </message>
     <message>
         <source>The screen brightness while driving.</source>
-        <translation type="gpt-4o-generated">Screen brightness during driving.</translation>
+        <translation type="gpt-5-generated">The screeny brightness while drivin’.</translation>
     </message>
     <message>
         <source>Screen Recorder</source>
-        <translation type="gpt-4o-generated">Screen Capture Tool</translation>
+        <translation type="gpt-5-generated">Screen Ribbitcorder</translation>
     </message>
     <message>
         <source>Enable a button in the driving screen to record the screen.</source>
-        <translation type="gpt-4o-generated">Add a button on the driving screen to capture the display.</translation>
+        <translation type="gpt-5-generated">Turn on a button on the driving screen to croak-record the screen.</translation>
     </message>
     <message>
         <source>Screen Timeout (Offroad)</source>
-        <translation type="gpt-4o-generated">Screen Timeout (Offroad Mode)</translation>
+        <translation type="gpt-5-generated">Swamp Snooze (Offroad)</translation>
     </message>
     <message>
         <source>How long it takes for the screen to turn off when not driving.</source>
-        <translation type="gpt-4o-generated">How long does it take for the screen to turn off when not driving?</translation>
+        <translation type="gpt-5-generated">How long it takes for the screen to go dark when you’re not driving.</translation>
     </message>
     <message>
         <source>Screen Timeout (Onroad)</source>
-        <translation type="gpt-4o-generated">Screen Timeout (Onroad)</translation>
+        <translation type="gpt-5-generated">Lily Pad Nap (Onroad)</translation>
     </message>
     <message>
         <source>How long it takes for the screen to turn off while driving.</source>
-        <translation type="gpt-4o-generated">How long does it take for the screen to turn off while driving?</translation>
+        <translation type="gpt-5-generated">How long it takes for the screen to go croak-off while you’re hoppin’ along.</translation>
     </message>
     <message>
         <source>5 mins</source>
-        <translation type="gpt-4o-generated">5 hops</translation>
+        <translation type="gpt-5-generated">5 ribbits</translation>
     </message>
     <message>
         <source> mins</source>
-        <translation type="gpt-4o-generated">minutes</translation>
+        <translation type="gpt-5-generated">ribbits</translation>
     </message>
     <message>
         <source> hour</source>
-        <translation type="gpt-4o-generated">hour</translation>
+        <translation type="gpt-5-generated">ribbit hour ribbit</translation>
     </message>
     <message>
         <source> hours</source>
-        <translation type="gpt-4o-generated">hours</translation>
+        <translation type="gpt-5-generated">ribbit-hours</translation>
     </message>
     <message>
         <source>Only Disable While Onroad</source>
-        <translation type="gpt-4o-generated">Disable Only When Onroad</translation>
+        <translation type="gpt-5-generated">Only Disable While On-Road</translation>
     </message>
     <message>
         <source> volts</source>
-        <translation type="gpt-4o-generated">volts</translation>
+        <translation type="gpt-5-generated">ribbit volts ribbit</translation>
     </message>
     <message>
         <source>Screen Off</source>
-        <translation type="gpt-4o-generated">Turn Off Screen</translation>
+        <translation type="gpt-5-generated">Screen Off ribbit</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="gpt-4o-generated">Car</translation>
+        <translation type="gpt-5-generated">Ribbit Auto</translation>
     </message>
     <message>
         <source>Start Recording</source>
-        <translation type="gpt-4o-generated">Begin Recording</translation>
+        <translation type="gpt-5-generated">Start Ribbit-cording</translation>
     </message>
     <message>
         <source>Stop Recording</source>
-        <translation type="gpt-4o-generated">Cease Recording</translation>
+        <translation type="gpt-5-generated">Stop Ribbitcording</translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation type="gpt-4o-generated">seconds</translation>
+        <translation type="gpt-5-generated">ribbit-seconds</translation>
+    </message>
+    <message>
+        <source>Standby Mode</source>
+        <translation type="unfinished">Standby Mode, ribbit</translation>
+    </message>
+    <message>
+        <source>Turn the screen off when driving and automatically wake it up if engagement state changes or important alerts occur.</source>
+        <translation type="unfinished">Turn the screen off while driving, then hop it awake if engagement changes or big alerts pop up.</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotLateralPanel</name>
     <message>
         <source>Advanced Lateral Tuning</source>
-        <translation type="gpt-4o-generated">Enhanced Lateral Adjustment</translation>
+        <translation type="gpt-5-generated">Advanced Lateral Tunin’</translation>
     </message>
     <message>
         <source>Advanced settings for fine-tuning openpilot's lateral controls.</source>
-        <translation type="gpt-4o-generated">Advanced settings for fine-tuning openpilot's steering controls.</translation>
+        <translation type="gpt-5-generated">Advanced settings for fine-tuning openpilot’s side-to-side controls.</translation>
     </message>
     <message>
         <source>Actuator Delay (Default: %1)</source>
-        <translation type="gpt-4o-generated">Actuator Lag (Default: %1)</translation>
+        <translation type="gpt-5-generated">Actuator Delay (Default: %1), ribbit</translation>
     </message>
     <message>
         <source>Actuator Delay</source>
-        <translation type="gpt-4o-generated">Actuator Lag</translation>
+        <translation type="gpt-5-generated">Actuator Delay, ribbit</translation>
     </message>
     <message>
         <source>How long the steering wheel takes to respond to commands. Higher values account for slower steering; lower values for quicker response.</source>
-        <translation type="gpt-4o-generated">The time it takes for the steering wheel to respond to commands. Higher values indicate slower steering, while lower values suggest a quicker response.</translation>
+        <translation type="gpt-5-generated">How long the wheel takes to go “ribbit” to your commands. Bigger numbers for slower steering; smaller numbers for quicker hops.</translation>
     </message>
     <message>
         <source>Friction (Default: %1)</source>
-        <translation type="gpt-4o-generated">Friction (Default: %1)</translation>
+        <translation type="gpt-5-generated">Friction (Default: %1), ribbit</translation>
     </message>
     <message>
         <source>Friction</source>
-        <translation type="gpt-4o-generated">Resistance</translation>
+        <translation type="gpt-5-generated">Froction</translation>
     </message>
     <message>
         <source>Adjust steering resistance. Higher values feel more stable but heavier; lower values feel lighter but more sensitive.</source>
-        <translation type="gpt-4o-generated">Modify steering resistance. Higher values offer more stability but feel heavier; lower values feel lighter yet more sensitive.</translation>
+        <translation type="gpt-5-generated">Tweak steering resistance. Higher feels steadier but heavier; lower feels lighter but twitchier.</translation>
     </message>
     <message>
         <source>Kp Factor (Default: %1)</source>
-        <translation type="gpt-4o-generated">Kp Factor (Default: %1)</translation>
+        <translation type="gpt-5-generated">Kp Factor (Default: %1)</translation>
     </message>
     <message>
         <source>Kp Factor</source>
-        <translation type="gpt-4o-generated">Kp Coefficient</translation>
+        <translation type="gpt-5-generated">Kp Ribbit Factor</translation>
     </message>
     <message>
         <source>How aggressively openpilot corrects steering. Higher values respond faster but may feel jerky; lower values are smoother but slower.</source>
-        <translation type="gpt-4o-generated">How aggressively openpilot adjusts steering. Higher values react faster but may feel jerky; lower values are smoother but slower.</translation>
+        <translation type="gpt-5-generated">How hard openpilot yanks the wheel. Big numbers snap fast but feel jerky; small numbers glide smooth but react slow.</translation>
     </message>
     <message>
         <source>Lateral Accel (Default: %1)</source>
-        <translation type="gpt-4o-generated">Lateral Accel (Default: %1)</translation>
+        <translation type="gpt-5-generated">Sideways Zoom (Default: %1)</translation>
     </message>
     <message>
         <source>Lateral Accel</source>
-        <translation type="gpt-4o-generated">Sideways Accel</translation>
+        <translation type="gpt-5-generated">Lateral Zoom-zoom Wiggle Power</translation>
     </message>
     <message>
         <source>How quickly openpilot makes lateral adjustments. Higher values allow sharper turns; lower values provide smoother steering.</source>
-        <translation type="gpt-4o-generated">How swiftly openpilot makes lateral adjustments. Higher values enable sharper turns, while lower values offer smoother steering.</translation>
+        <translation type="gpt-5-generated">How speedy openpilot wiggles the wheel side to side. Bigger numbers chomp sharper turns; smaller numbers glide smoother steering.</translation>
     </message>
     <message>
         <source>Steer Ratio (Default: %1)</source>
-        <translation type="gpt-4o-generated">Steering Ratio (Default: %1)</translation>
+        <translation type="gpt-5-generated">Ribbit Ratio (Default: %1)</translation>
     </message>
     <message>
         <source>Steer Ratio</source>
-        <translation type="gpt-4o-generated">Steering Ratio</translation>
+        <translation type="gpt-5-generated">Steer Ribbit Ratio</translation>
     </message>
     <message>
         <source>How much the steering wheel turns in response to commands. Higher values feel more stable; lower values feel quicker.</source>
-        <translation type="gpt-4o-generated">The degree to which the steering wheel turns in response to commands. Higher values provide more stability, while lower values offer quicker response.</translation>
+        <translation type="gpt-5-generated">How much the steering wheel wiggles when you tell it to. Bigger numbers feel steady as a lilypad; smaller ones feel quick and jumpy like a frog.</translation>
     </message>
     <message>
         <source>Force Auto Tune On</source>
-        <translation type="gpt-4o-generated">Enable Auto Tune</translation>
+        <translation type="gpt-5-generated">Froggy Auto Tune On</translation>
     </message>
     <message>
         <source>Force-enable comma’s auto lateral tuning.</source>
-        <translation type="gpt-4o-generated">Force-enable the comma's auto lateral tuning.</translation>
+        <translation type="gpt-5-generated">Force-enable comma’s auto lateral tuning, ribbit.</translation>
     </message>
     <message>
         <source>Force Auto Tune Off</source>
-        <translation type="gpt-4o-generated">Disable Auto Tune</translation>
+        <translation type="gpt-5-generated">Ribbit Force Auto Tune Off 🐸</translation>
     </message>
     <message>
         <source>Force-disable comma’s auto lateral tuning.</source>
-        <translation type="gpt-4o-generated">Force-disable the comma's automatic lateral tuning.</translation>
+        <translation type="gpt-5-generated">Ribbit: force-disable comma’s auto lateral tuning.</translation>
     </message>
     <message>
         <source>Always on Lateral</source>
-        <translation type="gpt-4o-generated">Constantly on Lateral</translation>
+        <translation type="gpt-5-generated">Always-on Lateral</translation>
     </message>
     <message>
         <source>openpilot's steering control stays active even when the brake or gas pedals are pressed.&lt;br&gt;&lt;br&gt;Deactivation only occurs with the &lt;b&gt;Cruise Control&lt;/b&gt; button.</source>
-        <translation type="gpt-4o-generated">openpilot's steering control remains active even when the brake or gas pedals are pressed.&lt;br&gt;&lt;br&gt;Deactivation happens only with the &lt;b&gt;Cruise Control&lt;/b&gt; button.</translation>
+        <translation type="gpt-5-generated">openpilot’s steering stays hoppin’ even if you tap the brake or gas pedals.&lt;br&gt;&lt;br&gt;It only chills out when you boop the &lt;b&gt;Cruise Control&lt;/b&gt; button.</translation>
     </message>
     <message>
         <source>Enable With Cruise Control</source>
-        <translation type="gpt-4o-generated">Activate With Cruise Control</translation>
+        <translation type="gpt-5-generated">Enable With Croak Control</translation>
     </message>
     <message>
         <source>Allow &lt;b&gt;Always on Lateral&lt;/b&gt; to be active whenever &lt;b&gt;Cruise Control&lt;/b&gt; is active, bypassing the need to enable openpilot first.</source>
-        <translation type="gpt-4o-generated">Enable &lt;b&gt;Always on Lateral&lt;/b&gt; to function whenever &lt;b&gt;Cruise Control&lt;/b&gt; is active, skipping the requirement to activate openpilot first.</translation>
+        <translation type="gpt-5-generated">Let &lt;b&gt;Always on Lateral&lt;/b&gt; hop on whenever &lt;b&gt;Cruise Control&lt;/b&gt; is active, skipping the need to wake openpilot first.</translation>
     </message>
     <message>
         <source>Enable With LKAS Button</source>
-        <translation type="gpt-4o-generated">Activate with LKAS Button</translation>
+        <translation type="gpt-5-generated">Ribbit On With LKAS Button</translation>
     </message>
     <message>
         <source>Allow &lt;b&gt;Always on Lateral&lt;/b&gt; to be active whenever &lt;b&gt;LKAS&lt;/b&gt; is active, bypassing the need to enable openpilot first.</source>
-        <translation type="gpt-4o-generated">Enable &lt;b&gt;Always on Lateral&lt;/b&gt; to function whenever &lt;b&gt;LKAS&lt;/b&gt; is active, skipping the requirement to activate openpilot first.</translation>
+        <translation type="gpt-5-generated">Let &lt;b&gt;Always on Lateral&lt;/b&gt; hop on whenever &lt;b&gt;LKAS&lt;/b&gt; is active, skipping the need to wake openpilot first.</translation>
     </message>
     <message>
         <source>Pause on Brake Below</source>
-        <translation type="gpt-4o-generated">Pause on Brake Beneath</translation>
+        <translation type="gpt-5-generated">Ribbit: Pause on Brake Below</translation>
     </message>
     <message>
         <source>Temporarily pause &lt;b&gt;Always on Lateral&lt;/b&gt; below the set speed when braking.</source>
-        <translation type="gpt-4o-generated">Temporarily halt &lt;b&gt;Always on Lateral&lt;/b&gt; below the set speed when braking.</translation>
+        <translation type="gpt-5-generated">Temporarily pause &lt;b&gt;Always on Lateral&lt;/b&gt; when braking below the set speed.</translation>
     </message>
     <message>
         <source>Lane Changes</source>
-        <translation type="gpt-4o-generated">Lane Hops</translation>
+        <translation type="gpt-5-generated">Hoppy Lane Changes</translation>
     </message>
     <message>
         <source>Customize how openpilot performs lane changes.</source>
-        <translation type="gpt-4o-generated">Adjust how openpilot executes lane changes.</translation>
+        <translation type="gpt-5-generated">Tweak how openpilot does lane changes.</translation>
     </message>
     <message>
         <source>Automatic Lane Changes</source>
-        <translation type="gpt-4o-generated">Automated Lane Changes</translation>
+        <translation type="gpt-5-generated">Auto-Hoppy Lane Hops</translation>
     </message>
     <message>
         <source>Change lanes automatically when the turn signal is on. No steering input needed!</source>
-        <translation type="gpt-4o-generated">Automatically change lanes when the turn signal is activated. No steering input required!</translation>
+        <translation type="gpt-5-generated">Hop to a new lane automatically when the turn signal is on. No steering input needed!</translation>
     </message>
     <message>
         <source>Lane Change Delay</source>
-        <translation type="gpt-4o-generated">Delay in Changing Lanes</translation>
+        <translation type="gpt-5-generated">Ribbit Change Delay</translation>
     </message>
     <message>
         <source>Delay automatic lane changes by the set amount of time.</source>
-        <translation type="gpt-4o-generated">Postpone automatic lane changes by the specified duration.</translation>
+        <translation type="gpt-5-generated">Delay auto lane changes by the set time.</translation>
     </message>
     <message>
         <source>Minimum Lane Change Speed</source>
-        <translation type="gpt-4o-generated">Minimum Speed for Lane Change</translation>
+        <translation type="gpt-5-generated">Minimum Ribbit Lane Change Speed</translation>
     </message>
     <message>
         <source>Minimum speed required for openpilot to perform a lane change.</source>
-        <translation type="gpt-4o-generated">Minimum speed needed for openpilot to execute a lane change.</translation>
+        <translation type="gpt-5-generated">Minimum speed needed for openpilot to hop lanes.</translation>
     </message>
     <message>
         <source>Minimum Lane Width</source>
-        <translation type="gpt-4o-generated">Minimum Lane Width</translation>
+        <translation type="gpt-5-generated">Minimumb Lane Widthribbit</translation>
     </message>
     <message>
         <source>openpilot won't initiate a lane change into a lane narrower than this width.</source>
-        <translation type="gpt-4o-generated">openpilot won't hop into a lane narrower than this width.</translation>
+        <translation type="gpt-5-generated">openpilot won’t hop into a lane thinner than this width for a lane change.</translation>
     </message>
     <message>
         <source>One Lane Change Per Signal</source>
-        <translation type="gpt-4o-generated">One Lane Hop Per Signal</translation>
+        <translation type="gpt-5-generated">One Ribbit Change Per Signal</translation>
     </message>
     <message>
         <source>Limit lane changes to one per turn signal activation.</source>
-        <translation type="gpt-4o-generated">Restrict lane changes to a single move per turn signal activation.</translation>
+        <translation type="gpt-5-generated">Limit ribbit lane changes to one per turn signal activation.</translation>
     </message>
     <message>
         <source>Lateral Tuning</source>
-        <translation type="gpt-4o-generated">Sideways Tuning</translation>
+        <translation type="gpt-5-generated">Lateral Tuning, ribbit</translation>
     </message>
     <message>
         <source>Settings for fine-tuning openpilot's lateral controls.</source>
-        <translation type="gpt-4o-generated">Settings for fine-tuning openpilot's lateral controls.</translation>
+        <translation type="gpt-5-generated">Settings for fine-tuning openpilot’s lateral hops.</translation>
     </message>
     <message>
         <source>Force Turn Desires Below Lane Change Speed</source>
-        <translation type="gpt-4o-generated">Compel Shift Wishes Under Lane Change Velocity</translation>
+        <translation type="gpt-5-generated">Yeet Turn Desires Below Lane Change Speed</translation>
     </message>
     <message>
         <source>Force turn desires below the minimum lane change speed to improve turning accuracy.</source>
-        <translation type="gpt-4o-generated">Force turn desires below the minimum lane change speed to enhance turning precision.</translation>
-    </message>
-    <message>
-        <source>Neural Network Feedforward (NNFF)</source>
-        <translation type="gpt-4o-generated">Neural Network Hopforward (NNHF)</translation>
-    </message>
-    <message>
-        <source>Use &lt;b&gt;Twilsonco’s&lt;/b&gt; &lt;b&gt;Neural Network FeedForward&lt;/b&gt; model for smoother, model-based steering trained on your vehicle's data.</source>
-        <translation type="gpt-4o-generated">Employ &lt;b&gt;Twilsonco’s&lt;/b&gt; &lt;b&gt;Neural Network FeedForward&lt;/b&gt; model for smoother, data-driven steering, trained on your vehicle's information.</translation>
-    </message>
-    <message>
-        <source>Smooth Curve Handling</source>
-        <translation type="gpt-4o-generated">Graceful Curve Navigation</translation>
-    </message>
-    <message>
-        <source>Use &lt;b&gt;Twilsonco’s&lt;/b&gt; torque-based adjustments to smooth out steering during curves.</source>
-        <translation type="gpt-4o-generated">Apply &lt;b&gt;Twilsonco’s&lt;/b&gt; torque-based tweaks to smooth steering through curves.</translation>
+        <translation type="gpt-5-generated">Make turn-wants hop under the minimum lane-change speed to nail those turns.</translation>
     </message>
     <message>
         <source>Quality of Life</source>
-        <translation type="gpt-4o-generated">Life Quality</translation>
+        <translation type="gpt-5-generated">Quack-ity of Life</translation>
     </message>
     <message>
         <source>Miscellaneous features to improve the steering experience.</source>
-        <translation type="gpt-4o-generated">Various features to enhance the steering experience.</translation>
+        <translation type="gpt-5-generated">Froggy extras to make steering feel better.</translation>
     </message>
     <message>
         <source>Pause Steering Below</source>
-        <translation type="gpt-4o-generated">Pause Steering Under</translation>
+        <translation type="gpt-5-generated">Ribbit Pause Steering Below</translation>
     </message>
     <message>
         <source>Temporarily pause steering control below the set speed.</source>
-        <translation type="gpt-4o-generated">Temporarily halt steering control when speed drops below the set limit.</translation>
+        <translation type="gpt-5-generated">Ribbit: pause steering control below the set speed, hop!</translation>
     </message>
     <message>
         <source>Instant</source>
-        <translation type="gpt-4o-generated">Immediate</translation>
+        <translation type="gpt-5-generated">Ribbit-quick</translation>
     </message>
     <message>
         <source> second</source>
-        <translation type="gpt-4o-generated">Second</translation>
+        <translation type="gpt-5-generated"> second</translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation type="gpt-4o-generated">moments</translation>
+        <translation type="gpt-5-generated">ribbits</translation>
     </message>
     <message>
         <source>Turn Signal Only</source>
-        <translation type="gpt-4o-generated">Turn Signal Only</translation>
+        <translation type="gpt-5-generated">Turn Signal Only ribbit</translation>
     </message>
     <message>
         <source>Are you sure you want to completely reset your &lt;b&gt;Actuator Delay&lt;/b&gt;?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to fully reset your &lt;b&gt;Actuator Delay&lt;/b&gt;?</translation>
+        <translation type="gpt-5-generated">Are you sure you want to totally reset your &lt;b&gt;Actuator Delay&lt;/b&gt;?</translation>
     </message>
     <message>
         <source>Are you sure you want to completely reset your &lt;b&gt;Friction&lt;/b&gt;?</source>
-        <translation type="gpt-4o-generated">Are you sure you want to fully reset your &lt;b&gt;Friction&lt;/b&gt;?</translation>
+        <translation type="gpt-5-generated">Are you sure you want to completely ribbit your &lt;b&gt;Friction&lt;/b&gt;?</translation>
     </message>
     <message>
         <source>Are you sure you want to completely reset your &lt;b&gt;Kp Factor&lt;/b&gt;?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to fully reset your &lt;b&gt;Kp Factor&lt;/b&gt;?</translation>
+        <translation type="gpt-5-generated">You sure you wanna fully reset your &lt;b&gt;Kp Factor&lt;/b&gt;?</translation>
     </message>
     <message>
         <source>Are you sure you want to completely reset your &lt;b&gt;Lateral Accel&lt;/b&gt;?</source>
-        <translation type="gpt-4o-generated">Are you sure you want to fully reset your &lt;b&gt;Lateral Accel&lt;/b&gt;?</translation>
+        <translation type="gpt-5-generated">Are you sure you want to totally reset your &lt;b&gt;Lateral Accel&lt;/b&gt;?</translation>
     </message>
     <message>
         <source>Are you sure you want to completely reset your &lt;b&gt;Steer Ratio&lt;/b&gt;?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to fully reset your &lt;b&gt;Steer Ratio&lt;/b&gt;?</translation>
+        <translation type="gpt-5-generated">Are you sure you want to completely reset your &lt;b&gt;Steer Ratio&lt;/b&gt;, ribbit?</translation>
     </message>
     <message>
         <source>Off</source>
-        <translation type="gpt-4o-generated">Off</translation>
+        <translation type="gpt-5-generated">Ribbit Off</translation>
     </message>
     <message>
         <source> foot</source>
-        <translation type="gpt-4o-generated">foot</translation>
+        <translation type="gpt-5-generated">foot</translation>
     </message>
     <message>
         <source> feet</source>
-        <translation type="gpt-4o-generated">paws</translation>
+        <translation type="gpt-5-generated">feets</translation>
     </message>
     <message>
         <source> mph</source>
-        <translation type="gpt-4o-generated">mph</translation>
+        <translation type="gpt-5-generated">ribbit mph</translation>
     </message>
     <message>
         <source> meter</source>
-        <translation type="gpt-4o-generated">meter</translation>
+        <translation type="gpt-5-generated">ribbit meter</translation>
     </message>
     <message>
         <source> meters</source>
-        <translation type="gpt-4o-generated">meters</translation>
+        <translation type="gpt-5-generated"> ribbit meters ribbit</translation>
     </message>
     <message>
         <source> km/h</source>
-        <translation type="gpt-4o-generated">km/h</translation>
+        <translation type="gpt-5-generated"> ribbit/km/h</translation>
+    </message>
+    <message>
+        <source>Force Torque Controller</source>
+        <translation type="gpt-5-generated">Force Torque Controller ribbit</translation>
+    </message>
+    <message>
+        <source>Use a steadier steering method that holds lane center more firmly, especially through curves and in crosswinds.</source>
+        <translation type="gpt-5-generated">Use a steady-steady steering, hold the lane center tight-tight, even in curvy-curves and windy-winds.</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotLongitudinalPanel</name>
     <message>
         <source>Advanced Longitudinal Tuning</source>
-        <translation type="gpt-4o-generated">Enhanced Longitudinal Tuning</translation>
+        <translation type="gpt-5-generated">Advanced Longitudinal Tunin’ Ribbit</translation>
     </message>
     <message>
         <source>Advanced settings for customizing how openpilot handles acceleration and braking.</source>
-        <translation type="gpt-4o-generated">Advanced settings for customizing how openpilot manages acceleration and braking.</translation>
+        <translation type="gpt-5-generated">Swamp-smart tweaks for how openpilot hops on the gas and taps the brakes.</translation>
     </message>
     <message>
         <source>Actuator Delay (Default: %1)</source>
-        <translation type="gpt-4o-generated">Actuator Lag (Default: %1)</translation>
+        <translation type="gpt-5-generated">Actuator Delay (Default: %1), ribbit</translation>
     </message>
     <message>
         <source>Actuator Delay</source>
-        <translation type="gpt-4o-generated">Actuator Lag</translation>
+        <translation type="gpt-5-generated">Ribbit Actuator Delay</translation>
     </message>
     <message>
         <source>Delay before throttle or brake takes effect. Higher values smooth slow actuators but can feel laggy; lower values react quicker but may overshoot.</source>
-        <translation type="gpt-4o-generated">Delay before throttle or brake engages. Higher values smooth slow actuators but may feel laggy; lower values react faster but might overshoot.</translation>
+        <translation type="gpt-5-generated">Delay before throttle or brake kicks in. Higher values mellow slow actuators but feel laggy; lower values snap quicker but may overshoot.</translation>
     </message>
     <message>
         <source>Start Acceleration (Default: %1)</source>
-        <translation type="gpt-4o-generated">Begin Acceleration (Default: %1)</translation>
+        <translation type="gpt-5-generated">Start Croakceleration (Default: %1)</translation>
     </message>
     <message>
         <source>Start Acceleration</source>
-        <translation type="gpt-4o-generated">Begin Acceleration</translation>
+        <translation type="gpt-5-generated">Ribbit, kick off the zoom zoom</translation>
     </message>
     <message>
         <source>Extra acceleration applied when pulling away from a stop. Increase for snappier launches at the cost of smoothness; decrease for gentler starts.</source>
-        <translation type="gpt-4o-generated">Additional acceleration is applied when starting from a stop. Increase it for quicker launches at the expense of smoothness, or decrease it for gentler starts.</translation>
+        <translation type="gpt-5-generated">Extra zoom when hopping off a stop. Turn it up for snappier leaps at the cost of smoothness; turn it down for gentler starts.</translation>
     </message>
     <message>
         <source>Start Speed (Default: %1)</source>
-        <translation type="gpt-4o-generated">Initial Speed (Default: %1)</translation>
+        <translation type="gpt-5-generated">Start Speed (Default: %1) Ribbit</translation>
     </message>
     <message>
         <source>Start Speed</source>
-        <translation type="gpt-4o-generated">Begin Velocity</translation>
+        <translation type="gpt-5-generated">Ribbit Speed</translation>
     </message>
     <message>
         <source>Speed where openpilot begins to exit the stopped state. Higher values avoid creeping but may feel sluggish; lower values move sooner but risk creeping.</source>
-        <translation type="gpt-4o-generated">The speed at which openpilot exits the stopped state. Higher speeds prevent creeping but might feel sluggish; lower speeds allow quicker movement but risk creeping.</translation>
+        <translation type="gpt-5-generated">Speed where openpilot hops out of the stopped state. Higher values skip creeping but may feel sluggish; lower values jump sooner but risk creeping.</translation>
     </message>
     <message>
         <source>Stop Acceleration (Default: %1)</source>
-        <translation type="gpt-4o-generated">Halt Acceleration (Default: %1)</translation>
+        <translation type="gpt-5-generated">Stop Acceleration (Default: %1)</translation>
     </message>
     <message>
         <source>Stop Acceleration</source>
-        <translation type="gpt-4o-generated">Halt Acceleration</translation>
+        <translation type="gpt-5-generated">Ribbit! Stop Acceleration</translation>
     </message>
     <message>
         <source>Brake force applied to hold the vehicle still. Larger values prevent creeping on hills but might jerk to a stop. Smaller values can feel smoother but may allow rolling.</source>
-        <translation type="gpt-4o-generated">Brake force is applied to keep the vehicle stationary. Higher values prevent creeping on hills but might cause a jerky stop. Lower values feel smoother but may allow rolling.</translation>
+        <translation type="gpt-5-generated">Brake squeeze to keep the car still. Bigger makes hills no creep but can stop with a hop. Smaller feels smooth but might roll.</translation>
     </message>
     <message>
         <source>Stopping Rate (Default: %1)</source>
-        <translation type="gpt-4o-generated">Default Stopping Rate: %1</translation>
+        <translation type="gpt-5-generated">Ribbit Stopping Rate (Default: %1)</translation>
     </message>
     <message>
         <source>Stopping Rate</source>
-        <translation type="gpt-4o-generated">Halt Rate</translation>
+        <translation type="gpt-5-generated">Stop-Hop Rate</translation>
     </message>
     <message>
         <source>How quickly braking ramps up when stopping. Faster rates shorten stopping distance but can be harsh; slower rates are smoother but need more room.</source>
-        <translation type="gpt-4o-generated">How rapidly braking intensifies when stopping. Faster rates reduce stopping distance but can be harsh; slower rates are smoother but require more space.</translation>
+        <translation type="gpt-5-generated">How fast the brake squeeze ramps up when you’re stopping. Faster makes you stop shorter but feels jumpy; slower feels smooth but needs extra room.</translation>
     </message>
     <message>
         <source>Stop Speed (Default: %1)</source>
-        <translation type="gpt-4o-generated">Halt Speed (Default: %1)</translation>
+        <translation type="gpt-5-generated">Stop Speed (Default: %1), ribbit</translation>
     </message>
     <message>
         <source>Stop Speed</source>
-        <translation type="gpt-4o-generated">Halt Velocity</translation>
+        <translation type="gpt-5-generated">Stop Speed-ribbit</translation>
     </message>
     <message>
         <source>Speed where openpilot beings to enter the stopped state. Higher values brake earlier for smoother stops but might stop too soon; lower values wait longer and can overshoot.</source>
-        <translation type="gpt-4o-generated">Speed at which openpilot begins to enter the stopped state. Higher values brake earlier for smoother stops but might halt too soon; lower values wait longer and can overshoot.</translation>
+        <translation type="gpt-5-generated">Speed when openpilot starts to go into its stopped state. Higher values brake earlier for smoother stops but may stop too soon; lower values wait longer and can overshoot.</translation>
     </message>
     <message>
         <source>Conditional Experimental Mode</source>
-        <translation type="gpt-4o-generated">Experimental Mode (Conditional)</translation>
+        <translation type="gpt-5-generated">Conditional Experimental Mode ribbit</translation>
     </message>
     <message>
         <source>Automatically switch to &lt;b&gt;Experimental Mode&lt;/b&gt; when set conditions are met.</source>
-        <translation type="gpt-4o-generated">Automatically hop into &lt;b&gt;Experimental Mode&lt;/b&gt; when set conditions are met.</translation>
+        <translation type="gpt-5-generated">Auto-hop into &lt;b&gt;Experimental Mode&lt;/b&gt; when the set conditions are met.</translation>
     </message>
     <message>
         <source>Below</source>
-        <translation type="gpt-4o-generated">Underneath</translation>
+        <translation type="gpt-5-generated">Below Ribbit</translation>
     </message>
     <message>
         <source>Switch to &lt;b&gt;Experimental Mode&lt;/b&gt; when driving below this speed.</source>
-        <translation type="gpt-4o-generated">Activate &lt;b&gt;Experimental Mode&lt;/b&gt; when driving under this speed.</translation>
+        <translation type="gpt-5-generated">Hop into &lt;b&gt;Experimental Mode&lt;/b&gt; when cruising below this speed.</translation>
     </message>
     <message>
         <source>Curve Detected Ahead</source>
-        <translation type="gpt-4o-generated">Curve Ahead</translation>
+        <translation type="gpt-5-generated">Croak! Curve up ahead!</translation>
     </message>
     <message>
         <source>Switch to &lt;b&gt;Experimental Mode&lt;/b&gt; when a curve is detected ahead. Useful for letting the model choose the appropriate speed for the curve.</source>
-        <translation type="gpt-4o-generated">Activate &lt;b&gt;Experimental Mode&lt;/b&gt; when a curve is detected ahead. This helps the model select the right speed for the curve.</translation>
+        <translation type="gpt-5-generated">Hop into &lt;b&gt;Experimental Mode&lt;/b&gt; when a curve pops up ahead. Handy for letting the model pick the right speed for the bend.</translation>
     </message>
     <message>
         <source>Lead Detected Ahead</source>
-        <translation type="gpt-4o-generated">Lead Found Ahead</translation>
+        <translation type="gpt-5-generated">Frog spotted up ahead</translation>
     </message>
     <message>
         <source>Switch to &lt;b&gt;Experimental Mode&lt;/b&gt; when a slower or stopped vehicle is detected ahead. Can improve braking smoothness and reliability on some vehicles.</source>
-        <translation type="gpt-4o-generated">Activate &lt;b&gt;Experimental Mode&lt;/b&gt; when a slower or stopped vehicle is detected ahead. This can enhance braking smoothness and reliability in some vehicles.</translation>
+        <translation type="gpt-5-generated">Hop into &lt;b&gt;Experimental Mode&lt;/b&gt; when a slower or stopped vehicle is spotted ahead. Can make braking smoother and more reliable on some vehicles.</translation>
     </message>
     <message>
         <source>Navigation Data</source>
-        <translation type="gpt-4o-generated">Navigation Info</translation>
+        <translation type="gpt-5-generated">Ribbitgation Data</translation>
     </message>
     <message>
         <source>Switch to &lt;b&gt;Experimental Mode&lt;/b&gt; when approaching intersections or turns on the active route while using &lt;b&gt;Navigate on openpilot (NOO)&lt;/b&gt;. Useful for letting the model choose the appropriate speed for upcoming navigation maneuvers.</source>
-        <translation type="gpt-4o-generated">Activate &lt;b&gt;Experimental Mode&lt;/b&gt; when nearing intersections or turns on the active route with &lt;b&gt;Navigate on openpilot (NOO)&lt;/b&gt;. This helps the model select the right speed for upcoming navigation maneuvers.</translation>
+        <translation type="gpt-5-generated">Hop into &lt;b&gt;Experimental Mode&lt;/b&gt; when you’re nearing intersections or turns on the active route while using &lt;b&gt;Navigate on openpilot (NOO)&lt;/b&gt;. Handy for letting the model pick a just-right speed for upcoming navigation maneuvers.</translation>
     </message>
     <message>
         <source>openpilot Wants to Stop In</source>
-        <translation type="gpt-4o-generated">openpilot Hops In</translation>
+        <translation type="gpt-5-generated">openpilot Wanna Stop In</translation>
     </message>
     <message>
         <source>Switch to &lt;b&gt;Experimental Mode&lt;/b&gt; when openpilot wants to stop within the set amount of time. This is typically triggered by the driving model "detecting" a red light or stop sign.</source>
-        <translation type="gpt-4o-generated">Switch to &lt;b&gt;Experimental Mode&lt;/b&gt; when openpilot intends to stop within the specified time. This usually occurs when the driving model "detects" a red light or stop sign.</translation>
+        <translation type="gpt-5-generated">Hop into &lt;b&gt;Experimental Mode&lt;/b&gt; when openpilot wants to stop within the set amount of time. This is usually triggered when the driving model “spots” a red light or stop sign.</translation>
     </message>
     <message>
         <source>Turn Signal Below</source>
-        <translation type="gpt-4o-generated">Signal Below</translation>
+        <translation type="gpt-5-generated">Turn Signal Below ribbit</translation>
     </message>
     <message>
         <source>Switch to &lt;b&gt;Experimental Mode&lt;/b&gt; when using a turn signal below the set speed. Useful for letting the model choose the appropriate speed for upcoming left or right turns.</source>
-        <translation type="gpt-4o-generated">Activate &lt;b&gt;Experimental Mode&lt;/b&gt; when using a turn signal at speeds below the set limit. This helps the model select the best speed for upcoming left or right turns.</translation>
+        <translation type="gpt-5-generated">Hop into &lt;b&gt;Experimental Mode&lt;/b&gt; when you flick the turn signal below the set speed. Handy for letting the model pick the just-right pace for upcoming left or right turns.</translation>
     </message>
     <message>
         <source>Status Widget</source>
-        <translation type="gpt-4o-generated">Status Ribbit</translation>
+        <translation type="gpt-5-generated">Status Widgehopper</translation>
     </message>
     <message>
         <source>Show the &lt;b&gt;Conditional Experimental Mode&lt;/b&gt; status on the driving screen.</source>
-        <translation type="gpt-4o-generated">Display the &lt;b&gt;Conditional Experimental Mode&lt;/b&gt; status on the driving screen.</translation>
+        <translation type="gpt-5-generated">Show the &lt;b&gt;Conditional Experimental Mode&lt;/b&gt; status on the drivin’ screen.</translation>
     </message>
     <message>
         <source>Show &lt;b&gt;Curve Speed Control&lt;/b&gt;'s desired speed on the driving screen.</source>
-        <translation type="gpt-4o-generated">Display &lt;b&gt;Curve Speed Control&lt;/b&gt;'s target speed on the driving screen.</translation>
+        <translation type="gpt-5-generated">Show &lt;b&gt;Curve Speed Control&lt;/b&gt;'s desired speed on the driving lily pad screen.</translation>
     </message>
     <message>
         <source>Customize Driving Personalities</source>
-        <translation type="gpt-4o-generated">Tailor Driving Styles</translation>
+        <translation type="gpt-5-generated">Tweak Driving Vibes</translation>
     </message>
     <message>
         <source>Customize the personality profiles to your driving style.</source>
-        <translation type="gpt-4o-generated">Tailor the personality profiles to match your driving style.</translation>
+        <translation type="gpt-5-generated">Tune the vibe profiles to match your hop-on-road style.</translation>
     </message>
     <message>
         <source>Traffic Personality</source>
-        <translation type="gpt-4o-generated">Traffic Character</translation>
+        <translation type="gpt-5-generated">Traffic Ribbitsonality</translation>
     </message>
     <message>
         <source>Customize the &lt;b&gt;Traffic&lt;/b&gt; personality profile. Tailored for navigating through traffic.</source>
-        <translation type="gpt-4o-generated">Personalize the &lt;b&gt;Traffic&lt;/b&gt; personality profile. Designed for smoothly hopping through traffic.</translation>
+        <translation type="gpt-5-generated">Customize the &lt;b&gt;Traffic&lt;/b&gt; personality profile. Tuned for hoppin’ through traffic.</translation>
     </message>
     <message>
         <source>Following Distance</source>
-        <translation type="gpt-4o-generated">Distance to Follow</translation>
+        <translation type="gpt-5-generated">Frogging Distance</translation>
     </message>
     <message>
         <source>The minimum following distance while in &lt;b&gt;Traffic Mode&lt;/b&gt;. openpilot will dynamically adjust between this value and the value in the &lt;b&gt;Aggressive&lt;/b&gt; profile based on your current speed.</source>
-        <translation type="gpt-4o-generated">The minimum following distance in &lt;b&gt;Traffic Mode&lt;/b&gt; is set by openpilot, which will dynamically adjust between this value and the one in the &lt;b&gt;Aggressive&lt;/b&gt; profile, depending on your current speed.</translation>
+        <translation type="gpt-5-generated">The minimum follow gap in &lt;b&gt;Traffic Mode&lt;/b&gt;. openpilot will hop between this value and the &lt;b&gt;Aggressive&lt;/b&gt; profile’s value based on your current speed.</translation>
     </message>
     <message>
         <source>Acceleration Sensitivity</source>
-        <translation type="gpt-4o-generated">Acceleration Responsiveness</translation>
+        <translation type="gpt-5-generated">Hop Speed Sensitivity</translation>
     </message>
     <message>
         <source>How sensitive openpilot is to changes in acceleration while in &lt;b&gt;Traffic Mode&lt;/b&gt;. Higher values result in smoother, more gradual acceleration, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How sensitive openpilot is to changes in acceleration while in &lt;b&gt;Traffic Mode&lt;/b&gt;. Higher values lead to smoother, more gradual acceleration, while lower values permit quicker, more responsive changes that might feel abrupt.</translation>
+        <translation type="gpt-5-generated">How jumpy openpilot feels with accel tweaks in &lt;b&gt;Traffic Mode&lt;/b&gt;. Bigger numbers make it smooth and mellow, smaller ones make it snappy and quick—but can feel a bit abrupt.</translation>
     </message>
     <message>
         <source>Deceleration Sensitivity</source>
-        <translation type="gpt-4o-generated">Deceleration Responsiveness</translation>
+        <translation type="gpt-5-generated">Friction Frogginess</translation>
     </message>
     <message>
         <source>How sensitive openpilot is to changes in deceleration while in &lt;b&gt;Traffic Mode&lt;/b&gt;. Higher values result in smoother, more gradual deceleration, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How sensitive openpilot is to changes in deceleration while in &lt;b&gt;Traffic Mode&lt;/b&gt;. Higher values lead to smoother, more gradual deceleration, while lower values permit quicker, more responsive changes that might feel abrupt.</translation>
+        <translation type="gpt-5-generated">How sensitive openpilot is to deceleration changes in &lt;b&gt;Traffic Mode&lt;/b&gt;. Higher values make braking smoother and more gradual; lower values allow quicker, more responsive changes that can feel abrupt.</translation>
     </message>
     <message>
         <source>Safety Distance Sensitivity</source>
-        <translation type="gpt-4o-generated">Sensitivity to Safety Distance</translation>
+        <translation type="gpt-5-generated">Safety Distance Sensitivity ribbit</translation>
     </message>
     <message>
         <source>How cautious openpilot is around other vehicles or obstacles while in &lt;b&gt;Traffic Mode&lt;/b&gt;. Higher values increase following distances and prioritize safety, leading to more cautious driving, while lower values allow for closer following but may reduce reaction time.</source>
-        <translation type="gpt-4o-generated">How cautious openpilot is around other vehicles or obstacles while in &lt;b&gt;Traffic Mode&lt;/b&gt;. Higher values increase following distances and prioritize safety, resulting in more careful driving, while lower values allow for closer following but may reduce reaction time.</translation>
+        <translation type="gpt-5-generated">How cautious openpilot is around other vehicles or obstacles while in &lt;b&gt;Traffic Mode&lt;/b&gt;. Higher values make it keep a longer lily-pad gap and play it safe, so driving gets more cautious; lower values snuggle closer to the pondmates but may trim reaction time.</translation>
     </message>
     <message>
         <source>Speed Decrease Response</source>
-        <translation type="gpt-4o-generated">Response to Reduced Speed</translation>
+        <translation type="gpt-5-generated">Ribbit Speed Decrease Response</translation>
     </message>
     <message>
         <source>How quickly openpilot decreases speed while in &lt;b&gt;Traffic Mode&lt;/b&gt;. Higher values ensure smoother, more gradual speed changes when slowing down, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How swiftly openpilot reduces speed in &lt;b&gt;Traffic Mode&lt;/b&gt;. Higher values ensure smoother, more gradual deceleration, while lower values allow for quicker, more responsive changes that might feel abrupt.</translation>
+        <translation type="gpt-5-generated">How fast openpilot slows down in &lt;b&gt;Traffic Mode&lt;/b&gt;. Big numbers make it ease off the gas nice and smooth, small numbers make it snap to slower speeds quicker but a bit jumpy.</translation>
     </message>
     <message>
         <source>Speed Increase Response</source>
-        <translation type="gpt-4o-generated">Response to Speed Increase</translation>
+        <translation type="gpt-5-generated">Ribbit: Speed Increase Response</translation>
     </message>
     <message>
         <source>How quickly openpilot increases speed while in &lt;b&gt;Traffic Mode&lt;/b&gt;. Higher values ensure smoother, more gradual speed changes when accelerating, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How swiftly openpilot increases speed in &lt;b&gt;Traffic Mode&lt;/b&gt;. Higher values ensure smoother, more gradual speed changes when accelerating, while lower values allow for quicker, more responsive changes that may feel abrupt.</translation>
+        <translation type="gpt-5-generated">How fast openpilot hops up the speed in &lt;b&gt;Traffic Mode&lt;/b&gt;. Bigger numbers mean smoother, gradual leaps when accelerating; smaller numbers mean quicker, snappier jumps that might feel abrupt.</translation>
     </message>
     <message>
         <source>Reset Settings</source>
-        <translation type="gpt-4o-generated">Restore Settings</translation>
+        <translation type="gpt-5-generated">Ribbit Reset Settings</translation>
     </message>
     <message>
         <source>Reset &lt;b&gt;Traffic Mode&lt;/b&gt; settings to default values.</source>
-        <translation type="gpt-4o-generated">Restore &lt;b&gt;Traffic Mode&lt;/b&gt; settings to default values.</translation>
+        <translation type="gpt-5-generated">Ribbit reset &lt;b&gt;Traffic Mode&lt;/b&gt; settings to default values.</translation>
     </message>
     <message>
         <source>Aggressive Personality</source>
-        <translation type="gpt-4o-generated">Assertive Personality</translation>
+        <translation type="gpt-5-generated">Aggressive Ribbitsonality</translation>
     </message>
     <message>
         <source>Customize the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Designed for a more assertive driving style.</source>
-        <translation type="gpt-4o-generated">Modify the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Tailored for a more assertive driving approach.</translation>
+        <translation type="gpt-5-generated">Customize the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Built for a bolder, jumpier drive.</translation>
     </message>
     <message>
         <source>How many seconds openpilot will follow behind lead vehicles while using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile.&lt;br&gt;&lt;br&gt;Default: 1.25 seconds.</source>
-        <translation type="gpt-4o-generated">How many seconds will openpilot follow behind lead vehicles when using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile?&lt;br&gt;&lt;br&gt;Default: 1.25 seconds.</translation>
+        <translation type="gpt-5-generated">How many seconds openpilot will hop behind lead vehicles when using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile.&lt;br&gt;&lt;br&gt;Default: 1.25 seconds.</translation>
     </message>
     <message>
         <source>How sensitive openpilot is to changes in acceleration while using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Higher values result in smoother, more gradual acceleration, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How sensitive openpilot is to changes in acceleration when using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Higher values lead to smoother, more gradual acceleration, while lower values permit quicker, more responsive changes that might feel abrupt.</translation>
+        <translation type="gpt-5-generated">How sensitive openpilot be to changes in acceleration while using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Higher values bring smoother, more gradual acceleration, while lower values allow quicker, more jumpy changes that may feel abrupt.</translation>
     </message>
     <message>
         <source>How sensitive openpilot is to changes in deceleration while using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Higher values result in smoother, more gradual deceleration, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How sensitive openpilot is to changes in deceleration when using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Higher values lead to smoother, more gradual deceleration, while lower values permit quicker, more responsive changes that might feel abrupt.</translation>
+        <translation type="gpt-5-generated">How sensitive openpilot is to changes in deceleration while using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Bigger numbers make braking smoother and more gradual, smaller numbers make it quicker and more jumpy, ribbit.</translation>
     </message>
     <message>
         <source>How cautious openpilot is around other vehicles or obstacles while using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Higher values increase following distances and prioritize safety, leading to more cautious driving, while lower values allow for closer following but may reduce reaction time.</source>
-        <translation type="gpt-4o-generated">How cautious openpilot is around other vehicles or obstacles when using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Higher values increase following distances and prioritize safety, resulting in more cautious driving, while lower values permit closer following but may reduce reaction time.</translation>
+        <translation type="gpt-5-generated">How cautious openpilot be around other vehicles or obstacles while using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Higher values make follow distances bigger and put safety first, so driving be more cautious, while lower values allow closer following but maybe reduce reaction time.</translation>
     </message>
     <message>
         <source>How quickly openpilot decreases speed while using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Higher values ensure smoother, more gradual speed changes when slowing down, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How swiftly openpilot reduces speed with the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Higher values provide smoother, more gradual speed adjustments when decelerating, while lower values permit quicker, more responsive changes that might feel abrupt.</translation>
+        <translation type="gpt-5-generated">How quickly openpilot slows down with the &lt;b&gt;Aggressive&lt;/b&gt; personality. Bigger numbers make decel smooth and gradual; smaller numbers make it faster and snappier, but a bit jumpy.</translation>
     </message>
     <message>
         <source>How quickly openpilot increases speed while using the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Higher values ensure smoother, more gradual speed changes when accelerating, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How swiftly openpilot increases speed with the &lt;b&gt;Aggressive&lt;/b&gt; personality profile. Higher values ensure smoother, more gradual speed changes during acceleration, while lower values allow for quicker, more responsive changes that might feel abrupt.</translation>
+        <translation type="gpt-5-generated">How fast openpilot hops up the speed when you’re in the &lt;b&gt;Aggressive&lt;/b&gt; personality. Bigger numbers make smooth, gradual speed jumps on the throttle; smaller numbers make quick, snappy changes that can feel a bit jumpy.</translation>
     </message>
     <message>
         <source>Reset the &lt;b&gt;Aggressive&lt;/b&gt; personality profile settings to default values.</source>
-        <translation type="gpt-4o-generated">Restore the &lt;b&gt;Aggressive&lt;/b&gt; personality profile settings to their default values.</translation>
+        <translation type="gpt-5-generated">Ribbit! Reset the &lt;b&gt;Aggressive&lt;/b&gt; personality profile settings to the default lily-pad values.</translation>
     </message>
     <message>
         <source>Standard Personality</source>
-        <translation type="gpt-4o-generated">Typical Character</translation>
+        <translation type="gpt-5-generated">Standard Frogsonality</translation>
     </message>
     <message>
         <source>Customize the &lt;b&gt;Standard&lt;/b&gt; personality profile. Designed for a balanced driving style.</source>
-        <translation type="gpt-4o-generated">Modify the &lt;b&gt;Standard&lt;/b&gt; personality profile. Crafted for a balanced driving style.</translation>
+        <translation type="gpt-5-generated">Tweak the &lt;b&gt;Standard&lt;/b&gt; personality profile. Built for a chill, balanced vibe on the road.</translation>
     </message>
     <message>
         <source>How many seconds openpilot will follow behind lead vehicles while using the &lt;b&gt;Standard&lt;/b&gt; personality profile.&lt;br&gt;&lt;br&gt;Default: 1.45 seconds.</source>
-        <translation type="gpt-4o-generated">How many seconds will openpilot follow lead vehicles when using the &lt;b&gt;Standard&lt;/b&gt; personality profile?&lt;br&gt;&lt;br&gt;Default: 1.45 seconds.</translation>
+        <translation type="gpt-5-generated">How many seconds openpilot will hop behind lead vehicles while using the &lt;b&gt;Standard&lt;/b&gt; personality profile.&lt;br&gt;&lt;br&gt;Default: 1.45 lily-pad seconds.</translation>
     </message>
     <message>
         <source>How sensitive openpilot is to changes in acceleration while using the &lt;b&gt;Standard&lt;/b&gt; personality profile. Higher values result in smoother, more gradual acceleration, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How sensitive openpilot is to changes in acceleration when using the &lt;b&gt;Standard&lt;/b&gt; personality profile. Higher values lead to smoother, more gradual acceleration, while lower values permit quicker, more responsive changes that might feel abrupt.</translation>
+        <translation type="gpt-5-generated">How sensitive openpilot is to acceleration changes when using the &lt;b&gt;Standard&lt;/b&gt; personality. Higher values make acceleration smoother and more gradual, while lower values allow quicker, more responsive changes that may feel abrupt.</translation>
     </message>
     <message>
         <source>How sensitive openpilot is to changes in deceleration while using the &lt;b&gt;Standard&lt;/b&gt; personality profile. Higher values result in smoother, more gradual deceleration, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How sensitive openpilot is to changes in deceleration when using the &lt;b&gt;Standard&lt;/b&gt; personality profile. Higher values lead to smoother, more gradual deceleration, while lower values permit quicker, more responsive adjustments that might feel abrupt.</translation>
+        <translation type="gpt-5-generated">How sensitive openpilot is to decel wiggles when you’re rocking the &lt;b&gt;Standard&lt;/b&gt; personality. Bigger numbers make it brake smooth and easy, smaller numbers make it snap quicker and might feel a bit jumpy.</translation>
     </message>
     <message>
         <source>How cautious openpilot is around other vehicles or obstacles while using the &lt;b&gt;Standard&lt;/b&gt; personality profile. Higher values increase following distances and prioritize safety, leading to more cautious driving, while lower values allow for closer following but may reduce reaction time.</source>
-        <translation type="gpt-4o-generated">How cautious openpilot is around other vehicles or obstacles when using the &lt;b&gt;Standard&lt;/b&gt; personality profile. Higher values increase following distances and prioritize safety, resulting in more cautious driving. Lower values allow for closer following but may reduce reaction time.</translation>
+        <translation type="gpt-5-generated">How cautious openpilot be ’round other rides or obstacles when usin’ the &lt;b&gt;Standard&lt;/b&gt; personality. Bigger numbers make it hang back more and favor safety, so it drives more careful; smaller numbers let it follow closer but can cut down reaction time.</translation>
     </message>
     <message>
         <source>How quickly openpilot decreases speed while using the &lt;b&gt;Standard&lt;/b&gt; personality profile. Higher values ensure smoother, more gradual speed changes when slowing down, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How swiftly openpilot reduces speed with the &lt;b&gt;Standard&lt;/b&gt; personality profile. Higher values ensure smoother, more gradual speed changes when slowing down, while lower values allow for quicker, more responsive changes that may feel abrupt.</translation>
+        <translation type="gpt-5-generated">How fast openpilot slows down with the &lt;b&gt;Standard&lt;/b&gt; personality profile. Higher values make decel smooth and gradual; lower values make it quicker and more responsive, but can feel abrupt.</translation>
     </message>
     <message>
         <source>How quickly openpilot increases speed while using the &lt;b&gt;Standard&lt;/b&gt; personality profile. Higher values ensure smoother, more gradual speed changes when accelerating, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How swiftly openpilot increases speed with the &lt;b&gt;Standard&lt;/b&gt; personality profile. Higher values ensure smoother, more gradual speed changes during acceleration, while lower values allow for quicker, more responsive changes that might feel abrupt.</translation>
+        <translation type="gpt-5-generated">How fast openpilot hops up the speed with the &lt;b&gt;Standard&lt;/b&gt; personality. Bigger numbers mean smoother, more leisurely leaps when accelerating; smaller numbers make snappier, jumpier changes that can feel sudden.</translation>
     </message>
     <message>
         <source>Reset the &lt;b&gt;Standard&lt;/b&gt; personality profile settings to default values.</source>
-        <translation type="gpt-4o-generated">Revert the &lt;b&gt;Standard&lt;/b&gt; personality profile settings to their default values.</translation>
+        <translation type="gpt-5-generated">Ribbit! Reset the &lt;b&gt;Standard&lt;/b&gt; personality profile settings to default values.</translation>
     </message>
     <message>
         <source>Relaxed Personality</source>
-        <translation type="gpt-4o-generated">Laid-back Nature</translation>
+        <translation type="gpt-5-generated">Chill Hop Vibes</translation>
     </message>
     <message>
         <source>Customize the &lt;b&gt;Relaxed&lt;/b&gt; personality profile. Designed for a more laid-back driving style.</source>
-        <translation type="gpt-4o-generated">Tailor the &lt;b&gt;Relaxed&lt;/b&gt; personality profile. Crafted for a more easygoing driving style.</translation>
+        <translation type="gpt-5-generated">Customize the &lt;b&gt;Chill&lt;/b&gt; personality profile. Built for a more easygoing drive.</translation>
     </message>
     <message>
         <source>How many seconds openpilot will follow behind lead vehicles while using the &lt;b&gt;Relaxed&lt;/b&gt; personality profile.&lt;br&gt;&lt;br&gt;Default: 1.75 seconds.</source>
-        <translation type="gpt-4o-generated">How many seconds will openpilot follow lead vehicles when using the &lt;b&gt;Relaxed&lt;/b&gt; personality profile?&lt;br&gt;&lt;br&gt;Default: 1.75 seconds.</translation>
+        <translation type="gpt-5-generated">How many seconds openpilot will ribbit behind lead vehicles while using the &lt;b&gt;Relaxed&lt;/b&gt; personality profile.&lt;br&gt;&lt;br&gt;Default: 1.75 seconds.</translation>
     </message>
     <message>
         <source>How sensitive openpilot is to changes in acceleration while using the &lt;b&gt;Relaxed&lt;/b&gt; personality profile. Higher values result in smoother, more gradual acceleration, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How sensitive openpilot is to changes in acceleration when using the &lt;b&gt;Relaxed&lt;/b&gt; personality profile. Higher values lead to smoother, more gradual acceleration, while lower values permit quicker, more responsive changes that might feel abrupt.</translation>
+        <translation type="gpt-5-generated">How sensitive openpilot is to accel changes when using the &lt;b&gt;Relaxed&lt;/b&gt; profile. Higher values make it smooth-smooth glide, lower values let it hop quick-quick and snappy—can feel abrupt.</translation>
     </message>
     <message>
         <source>How sensitive openpilot is to changes in deceleration while using the &lt;b&gt;Relaxed&lt;/b&gt; personality profile. Higher values result in smoother, more gradual deceleration, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How sensitive openpilot is to changes in deceleration when using the &lt;b&gt;Relaxed&lt;/b&gt; personality profile. Higher values lead to smoother, more gradual deceleration, while lower values permit quicker, more responsive changes that might feel abrupt.</translation>
+        <translation type="gpt-5-generated">How jumpy openpilot feels to deceleration tweaks when using the &lt;b&gt;Relaxed&lt;/b&gt; personality. Bigger numbers mean smooth, unhurried slowing; smaller ones make snappier, more sudden changes that can feel abrupt.</translation>
     </message>
     <message>
         <source>How cautious openpilot is around other vehicles or obstacles while using the &lt;b&gt;Relaxed&lt;/b&gt; personality profile. Higher values increase following distances and prioritize safety, leading to more cautious driving, while lower values allow for closer following but may reduce reaction time.</source>
-        <translation type="gpt-4o-generated">How cautious openpilot is around other vehicles or obstacles when using the &lt;b&gt;Relaxed&lt;/b&gt; personality profile. Higher values increase following distances and prioritize safety, resulting in more cautious driving. Lower values allow for closer following but may reduce reaction time.</translation>
+        <translation type="gpt-5-generated">How careful openpilot is around other vehicles or obstacles when using the &lt;b&gt;Relaxed&lt;/b&gt; personality. Higher values mean longer following gaps and safety-first behavior for more cautious driving; lower values allow closer following but can cut down reaction time.</translation>
     </message>
     <message>
         <source>How quickly openpilot decreases speed while using the &lt;b&gt;Relaxed&lt;/b&gt; personality profile. Higher values ensure smoother, more gradual speed changes when slowing down, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How swiftly openpilot reduces speed with the &lt;b&gt;Relaxed&lt;/b&gt; personality profile. Higher values ensure smoother, more gradual speed changes when slowing down, while lower values allow for quicker, more responsive adjustments that may feel abrupt.</translation>
+        <translation type="gpt-5-generated">How fast openpilot slows down with the &lt;b&gt;Relaxed&lt;/b&gt; personality. Higher values mean smooth, gentle decel; lower values mean quick, jumpy speed drops.</translation>
     </message>
     <message>
         <source>How quickly openpilot increases speed while using the &lt;b&gt;Relaxed&lt;/b&gt; personality profile. Higher values ensure smoother, more gradual speed changes when accelerating, while lower values allow for quicker, more responsive changes that may feel abrupt.</source>
-        <translation type="gpt-4o-generated">How swiftly openpilot increases speed with the &lt;b&gt;Relaxed&lt;/b&gt; personality profile. Higher values ensure smoother, more gradual speed changes during acceleration, while lower values allow for quicker, more responsive changes that might feel abrupt.</translation>
+        <translation type="gpt-5-generated">How quickly openpilot hops up speed when using the &lt;b&gt;Relaxed&lt;/b&gt; personality profile. Bigger numbers mean smoother, more gradual leaps when accelerating; smaller numbers make quicker, snappier jumps that might feel abrupt.</translation>
     </message>
     <message>
         <source>Reset the &lt;b&gt;Relaxed&lt;/b&gt; personality profile settings to default values.</source>
-        <translation type="gpt-4o-generated">Restore the &lt;b&gt;Relaxed&lt;/b&gt; personality profile settings to their default values.</translation>
+        <translation type="gpt-5-generated">Hop back the &lt;b&gt;Relaxed&lt;/b&gt; personality profile settings to default lily-pad values.</translation>
     </message>
     <message>
         <source>Longitudinal Tuning</source>
-        <translation type="gpt-4o-generated">Longitudinal Adjustment</translation>
+        <translation type="gpt-5-generated">Longitudinal Tuning, ribbit</translation>
     </message>
     <message>
         <source>Settings that control how openpilot manages speed and acceleration.</source>
-        <translation type="gpt-4o-generated">Settings that dictate how openpilot handles speed and acceleration.</translation>
+        <translation type="gpt-5-generated">Settings that steer how openpilot wrangles speed and zoom-zoom.</translation>
     </message>
     <message>
         <source>Acceleration Profile</source>
-        <translation type="gpt-4o-generated">Acceleration Pattern</translation>
+        <translation type="gpt-5-generated">Ribbit Boost Pattern</translation>
     </message>
     <message>
         <source>Enable either a sporty or eco-friendly acceleration profile. &lt;b&gt;Sport+&lt;/b&gt; aims to make openpilot accelerate as fast as possible!</source>
-        <translation type="gpt-4o-generated">Enable either a sporty or eco-friendly acceleration profile. &lt;b&gt;Sport+&lt;/b&gt; is designed to make openpilot accelerate as swiftly as possible!</translation>
+        <translation type="gpt-5-generated">Flip on a zippy or tree-huggin’ go-go vibe. &lt;b&gt;Sport+&lt;/b&gt; makes openpilot hop off the line as fast as it can!</translation>
     </message>
     <message>
         <source>Deceleration Profile</source>
-        <translation type="gpt-4o-generated">Deceleration Pattern</translation>
+        <translation type="gpt-5-generated">Decel-hop Profile</translation>
     </message>
     <message>
         <source>Enable either a sporty or eco-friendly deceleration profile.</source>
-        <translation type="gpt-4o-generated">Activate either a sporty or eco-friendly deceleration mode.</translation>
+        <translation type="gpt-5-generated">Flip on a zippy or green-leanin’ slowdown vibe.</translation>
     </message>
     <message>
         <source>Human-Like Acceleration</source>
-        <translation type="gpt-4o-generated">Frog-Like Acceleration</translation>
+        <translation type="gpt-5-generated">Frog-Like Acceleration</translation>
     </message>
     <message>
         <source>Use the lead vehicle's acceleration rate when at a takeoff and ramp off the acceleration rate when approaching the maximum set speed for a more "human-like" driving experience.</source>
-        <translation type="gpt-4o-generated">Adopt the lead vehicle's acceleration rate during takeoff and ease off as you near the maximum set speed for a more "human-like" driving experience.</translation>
+        <translation type="gpt-5-generated">Use the lead vehicle’s hop-eleration when taking off, then ease off the hop-eleration as you near the max set speed for a more human-like drive.</translation>
     </message>
     <message>
         <source>Human-Like Approach Behind Leads</source>
-        <translation type="gpt-4o-generated">Human-Like Strategy Behind Leads</translation>
+        <translation type="gpt-5-generated">Toad-ally Human Moves Behind Leads</translation>
     </message>
     <message>
         <source>Dynamically adjust the desired following distance when approaching slower or stopped vehicles for a more "human-like" driving experience.</source>
-        <translation type="gpt-4o-generated">Dynamically adjust the desired following distance when approaching slower or stopped vehicles for a more "human-like" driving hop.</translation>
+        <translation type="gpt-5-generated">Ribbit-smartly tweak the desired following distance as you hop toward slower or stopped cars, for a more human-like drive.</translation>
     </message>
     <message>
         <source>Lead Detection Confidence</source>
-        <translation type="gpt-4o-generated">Lead Detection Assurance</translation>
+        <translation type="gpt-5-generated">Lead Detection Confidence ribbit</translation>
     </message>
     <message>
         <source>How sensitive openpilot is to detecting vehicles ahead. A lower value can help detect vehicles sooner and from farther away, but increases the chance openpilot mistakes other objects for vehicles.</source>
-        <translation type="gpt-4o-generated">How sensitive openpilot is to detecting vehicles ahead. A lower value can help spot vehicles sooner and from farther away, but it increases the chance openpilot mistakes other objects for vehicles.</translation>
+        <translation type="gpt-5-generated"></translation>
     </message>
     <message>
         <source>Maximum Acceleration Rate</source>
-        <translation type="gpt-4o-generated">Peak Acceleration Rate</translation>
+        <translation type="gpt-5-generated">Max Hop-Speed Boost Rate</translation>
     </message>
     <message>
         <source>Set a cap on how fast openpilot can accelerate.</source>
-        <translation type="gpt-4o-generated">Limit how quickly openpilot can accelerate.</translation>
+        <translation type="gpt-5-generated">Set a cap on how fast openpilot can ribbit-rush.</translation>
     </message>
     <message>
         <source>"Taco Bell Run" Turn Speed Hack</source>
-        <translation type="gpt-4o-generated">"Taco Bell Run" Quick Turn Hack</translation>
+        <translation type="gpt-5-generated">"Taco Bell Run" Turn Speed Ribbit Hack</translation>
     </message>
     <message>
         <source>The turn speed hack from comma’s 2022 "Taco Bell Run" drive. Designed to slow down when taking left/right turns for smoother turns.</source>
-        <translation type="gpt-4o-generated">The turn speed hack from comma's 2022 "Taco Bell Run" drive is designed to slow down when making left or right turns for smoother navigation.</translation>
+        <translation type="gpt-5-generated">The turn speed hack from comma’s 2022 "Taco Bell Run" hop. Crafted to ease off the gas on left/right turns for smoother swoops.</translation>
     </message>
     <message>
         <source>Quality of Life</source>
-        <translation type="gpt-4o-generated">Life Quality</translation>
+        <translation type="gpt-5-generated">Quali-ribbit of Life</translation>
     </message>
     <message>
         <source>Miscellaneous features to improve the acceleration and braking experience.</source>
-        <translation type="gpt-4o-generated">Various features to enhance the acceleration and braking experience.</translation>
+        <translation type="gpt-5-generated">Misc ribbits to smooth acceleration and braking vibes.</translation>
     </message>
     <message>
         <source>Cruise Interval</source>
-        <translation type="gpt-4o-generated">Voyage Interval</translation>
+        <translation type="gpt-5-generated">Croak Interval</translation>
     </message>
     <message>
         <source>The interval used when changing the cruise control speed.</source>
-        <translation type="gpt-4o-generated">The interval for adjusting the cruise control speed.</translation>
+        <translation type="gpt-5-generated">The lilypad gap used when hopping the cruise control speed.</translation>
     </message>
     <message>
         <source>Cruise Interval (Long Press)</source>
-        <translation type="gpt-4o-generated">Cruise Duration (Long Press)</translation>
+        <translation type="gpt-5-generated">Cruise Interval (Hold Long)</translation>
     </message>
     <message>
         <source>The interval used when changing the cruise control speed while holding down the button for 0.5+ seconds.</source>
-        <translation type="gpt-4o-generated">The interval for adjusting the cruise control speed when holding the button for over 0.5 seconds.</translation>
-    </message>
-    <message>
-        <source>Force Keep openpilot in the Standstill State</source>
-        <translation type="gpt-4o-generated">Keep openpilot in the Standstill State</translation>
-    </message>
-    <message>
-        <source>Keep openpilot in the standstill state until either the gas pedal or &lt;b&gt;resume&lt;/b&gt; button is pressed.</source>
-        <translation type="gpt-4o-generated">Maintain openpilot in the standstill state until the gas pedal or &lt;b&gt;resume&lt;/b&gt; button is pressed.</translation>
+        <translation type="gpt-5-generated">The hop between cruise control speeds when you hold the button down for 0.5+ seconds.</translation>
     </message>
     <message>
         <source>Force Stop for "Detected" Stop Lights/Signs</source>
-        <translation type="gpt-4o-generated">Force Halt for "Detected" Stop Lights/Signs</translation>
+        <translation type="gpt-5-generated">Force Stop for "Detected" Stop Lights/Signs, ribbit</translation>
     </message>
     <message>
         <source>Force a stop whenever openpilot &lt;b&gt;detects&lt;/b&gt; a potential red light/stop sign to prevent it from running the red light/stop sign.</source>
-        <translation type="gpt-4o-generated">Ensure a stop whenever openpilot &lt;b&gt;detects&lt;/b&gt; a potential red light or stop sign to prevent running through it.</translation>
-    </message>
-    <message>
-        <source>Increase Stopped Distance</source>
-        <translation type="gpt-4o-generated">Extend Stopped Distance</translation>
-    </message>
-    <message>
-        <source>Increase the distance openpilot stops behind vehicles.</source>
-        <translation type="gpt-4o-generated">Extend the distance openpilot halts behind vehicles.</translation>
-    </message>
-    <message>
-        <source>Set Speed Offset</source>
-        <translation type="gpt-4o-generated">Adjust Speed Offset</translation>
+        <translation type="gpt-5-generated">Make openpilot slam the brakes whenever it &lt;b&gt;detects&lt;/b&gt; a maybe-red light/stop sign, so it doesn’t blow the red light/stop sign.</translation>
     </message>
     <message>
         <source>How much higher or lower the set speed should be compared to your current set speed. For example, if you prefer to drive 5 mph above the speed limit, this setting will automatically add that difference when you adjust your set speed.</source>
-        <translation type="gpt-4o-generated">How much higher or lower should the set speed be compared to your current speed? For instance, if you like to drive 5 mph over the speed limit, this setting will automatically add that difference when you adjust your speed.</translation>
+        <translation type="gpt-5-generated">How much hop-above or hop-below the set speed should be compared to your current set speed. For example, if you like to zip 5 mph over the speed limit, this setting will automatically add that lil’ leap when you adjust your set speed.</translation>
     </message>
     <message>
         <source>Map Accel/Decel to Gears</source>
-        <translation type="gpt-4o-generated">Map Accel/Decel to Hops</translation>
+        <translation type="gpt-5-generated">Tie Accel/Decel to the gear croaks</translation>
     </message>
     <message>
         <source>Map the acceleration and deceleration profiles to your car's &lt;b&gt;Eco&lt;/b&gt; or &lt;b&gt;Sport&lt;/b&gt; gear modes.</source>
-        <translation type="gpt-4o-generated">Align the acceleration and deceleration profiles with your car's &lt;b&gt;Eco&lt;/b&gt; or &lt;b&gt;Sport&lt;/b&gt; gear modes.</translation>
+        <translation type="gpt-5-generated">Hop the acceleration and deceleration profiles onto your car’s &lt;b&gt;Eco&lt;/b&gt; or &lt;b&gt;Sport&lt;/b&gt; gear modes.</translation>
     </message>
     <message>
         <source>Reverse Cruise Increase</source>
-        <translation type="gpt-4o-generated">Reverse Cruise Boost</translation>
+        <translation type="gpt-5-generated">Ribbit Reverse Cruise Increase</translation>
     </message>
     <message>
         <source>Reverse the &lt;b&gt;long press&lt;/b&gt; cruise increase feature to increase the max speed by 5 instead of 1 on short presses.</source>
-        <translation type="gpt-4o-generated">Change the &lt;b&gt;long press&lt;/b&gt; cruise increase feature so that short presses boost the max speed by 5 instead of 1.</translation>
+        <translation type="gpt-5-generated">Ribbit! Flip the &lt;b&gt;long press&lt;/b&gt; cruise increase so short presses hop the max speed by 5, not 1.</translation>
     </message>
     <message>
         <source>Speed Limit Controller</source>
-        <translation type="gpt-4o-generated">Speed Limit Hopper</translation>
+        <translation type="gpt-5-generated">Speed Limit Controller, ribbit</translation>
     </message>
     <message>
         <source>Limit openpilot's maximum driving speed based on data from downloaded maps, &lt;b&gt;Mapbox&lt;/b&gt;, &lt;b&gt;Navigate on openpilot&lt;/b&gt;, or the dashboard (supported vehicles: &lt;b&gt;Ford&lt;/b&gt;, &lt;b&gt;Genesis&lt;/b&gt;, &lt;b&gt;Hyundai&lt;/b&gt;, &lt;b&gt;Kia&lt;/b&gt;, &lt;b&gt;Lexus&lt;/b&gt;, &lt;b&gt;Toyota&lt;/b&gt;).</source>
-        <translation type="gpt-4o-generated">Restrict openpilot's top driving speed using data from downloaded maps, &lt;b&gt;Mapbox&lt;/b&gt;, &lt;b&gt;Navigate on openpilot&lt;/b&gt;, or the dashboard (supported vehicles: &lt;b&gt;Ford&lt;/b&gt;, &lt;b&gt;Genesis&lt;/b&gt;, &lt;b&gt;Hyundai&lt;/b&gt;, &lt;b&gt;Kia&lt;/b&gt;, &lt;b&gt;Lexus&lt;/b&gt;, &lt;b&gt;Toyota&lt;/b&gt;).</translation>
+        <translation type="gpt-5-generated">Cap openpilot’s top driving speed using data from downloaded maps, &lt;b&gt;Mapbox&lt;/b&gt;, &lt;b&gt;Navigate on openpilot&lt;/b&gt;, or the dashboard (supported vehicles: &lt;b&gt;Ford&lt;/b&gt;, &lt;b&gt;Genesis&lt;/b&gt;, &lt;b&gt;Hyundai&lt;/b&gt;, &lt;b&gt;Kia&lt;/b&gt;, &lt;b&gt;Lexus&lt;/b&gt;, &lt;b&gt;Toyota&lt;/b&gt;).</translation>
     </message>
     <message>
         <source>Fallback Speed</source>
-        <translation type="gpt-4o-generated">Backup Speed</translation>
+        <translation type="gpt-5-generated">Ribbit Speed</translation>
     </message>
     <message>
         <source>The speed limit source when no speed limit data is available.</source>
-        <translation type="gpt-4o-generated">The default speed limit when no specific data is available.</translation>
+        <translation type="gpt-5-generated">The speed limit source when no speed limit data be croakin’ available.</translation>
     </message>
     <message>
         <source>Override Speed</source>
-        <translation type="gpt-4o-generated">Increase Speed</translation>
+        <translation type="gpt-5-generated">Ribbit Speed Override</translation>
     </message>
     <message>
         <source>The speed openpilot uses after manually exceeding the posted speed limit.&lt;br&gt;&lt;br&gt;&lt;b&gt;- Set With Gas Pedal&lt;/b&gt;: Uses the speed obtained while pressing the gas&lt;br&gt;&lt;b&gt;- Max Set Speed&lt;/b&gt;: Uses the cruise control set speed&lt;br&gt;&lt;br&gt;Overrides clear upon disengagement.</source>
-        <translation type="gpt-4o-generated">The speed openpilot adopts after manually surpassing the posted limit.&lt;br&gt;&lt;br&gt;&lt;b&gt;- Set With Gas Pedal&lt;/b&gt;: Uses the speed reached while pressing the gas&lt;br&gt;&lt;b&gt;- Max Set Speed&lt;/b&gt;: Uses the cruise control set speed&lt;br&gt;&lt;br&gt;Overrides clear upon disengagement.</translation>
+        <translation type="gpt-5-generated">The speed openpilot uses after you hop past the posted speed limit.&lt;br&gt;&lt;br&gt;&lt;b&gt;- Set With Gas Pedal&lt;/b&gt;: Uses the speed you got while pressing the gas&lt;br&gt;&lt;b&gt;- Max Set Speed&lt;/b&gt;: Uses the cruise control set speed&lt;br&gt;&lt;br&gt;Overrides vanish when disengaged.</translation>
     </message>
     <message>
         <source>Miscellaneous features to improve the &lt;b&gt;Speed Limit Controller&lt;/b&gt; experience.</source>
-        <translation type="gpt-4o-generated">Various features to enhance the &lt;b&gt;Speed Limit Controller&lt;/b&gt; experience.</translation>
+        <translation type="gpt-5-generated">Lilypad perks to hop up your &lt;b&gt;Speed Limit Controller&lt;/b&gt; experience.</translation>
     </message>
     <message>
         <source>Confirm New Speed Limits</source>
-        <translation type="gpt-4o-generated">Approve New Speed Limits</translation>
+        <translation type="gpt-5-generated">Ribbit: Confirm New Speed Limits</translation>
     </message>
     <message>
         <source>Require confirmation before applying new speed limits. To accept, use the flashing widget on the driving screen or press the &lt;b&gt;Cruise Increase&lt;/b&gt; button. To deny, press the &lt;b&gt;Cruise Decrease&lt;/b&gt; button or simply ignore the prompt for 30 seconds.</source>
-        <translation type="gpt-4o-generated">Require confirmation before applying new speed limits. To accept, use the flashing widget on the driving screen or press the &lt;b&gt;Cruise Increase&lt;/b&gt; button. To deny, press the &lt;b&gt;Cruise Decrease&lt;/b&gt; button or simply ignore the prompt for 30 seconds.</translation>
+        <translation type="gpt-5-generated">Ribbit: ask before hopping to new speed limits. To say yes, tap the flashy widget on the driving screen or press &lt;b&gt;Cruise Increase&lt;/b&gt;. To say no, press &lt;b&gt;Cruise Decrease&lt;/b&gt; or just ignore the prompt for 30 seconds.</translation>
     </message>
     <message>
         <source>Force MPH Readings from Dashboard</source>
-        <translation type="gpt-4o-generated">Compel MPH Readings from Dashboard</translation>
+        <translation type="gpt-5-generated">Ribbit! Make the dashboard croak MPH readings only.</translation>
     </message>
     <message>
         <source>Force dashboard speed limit readings to be in mph.</source>
-        <translation type="gpt-4o-generated">Ensure dashboard speed limit readings are displayed in mph.</translation>
+        <translation type="gpt-5-generated">Make the dashboard speed limit readouts stick to mph.</translation>
     </message>
     <message>
         <source>Higher Limit Lookahead Time</source>
-        <translation type="gpt-4o-generated">Extended Limit Lookahead Time</translation>
+        <translation type="gpt-5-generated">Higher Limit Lookahead Time ribbit</translation>
     </message>
     <message>
         <source>How far ahead openpilot anticipates upcoming higher speed limits from the downloaded map data.</source>
-        <translation type="gpt-4o-generated">How far in advance does openpilot anticipate upcoming higher speed limits from the downloaded map data?</translation>
+        <translation type="gpt-5-generated">How far ahead openpilot peeks for bigger speed limits using the downloaded map data.</translation>
     </message>
     <message>
         <source>Lower Limit Lookahead Time</source>
-        <translation type="gpt-4o-generated">Minimum Lookahead Time</translation>
+        <translation type="gpt-5-generated">Lower Limit Lookahead Time 🐸</translation>
     </message>
     <message>
         <source>How far ahead openpilot anticipates upcoming lower speed limits from the downloaded map data.</source>
-        <translation type="gpt-4o-generated">How far in advance does openpilot anticipate upcoming lower speed limits using the downloaded map data?</translation>
+        <translation type="gpt-5-generated">How far ahead openpilot peeps the next lower speed limits from the downloaded map data.</translation>
     </message>
     <message>
         <source>Match Speed Limit on Engage</source>
-        <translation type="gpt-4o-generated">Align Speed Limit on Engage</translation>
+        <translation type="gpt-5-generated">Hop to Speed Limit on Engage</translation>
     </message>
     <message>
         <source>Automatically set cruise control speed to match the current speed limit when first enabling openpilot.</source>
-        <translation type="gpt-4o-generated">Automatically set cruise control to match the current speed limit when first activating openpilot.</translation>
+        <translation type="gpt-5-generated">Auto-set cruise speed to the current speed limit when you first enable openpilot.</translation>
     </message>
     <message>
         <source>Use Mapbox as Fallback</source>
-        <translation type="gpt-4o-generated">Use Mapbox as Backup</translation>
+        <translation type="gpt-5-generated">Use Mapbox as Fallback, ribbit</translation>
     </message>
     <message>
         <source>Use &lt;b&gt;Mapbox&lt;/b&gt; speed limit data when no other sources are available.</source>
-        <translation type="gpt-4o-generated">When other sources are unavailable, use &lt;b&gt;Mapbox&lt;/b&gt; speed limit data.</translation>
+        <translation type="gpt-5-generated">Use &lt;b&gt;Mapbox&lt;/b&gt; speed limit data when no other sources be hoppin’ around.</translation>
     </message>
     <message>
         <source>Speed Limit Source Priority</source>
-        <translation type="gpt-4o-generated">Priority of Speed Limit Source</translation>
+        <translation type="gpt-5-generated">Speed Limit Source Priority, ribbit</translation>
     </message>
     <message>
         <source>Define the priority order for speed limit sources (&lt;b&gt;Dashboard&lt;/b&gt;, &lt;b&gt;Map Data&lt;/b&gt;, &lt;b&gt;Navigation&lt;/b&gt;). Higher-priority sources override lower ones when multiple limits are detected.</source>
-        <translation type="gpt-4o-generated">Establish the priority order for speed limit sources: &lt;b&gt;Dashboard&lt;/b&gt;, &lt;b&gt;Map Data&lt;/b&gt;, and &lt;b&gt;Navigation&lt;/b&gt;. When multiple limits are detected, higher-priority sources override the lower ones.</translation>
+        <translation type="gpt-5-generated">Set the speed limit source priority as: &lt;b&gt;Dashboard&lt;/b&gt; &gt; &lt;b&gt;Map Data&lt;/b&gt; &gt; &lt;b&gt;Navigation&lt;/b&gt;. Higher-priority sources override lower ones when multiple limits are detected.</translation>
     </message>
     <message>
         <source>Speed Limit Offsets</source>
-        <translation type="gpt-4o-generated">Speed Limit Adjustments</translation>
+        <translation type="gpt-5-generated">Ribbit Speed Limit Offsets Ribbit</translation>
     </message>
     <message>
         <source>Offsets relative to the posted speed limit for a more "human-like" driving experience.</source>
-        <translation type="gpt-4o-generated">Offsets relative to the posted speed limit for a more "natural" driving experience.</translation>
+        <translation type="gpt-5-generated">Offsets ribbit to the posted speed limit for a more “human-like” driving experience.</translation>
     </message>
     <message>
         <source>Speed Offset (0–24 mph)</source>
-        <translation type="gpt-4o-generated">Speed Offset (0–24 mph)</translation>
+        <translation type="gpt-5-generated">Speed Offset (0–24 mph), ribbit</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 0 and 24 mph.</source>
-        <translation type="gpt-4o-generated">Target speed adjustment applied for posted limits from 0 to 24 mph.</translation>
+        <translation type="gpt-5-generated">Target speed offset splashed on for posted limits between 0 and 24 mph.</translation>
     </message>
     <message>
         <source>Speed Offset (25–34 mph)</source>
-        <translation type="gpt-4o-generated">Speed Variation (25–34 mph)</translation>
+        <translation type="gpt-5-generated">Speed Offset (25–34 mph)</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 25 and 34 mph.</source>
-        <translation type="gpt-4o-generated">Target speed adjustment applied for posted limits between 25 and 34 mph.</translation>
+        <translation type="gpt-5-generated">Target speed offset lilypad-applied for posted limits between 25 and 34 mph.</translation>
     </message>
     <message>
         <source>Speed Offset (35–44 mph)</source>
-        <translation type="gpt-4o-generated">Speed Adjustment (35–44 mph)</translation>
+        <translation type="gpt-5-generated">Speed Offset (35–44 mph), ribbit</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 35 and 44 mph.</source>
-        <translation type="gpt-4o-generated">Target speed offset applied for posted limits from 35 to 44 mph.</translation>
+        <translation type="gpt-5-generated">Target speed offset hop-plop applied for posted limits between 35 and 44 mph.</translation>
     </message>
     <message>
         <source>Speed Offset (45–54 mph)</source>
-        <translation type="gpt-4o-generated">Speed Range (45–54 mph)</translation>
+        <translation type="gpt-5-generated">Speed Offset (45–54 mph), ribbit</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 45 and 54 mph.</source>
-        <translation type="gpt-4o-generated">Target speed adjustment applied for posted limits between 45 and 54 mph.</translation>
+        <translation type="gpt-5-generated">Target speed offset ribbited for posted limits between 45 and 54 mph.</translation>
     </message>
     <message>
         <source>Speed Offset (55–64 mph)</source>
-        <translation type="gpt-4o-generated">Speed Range (55–64 mph)</translation>
+        <translation type="gpt-5-generated">Speed Offset (55–64 mph), ribbit</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 55 and 64 mph.</source>
-        <translation type="gpt-4o-generated">Target speed offset applied for posted limits from 55 to 64 mph.</translation>
+        <translation type="gpt-5-generated">Target speed offset applied for posted limits between 55 and 64 mph, ribbit.</translation>
     </message>
     <message>
         <source>Speed Offset (65–74 mph)</source>
-        <translation type="gpt-4o-generated">Speed Range (65–74 mph)</translation>
+        <translation type="gpt-5-generated">Speed Offset (65–74 mph)</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 65 and 74 mph.</source>
-        <translation type="gpt-4o-generated">Target speed offset applied for posted limits from 65 to 74 mph.</translation>
+        <translation type="gpt-5-generated">Target speed offset applied for posted limits between 65 and 74 mph, ribbit.</translation>
     </message>
     <message>
         <source>Speed Offset (75–99 mph)</source>
-        <translation type="gpt-4o-generated">Speed Range (75–99 mph)</translation>
+        <translation type="gpt-5-generated">Speed Offset (75–99 mph), ribbit</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 75 and 99 mph.</source>
-        <translation type="gpt-4o-generated">Target speed adjustment applied for posted limits between 75 and 99 mph.</translation>
+        <translation type="gpt-5-generated">Target speed offset splished-splashed for posted limits between 75 and 99 mph.</translation>
     </message>
     <message>
         <source>Visual Settings</source>
-        <translation type="gpt-4o-generated">Display Options</translation>
+        <translation type="gpt-5-generated">Frog Visual Settings</translation>
     </message>
     <message>
         <source>Visual features to improve the &lt;b&gt;Speed Limit Controller&lt;/b&gt; experience.</source>
-        <translation type="gpt-4o-generated">Visual elements to enhance the &lt;b&gt;Speed Limit Controller&lt;/b&gt; experience.</translation>
+        <translation type="gpt-5-generated">Ribbit-worthy visual tweaks to enhance the &lt;b&gt;Speed Limit Controller&lt;/b&gt; experience.</translation>
     </message>
     <message>
         <source>Show Speed Limit Offset</source>
-        <translation type="gpt-4o-generated">Display Speed Limit Offset</translation>
+        <translation type="gpt-5-generated">Show Speed Limit Hopset</translation>
     </message>
     <message>
         <source>Display the speed limit offset separately on the driving screen.</source>
-        <translation type="gpt-4o-generated">Show the speed limit offset separately on the driving screen.</translation>
+        <translation type="gpt-5-generated">Show the speed limit offset as its own thing on the driving screen.</translation>
     </message>
     <message>
         <source>Show Speed Limit Sources</source>
-        <translation type="gpt-4o-generated">Display Speed Limit Sources</translation>
+        <translation type="gpt-5-generated">Show Speed Limit Rocks</translation>
     </message>
     <message>
         <source>Display the speed limit sources on the driving screen.</source>
-        <translation type="gpt-4o-generated">Show the speed limit sources on the driving display.</translation>
+        <translation type="gpt-5-generated">Show the speed limit sources on the driving screen.</translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation type="gpt-4o-generated">moments</translation>
+        <translation type="gpt-5-generated">ribbit-seconds</translation>
     </message>
     <message>
         <source> m/s²</source>
-        <translation type="gpt-4o-generated">m/s²</translation>
+        <translation type="gpt-5-generated">ribbit m/s² ribbit</translation>
     </message>
     <message>
         <source> mph</source>
-        <translation type="gpt-4o-generated">mph</translation>
+        <translation type="gpt-5-generated">ribbit mph</translation>
     </message>
     <message>
         <source>With Lead</source>
-        <translation type="gpt-4o-generated">With Guidance</translation>
+        <translation type="gpt-5-generated">With Leaaad</translation>
     </message>
     <message>
         <source>Switch to &lt;b&gt;Experimental Mode&lt;/b&gt; when driving below this speed with a lead.</source>
-        <translation type="gpt-4o-generated">Activate &lt;b&gt;Experimental Mode&lt;/b&gt; when driving under this speed with a lead.</translation>
+        <translation type="gpt-5-generated">Hop into &lt;b&gt;Experimental Mode&lt;/b&gt; when you’re under this speed and trailing a lead.</translation>
     </message>
     <message>
         <source>Slower Lead</source>
-        <translation type="gpt-4o-generated">Reduced Pace</translation>
+        <translation type="gpt-5-generated">Slower lilypad leader</translation>
     </message>
     <message>
         <source>Stopped Lead</source>
-        <translation type="gpt-4o-generated">Lead Halted</translation>
+        <translation type="gpt-5-generated">Lead go croak-stop</translation>
     </message>
     <message>
         <source>Intersections</source>
-        <translation type="gpt-4o-generated">Crossroads</translation>
+        <translation type="gpt-5-generated">Froggy Crossings</translation>
     </message>
     <message>
         <source>Turns</source>
-        <translation type="gpt-4o-generated">Rotates</translation>
+        <translation type="gpt-5-generated">Ribbits</translation>
     </message>
     <message>
         <source>Off</source>
-        <translation type="gpt-4o-generated">Off</translation>
+        <translation type="gpt-5-generated">Off</translation>
     </message>
     <message>
         <source> second</source>
-        <translation type="gpt-4o-generated">Second</translation>
+        <translation type="gpt-5-generated">seckond</translation>
     </message>
     <message>
         <source>Only For Detected Lanes</source>
-        <translation type="gpt-4o-generated">For Detected Lanes Only</translation>
+        <translation type="gpt-5-generated">Only For Detected Lilypads</translation>
     </message>
     <message>
         <source>RESET</source>
-        <translation type="gpt-4o-generated">RESTART</translation>
+        <translation type="gpt-5-generated">RIBBIT RESET</translation>
     </message>
     <message>
         <source>Standard</source>
-        <translation type="gpt-4o-generated">Regular</translation>
+        <translation type="gpt-5-generated">Ribbit Standard</translation>
     </message>
     <message>
         <source>Eco</source>
-        <translation type="gpt-4o-generated">Eco</translation>
+        <translation type="gpt-5-generated">Eco</translation>
     </message>
     <message>
         <source>Sport</source>
-        <translation type="gpt-4o-generated">Athletics</translation>
+        <translation type="gpt-5-generated">Ribbit Sport</translation>
     </message>
     <message>
         <source>Sport+</source>
-        <translation type="gpt-4o-generated">Sport+</translation>
+        <translation type="gpt-5-generated">Sport+ ribbit</translation>
     </message>
     <message>
         <source> feet</source>
-        <translation type="gpt-4o-generated">paws</translation>
+        <translation type="gpt-5-generated">froggy feet</translation>
     </message>
     <message>
         <source>Acceleration</source>
-        <translation type="gpt-4o-generated">Speeding up</translation>
+        <translation type="gpt-5-generated">Ribbit Zoom</translation>
     </message>
     <message>
         <source>Deceleration</source>
-        <translation type="gpt-4o-generated">Slowing down</translation>
+        <translation type="gpt-5-generated">Decel-ribbet-ation</translation>
     </message>
     <message>
         <source>Set Speed</source>
-        <translation type="gpt-4o-generated">Adjust Speed</translation>
+        <translation type="gpt-5-generated">Set Speed, ribbit</translation>
     </message>
     <message>
         <source>Experimental Mode</source>
-        <translation type="gpt-4o-generated">Trial Mode</translation>
+        <translation type="gpt-5-generated">Ribbit Mode</translation>
     </message>
     <message>
         <source>Previous Limit</source>
-        <translation type="gpt-4o-generated">Earlier Limit</translation>
+        <translation type="gpt-5-generated">Previous Limit Ribbit</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="gpt-4o-generated">None</translation>
+        <translation type="gpt-5-generated">None</translation>
     </message>
     <message>
         <source>Set With Gas Pedal</source>
-        <translation type="gpt-4o-generated">Adjust With Gas Pedal</translation>
+        <translation type="gpt-5-generated">Set With Gas Pedal ribbit</translation>
     </message>
     <message>
         <source>Max Set Speed</source>
-        <translation type="gpt-4o-generated">Maximum Speed</translation>
+        <translation type="gpt-5-generated">Max Set Speed</translation>
     </message>
     <message>
         <source>SELECT</source>
-        <translation type="gpt-4o-generated">SELECT</translation>
+        <translation type="gpt-5-generated">SELECT</translation>
     </message>
     <message>
         <source>Dashboard</source>
-        <translation type="gpt-4o-generated">Control Panel</translation>
+        <translation type="gpt-5-generated">Lily Pad Dashboard</translation>
     </message>
     <message>
         <source>Map Data</source>
-        <translation type="gpt-4o-generated">Map Information</translation>
+        <translation type="gpt-5-generated">Map Ribbit Data</translation>
     </message>
     <message>
         <source>Navigation</source>
-        <translation type="gpt-4o-generated">Guide</translation>
+        <translation type="gpt-5-generated">Hoppigation</translation>
     </message>
     <message>
         <source>Highest</source>
-        <translation type="gpt-4o-generated">Top</translation>
+        <translation type="gpt-5-generated">Highest ribbit</translation>
     </message>
     <message>
         <source>Lowest</source>
-        <translation type="gpt-4o-generated">Minimum</translation>
+        <translation type="gpt-5-generated">Lowest ribbit</translation>
     </message>
     <message>
         <source>Select your primary priority</source>
-        <translation type="gpt-4o-generated">Choose your main priority</translation>
+        <translation type="gpt-5-generated">Pick your top lily pad priority</translation>
     </message>
     <message>
         <source>Select your secondary priority</source>
-        <translation type="gpt-4o-generated">Choose your secondary focus</translation>
+        <translation type="gpt-5-generated">Pick your side quest priority</translation>
     </message>
     <message>
         <source>Select your tertiary priority</source>
-        <translation type="gpt-4o-generated">Choose your third priority</translation>
+        <translation type="gpt-5-generated">Pick your tertiary priority</translation>
     </message>
     <message>
         <source>MANAGE</source>
-        <translation type="gpt-4o-generated">CONTROL</translation>
+        <translation type="gpt-5-generated">MANAGE ribbit</translation>
     </message>
     <message>
         <source>Lower Limits</source>
-        <translation type="gpt-4o-generated">Minimum Thresholds</translation>
+        <translation type="gpt-5-generated">Lower Lilypads</translation>
     </message>
     <message>
         <source>Higher Limits</source>
-        <translation type="gpt-4o-generated">Increased Limits</translation>
+        <translation type="gpt-5-generated">Bigger Bounces</translation>
     </message>
     <message>
         <source>Are you sure you want to completely reset your settings for &lt;b&gt;Traffic Mode&lt;/b&gt;?</source>
-        <translation type="gpt-4o-generated">Are you sure you want to fully reset your settings for &lt;b&gt;Traffic Mode&lt;/b&gt;?</translation>
+        <translation type="gpt-5-generated">Are you sure you wanna hop back to default on your &lt;b&gt;Traffic Mode&lt;/b&gt; settings?</translation>
     </message>
     <message>
         <source>Are you sure you want to completely reset your settings for the &lt;b&gt;Aggressive&lt;/b&gt; personality?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to fully reset your settings for the &lt;b&gt;Aggressive&lt;/b&gt; personality?</translation>
+        <translation type="gpt-5-generated">Are you sure-sure you wanna wipe your settings for the &lt;b&gt;Aggressive&lt;/b&gt; personality, ribbit?</translation>
     </message>
     <message>
         <source>Are you sure you want to completely reset your settings for the &lt;b&gt;Standard&lt;/b&gt; personality?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to fully reset your settings for the &lt;b&gt;Standard&lt;/b&gt; personality?</translation>
+        <translation type="gpt-5-generated">Are you sure you want to totally boing-reset your settings for the &lt;b&gt;Standard&lt;/b&gt; personality?</translation>
     </message>
     <message>
         <source>Are you sure you want to completely reset your settings for the &lt;b&gt;Relaxed&lt;/b&gt; personality?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to fully reset your settings for the &lt;b&gt;Relaxed&lt;/b&gt; personality?</translation>
+        <translation type="gpt-5-generated">You sure you wanna fully reset your settings for the &lt;b&gt;Relaxed&lt;/b&gt; personality?</translation>
     </message>
     <message>
         <source> foot</source>
-        <translation type="gpt-4o-generated">foot</translation>
+        <translation type="gpt-5-generated">froog</translation>
     </message>
     <message>
         <source> meter</source>
-        <translation type="gpt-4o-generated">meter</translation>
+        <translation type="gpt-5-generated">ribbit meter ribbit</translation>
     </message>
     <message>
         <source> meters</source>
-        <translation type="gpt-4o-generated">metres</translation>
+        <translation type="gpt-5-generated"> ribbits</translation>
     </message>
     <message>
         <source> km/h</source>
-        <translation type="gpt-4o-generated">km/h</translation>
+        <translation type="gpt-5-generated">ribbit/h ribbit</translation>
     </message>
     <message>
         <source>Speed Offset (0–29 km/h)</source>
-        <translation type="gpt-4o-generated">Speed Offset (0–29 km/h)</translation>
+        <translation type="gpt-5-generated">Speed Offset (0–29 km/h), ribbit</translation>
     </message>
     <message>
         <source>Speed Offset (30–49 km/h)</source>
-        <translation type="gpt-4o-generated">Speed Variation (30–49 km/h)</translation>
+        <translation type="gpt-5-generated">Speed Wiggle (30–49 km/h)</translation>
     </message>
     <message>
         <source>Speed Offset (50–59 km/h)</source>
-        <translation type="gpt-4o-generated">Speed Range (50–59 km/h)</translation>
+        <translation type="gpt-5-generated">Speed Offset (50–59 km/h) ribbit</translation>
     </message>
     <message>
         <source>Speed Offset (60–79 km/h)</source>
-        <translation type="gpt-4o-generated">Speed Range (60–79 km/h)</translation>
+        <translation type="gpt-5-generated">Speed Offset (60–79 km/h), ribbit</translation>
     </message>
     <message>
         <source>Speed Offset (80–99 km/h)</source>
-        <translation type="gpt-4o-generated">Speed Adjustment (80–99 km/h)</translation>
+        <translation type="gpt-5-generated">Speed Offset (80–99 km/h), ribbit</translation>
     </message>
     <message>
         <source>Speed Offset (100–119 km/h)</source>
-        <translation type="gpt-4o-generated">Speed Range (100–119 km/h)</translation>
+        <translation type="gpt-5-generated">Speed Offset (100–119 km/h), ribbit</translation>
     </message>
     <message>
         <source>Speed Offset (120–140 km/h)</source>
-        <translation type="gpt-4o-generated">Speed Range (120–140 km/h)</translation>
+        <translation type="gpt-5-generated">Speed Offset (120–140 km/h), ribbit</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 0 and 29 km/h.</source>
-        <translation type="gpt-4o-generated">Target speed offset applied for posted limits from 0 to 29 km/h.</translation>
+        <translation type="gpt-5-generated">Target speed offset hoppin’ on for posted limits between 0 and 29 km/h.</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 30 and 49 km/h.</source>
-        <translation type="gpt-4o-generated">Target speed offset applied for posted limits from 30 to 49 km/h.</translation>
+        <translation type="gpt-5-generated">Target speed hopset applied for posted limits between 30 and 49 km/h.</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 50 and 59 km/h.</source>
-        <translation type="gpt-4o-generated">Target speed adjustment applied for posted limits from 50 to 59 km/h.</translation>
+        <translation type="gpt-5-generated">Target speed offset applied for posted limits between 50 and 59 km/h, ribbit.</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 60 and 79 km/h.</source>
-        <translation type="gpt-4o-generated">Target speed offset applied for posted limits from 60 to 79 km/h.</translation>
+        <translation type="gpt-5-generated">Target speed offset applied for posted limits between 60 and 79 km/h, ribbit.</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 80 and 99 km/h.</source>
-        <translation type="gpt-4o-generated">Target speed offset applied for posted limits from 80 to 99 km/h.</translation>
+        <translation type="gpt-5-generated">Target speed offset splashed on for posted limits between 80 and 99 km/h.</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 100 and 119 km/h.</source>
-        <translation type="gpt-4o-generated">Target speed adjustment applied for limits from 100 to 119 km/h.</translation>
+        <translation type="gpt-5-generated">Target speed offset splashed on for posted limits between 100 and 119 km/h.</translation>
     </message>
     <message>
         <source>Target speed offset applied for posted limits between 120 and 140 km/h.</source>
-        <translation type="gpt-4o-generated">Target speed offset applied for posted limits from 120 to 140 km/h.</translation>
+        <translation type="gpt-5-generated">Target speed offset applied for posted limits between 120 and 140 km/h, ribbit.</translation>
     </message>
     <message>
-        <source>Curve Speed Control</source>
-        <translation type="gpt-4o-generated">Curve Speed Hop</translation>
+        <source>Curve Speed Controller</source>
+        <translation type="gpt-5-generated">Croak Curve Speed Controller</translation>
     </message>
     <message>
-        <source>Automatically slow down for upcoming curves using downloaded maps or the driving model.</source>
-        <translation type="gpt-4o-generated">Automatically ease up for approaching curves using downloaded maps or the driving model.</translation>
+        <source>Automatically slows down for upcoming curves using data from your own driving, adapting to curves just like you would.</source>
+        <translation type="gpt-5-generated">Auto-slow for upcoming curves using your own driving data, adapting to bends just like you.</translation>
     </message>
     <message>
-        <source>Curve Detection Method</source>
-        <translation type="gpt-4o-generated">Curve Detection Technique</translation>
+        <source>Calibrated Lateral Acceleration</source>
+        <translation type="gpt-5-generated">Calibrated Sideways Zoomies</translation>
     </message>
     <message>
-        <source>How curves are detected. &lt;b&gt;Map-Based&lt;/b&gt; uses downloaded map data to identify curves and determine the appropriate speed in which to handle them at, while &lt;b&gt;Vision&lt;/b&gt; relies solely on the driving model.</source>
-        <translation type="gpt-4o-generated">How curves are detected. &lt;b&gt;Map-Based&lt;/b&gt; uses downloaded map data to identify curves and determine the suitable speed to navigate them, while &lt;b&gt;Vision&lt;/b&gt; relies solely on the driving model.</translation>
+        <source>Displays the learned lateral acceleration target based on your driving.</source>
+        <translation type="gpt-5-generated">Shows the learned side-acceleration target based on your driving.</translation>
     </message>
     <message>
-        <source>Curve Detection Failsafe</source>
-        <translation type="gpt-4o-generated">Curve Detection Backup</translation>
+        <source>Calibration Progress</source>
+        <translation type="gpt-5-generated">Calib-hop Progress</translation>
     </message>
     <message>
-        <source>Only trigger &lt;b&gt;Curve Speed Control&lt;/b&gt; if a curve is detected with the model while using the &lt;b&gt;Map-Based&lt;/b&gt; method. Useful to help prevent false positives.</source>
-        <translation type="gpt-4o-generated">Activate &lt;b&gt;Curve Speed Control&lt;/b&gt; only when the model detects a curve while employing the &lt;b&gt;Map-Based&lt;/b&gt; method. This helps avoid false positives.</translation>
+        <source>How much driving data has been collected to personalize the vehicle's curve handling behavior.</source>
+        <translation type="gpt-5-generated">How much drivin’ data’s been scooped up to personalize the vehicle’s curve-handlin’ behavior?</translation>
     </message>
     <message>
-        <source>Curve Detection Sensitivity</source>
-        <translation type="gpt-4o-generated">Curve Detection Ribbit</translation>
+        <source>Reset Curve Data</source>
+        <translation type="gpt-5-generated">Ribbit Reset Curve Data Ribbit</translation>
     </message>
     <message>
-        <source>How sensitive openpilot is when detecting curves. Higher values trigger earlier responses at the risk of triggering too often, while lower values increase confidence at the risk of triggering too infrequently.</source>
-        <translation type="gpt-4o-generated">How sensitive openpilot is when detecting curves. Higher values prompt earlier responses, risking more frequent triggers, while lower values boost confidence, risking less frequent triggers.</translation>
+        <source>Reset collected user data for &lt;b&gt;Curve Speed Control&lt;/b&gt;.</source>
+        <translation type="gpt-5-generated">Ribbit! Reset collected user data for &lt;b&gt;Curve Speed Control&lt;/b&gt;.</translation>
     </message>
     <message>
-        <source>Curve Speed Aggressiveness</source>
-        <translation type="gpt-4o-generated">Curve Speed Intensity</translation>
+        <source>Are you sure you want to completely reset your curvature data?</source>
+        <translation type="gpt-5-generated">You sure you wanna totally reset your curvature data, ribbit?</translation>
     </message>
     <message>
-        <source>How aggressive openpilot is when navigating through curves. Higher values result in faster turns but may reduce comfort or stability, while lower values result in slower, smoother turns at the risk of being overly cautious.</source>
-        <translation type="gpt-4o-generated">How aggressive openpilot is when navigating curves. Higher values lead to quicker turns but may reduce comfort or stability, while lower values result in slower, smoother turns, risking excessive caution.</translation>
+        <source>Increase Stopped Distance by:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Map Based</source>
-        <translation type="gpt-4o-generated">Map Focused</translation>
+        <source>Increase the distance openpilot stops behind vehicles by the set amount.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Vision</source>
-        <translation type="gpt-4o-generated">Sight</translation>
+        <source>Offset Set Speed by:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>The &lt;b&gt;Map Based&lt;/b&gt; option is only available when some &lt;b&gt;Map Data&lt;/b&gt; has been downloaded!</source>
-        <translation type="gpt-4o-generated">The &lt;b&gt;Map Based&lt;/b&gt; option is available only when some &lt;b&gt;Map Data&lt;/b&gt; has been downloaded!</translation>
+        <source>Weather Condition Offsets</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automatically adjust driving behavior based on real-time weather conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Low Visibility</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Driving adjustments for when low visibility conditions are detected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Increase Following Distance by:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Increase the following distance by the set amount in low visibility conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Increase Stopping Distance by:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Increase the stopping distance behind leads by the set amount in low visibility conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reduce Acceleration by:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lower the acceleration by the set amount in low visibility conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reduce Speed In Curves by:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lower the desired speed in curves by the set amount in low visibility conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Driving adjustments for when rainy conditions are detected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Increase the following distance by the set amount in rainy conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Increase the stopping distance behind leads by the set amount in rainy conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lower the acceleration by the set amount in rainy conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lower the desired speed in curves by the set amount in rainy conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Rain Storms</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Driving adjustments for when a rain storm is detected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Increase the following distance by the set amount in a rain storm.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Increase the stopping distance behind leads by the set amount in a rain storm.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lower the acceleration by the set amount in a rain storm.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lower the desired speed in curves by the set amount in a rain storm.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Snow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Driving adjustments for when snowy conditions are detected.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Increase the following distance by the set amount in snowy conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Increase the stopping distance behind leads by the set amount in snowy conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lower the acceleration by the set amount in snowy conditions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Lower the desired speed in curves by the set amount in snowy conditions.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FrogPilotManageControl</name>
     <message>
         <source>MANAGE</source>
-        <translation type="gpt-4o-generated">OVERSEE</translation>
+        <translation type="gpt-5-generated">HOP-ANDLE</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotMapsPanel</name>
     <message>
         <source>Manually</source>
-        <translation type="gpt-4o-generated">By hand</translation>
+        <translation type="gpt-5-generated">Manu-croaky</translation>
     </message>
     <message>
         <source>Weekly</source>
-        <translation type="gpt-4o-generated">Weekly</translation>
+        <translation type="gpt-5-generated">Weekly ribbit</translation>
     </message>
     <message>
         <source>Monthly</source>
-        <translation type="gpt-4o-generated">Monthly</translation>
+        <translation type="gpt-5-generated">Moon-thly</translation>
     </message>
     <message>
         <source>Automatically Update Maps</source>
-        <translation type="gpt-4o-generated">Auto-Update Maps</translation>
+        <translation type="gpt-5-generated">Auto-Hop Update Maps</translation>
     </message>
     <message>
         <source>The frequency at which maps sync with the latest OpenStreetMap (OSM) changes. Weekly updates occur every Sunday, and monthly updates occur on the 1st.</source>
-        <translation type="gpt-4o-generated">Maps sync with the latest OpenStreetMap (OSM) changes at specific intervals. Weekly updates happen every Sunday, while monthly updates take place on the 1st.</translation>
+        <translation type="gpt-5-generated">How often maps ribbit-sync with the latest OpenStreetMap (OSM) changes. Weekly croaks land every Sunday, and monthly croaks hop in on the 1st.</translation>
     </message>
     <message>
         <source>Data Sources</source>
-        <translation type="gpt-4o-generated">Data Origins</translation>
+        <translation type="gpt-5-generated">Lily Pads of Data</translation>
     </message>
     <message>
         <source>Select map data sources to use with "Curve Speed Control" and "Speed Limit Controller".</source>
-        <translation type="gpt-4o-generated">Choose map data sources for "Curve Speed Control" and "Speed Limit Controller".</translation>
+        <translation type="gpt-5-generated">Pick map data sources to use with "Curve Speed Control" and "Speed Limit Controller".</translation>
     </message>
     <message>
         <source>COUNTRIES</source>
-        <translation type="gpt-4o-generated">NATIONS</translation>
+        <translation type="gpt-5-generated">HOPPLACES</translation>
     </message>
     <message>
         <source>STATES</source>
-        <translation type="gpt-4o-generated">STATES</translation>
+        <translation type="gpt-5-generated">STATES ribbit</translation>
     </message>
     <message>
         <source>Download Maps</source>
-        <translation type="gpt-4o-generated">Get Maps</translation>
+        <translation type="gpt-5-generated">Snag Maps</translation>
     </message>
     <message>
         <source>DOWNLOAD</source>
-        <translation type="gpt-4o-generated">GET</translation>
+        <translation type="gpt-5-generated">RIBBITLOAD</translation>
     </message>
     <message>
         <source>Download the selected maps to use with "Curve Speed Control" and "Speed Limit Controller".</source>
-        <translation type="gpt-4o-generated">Download the chosen maps to use with "Curve Speed Control" and "Speed Limit Controller".</translation>
+        <translation type="gpt-5-generated">Hop to it: download the selected maps to use with "Curve Speed Control" and "Speed Limit Controller".</translation>
     </message>
     <message>
         <source>CANCEL</source>
-        <translation type="gpt-4o-generated">CANCEL</translation>
+        <translation type="gpt-5-generated">CROAKCEL</translation>
     </message>
     <message>
         <source>Are you sure you want to cancel the download?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to hop away from the download?</translation>
+        <translation type="gpt-5-generated">You sure you wanna cancel the download?</translation>
     </message>
     <message>
         <source>Download Completion ETA</source>
-        <translation type="gpt-4o-generated">Estimated Download Completion</translation>
+        <translation type="gpt-5-generated">Ribbit! Download Completion ETA</translation>
     </message>
     <message>
         <source>Download Progress</source>
-        <translation type="gpt-4o-generated">Download Status</translation>
+        <translation type="gpt-5-generated">Ribbit Loadin’ Progress</translation>
     </message>
     <message>
         <source>Download Time Elapsed</source>
-        <translation type="gpt-4o-generated">Download Duration</translation>
+        <translation type="gpt-5-generated">Ribbit Time Elapsed</translation>
     </message>
     <message>
         <source>Maps Last Updated</source>
-        <translation type="gpt-4o-generated">Maps Recently Updated</translation>
+        <translation type="gpt-5-generated">Maps Last Updated ribbit</translation>
     </message>
     <message>
         <source>Maps Size</source>
-        <translation type="gpt-4o-generated">Map Dimensions</translation>
+        <translation type="gpt-5-generated">Maps Size ribbit</translation>
     </message>
     <message>
         <source>Remove Maps</source>
-        <translation type="gpt-4o-generated">Delete Maps</translation>
+        <translation type="gpt-5-generated">Yeet Maps</translation>
     </message>
     <message>
         <source>REMOVE</source>
-        <translation type="gpt-4o-generated">DELETE</translation>
+        <translation type="gpt-5-generated">RIBBIT REMOVE</translation>
     </message>
     <message>
         <source>Remove downloaded maps to clear up storage space.</source>
-        <translation type="gpt-4o-generated">Delete downloaded maps to free up storage space.</translation>
+        <translation type="gpt-5-generated">Ribbit off downloaded maps to free up storage space.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all of your downloaded maps?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete all your downloaded maps?</translation>
+        <translation type="gpt-5-generated">Are you sure you want to sploink all your downloaded maps?</translation>
     </message>
     <message>
         <source>Reset Map Downloader</source>
-        <translation type="gpt-4o-generated">Restart Map Downloader</translation>
+        <translation type="gpt-5-generated">Ribbit Map Downloader Reset</translation>
     </message>
     <message>
         <source>RESET</source>
-        <translation type="gpt-4o-generated">RESET</translation>
+        <translation type="gpt-5-generated">RIBBIT RESET</translation>
     </message>
     <message>
         <source>Reset the map downloader. Use if you're running into issues with downloading maps.</source>
-        <translation type="gpt-4o-generated">Restart the map downloader. Use this if you're having trouble downloading maps.</translation>
+        <translation type="gpt-5-generated">Ribbit the map downloader. Use this if you’re having trouble snagging maps.</translation>
     </message>
     <message>
         <source>Are you sure you want to reset the map downloader? This will force a reboot once completed.</source>
-        <translation type="gpt-4o-generated">Are you certain you want to reset the map downloader? This will trigger a reboot once finished.</translation>
+        <translation type="gpt-5-generated">Ya sure ya wanna reset the map downloader? This’ll force a reboot once it’s done.</translation>
     </message>
     <message>
         <source>Reset</source>
-        <translation type="gpt-4o-generated">Restart</translation>
+        <translation type="gpt-5-generated">Ribbit Reset</translation>
     </message>
     <message>
         <source>Resetting...</source>
-        <translation type="gpt-4o-generated">Restarting...</translation>
+        <translation type="gpt-5-generated">Ribbiting...</translation>
     </message>
     <message>
         <source>Reset!</source>
-        <translation type="gpt-4o-generated">Restart!</translation>
+        <translation type="gpt-5-generated">Ribbit! Reset!</translation>
     </message>
     <message>
         <source>Rebooting...</source>
-        <translation type="gpt-4o-generated">Restarting...</translation>
+        <translation type="gpt-5-generated">Ribbiting...</translation>
     </message>
     <message>
         <source>Africa</source>
-        <translation type="gpt-4o-generated">Africa</translation>
+        <translation type="gpt-5-generated">Ribbitica</translation>
     </message>
     <message>
         <source>Antarctica</source>
-        <translation type="gpt-4o-generated">Antarctica</translation>
+        <translation type="gpt-5-generated">Antarctica ribbit</translation>
     </message>
     <message>
         <source>Asia</source>
-        <translation type="gpt-4o-generated">Asia</translation>
+        <translation type="gpt-5-generated">Ribbit Asia</translation>
     </message>
     <message>
         <source>Europe</source>
-        <translation type="gpt-4o-generated">Europe</translation>
+        <translation type="gpt-5-generated">Europe ribbit</translation>
     </message>
     <message>
         <source>North America</source>
-        <translation type="gpt-4o-generated">North America</translation>
+        <translation type="gpt-5-generated">North America ribbit</translation>
     </message>
     <message>
         <source>Oceania</source>
-        <translation type="gpt-4o-generated">Oceania</translation>
+        <translation type="gpt-5-generated">Ocea-ribbit-nia</translation>
     </message>
     <message>
         <source>South America</source>
-        <translation type="gpt-4o-generated">South America</translation>
+        <translation type="gpt-5-generated">South Ameribbit</translation>
     </message>
     <message>
         <source>United States - Midwest</source>
-        <translation type="gpt-4o-generated">Midwestern United States</translation>
+        <translation type="gpt-5-generated">United States – Midwest (ribbit)</translation>
     </message>
     <message>
         <source>United States - Northeast</source>
-        <translation type="gpt-4o-generated">Northeastern United States</translation>
+        <translation type="gpt-5-generated">United States - Frogeast</translation>
     </message>
     <message>
         <source>United States - South</source>
-        <translation type="gpt-4o-generated">United States - South</translation>
+        <translation type="gpt-5-generated">United States - South (ribbit)</translation>
     </message>
     <message>
         <source>United States - West</source>
-        <translation type="gpt-4o-generated">United States - West</translation>
+        <translation type="gpt-5-generated">United States - Ribbit West</translation>
     </message>
     <message>
         <source>United States - Territories</source>
-        <translation type="gpt-4o-generated">United States - Regions</translation>
+        <translation type="gpt-5-generated">United States – Lilypad Territories</translation>
     </message>
     <message>
         <source>CANCELLED</source>
-        <translation type="gpt-4o-generated">CANCELED</translation>
+        <translation type="gpt-5-generated">CROAK-CELLED</translation>
     </message>
     <message>
         <source>Offline...</source>
-        <translation type="gpt-4o-generated">Disconnected...</translation>
+        <translation type="gpt-5-generated">Ribbit...</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotModelPanel</name>
     <message>
         <source>Automatically Download New Models</source>
-        <translation type="gpt-4o-generated">Auto-Download New Models</translation>
+        <translation type="gpt-5-generated">Auto-snatch New Models Ribbit</translation>
     </message>
     <message>
         <source>Automatically download new driving models as they become available.</source>
-        <translation type="gpt-4o-generated">Automatically hop to download new driving models as they become available.</translation>
+        <translation type="gpt-5-generated">Auto-grab new driving models as they hop into availability.</translation>
     </message>
     <message>
         <source>Delete Driving Models</source>
-        <translation type="gpt-4o-generated">Remove Driving Models</translation>
+        <translation type="gpt-5-generated">Ribbit! Delete Driving Models 🐸</translation>
     </message>
     <message>
         <source>Delete driving models from the device.</source>
-        <translation type="gpt-4o-generated">Remove driving models from the device.</translation>
+        <translation type="gpt-5-generated">Ribbit! Delete driving models from the device.</translation>
     </message>
     <message>
         <source>Download Driving Models</source>
-        <translation type="gpt-4o-generated">Download Driving Templates</translation>
+        <translation type="gpt-5-generated">Ribbit-up Driving Models</translation>
     </message>
     <message>
         <source>Download driving models to the device.</source>
-        <translation type="gpt-4o-generated">Download driving models onto the device.</translation>
+        <translation type="gpt-5-generated">Hop over and download driving models to the device.</translation>
     </message>
     <message>
         <source>Model Randomizer</source>
-        <translation type="gpt-4o-generated">Random Model Generator</translation>
+        <translation type="gpt-5-generated">Ribbit Model Mixer</translation>
     </message>
     <message>
         <source>Driving models are chosen at random each drive and feedback prompts are used to find the model that best suits your needs.</source>
-        <translation type="gpt-4o-generated">Driving models are selected randomly for each drive, and feedback prompts help identify the model that best fits your needs.</translation>
+        <translation type="gpt-5-generated">Ribbit! Each drive picks a driving model at random, and feedback prompts help find the one that fits you best.</translation>
     </message>
     <message>
         <source>Manage Model Blacklist</source>
-        <translation type="gpt-4o-generated">Handle Model Blacklist</translation>
+        <translation type="gpt-5-generated">Manage Model Blacklist (ribbit)</translation>
     </message>
     <message>
         <source>Add or remove models from the &lt;b&gt;Model Randomizer&lt;/b&gt;'s blacklist list.</source>
-        <translation type="gpt-4o-generated">Modify the &lt;b&gt;Model Randomizer&lt;/b&gt;'s blacklist to add or remove models.</translation>
+        <translation type="gpt-5-generated">Hop in to add or pluck models from the &lt;b&gt;Model Randomizer&lt;/b&gt;’s blacklist list.</translation>
     </message>
     <message>
         <source>Manage Model Ratings</source>
-        <translation type="gpt-4o-generated">Oversee Model Ratings</translation>
+        <translation type="gpt-5-generated">Manage Model Ribbits</translation>
     </message>
     <message>
         <source>Reset or view the saved ratings for the driving models.</source>
-        <translation type="gpt-4o-generated">Reset or view the saved ratings for the driving models.</translation>
+        <translation type="gpt-5-generated">Reset or peep the saved ratings for the driving models.</translation>
     </message>
     <message>
         <source>Select Driving Model</source>
-        <translation type="gpt-4o-generated">Choose Driving Model</translation>
+        <translation type="gpt-5-generated">Pick-a Driving Model ribbit</translation>
     </message>
     <message>
         <source>Select the active driving model.</source>
-        <translation type="gpt-4o-generated">Choose the active driving mode.</translation>
+        <translation type="gpt-5-generated">Pick the active driving model.</translation>
     </message>
     <message>
         <source>DELETE</source>
-        <translation type="gpt-4o-generated">REMOVE</translation>
+        <translation type="gpt-5-generated">DELETE</translation>
     </message>
     <message>
         <source>DELETE ALL</source>
-        <translation type="gpt-4o-generated">REMOVE ALL</translation>
+        <translation type="gpt-5-generated">RIBBIT! DELETE ALL, hop-hop!</translation>
     </message>
     <message>
         <source>Select a driving model to delete</source>
-        <translation type="gpt-4o-generated">Choose a driving model to remove</translation>
+        <translation type="gpt-5-generated">Pick a driving model to delete</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the "%1" model?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete the "%1" model?</translation>
+        <translation type="gpt-5-generated">Are you sure you wanna zap the “%1” model?</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="gpt-4o-generated">Remove</translation>
+        <translation type="gpt-5-generated">Ribbit, delete.</translation>
     </message>
     <message>
         <source>Are you sure you want to delete all of your downloaded driving models?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete all your downloaded driving models?</translation>
+        <translation type="gpt-5-generated">Ya sure ya wanna delete all your downloaded drivin’ models?</translation>
     </message>
     <message>
         <source>DOWNLOAD</source>
-        <translation type="gpt-4o-generated">GET</translation>
+        <translation type="gpt-5-generated">RIBBIT DOWNLOAD</translation>
     </message>
     <message>
         <source>DOWNLOAD ALL</source>
-        <translation type="gpt-4o-generated">DOWNLOAD EVERYTHING</translation>
+        <translation type="gpt-5-generated">RIBBIT GRAB ‘EM ALL</translation>
     </message>
     <message>
         <source>Select a driving model to download</source>
-        <translation type="gpt-4o-generated">Choose a driving model to download</translation>
+        <translation type="gpt-5-generated">Pick a driving model to download</translation>
     </message>
     <message>
         <source>CANCEL</source>
-        <translation type="gpt-4o-generated">CANCEL</translation>
+        <translation type="gpt-5-generated">RIBBIT CANCEL</translation>
     </message>
     <message>
         <source>ADD</source>
-        <translation type="gpt-4o-generated">ADD</translation>
+        <translation type="gpt-5-generated">RIBBIT ADD RIBBIT</translation>
     </message>
     <message>
         <source>REMOVE</source>
-        <translation type="gpt-4o-generated">DELETE</translation>
+        <translation type="gpt-5-generated">RIBBIT REMOVE</translation>
     </message>
     <message>
         <source>REMOVE ALL</source>
-        <translation type="gpt-4o-generated">DELETE ALL</translation>
+        <translation type="gpt-5-generated">RIBBIT, TOSS IT ALL!</translation>
     </message>
     <message>
         <source>There are no more models to blacklist! The only available model is "%1"!</source>
-        <translation type="gpt-4o-generated">No more models to blacklist! The sole available model is "%1"!</translation>
+        <translation type="gpt-5-generated">Ribbit! No more models to blacklist. The only one left is "%1"!</translation>
     </message>
     <message>
         <source>Select a model to add to the blacklist</source>
-        <translation type="gpt-4o-generated">Choose a model to add to the blacklist.</translation>
+        <translation type="gpt-5-generated">Pick a model to add to the blacklist</translation>
     </message>
     <message>
         <source>Are you sure you want to add the "%1" model to the blacklist?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to add the "%1" model to the blacklist?</translation>
+        <translation type="gpt-5-generated">You sure you wanna hop the "%1" model onto the blacklist?</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="gpt-4o-generated">Include</translation>
+        <translation type="gpt-5-generated">Ribbit Add</translation>
     </message>
     <message>
         <source>Select a model to remove from the blacklist</source>
-        <translation type="gpt-4o-generated">Choose a model to remove from the blacklist</translation>
+        <translation type="gpt-5-generated">Pick a model to hop off the blacklist</translation>
     </message>
     <message>
         <source>Are you sure you want to remove the "%1" model from the blacklist?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to hop the "%1" model off the blacklist?</translation>
+        <translation type="gpt-5-generated">You sure you wanna un-blacklist the "%1" model?</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation type="gpt-4o-generated">Delete</translation>
+        <translation type="gpt-5-generated">Ribbit-move</translation>
     </message>
     <message>
         <source>Are you sure you want to remove all of your blacklisted models?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to hop and remove all your blacklisted models?</translation>
+        <translation type="gpt-5-generated">Are you sure you want to ribbit away all of your blacklisted models?</translation>
     </message>
     <message>
         <source>RESET</source>
-        <translation type="gpt-4o-generated">RESET</translation>
+        <translation type="gpt-5-generated">RIBBIT RESET</translation>
     </message>
     <message>
         <source>VIEW</source>
-        <translation type="gpt-4o-generated">DISPLAY</translation>
+        <translation type="gpt-5-generated">RIBBIT VIEW</translation>
     </message>
     <message>
         <source>Are you sure you want to reset all of your model drives and scores?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to reset all your model drives and scores?</translation>
+        <translation type="gpt-5-generated">Are you sure you wanna ribbit-reset all your model drives and scores?</translation>
     </message>
     <message>
         <source>SELECT</source>
-        <translation type="gpt-4o-generated">SELECT</translation>
+        <translation type="gpt-5-generated">RIBBIT SELECT</translation>
     </message>
     <message>
         <source>Select a model - 🗺️ = Navigation | 📡 = Radar | 👀 = VOACC</source>
-        <translation type="gpt-4o-generated">Choose a model - 🗺️ = Navigation | 📡 = Radar | 👀 = VOACC</translation>
+        <translation type="gpt-5-generated">Pick a model - 🗺️ = Navigation | 📡 = Radar | 👀 = VOACC</translation>
     </message>
     <message>
         <source>The "Model Randomizer" only works with downloaded models. Do you want to download all the driving models?</source>
-        <translation type="gpt-4o-generated">The "Model Randomizer" functions only with downloaded models. Would you like to download all the driving models?</translation>
+        <translation type="gpt-5-generated">The "Model Randomizer" only works with downloaded models. Wanna snag all the driving models now?</translation>
     </message>
     <message>
         <source>Offline...</source>
-        <translation type="gpt-4o-generated">Disconnected...</translation>
+        <translation type="gpt-5-generated">Ribbit... Offline...</translation>
+    </message>
+    <message>
+        <source>Update Tinygrad</source>
+        <translation type="gpt-5-generated">Ribbit! Update Tinygrad 🐸</translation>
+    </message>
+    <message>
+        <source>Update the Tinygrad model process to support the latest models.</source>
+        <translation type="gpt-5-generated">Hop the Tinygrad model process forward to support the freshest models.</translation>
+    </message>
+    <message>
+        <source>Your Tinygrad version is out of date and must be updated before downloading new models. Update now?</source>
+        <translation type="gpt-5-generated">Your Tinygrad be old and gotta hop to the latest before you snag new models. Ribbit—update now?</translation>
+    </message>
+    <message>
+        <source>Updating...</source>
+        <translation type="gpt-5-generated">Ribbit... Updating...</translation>
+    </message>
+    <message>
+        <source>UPDATE</source>
+        <translation type="gpt-5-generated">RIBBIT UPDATE</translation>
+    </message>
+    <message>
+        <source>Cancelling...</source>
+        <translation type="gpt-5-generated">Ribbit... Cancelling...</translation>
+    </message>
+    <message>
+        <source>Update available!</source>
+        <translation type="gpt-5-generated">Ribbit! Update available!</translation>
+    </message>
+    <message>
+        <source>Up to date!</source>
+        <translation type="gpt-5-generated">Hop to date!</translation>
+    </message>
+    <message>
+        <source>Updating Tinygrad will delete existing Tinygrad-based models and need to be re-downloaded. Proceed?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FrogPilotNavigationPanel</name>
     <message>
         <source>Manage your %1.</source>
-        <translation type="gpt-4o-generated">Handle your %1.</translation>
+        <translation type="gpt-5-generated">Wrangle your %1.</translation>
     </message>
     <message>
         <source>ADD</source>
-        <translation type="gpt-4o-generated">ADD</translation>
+        <translation type="gpt-5-generated">RIBBIT ADD</translation>
     </message>
     <message>
         <source>Enter your %1</source>
-        <translation type="gpt-4o-generated">Input your %1</translation>
+        <translation type="gpt-5-generated">Ribbit in your %1</translation>
     </message>
     <message>
         <source>Inputted key is invalid or too short!</source>
-        <translation type="gpt-4o-generated">The entered key is invalid or too short!</translation>
+        <translation type="gpt-5-generated">Ribbit! That key’s invalid or too short!</translation>
     </message>
     <message>
         <source>Are you sure you want to remove your %1?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete your %1?</translation>
+        <translation type="gpt-5-generated">You sure you wanna hop away your %1?</translation>
     </message>
     <message>
         <source>REMOVE</source>
-        <translation type="gpt-4o-generated">DELETE</translation>
+        <translation type="gpt-5-generated">RIBBIT REMOVE RIBBIT</translation>
     </message>
     <message>
         <source>Manage Your Settings At</source>
-        <translation type="gpt-4o-generated">Adjust Your Settings At</translation>
+        <translation type="gpt-5-generated">Hop to Your Settings At</translation>
     </message>
     <message>
         <source>MapBox</source>
-        <translation type="gpt-4o-generated">MapBox</translation>
+        <translation type="gpt-5-generated">MapBox ribbit</translation>
     </message>
     <message>
         <source>Amap</source>
-        <translation type="gpt-4o-generated">Amap</translation>
+        <translation type="gpt-5-generated">Amap ribbit</translation>
     </message>
     <message>
         <source>Google</source>
-        <translation type="gpt-4o-generated">Google</translation>
+        <translation type="gpt-5-generated">Google ribbit</translation>
     </message>
     <message>
         <source>Destination Search Provider</source>
-        <translation type="gpt-4o-generated">Destination Finder Service</translation>
+        <translation type="gpt-5-generated">Destination Ribbit Provider</translation>
     </message>
     <message>
         <source>The search provider used for destination queries in "Navigate on Openpilot". Options include "MapBox" (recommended), "Amap", and "Google Maps".</source>
-        <translation type="gpt-4o-generated">The search provider for destination queries in "Navigate on Openpilot" includes options like "MapBox" (recommended), "Amap", and "Google Maps".</translation>
+        <translation type="gpt-5-generated">The search provider for destination croaks in "Navigate on Openpilot". Lily pad picks: "MapBox" (recommended), "Amap", and "Google Maps".</translation>
     </message>
     <message>
         <source>Amap Key #1</source>
-        <translation type="gpt-4o-generated">Amap Legend #1</translation>
+        <translation type="gpt-5-generated">Amap Key #1 ribbit</translation>
     </message>
     <message>
         <source>Manage your Amap key.</source>
-        <translation type="gpt-4o-generated">Handle your Amap key.</translation>
+        <translation type="gpt-5-generated">Manage your Amap key, ribbit.</translation>
     </message>
     <message>
         <source>Enter your Amap key</source>
-        <translation type="gpt-4o-generated">Input your Amap key</translation>
+        <translation type="gpt-5-generated">Hop in your Amap key</translation>
     </message>
     <message>
         <source>Are you sure you want to remove your Amap key?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete your Amap key?</translation>
+        <translation type="gpt-5-generated">You sure you wanna toss your Amap key?</translation>
     </message>
     <message>
         <source>Amap Key #2</source>
-        <translation type="gpt-4o-generated">Amap Key #2</translation>
+        <translation type="gpt-5-generated">Amap Key #2 ribbit</translation>
     </message>
     <message>
         <source>Google Maps Key</source>
-        <translation type="gpt-4o-generated">Google Maps Code</translation>
+        <translation type="gpt-5-generated">Google Maps Key ribbit</translation>
     </message>
     <message>
         <source>Manage your Google Maps key.</source>
-        <translation type="gpt-4o-generated">Manage your Google Maps key.</translation>
+        <translation type="gpt-5-generated">Tend your Google Maps key.</translation>
     </message>
     <message>
         <source>Enter your Google Maps key</source>
-        <translation type="gpt-4o-generated">Please input your Google Maps key</translation>
+        <translation type="gpt-5-generated">Hop in your Google Maps key</translation>
     </message>
     <message>
         <source>Are you sure you want to remove your Google Maps key?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete your Google Maps key?</translation>
+        <translation type="gpt-5-generated">You sure you wanna yeet your Google Maps key?</translation>
     </message>
     <message>
         <source>Public Mapbox Key</source>
-        <translation type="gpt-4o-generated">Public Mapbox Token</translation>
+        <translation type="gpt-5-generated">Public Mapbox Key-ribbit</translation>
     </message>
     <message>
         <source>Secret Mapbox Key</source>
-        <translation type="gpt-4o-generated">Confidential Mapbox Key</translation>
+        <translation type="gpt-5-generated">Ssssecret Mapbox Key 🐸</translation>
     </message>
     <message>
         <source>MapBox Setup Instructions</source>
-        <translation type="gpt-4o-generated">MapBox Setup Guide</translation>
+        <translation type="gpt-5-generated">MapBox Setup Ribbitstructions</translation>
     </message>
     <message>
         <source>VIEW</source>
-        <translation type="gpt-4o-generated">DISPLAY</translation>
+        <translation type="gpt-5-generated">RIBBIT VIEW</translation>
     </message>
     <message>
         <source>View the instructions to set up "MapBox" for "Primeless Navigation".</source>
-        <translation type="gpt-4o-generated">Check the guide to set up "MapBox" for "Primeless Navigation".</translation>
+        <translation type="gpt-5-generated">Peep the steps to set up "MapBox" for "Primeless Navigation".</translation>
     </message>
     <message>
         <source>CANCEL</source>
-        <translation type="gpt-4o-generated">CANCEL</translation>
+        <translation type="gpt-5-generated">CROAK CANCEL</translation>
     </message>
     <message>
         <source>Manually Update Speed Limits</source>
-        <translation type="gpt-4o-generated">Manually Adjust Speed Limits</translation>
+        <translation type="gpt-5-generated">Manually Update Speed Limics</translation>
     </message>
     <message>
         <source>Speed Limit Filler</source>
-        <translation type="gpt-4o-generated">Speed Limit Buffer</translation>
+        <translation type="gpt-5-generated">Speed Limit Filler ribbit</translation>
     </message>
     <message>
         <source>Automatically collect missing or incorrect speed limits from your dashboard (if supported), &lt;b&gt;Mapbox&lt;/b&gt;, and &lt;b&gt;Navigate-on-openpilot&lt;/b&gt; while driving.&lt;br&gt;&lt;br&gt;When the car is turned off and connected to Wi-Fi, your speed limit data is automatically processed into a compiled file formatted for the tool located at &lt;b&gt;SpeedLimitFiller.frogpilot.download&lt;/b&gt;.&lt;br&gt;&lt;br&gt;You can grab the processed file from &lt;b&gt;The Pond&lt;/b&gt; via the &lt;b&gt;Download Speed Limits&lt;/b&gt; menu.&lt;br&gt;&lt;br&gt;Want a more thorough walkthrough? Check out the &lt;b&gt;#speed-limit-filler&lt;/b&gt; channel in the &lt;b&gt;FrogPilot Discord&lt;/b&gt;!</source>
-        <translation type="gpt-4o-generated">Automatically gather missing or incorrect speed limits from your dashboard (if supported), &lt;b&gt;Mapbox&lt;/b&gt;, and &lt;b&gt;Navigate-on-openpilot&lt;/b&gt; while driving.&lt;br&gt;&lt;br&gt;When the car is turned off and connected to Wi-Fi, your speed limit data is automatically processed into a compiled file formatted for the tool at &lt;b&gt;SpeedLimitFiller.frogpilot.download&lt;/b&gt;.&lt;br&gt;&lt;br&gt;You can fetch the processed file from &lt;b&gt;The Pond&lt;/b&gt; via the &lt;b&gt;Download Speed Limits&lt;/b&gt; menu.&lt;br&gt;&lt;br&gt;Need a more detailed guide? Hop over to the &lt;b&gt;#speed-limit-filler&lt;/b&gt; channel in the &lt;b&gt;FrogPilot Discord&lt;/b&gt;!</translation>
+        <translation type="gpt-5-generated">Automatically snag missing or wrong speed limits from your dashboard (if supported), &lt;b&gt;Mapbox&lt;/b&gt;, and &lt;b&gt;Navigate-on-openpilot&lt;/b&gt; while hoppin’ along.&lt;br&gt;&lt;br&gt;When the car’s snoozed and on Wi‑Fi, your speed limit bits get lily‑packed into a file for the tool at &lt;b&gt;SpeedLimitFiller.frogpilot.download&lt;/b&gt;.&lt;br&gt;&lt;br&gt;Pluck the processed file from &lt;b&gt;The Pond&lt;/b&gt; via the &lt;b&gt;Download Speed Limits&lt;/b&gt; menu.&lt;br&gt;&lt;br&gt;Want a deeper lilypad tour? Peek the &lt;b&gt;#speed-limit-filler&lt;/b&gt; channel in the &lt;b&gt;FrogPilot Discord&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you want to cancel the speed limit update process?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to hop out of the speed limit update process?</translation>
+        <translation type="gpt-5-generated">You sure you wanna cancel the speed limit update?</translation>
     </message>
     <message>
         <source>Cancelled...</source>
-        <translation type="gpt-4o-generated">Called off...</translation>
+        <translation type="gpt-5-generated">Ribbit...</translation>
     </message>
     <message>
         <source>You have reached the request limit.
 
 It will reset in %1 hours and %2 minutes.</source>
-        <translation type="gpt-4o-generated">You've hit the request limit.
+        <translation type="gpt-5-generated">You’ve hopped to the request limit.
 
-It will reset in %1 hours and %2 minutes.</translation>
+It’ll reset in %1 hours and %2 minutes.</translation>
     </message>
     <message>
         <source>This process will take awhile, so it's advised to start when you're done driving with a stable Wi-Fi connection. Do you wish to proceed?</source>
-        <translation type="gpt-4o-generated">This process will take a while, so it's advised to start once you've finished driving and have a stable Wi-Fi connection. Do you wish to proceed?</translation>
+        <translation type="gpt-5-generated">This is gonna take a lil while, so best to start after you’re done drivin’ with a steady Wi‑Fi. Wanna hop ahead and proceed?</translation>
     </message>
     <message>
         <source>Completed!</source>
-        <translation type="gpt-4o-generated">All done!</translation>
+        <translation type="gpt-5-generated">Ribbit! All done!</translation>
     </message>
     <message>
         <source>Offline...</source>
-        <translation type="gpt-4o-generated">Disconnected...</translation>
+        <translation type="gpt-5-generated">Ribbit... Offline...</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotSettingsWindow</name>
     <message>
         <source>MANAGE</source>
-        <translation type="gpt-4o-generated">OVERSEE</translation>
+        <translation type="gpt-5-generated">RIBBIT MANAGE</translation>
     </message>
     <message>
         <source>DRIVING MODEL</source>
-        <translation type="gpt-4o-generated">DRIVE MODEL</translation>
+        <translation type="gpt-5-generated">DRIVIN’ MODEL 🐸</translation>
     </message>
     <message>
         <source>GAS / BRAKE</source>
-        <translation type="gpt-4o-generated">GAS / HOP</translation>
+        <translation type="gpt-5-generated">RIBBIT GAS / RIBBIT BRAKE</translation>
     </message>
     <message>
         <source>STEERING</source>
-        <translation type="gpt-4o-generated">STEERING</translation>
+        <translation type="gpt-5-generated">RIBBIT STEERING</translation>
     </message>
     <message>
         <source>MAP DATA</source>
-        <translation type="gpt-4o-generated">MAP INFO</translation>
+        <translation type="gpt-5-generated">RIBBIT MAP DATA</translation>
     </message>
     <message>
         <source>NAVIGATION</source>
-        <translation type="gpt-4o-generated">NAVIGATE</translation>
+        <translation type="gpt-5-generated">NAVIGAYSHUN</translation>
     </message>
     <message>
         <source>DATA</source>
-        <translation type="gpt-4o-generated">DATA</translation>
+        <translation type="gpt-5-generated">RIBBIT DATA RIBBIT</translation>
     </message>
     <message>
         <source>DEVICE CONTROLS</source>
-        <translation type="gpt-4o-generated">DEVICE COMMANDS</translation>
+        <translation type="gpt-5-generated">FROG DEVICE CONTROLS</translation>
     </message>
     <message>
         <source>UTILITIES</source>
-        <translation type="gpt-4o-generated">UTILITIES</translation>
+        <translation type="gpt-5-generated">HOPPY UTILITIES</translation>
     </message>
     <message>
         <source>APPEARANCE</source>
-        <translation type="gpt-4o-generated">LOOK</translation>
+        <translation type="gpt-5-generated">APPEARANCE ribbit</translation>
     </message>
     <message>
         <source>THEME</source>
-        <translation type="gpt-4o-generated">THEME</translation>
+        <translation type="gpt-5-generated">THEME</translation>
     </message>
     <message>
         <source>VEHICLE SETTINGS</source>
-        <translation type="gpt-4o-generated">VEHICLE OPTIONS</translation>
+        <translation type="gpt-5-generated">VEHICLE SETTINGS, ribbit</translation>
     </message>
     <message>
         <source>WHEEL CONTROLS</source>
-        <translation type="gpt-4o-generated">WHEEL COMMANDS</translation>
+        <translation type="gpt-5-generated">WARTY WHEEL WIGGLES</translation>
     </message>
     <message>
         <source>Alerts and Sounds</source>
-        <translation type="gpt-4o-generated">Notifications and Chimes</translation>
+        <translation type="gpt-5-generated">Ribbits and Croaks</translation>
     </message>
     <message>
         <source>FrogPilot settings for alert volumes and custom notifications to stay informed about important driving events.</source>
-        <translation type="gpt-4o-generated">FrogPilot settings for alert volumes and custom notifications keep you informed about key driving events.</translation>
+        <translation type="gpt-5-generated">FrogPilot ribbit-settings for alert croaks and custom ribbits to stay informed about important driving happenings.</translation>
     </message>
     <message>
         <source>Driving Controls</source>
-        <translation type="gpt-4o-generated">Driving Commands</translation>
+        <translation type="gpt-5-generated">Hoppin’ Controls</translation>
     </message>
     <message>
         <source>FrogPilot settings for acceleration, braking, and steering.</source>
-        <translation type="gpt-4o-generated">FrogPilot settings for hopping, braking, and steering.</translation>
+        <translation type="gpt-5-generated">FrogPilot settings for zoom-zoom, stop-stop, and wiggle-wheel.</translation>
     </message>
     <message>
         <source>Navigation</source>
-        <translation type="gpt-4o-generated">Guidance</translation>
+        <translation type="gpt-5-generated">Ribbitgation</translation>
     </message>
     <message>
         <source>Download map data for &lt;b&gt;Curve Speed Control&lt;/b&gt;, &lt;b&gt;Speed Limit Controller&lt;/b&gt;, and set up &lt;b&gt;Navigate on openpilot (NOO)&lt;/b&gt;.</source>
-        <translation type="gpt-4o-generated">Download map data for &lt;b&gt;Curve Speed Control&lt;/b&gt; and &lt;b&gt;Speed Limit Controller&lt;/b&gt;, then set up &lt;b&gt;Navigate on openpilot (NOO)&lt;/b&gt;.</translation>
+        <translation type="gpt-5-generated">Ribbit! Download map data for &lt;b&gt;Curve Speed Control&lt;/b&gt;, &lt;b&gt;Speed Limit Controller&lt;/b&gt;, and set up &lt;b&gt;Navigate on openpilot (NOO)&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>System Management</source>
-        <translation type="gpt-4o-generated">System Administration</translation>
+        <translation type="gpt-5-generated">Swamp Stewardship</translation>
     </message>
     <message>
         <source>Data storage management, debugging tools, device settings, screen behavior settings, system backups, and utilities to maintain, optimize, and troubleshoot FrogPilot.</source>
-        <translation type="gpt-4o-generated">Data storage management, debugging tools, device settings, screen behavior settings, system backups, and utilities to maintain, optimize, and troubleshoot FrogPilot.</translation>
+        <translation type="gpt-5-generated">Data stashin’ wranglin’, debug gizmos, device fiddlin’, screen doin’s, system stash-backups, and lil’ helpers to keep FrogPilot tidy, zippy, and fixin’ troubles.</translation>
     </message>
     <message>
         <source>Theme and Appearance</source>
-        <translation type="gpt-4o-generated">Style and Look</translation>
+        <translation type="gpt-5-generated">Froggy Theme n’ Looks</translation>
     </message>
     <message>
         <source>FrogPilot settings for the current theme, driving-screen, and the overall user interface.</source>
-        <translation type="gpt-4o-generated">FrogPilot settings for the current theme, driving screen, and overall user interface.</translation>
+        <translation type="gpt-5-generated">FrogPilot settings for the current lily pad, driving-pond view, and the overall swamp interface.</translation>
     </message>
     <message>
         <source>Vehicle Controls</source>
-        <translation type="gpt-4o-generated">Vehicle Controls</translation>
+        <translation type="gpt-5-generated">Vroom Vroom Controls</translation>
     </message>
     <message>
         <source>Options unique to supported manufacturers and vehicle fingerprint management.</source>
-        <translation type="gpt-4o-generated">Exclusive options for supported manufacturers and vehicle fingerprint management.</translation>
+        <translation type="gpt-5-generated">Froggy options for supported manufacturers and managing vehicle fingerprints.</translation>
     </message>
     <message>
         <source>Minimal</source>
-        <translation type="gpt-4o-generated">Concise</translation>
+        <translation type="gpt-5-generated">Ribbit-minimal</translation>
     </message>
     <message>
         <source>Standard</source>
-        <translation type="gpt-4o-generated">Regular</translation>
+        <translation type="gpt-5-generated">Ribbit Standard</translation>
     </message>
     <message>
         <source>Advanced</source>
-        <translation type="gpt-4o-generated">Expert</translation>
+        <translation type="gpt-5-generated">Frogvanced</translation>
     </message>
     <message>
         <source>Developer</source>
-        <translation type="gpt-4o-generated">Coder</translation>
+        <translation type="gpt-5-generated">Develohopper</translation>
     </message>
     <message>
         <source>Tuning Level</source>
-        <translation type="gpt-4o-generated">Adjustment Level</translation>
+        <translation type="gpt-5-generated">Tunin’ Level</translation>
     </message>
     <message>
         <source>The visibility and complexity of tuning settings. Lower levels simplify the interface by hiding advanced options, while higher levels unlock detailed customization.
@@ -2745,2632 +2877,2620 @@ Minimal - Ideal for those who prefer simplicity or ease of use
 Standard - Recommended for most users for a balanced experience
 Advanced - Unlocks fine-tuning controls for more experienced users
 Developer - Unlocks highly customizable settings for seasoned enthusiasts</source>
-        <translation type="gpt-4o-generated">The visibility and complexity of tuning settings vary. Lower levels simplify the interface by hiding advanced options, while higher levels unlock detailed customization.
+        <translation type="gpt-5-generated">How much tune-y stuff you see and how twisty it gets. Low levels hide the fancy bits for a smooth pond, higher levels hop open deep tweaks.
 
-Minimal - Perfect for those who prefer simplicity or ease of use
-Standard - Recommended for most users for a balanced experience
-Advanced - Unlocks fine-tuning controls for more experienced users
-Developer - Unlocks highly customizable settings for seasoned enthusiasts</translation>
+Minimal - For frogs who like it simple and splash-free
+Standard - Sweet spot for most tadpoles, nice and balanced
+Advanced - Opens fine-tune lily pads for skilled hoppers
+Developer - Full swamp of super-tweakable settings for veteran bullfrogs</translation>
     </message>
     <message>
         <source>WARNING: This unlocks some potentially dangerous settings that can DRASTICALLY alter your driving experience!</source>
-        <translation type="gpt-4o-generated">WARNING: This unlocks potentially risky settings that can RIBBIT alter your driving experience!</translation>
+        <translation type="gpt-5-generated">WARNING: This opens some risky settings that can WILDLY change your driving experience!</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotSoundsPanel</name>
     <message>
         <source>Alert Volume Control</source>
-        <translation type="gpt-4o-generated">Alert Volume Ribbit</translation>
+        <translation type="gpt-5-generated">Ribbit Volume Control</translation>
     </message>
     <message>
         <source>Adjust the volume for each alert in openpilot.</source>
-        <translation type="gpt-4o-generated">Set the volume for each alert in openpilot.</translation>
+        <translation type="gpt-5-generated">Tweak da volume for each alert in openpilot.</translation>
     </message>
     <message>
         <source>Disengage Volume</source>
-        <translation type="gpt-4o-generated">Mute Volume</translation>
+        <translation type="gpt-5-generated">Ribbit Volume</translation>
     </message>
     <message>
         <source>Adjust the volume for alerts like:&lt;br&gt;&lt;br&gt;&lt;b&gt;Adaptive Cruise Disabled&lt;/b&gt;&lt;br&gt;&lt;b&gt;Brake Pedal Pressed&lt;/b&gt;&lt;br&gt;&lt;b&gt;Parking Brake Engaged&lt;/b&gt;&lt;br&gt;&lt;b&gt;Speed too Low&lt;/b&gt;</source>
-        <translation type="gpt-4o-generated">Modify the alert volume for:&lt;br&gt;&lt;br&gt;&lt;b&gt;Adaptive Cruise Disabled&lt;/b&gt;&lt;br&gt;&lt;b&gt;Brake Pedal Pressed&lt;/b&gt;&lt;br&gt;&lt;b&gt;Parking Brake Engaged&lt;/b&gt;&lt;br&gt;&lt;b&gt;Speed too Low&lt;/b&gt;</translation>
+        <translation type="gpt-5-generated">Tweak the ribbit for alerts like:&lt;br&gt;&lt;br&gt;&lt;b&gt;Adaptive Cruise Disabled&lt;/b&gt;&lt;br&gt;&lt;b&gt;Brake Pedal Pressed&lt;/b&gt;&lt;br&gt;&lt;b&gt;Parking Brake Engaged&lt;/b&gt;&lt;br&gt;&lt;b&gt;Speed too Low&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Engage Volume</source>
-        <translation type="gpt-4o-generated">Activate Volume</translation>
-    </message>
-    <message>
-        <source>Adjust the volume for alerts like:&lt;br&gt;&lt;br&gt;&lt;b&gt;NNFF Torque Controller loaded&lt;/b&gt;&lt;br&gt;&lt;b&gt;openpilot engaged&lt;/b&gt;</source>
-        <translation type="gpt-4o-generated">Modify the alert volume for notifications such as:&lt;br&gt;&lt;br&gt;&lt;b&gt;NNFF Torque Controller loaded&lt;/b&gt;&lt;br&gt;&lt;b&gt;openpilot engaged&lt;/b&gt;</translation>
+        <translation type="gpt-5-generated">Ribbit Volume</translation>
     </message>
     <message>
         <source>Prompt Volume</source>
-        <translation type="gpt-4o-generated">Volume Prompt</translation>
+        <translation type="gpt-5-generated">Ribbit Volume</translation>
     </message>
     <message>
         <source>Adjust the volume for alerts like:&lt;br&gt;&lt;br&gt;&lt;b&gt;Car Detected in Blindspot&lt;/b&gt;&lt;br&gt;&lt;b&gt;Steer Unavailable Below "X"&lt;/b&gt;&lt;br&gt;&lt;b&gt;Speed too Low&lt;/b&gt;&lt;br&gt;&lt;b&gt;Take Control, Turn Exceeds Steering Limit&lt;/b&gt;</source>
-        <translation type="gpt-4o-generated">Modify the alert volume for:&lt;br&gt;&lt;br&gt;&lt;b&gt;Car Detected in Blindspot&lt;/b&gt;&lt;br&gt;&lt;b&gt;Steer Unavailable Below "X"&lt;/b&gt;&lt;br&gt;&lt;b&gt;Speed too Low&lt;/b&gt;&lt;br&gt;&lt;b&gt;Take Control, Turn Exceeds Steering Limit&lt;/b&gt;</translation>
+        <translation type="gpt-5-generated">Tweak the croak for alerts like:&lt;br&gt;&lt;br&gt;&lt;b&gt;Car Spotted in the Pond’s Blindspot&lt;/b&gt;&lt;br&gt;&lt;b&gt;Steer Un-hoppable Below "X"&lt;/b&gt;&lt;br&gt;&lt;b&gt;Speed too Sluggish&lt;/b&gt;&lt;br&gt;&lt;b&gt;Grab the Lily Pad, Turn Exceeds Steering Limit&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Prompt Distracted Volume</source>
-        <translation type="gpt-4o-generated">Volume Distracted Prompt</translation>
+        <translation type="gpt-5-generated">Prompt Distracted Volume ribbit</translation>
     </message>
     <message>
         <source>Adjust the volume for alerts like:&lt;br&gt;&lt;br&gt;&lt;b&gt;Pay Attention, Driver Distracted&lt;/b&gt;&lt;br&gt;&lt;b&gt;Touch Steering Wheel, Driver Unresponsive&lt;/b&gt;</source>
-        <translation type="gpt-4o-generated">Set the alert volume for notifications such as:&lt;br&gt;&lt;br&gt;&lt;b&gt;Pay Attention, Driver Distracted&lt;/b&gt;&lt;br&gt;&lt;b&gt;Touch Steering Wheel, Driver Unresponsive&lt;/b&gt;</translation>
+        <translation type="gpt-5-generated">Tweak the croak level for alerts like:&lt;br&gt;&lt;br&gt;&lt;b&gt;Pay Attention, Driver Distracted&lt;/b&gt;&lt;br&gt;&lt;b&gt;Touch Steering Wheel, Driver Unresponsive&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Refuse Volume</source>
-        <translation type="gpt-4o-generated">Waste Volume</translation>
+        <translation type="gpt-5-generated">Ribbit Refuse Volume Ribbit</translation>
     </message>
     <message>
         <source>Adjust the volume for alerts like:&lt;br&gt;&lt;br&gt;&lt;b&gt;openpilot Unavailable&lt;/b&gt;</source>
-        <translation type="gpt-4o-generated">Modify the alert volume for notifications such as:&lt;br&gt;&lt;br&gt;&lt;b&gt;openpilot Unavailable&lt;/b&gt;</translation>
+        <translation type="gpt-5-generated">Tweak da volume for alerts like:&lt;br&gt;&lt;br&gt;&lt;b&gt;openpilot Unavailable&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Warning Soft Volume</source>
-        <translation type="gpt-4o-generated">Soft Volume Alert</translation>
+        <translation type="gpt-5-generated">Ribbit Warning: Soft Volume</translation>
     </message>
     <message>
         <source>Adjust the volume for alerts like:&lt;br&gt;&lt;br&gt;&lt;b&gt;BRAKE!, Risk of Collision&lt;/b&gt;&lt;br&gt;&lt;b&gt;TAKE CONTROL IMMEDIATELY&lt;/b&gt;</source>
-        <translation type="gpt-4o-generated">Modify the alert volume for:&lt;br&gt;&lt;br&gt;&lt;b&gt;BRAKE!, Risk of Collision&lt;/b&gt;&lt;br&gt;&lt;b&gt;TAKE CONTROL IMMEDIATELY&lt;/b&gt;</translation>
+        <translation type="gpt-5-generated">Tune da loudness for alert croaks like:&lt;br&gt;&lt;br&gt;&lt;b&gt;BRAKE!, Risk of Collision&lt;/b&gt;&lt;br&gt;&lt;b&gt;TAKE CONTROL IMMEDIATELY&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Warning Immediate Volume</source>
-        <translation type="gpt-4o-generated">Urgent Volume Alert</translation>
+        <translation type="gpt-5-generated">Ribbit! Immediate Volume Warning</translation>
     </message>
     <message>
         <source>Adjust the volume for alerts like:&lt;br&gt;&lt;br&gt;&lt;b&gt;DISENGAGE IMMEDIATELY, Driver Distracted&lt;/b&gt;&lt;br&gt;&lt;b&gt;DISENGAGE IMMEDIATELY, Driver Unresponsive&lt;/b&gt;</source>
-        <translation type="gpt-4o-generated">Modify the alert volume for messages such as:&lt;br&gt;&lt;br&gt;&lt;b&gt;DISENGAGE IMMEDIATELY, Driver Distracted&lt;/b&gt;&lt;br&gt;&lt;b&gt;DISENGAGE IMMEDIATELY, Driver Unresponsive&lt;/b&gt;</translation>
+        <translation type="gpt-5-generated">Tweak the croak level for alerts like:&lt;br&gt;&lt;br&gt;&lt;b&gt;DISENGAGE IMMEDIATELY, Driver Distracted&lt;/b&gt;&lt;br&gt;&lt;b&gt;DISENGAGE IMMEDIATELY, Driver Unresponsive&lt;/b&gt;</translation>
     </message>
     <message>
         <source>FrogPilot Alerts</source>
-        <translation type="gpt-4o-generated">FrogPilot Notices</translation>
+        <translation type="gpt-5-generated">FrogPilot Ribbits</translation>
     </message>
     <message>
         <source>FrogPilot alerts for various events in openpilot.</source>
-        <translation type="gpt-4o-generated">FrogPilot notifies you about different events in openpilot.</translation>
+        <translation type="gpt-5-generated">Ribbit! FrogPilot croaks alerts for various happenings in openpilot.</translation>
     </message>
     <message>
         <source>Goat Scream Steering Saturated Alert</source>
-        <translation type="gpt-4o-generated">Goat Scream Steering Saturated Ribbit</translation>
+        <translation type="gpt-5-generated">Ribbit Scream Steering Saturated Alert</translation>
     </message>
     <message>
         <source>The infamous "Goat Scream" that has brought both joy and anger to FrogPilot users all around the world!</source>
-        <translation type="gpt-4o-generated">The notorious "Goat Scream" has sparked both delight and frustration among FrogPilot users worldwide!</translation>
+        <translation type="gpt-5-generated">The infamous “Goat Scream” that’s brought both joy and anger to FrogPilot users across the pond, ribbit!</translation>
     </message>
     <message>
         <source>Green Light Alert</source>
-        <translation type="gpt-4o-generated">Ribbit Light Alert</translation>
+        <translation type="gpt-5-generated">Ribbit Light Alert</translation>
     </message>
     <message>
         <source>Get an alert when the traffic light changes from red to green.</source>
-        <translation type="gpt-4o-generated">Receive a notification when the traffic light hops from red to green.</translation>
+        <translation type="gpt-5-generated">Get a ribbit when the traffic light hops from red to green.</translation>
     </message>
     <message>
         <source>Lead Departing Alert</source>
-        <translation type="gpt-4o-generated">Lead Departure Alert</translation>
+        <translation type="gpt-5-generated">Lead Departing Alert, ribbit</translation>
     </message>
     <message>
         <source>Get an alert when the lead vehicle begins to depart from a standstill.</source>
-        <translation type="gpt-4o-generated">Receive a notification when the lead vehicle starts to hop away from a standstill.</translation>
+        <translation type="gpt-5-generated">Get a ribbit when the lead vehicle starts to hop off from a standstill.</translation>
     </message>
     <message>
         <source>Loud "Car Detected in Blindspot" Alert</source>
-        <translation type="gpt-4o-generated">"Car in Blindspot" Alert</translation>
+        <translation type="gpt-5-generated">Loud “Car Detected in Blindspot” Alert</translation>
     </message>
     <message>
         <source>A louder alert for when a vehicle is detected in the blindspot when attempting to change lanes.</source>
-        <translation type="gpt-4o-generated">A louder alert for detecting a vehicle in the blind spot when trying to hop lanes.</translation>
+        <translation type="gpt-5-generated">A louder ribbit when a vehicle is spotted in the blindspot while you’re hopping to change lanes.</translation>
     </message>
     <message>
         <source>Speed Limit Changed Alert</source>
-        <translation type="gpt-4o-generated">Speed Limit Update Notice</translation>
+        <translation type="gpt-5-generated">Ribbit! Speed Limit Changed Alert</translation>
     </message>
     <message>
         <source>Get an alert when the speed limit changes.</source>
-        <translation type="gpt-4o-generated">Receive a notification when the speed limit hops.</translation>
+        <translation type="gpt-5-generated">Get a ribbit when the speed limit changes.</translation>
     </message>
     <message>
         <source>Muted</source>
-        <translation type="gpt-4o-generated">Silent</translation>
+        <translation type="gpt-5-generated">Ribbit-muted</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="gpt-4o-generated">Car</translation>
+        <translation type="gpt-5-generated">Ribbit Auto Ribbit</translation>
     </message>
     <message>
         <source>Test</source>
-        <translation type="gpt-4o-generated">Test</translation>
+        <translation type="gpt-5-generated">Ribbit Test</translation>
+    </message>
+    <message>
+        <source>Adjust the volume for alerts like:&lt;br&gt;&lt;b&gt;openpilot engaged&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>FrogPilotThemesPanel</name>
     <message>
         <source>Custom Theme</source>
-        <translation type="gpt-4o-generated">Personalized Theme</translation>
+        <translation type="gpt-5-generated">Swampy Theme</translation>
     </message>
     <message>
         <source>The overall appearance of openpilot.</source>
-        <translation type="gpt-4o-generated">The general look of openpilot.</translation>
+        <translation type="gpt-5-generated">The overall appearance of openpilot, ribbit.</translation>
     </message>
     <message>
         <source>Color Scheme</source>
-        <translation type="gpt-4o-generated">Color Palette</translation>
+        <translation type="gpt-5-generated">Croak Colors</translation>
     </message>
     <message>
         <source>openpilot's color scheme.
 
 Want to submit your own color scheme? Share it in the "custom-themes" channel on the FrogPilot Discord!</source>
-        <translation type="gpt-4o-generated">openpilot's color scheme.
+        <translation type="gpt-5-generated">openpilot’s color splash, ribbit.
 
-Want to submit your own color scheme? Ribbit it in the "custom-themes" channel on the FrogPilot Discord!</translation>
+Got a color look you wanna toss in? Hop it over to the "custom-themes" lily pad on the FrogPilot Discord!</translation>
     </message>
     <message>
         <source>Icon Pack</source>
-        <translation type="gpt-4o-generated">Icon Collection</translation>
+        <translation type="gpt-5-generated">Icon Pack ribbit</translation>
     </message>
     <message>
         <source>openpilot's icon pack.
 
 Want to submit your own icons? Share them in the "custom-themes" channel on the FrogPilot Discord!</source>
-        <translation type="gpt-4o-generated">openpilot's icon pack.
+        <translation type="gpt-5-generated">openpilot’s icon pack.
 
-Want to submit your own icons? Ribbit them in the "custom-themes" channel on the FrogPilot Discord!</translation>
+Got your own icons to share? Hop into the “custom-themes” channel on the FrogPilot Discord and drop them in!</translation>
     </message>
     <message>
         <source>Sound Pack</source>
-        <translation type="gpt-4o-generated">Audio Set</translation>
+        <translation type="gpt-5-generated">Ribbit Sound Pack</translation>
     </message>
     <message>
         <source>openpilot's sound effects.
 
 Want to submit your own sounds? Share them in the "custom-themes" channel on the FrogPilot Discord!</source>
-        <translation type="gpt-4o-generated">Sound effects for openpilot.
+        <translation type="gpt-5-generated">ribbitpilot’s sound effects.
 
-Want to submit your own sounds? Share them in the "custom-themes" channel on the FrogPilot Discord!</translation>
+Wanna croak your own sounds? Splash them into the “custom-themes” lily pad on the FrogPilot Discord!</translation>
     </message>
     <message>
         <source>Steering Wheel</source>
-        <translation type="gpt-4o-generated">Steering Wheel</translation>
+        <translation type="gpt-5-generated">Steerin’ Wheel</translation>
     </message>
     <message>
         <source>The steering wheel icon in the top right of the driving screen.</source>
-        <translation type="gpt-4o-generated">The steering wheel icon is located in the top right corner of the driving screen.</translation>
+        <translation type="gpt-5-generated">Da steering wheel icon up in da tippy-right of da drivin’ screen.</translation>
     </message>
     <message>
         <source>Themed turn signal animations.
 
 Want to submit your own animations? Share them in the "custom-themes" channel on the FrogPilot Discord!</source>
-        <translation type="gpt-4o-generated">Themed turn signal animations.
+        <translation type="gpt-5-generated">Ribbit-worthy turn signal animations.
 
-Want to submit your own animations? Ribbit them in the "custom-themes" channel on the FrogPilot Discord!</translation>
+Got your own animations to share? Hop on over to the "custom-themes" channel in the FrogPilot Discord and drop them in!</translation>
     </message>
     <message>
         <source>Download Status</source>
-        <translation type="gpt-4o-generated">Status: Download</translation>
+        <translation type="gpt-5-generated">Ribbit Load Status</translation>
     </message>
     <message>
         <source>Holiday Themes</source>
-        <translation type="gpt-4o-generated">Festive Themes</translation>
+        <translation type="gpt-5-generated">Hoppyday Themes</translation>
     </message>
     <message>
         <source>Holiday-based visual themes for openpilot. Minor holidays last one day; major holidays (Christmas, Easter, Halloween, etc.) continue all week.</source>
-        <translation type="gpt-4o-generated">Holiday-themed visuals for openpilot: Minor holidays last a day, while major ones like Christmas, Easter, and Halloween extend throughout the week.</translation>
+        <translation type="gpt-5-generated">Holiday-based visual themes for openpilot. Minor holidays hop by for one day; major holidays (Christmas, Easter, Halloween, etc.) bounce along all week.</translation>
     </message>
     <message>
         <source>Rainbow Path</source>
-        <translation type="gpt-4o-generated">Rainbow Trail</translation>
+        <translation type="gpt-5-generated">Ribbit Rainbow Path</translation>
     </message>
     <message>
         <source>The path on the driving screen turns into a Mario Kart inspired "Rainbow Path".</source>
-        <translation type="gpt-4o-generated">The path on the driving screen transforms into a Mario Kart-inspired "Rainbow Path".</translation>
+        <translation type="gpt-5-generated">The path on the driving screen becomes a ribbit-tastic “Rainbow Path,” just like in Mario Kart.</translation>
     </message>
     <message>
         <source>Random Events</source>
-        <translation type="gpt-4o-generated">Unplanned Occurrences</translation>
+        <translation type="gpt-5-generated">Random Ribbits</translation>
     </message>
     <message>
         <source>Random cosmetic events that trigger after certain driving conditions. These events are purely for fun and don't affect driving controls!</source>
-        <translation type="gpt-4o-generated">Random cosmetic events activate after specific driving conditions. These are just for fun and don't impact driving controls!</translation>
+        <translation type="gpt-5-generated">Croaky little surprises that pop up after certain driving conditions. Just for fun—no impact on driving controls!</translation>
     </message>
     <message>
         <source>Random Themes</source>
-        <translation type="gpt-4o-generated">Assorted Themes</translation>
+        <translation type="gpt-5-generated">Ribbit Themes</translation>
     </message>
     <message>
         <source>Cycles through your downloaded themes randomly on each boot, giving every theme in your collection a chance to shine!</source>
-        <translation type="gpt-4o-generated">Randomly cycles through your downloaded themes at each boot, giving every theme in your collection a chance to hop into the spotlight!</translation>
+        <translation type="gpt-5-generated">Ribbits through your downloaded themes at random on each boot, giving every theme in your pond a chance to shine!</translation>
     </message>
     <message>
         <source>Startup Alert</source>
-        <translation type="gpt-4o-generated">Startup Ribbit</translation>
+        <translation type="gpt-5-generated">Ribbit! Startup Alert</translation>
     </message>
     <message>
         <source>The text of the "Startup Alert" message that appears at the beginning of a drive.</source>
-        <translation type="gpt-4o-generated">The "Startup Alert" message displayed at the start of a drive.</translation>
+        <translation type="gpt-5-generated">The “Startup Alert” words that hop up at the beginning of a drive.</translation>
     </message>
     <message>
         <source>DELETE</source>
-        <translation type="gpt-4o-generated">REMOVE</translation>
+        <translation type="gpt-5-generated">RIBBIT DELETE RIBBIT</translation>
     </message>
     <message>
         <source>DOWNLOAD</source>
-        <translation type="gpt-4o-generated">GET FILE</translation>
+        <translation type="gpt-5-generated">RIBBITLOAD</translation>
     </message>
     <message>
         <source>SELECT</source>
-        <translation type="gpt-4o-generated">CHOOSE</translation>
+        <translation type="gpt-5-generated">SELECT ribbit</translation>
     </message>
     <message>
         <source>Select a color scheme to delete</source>
-        <translation type="gpt-4o-generated">Choose a color scheme to remove</translation>
+        <translation type="gpt-5-generated">Pick a color scheme to zap</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the "%1" color scheme?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete the "%1" color scheme?</translation>
+        <translation type="gpt-5-generated">Are you sure you want to hop-delete the "%1" color scheme?</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="gpt-4o-generated">Remove</translation>
+        <translation type="gpt-5-generated">Ribbit: Delete</translation>
     </message>
     <message>
         <source>Select a color scheme to download</source>
-        <translation type="gpt-4o-generated">Choose a color scheme to download</translation>
+        <translation type="gpt-5-generated">Pick a color scheme to snag ribbit-download</translation>
     </message>
     <message>
         <source>Select a color scheme</source>
-        <translation type="gpt-4o-generated">Choose a color palette</translation>
+        <translation type="gpt-5-generated">Pick a color vibe</translation>
     </message>
     <message>
         <source>Select a distance icon pack to delete</source>
-        <translation type="gpt-4o-generated">Choose a distance icon pack to remove</translation>
+        <translation type="gpt-5-generated">Pick a distance icon pack to delete</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the "%1" distance icon pack?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete the "%1" distance icon pack?</translation>
+        <translation type="gpt-5-generated">Ribbit! Are you sure you want to hop-erase the "%1" distance icon pack?</translation>
     </message>
     <message>
         <source>Select a distance icon pack to download</source>
-        <translation type="gpt-4o-generated">Choose a distance icon pack to download</translation>
+        <translation type="gpt-5-generated">Pick a distance icon pack to download ribbit</translation>
     </message>
     <message>
         <source>Select a distance icon pack</source>
-        <translation type="gpt-4o-generated">Choose a distance icon set</translation>
+        <translation type="gpt-5-generated">Pick a distance icon pack</translation>
     </message>
     <message>
         <source>Select an icon pack to delete</source>
-        <translation type="gpt-4o-generated">Choose an icon pack to remove</translation>
+        <translation type="gpt-5-generated">Pick a lilypad pack to delete</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the "%1" icon pack?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete the "%1" icon pack?</translation>
+        <translation type="gpt-5-generated">Are you sure you wanna yeet the "%1" icon pack?</translation>
     </message>
     <message>
         <source>Select an icon pack to download</source>
-        <translation type="gpt-4o-generated">Choose an icon pack to download</translation>
+        <translation type="gpt-5-generated">Pick a lilypad of icons to download</translation>
     </message>
     <message>
         <source>Select an icon pack</source>
-        <translation type="gpt-4o-generated">Choose an icon set</translation>
+        <translation type="gpt-5-generated">Pick a lily pad icon pack</translation>
     </message>
     <message>
         <source>Select a signal animation to delete</source>
-        <translation type="gpt-4o-generated">Choose a signal animation to remove</translation>
+        <translation type="gpt-5-generated">Pick a signal animation to delete</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the "%1" signal animation?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete the "%1" signal animation?</translation>
+        <translation type="gpt-5-generated">Are you sure you wanna hop-delete the "%1" signal animation?</translation>
     </message>
     <message>
         <source>Select a signal animation to download</source>
-        <translation type="gpt-4o-generated">Choose a signal animation to download</translation>
+        <translation type="gpt-5-generated">Pick a signal animation to download</translation>
     </message>
     <message>
         <source>Select a signal animation</source>
-        <translation type="gpt-4o-generated">Choose a signal animation</translation>
+        <translation type="gpt-5-generated">Pick a signal wiggle</translation>
     </message>
     <message>
         <source>Select a sound pack to delete</source>
-        <translation type="gpt-4o-generated">Choose a sound pack to remove</translation>
+        <translation type="gpt-5-generated">Pick a sound pack to delete</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the "%1" sound pack?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete the "%1" sound pack?</translation>
+        <translation type="gpt-5-generated">Ribbit… you sure you wanna delete the "%1" sound pack?</translation>
     </message>
     <message>
         <source>Select a sound pack to download</source>
-        <translation type="gpt-4o-generated">Choose a sound pack to download</translation>
+        <translation type="gpt-5-generated">Pick a ribbit pack to download</translation>
     </message>
     <message>
         <source>Select a sound pack</source>
-        <translation type="gpt-4o-generated">Choose a sound pack</translation>
+        <translation type="gpt-5-generated">Pick a ribbit pack</translation>
     </message>
     <message>
         <source>Select a steering wheel to delete</source>
-        <translation type="gpt-4o-generated">Choose a steering wheel to remove</translation>
+        <translation type="gpt-5-generated">Pick a steering wheel to yeet</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the "%1" steering wheel?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to delete the "%1" steering wheel?</translation>
+        <translation type="gpt-5-generated">Are you sure you want to yeet the "%1" steering wheel?</translation>
     </message>
     <message>
         <source>Select a steering wheel to download</source>
-        <translation type="gpt-4o-generated">Choose a steering wheel to download</translation>
+        <translation type="gpt-5-generated">Pick a steering wheel to download</translation>
     </message>
     <message>
         <source>Select a steering wheel</source>
-        <translation type="gpt-4o-generated">Choose a steering wheel</translation>
+        <translation type="gpt-5-generated">Pick a steering wheel</translation>
     </message>
     <message>
         <source>STOCK</source>
-        <translation type="gpt-4o-generated">STOCK</translation>
+        <translation type="gpt-5-generated">RIBBIT STOCK</translation>
     </message>
     <message>
         <source>FROGPILOT</source>
-        <translation type="gpt-4o-generated">FROGPILOT</translation>
+        <translation type="gpt-5-generated">FROGPILOT ribbit</translation>
     </message>
     <message>
         <source>CUSTOM</source>
-        <translation type="gpt-4o-generated">CUSTOM</translation>
+        <translation type="gpt-5-generated">RIBBIT CUSTOM RIBBIT</translation>
     </message>
     <message>
         <source>CLEAR</source>
-        <translation type="gpt-4o-generated">CLEAR</translation>
+        <translation type="gpt-5-generated">RIBBIT CLEAR</translation>
     </message>
     <message>
         <source>Enter the text for the top half</source>
-        <translation type="gpt-4o-generated">Input the text for the upper section</translation>
+        <translation type="gpt-5-generated">Plop in the text for the top half ribbit</translation>
     </message>
     <message>
         <source>Characters: 0/%1</source>
-        <translation type="gpt-4o-generated">Characters: 0/%1</translation>
+        <translation type="gpt-5-generated">Ribbets: 0/%1</translation>
     </message>
     <message>
         <source>Enter the text for the bottom half</source>
-        <translation type="gpt-4o-generated">Input the text for the lower section</translation>
+        <translation type="gpt-5-generated">Plop in the text for the bottom half ribbit</translation>
     </message>
     <message>
         <source>Are you sure you want to completely reset your startup message?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to fully reset your startup message?</translation>
+        <translation type="gpt-5-generated">Ya sure you wanna reset your startup ribbit-message completely?</translation>
     </message>
     <message>
         <source>"Random Themes" only works with downloaded themes, so make sure you download the themes you want it to use!</source>
-        <translation type="gpt-4o-generated">"Random Themes" functions only with downloaded themes, so ensure you download the themes you want it to hop between!</translation>
+        <translation type="gpt-5-generated">“Random Themes” only hops with downloaded themes, so snag the themes you want it to use!</translation>
     </message>
     <message>
         <source>CANCEL</source>
-        <translation type="gpt-4o-generated">CANCEL</translation>
+        <translation type="gpt-5-generated">RIBBIT CANCEL</translation>
     </message>
     <message>
         <source>Turn Signal</source>
-        <translation type="gpt-4o-generated">Indicator</translation>
+        <translation type="gpt-5-generated">Turn Ribbit Signal</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotUtilitiesPanel</name>
     <message>
         <source>Debug Mode</source>
-        <translation type="gpt-4o-generated">Debug Mode</translation>
+        <translation type="gpt-5-generated">Ribbit Mode</translation>
     </message>
     <message>
         <source>Debug FrogPilot during the next drive by utilizing all of FrogPilot's developer metrics for either bug reporting, or self-debugging.</source>
-        <translation type="gpt-4o-generated">Use FrogPilot's developer metrics to debug during the next drive, whether for bug reporting or self-debugging.</translation>
+        <translation type="gpt-5-generated">Ribbit into FrogPilot’s next drive and tap all of FrogPilot’s dev metrics for bug reports or self-debugging, ribbit.</translation>
     </message>
     <message>
         <source>Flash Panda</source>
-        <translation type="gpt-4o-generated">Swift Panda</translation>
+        <translation type="gpt-5-generated">Ribbit flash Panda</translation>
     </message>
     <message>
         <source>FLASH</source>
-        <translation type="gpt-4o-generated">FLASH</translation>
+        <translation type="gpt-5-generated">RIBBIT FLASH</translation>
     </message>
     <message>
         <source>Flash the Panda's firmware. Use if you're running into issues with the Panda.</source>
-        <translation type="gpt-4o-generated">Update the Panda's firmware. Use this if you're encountering problems with the Panda.</translation>
+        <translation type="gpt-5-generated">Zap the Panda’s firmware. Use this if the Panda’s acting up.</translation>
     </message>
     <message>
         <source>Are you sure you want to flash the Panda?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to flash the Panda?</translation>
+        <translation type="gpt-5-generated">Ya sure-sure you wanna flash the Panda, ribbit?</translation>
     </message>
     <message>
         <source>Flash</source>
-        <translation type="gpt-4o-generated">Glimpse</translation>
+        <translation type="gpt-5-generated">Flash-ribbit</translation>
     </message>
     <message>
         <source>Flashing...</source>
-        <translation type="gpt-4o-generated">Blinking...</translation>
+        <translation type="gpt-5-generated">Ribbiting...</translation>
     </message>
     <message>
         <source>Flashed!</source>
-        <translation type="gpt-4o-generated">Ribbit!</translation>
+        <translation type="gpt-5-generated">Ribbit! Flashed!</translation>
     </message>
     <message>
         <source>Rebooting...</source>
-        <translation type="gpt-4o-generated">Restarting...</translation>
+        <translation type="gpt-5-generated">Ribooting...</translation>
     </message>
     <message>
         <source>Force Started State</source>
-        <translation type="gpt-4o-generated">Initiated State</translation>
+        <translation type="gpt-5-generated">Force Start’d State</translation>
     </message>
     <message>
         <source>Force openpilot either offroad or onroad.</source>
-        <translation type="gpt-4o-generated">Force openpilot to operate either off-road or on-road.</translation>
+        <translation type="gpt-5-generated">Make openpilot hop either offroad or onroad.</translation>
     </message>
     <message>
         <source>OFFROAD</source>
-        <translation type="gpt-4o-generated">OFFROAD</translation>
+        <translation type="gpt-5-generated">OFFRIBBIT</translation>
     </message>
     <message>
         <source>ONROAD</source>
-        <translation type="gpt-4o-generated">ONROAD</translation>
+        <translation type="gpt-5-generated">ONRIBBIT</translation>
     </message>
     <message>
         <source>OFF</source>
-        <translation type="gpt-4o-generated">OFF</translation>
+        <translation type="gpt-5-generated">RIBBIT OFF</translation>
     </message>
     <message>
         <source>Report a Bug or an Issue</source>
-        <translation type="gpt-4o-generated">Submit a Bug or Issue</translation>
+        <translation type="gpt-5-generated">Ribbit a Bug or an Issue</translation>
     </message>
     <message>
         <source>REPORT</source>
-        <translation type="gpt-4o-generated">SUMMARY</translation>
+        <translation type="gpt-5-generated">RIBBIT REPORT</translation>
     </message>
     <message>
         <source>Let FrogsGoMoo know about an issue you're facing!</source>
-        <translation type="gpt-4o-generated">Inform FrogsGoMoo about any issue you're encountering!</translation>
+        <translation type="gpt-5-generated">Let FrogsGoMoo know about a bug you’re hoppin’ through!</translation>
     </message>
     <message>
         <source>Ensure your device has an internet connection before sending a report!</source>
-        <translation type="gpt-4o-generated">Make sure your device is connected to the internet before hopping to send a report!</translation>
+        <translation type="gpt-5-generated">Make sure your device’s got internet before you send a report!</translation>
     </message>
     <message>
         <source>I saw an alert that said "openpilot crashed"</source>
-        <translation type="gpt-4o-generated">I saw an alert stating "openpilot crashed"</translation>
+        <translation type="gpt-5-generated">I saw a lily-pad pop-up that said "openpilot splashed out"</translation>
     </message>
     <message>
         <source>What's going on?</source>
-        <translation type="gpt-4o-generated">What's happening?</translation>
+        <translation type="gpt-5-generated">What’s hoppin’?</translation>
     </message>
     <message>
         <source>Please describe what's happening</source>
-        <translation type="gpt-4o-generated">Could you explain what's going on?</translation>
+        <translation type="gpt-5-generated">Please ribbit what's hoppinin’</translation>
     </message>
     <message>
         <source>Send Report</source>
-        <translation type="gpt-4o-generated">Dispatch Report</translation>
+        <translation type="gpt-5-generated">Ribbit Report</translation>
     </message>
     <message>
         <source>What's your Discord username?</source>
-        <translation type="gpt-4o-generated">What's your Discord handle?</translation>
+        <translation type="gpt-5-generated">What’s your Discord ribbit-name?</translation>
     </message>
     <message>
         <source>Your report has been submitted. Thanks for letting us know!</source>
-        <translation type="gpt-4o-generated">Your report has been submitted. Ribbit! Thanks for hopping us know!</translation>
+        <translation type="gpt-5-generated">Your report has been croaked over. Thanks for ribbiting it our way!</translation>
     </message>
     <message>
         <source>Reset Toggles to Default</source>
-        <translation type="gpt-4o-generated">Restore Toggles to Default</translation>
+        <translation type="gpt-5-generated">Ribbit Reset Toggles to Default Ribbit</translation>
     </message>
     <message>
         <source>RESET</source>
-        <translation type="gpt-4o-generated">RESET</translation>
+        <translation type="gpt-5-generated">RIBBIT RESET</translation>
     </message>
     <message>
         <source>Reset all toggles to their default values.</source>
-        <translation type="gpt-4o-generated">Return all toggles to their default settings.</translation>
+        <translation type="gpt-5-generated">Ribbit all toggles back to their default values.</translation>
     </message>
     <message>
         <source>Are you sure you want to reset all toggles to their default values?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to reset all toggles to their default settings?</translation>
+        <translation type="gpt-5-generated">Ribbit, are you sure you want to reset all toggles to their default values?</translation>
     </message>
     <message>
         <source>Reset</source>
-        <translation type="gpt-4o-generated">Restart</translation>
+        <translation type="gpt-5-generated">Ribbit-reset</translation>
     </message>
     <message>
         <source>Resetting...</source>
-        <translation type="gpt-4o-generated">Restarting...</translation>
+        <translation type="gpt-5-generated">Ribbit... resetting...</translation>
     </message>
     <message>
         <source>Reset!</source>
-        <translation type="gpt-4o-generated">Restart!</translation>
+        <translation type="gpt-5-generated">Ribbit! Reset!</translation>
     </message>
     <message>
         <source>Reset Toggles to Match Stock openpilot</source>
-        <translation type="gpt-4o-generated">Reset Toggles to Match Stock openpilot Ribbit</translation>
+        <translation type="gpt-5-generated">Ribbit Reset Toggles to Match Stock openpilot Ribbit</translation>
     </message>
     <message>
         <source>Reset all toggles to match stock openpilot.</source>
-        <translation type="gpt-4o-generated">Reset all toggles to match the default openpilot settings.</translation>
+        <translation type="gpt-5-generated">Ribbit all toggles back to stock openpilot.</translation>
     </message>
     <message>
         <source>Are you sure you want to reset all toggles to match stock openpilot?</source>
-        <translation type="gpt-4o-generated">Are you sure you want to reset all toggles to match the default openpilot settings?</translation>
+        <translation type="gpt-5-generated">You sure you wanna hop back and reset all toggles to stock openpilot?</translation>
     </message>
     <message>
         <source>Acceleration feels too harsh or jerky</source>
-        <translation type="gpt-4o-generated">Acceleration feels too abrupt or jumpy.</translation>
+        <translation type="gpt-5-generated">Acceleration feels all ribbit-rough and jumpy</translation>
     </message>
     <message>
         <source>An alert confused me and I didn’t know what it meant</source>
-        <translation type="gpt-4o-generated">An alert puzzled me, and I couldn't figure out its meaning.</translation>
+        <translation type="gpt-5-generated">An alert had me all baffled, and I didn’t know what it meant ribbit</translation>
     </message>
     <message>
         <source>Braking is too sudden or uncomfortable</source>
-        <translation type="gpt-4o-generated">Braking feels too abrupt or uncomfortable</translation>
+        <translation type="gpt-5-generated">Braking feels too jumpy or uncomfy</translation>
     </message>
     <message>
         <source>I’m not sure if this is normal or a bug:</source>
-        <translation type="gpt-4o-generated">I'm unsure if this is normal or a glitch:</translation>
+        <translation type="gpt-5-generated">Ribbit, not sure if this is normal or a bug.</translation>
     </message>
     <message>
         <source>Lane changes don’t work properly or feel unsafe</source>
-        <translation type="gpt-4o-generated">Lane changes don't function correctly or feel unsafe.</translation>
+        <translation type="gpt-5-generated">Lane changes be not workin’ proper or feelin’ safe</translation>
     </message>
     <message>
         <source>My screen froze or got stuck on loading</source>
-        <translation type="gpt-4o-generated">My screen froze or is stuck loading.</translation>
+        <translation type="gpt-5-generated">My screen got stuck, like a lily pad loading loop croak—frozen on load</translation>
     </message>
     <message>
         <source>My steering wheel buttons aren’t working</source>
-        <translation type="gpt-4o-generated">The buttons on my steering wheel aren't working.</translation>
+        <translation type="gpt-5-generated">My steering wheel buttons ain’t ribbiting right</translation>
     </message>
     <message>
         <source>openpilot disengages when I don't expect it</source>
-        <translation type="gpt-4o-generated">openpilot disengages unexpectedly</translation>
+        <translation type="gpt-5-generated">openpilot hops off when I don’t expect it</translation>
     </message>
     <message>
         <source>openpilot doesn’t resume after I stop</source>
-        <translation type="gpt-4o-generated">openpilot doesn't restart after I stop</translation>
+        <translation type="gpt-5-generated">openpilot no hop again after I stop</translation>
     </message>
     <message>
         <source>openpilot doesn't react to stopped vehicles ahead</source>
-        <translation type="gpt-4o-generated">openpilot doesn't respond to stopped vehicles ahead</translation>
+        <translation type="gpt-5-generated">openpilot no hop to stopped cars ahead</translation>
     </message>
     <message>
         <source>openpilot feels sluggish or slow to respond</source>
-        <translation type="gpt-4o-generated">openpilot seems sluggish or slow to react</translation>
+        <translation type="gpt-5-generated">openpilot feels sluggish, like a slow-responding frog</translation>
     </message>
     <message>
         <source>Steering feels twitchy or unnatural</source>
-        <translation type="gpt-4o-generated">Steering feels jumpy or unnatural</translation>
+        <translation type="gpt-5-generated">Steering feels all jumpy-jumpy or kinda weird-ribbit</translation>
     </message>
     <message>
         <source>The car doesn’t follow curves well</source>
-        <translation type="gpt-4o-generated">The car doesn't handle curves well.</translation>
+        <translation type="gpt-5-generated">The car ain’t hoppin’ ‘round curves too well</translation>
     </message>
     <message>
         <source>The car isn’t staying centered in its lane</source>
-        <translation type="gpt-4o-generated">The car isn't staying centered in its lane.</translation>
+        <translation type="gpt-5-generated">The car isn’t staying centered in its lilypad lane</translation>
     </message>
     <message>
         <source>The speed or display info looks wrong</source>
-        <translation type="gpt-4o-generated">The speed or display information seems incorrect.</translation>
+        <translation type="gpt-5-generated">The speed or display info looks ribbit-wrong</translation>
     </message>
     <message>
         <source>Something else (please describe)</source>
-        <translation type="gpt-4o-generated">Another option (please describe)</translation>
+        <translation type="gpt-5-generated">Somethin’ else (please croak what)</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotVehiclesPanel</name>
     <message>
         <source>Select Make</source>
-        <translation type="gpt-4o-generated">Choose Make</translation>
+        <translation type="gpt-5-generated">Pick Make</translation>
     </message>
     <message>
         <source>SELECT</source>
-        <translation type="gpt-4o-generated">CHOOSE</translation>
+        <translation type="gpt-5-generated">SELECT</translation>
     </message>
     <message>
         <source>Select a Make</source>
-        <translation type="gpt-4o-generated">Choose a Make</translation>
+        <translation type="gpt-5-generated">Pick a Make</translation>
     </message>
     <message>
         <source>Select Model</source>
-        <translation type="gpt-4o-generated">Choose Model</translation>
+        <translation type="gpt-5-generated">Pick da Model</translation>
     </message>
     <message>
         <source>Select a Model</source>
-        <translation type="gpt-4o-generated">Choose a Model</translation>
+        <translation type="gpt-5-generated">Pick a Model</translation>
     </message>
     <message>
         <source>Disable Automatic Fingerprint Detection</source>
-        <translation type="gpt-4o-generated">Turn Off Automatic Fingerprint Detection</translation>
+        <translation type="gpt-5-generated">Turn Off Ribbit Fingerprint Auto-Detect</translation>
     </message>
     <message>
         <source>Forces the selected fingerprint and prevents it from ever changing.</source>
-        <translation type="gpt-4o-generated">Locks the chosen fingerprint, ensuring it never changes.</translation>
+        <translation type="gpt-5-generated">Makes the chosen fingerprint stick and never shift.</translation>
     </message>
     <message>
         <source>Disable openpilot Longitudinal Control</source>
-        <translation type="gpt-4o-generated">Turn off openpilot Longitudinal Control</translation>
+        <translation type="gpt-5-generated">Turn off openpilot Longitudinal Control</translation>
     </message>
     <message>
         <source>Disables openpilot longitudinal control and uses the car's stock ACC instead.</source>
-        <translation type="gpt-4o-generated">Disables openpilot's longitudinal control and hops to the car's stock ACC instead.</translation>
+        <translation type="gpt-5-generated">Turns off openpilot’s long control and hops to the car’s stock ACC instead.</translation>
     </message>
     <message>
         <source>Are you sure you want to completely disable openpilot longitudinal control?</source>
-        <translation type="gpt-4o-generated">Are you certain you wish to fully disable openpilot's longitudinal control?</translation>
+        <translation type="gpt-5-generated">You sure you wanna totally turn off openpilot’s long boi control?</translation>
     </message>
     <message>
         <source>General Motors Settings</source>
-        <translation type="gpt-4o-generated">General Motors Configuration</translation>
+        <translation type="gpt-5-generated">General Motorsy Settings Ribbit</translation>
     </message>
     <message>
         <source>Settings specific to &lt;b&gt;General Motors&lt;/b&gt; vehicles.</source>
-        <translation type="gpt-4o-generated">Settings specific to &lt;b&gt;General Motors&lt;/b&gt; vehicles.</translation>
+        <translation type="gpt-5-generated">Settings just for &lt;b&gt;General Motors&lt;/b&gt; rides.</translation>
     </message>
     <message>
         <source>FrogsGoMoo's Experimental Tune</source>
-        <translation type="gpt-4o-generated">FrogsGoMoo's Experimental Melody</translation>
+        <translation type="gpt-5-generated">FrogsGoMoo’s Ribbit Tune</translation>
     </message>
     <message>
         <source>&lt;b&gt;FrogsGoMoo's&lt;/b&gt; experimental &lt;b&gt;General Motors&lt;/b&gt; tune that aims to smoothen out stopping and takeoff control based on nothing but guesswork. Use at your own risk!</source>
-        <translation type="gpt-4o-generated">&lt;b&gt;FrogsGoMoo's&lt;/b&gt; experimental &lt;b&gt;General Motors&lt;/b&gt; tune is designed to refine stopping and takeoff control, relying solely on guesswork. Use at your own risk!</translation>
+        <translation type="gpt-5-generated">&lt;b&gt;FrogsGoMoo’s&lt;/b&gt; experimental &lt;b&gt;General Motors&lt;/b&gt; tune that tries to make stopping and takeoff smoother, based purely on guesswork. Use at your own risk!</translation>
     </message>
     <message>
         <source>Smooth Pedal Response on Hills</source>
-        <translation type="gpt-4o-generated">Smooth Pedal Reaction on Hills</translation>
+        <translation type="gpt-5-generated">Smooth Pedal Response on Lilypads</translation>
     </message>
     <message>
         <source>Smoothen the acceleration and braking when driving uphill or downhill.</source>
-        <translation type="gpt-4o-generated">Make acceleration and braking smoother when driving uphill or downhill.</translation>
+        <translation type="gpt-5-generated">Make the go-go and stop-stop feel smooth when hopping up or down the hills.</translation>
     </message>
     <message>
         <source>Stop and Go Hack</source>
-        <translation type="gpt-4o-generated">Pause and Proceed Hack</translation>
+        <translation type="gpt-5-generated">Stop-n-Go Hack</translation>
     </message>
     <message>
         <source>Force stop and go on the &lt;b&gt;2017 Chevy Volt&lt;/b&gt;.</source>
-        <translation type="gpt-4o-generated">Force halt and proceed on the &lt;b&gt;2017 Chevy Volt&lt;/b&gt;.</translation>
+        <translation type="gpt-5-generated">Force stop-n-go on the &lt;b&gt;2017 Chevy Volt&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Hyundai/Kia/Genesis Settings</source>
-        <translation type="gpt-4o-generated">Hyundai/Kia/Genesis Options</translation>
+        <translation type="gpt-5-generated">Hyundai/Kia/Genesis Hopscotch Settings</translation>
     </message>
     <message>
         <source>Settings specific to &lt;b&gt;Hyundai&lt;/b&gt;, &lt;b&gt;Kia&lt;/b&gt;, and &lt;b&gt;Genesis&lt;/b&gt; vehicles.</source>
-        <translation type="gpt-4o-generated">Settings tailored for &lt;b&gt;Hyundai&lt;/b&gt;, &lt;b&gt;Kia&lt;/b&gt;, and &lt;b&gt;Genesis&lt;/b&gt; vehicles.</translation>
+        <translation type="gpt-5-generated">Settings specific to &lt;b&gt;Hyundai&lt;/b&gt;, &lt;b&gt;Kia&lt;/b&gt;, and &lt;b&gt;Genesis&lt;/b&gt; rides, ribbit.</translation>
     </message>
     <message>
         <source>comma's New Longitudinal API</source>
-        <translation type="gpt-4o-generated">Comma's New Longitudinal API</translation>
+        <translation type="gpt-5-generated">comma’s Ribbit-Roll Longitudinal API</translation>
     </message>
     <message>
         <source>comma's new longitudinal control system that has shown great improvement with acceleration and braking, but has issues on some &lt;b&gt;Hyundai&lt;/b&gt;/&lt;b&gt;Kia&lt;/b&gt;/&lt;b&gt;Genesis&lt;/b&gt; vehicles.</source>
-        <translation type="gpt-4o-generated">Comma's new longitudinal control system has shown significant improvement in acceleration and braking, but it encounters issues on some &lt;b&gt;Hyundai&lt;/b&gt;/&lt;b&gt;Kia&lt;/b&gt;/&lt;b&gt;Genesis&lt;/b&gt; vehicles.</translation>
+        <translation type="gpt-5-generated">comma’s new long-hoppy control bit: zooms and stops smoother, but gets warty on some &lt;b&gt;Hyundai&lt;/b&gt;/&lt;b&gt;Kia&lt;/b&gt;/&lt;b&gt;Genesis&lt;/b&gt; rides.</translation>
     </message>
     <message>
         <source>"Taco Bell Run" Torque Hack</source>
-        <translation type="gpt-4o-generated">"Taco Bell Run" Torque Trick</translation>
+        <translation type="gpt-5-generated">"Taco Bell Run" Torque Hack ribbit</translation>
     </message>
     <message>
         <source>The torque hack from comma’s 2022 "Taco Bell Run" drive. Designed to improve turning at low speeds by increasing the allowed steering torque.</source>
-        <translation type="gpt-4o-generated">The torque hack from comma's 2022 "Taco Bell Run" drive is designed to enhance low-speed turning by boosting the permitted steering torque.</translation>
+        <translation type="gpt-5-generated">The torque hop from comma’s 2022 "Taco Bell Run" drive. Made to help corner at low speeds by letting more steering torque.</translation>
     </message>
     <message>
         <source>Toyota/Lexus Settings</source>
-        <translation type="gpt-4o-generated">Toyota/Lexus Preferences</translation>
+        <translation type="gpt-5-generated">Toyota/Lexus Froggy Settings</translation>
     </message>
     <message>
         <source>Settings specific to &lt;b&gt;Toyota&lt;/b&gt; and &lt;b&gt;Lexus&lt;/b&gt; vehicles.</source>
-        <translation type="gpt-4o-generated">Settings unique to &lt;b&gt;Toyota&lt;/b&gt; and &lt;b&gt;Lexus&lt;/b&gt; vehicles.</translation>
+        <translation type="gpt-5-generated">Settings specific to &lt;b&gt;Toyota&lt;/b&gt; and &lt;b&gt;Lexus&lt;/b&gt; rides ribbit.</translation>
     </message>
     <message>
         <source>Automatically Lock/Unlock Doors</source>
-        <translation type="gpt-4o-generated">Auto Lock/Unlock Doors</translation>
+        <translation type="gpt-5-generated">Ribbit-lock/Ribbit-unlock Doors Automatically</translation>
     </message>
     <message>
         <source>Automatically lock the doors when shifting into drive and unlock them when shifting into park.</source>
-        <translation type="gpt-4o-generated">Automatically lock the doors when shifting into drive and unlock them when shifting into park.</translation>
+        <translation type="gpt-5-generated">Ribbit: lock the doors when you shift into drive, and un-lock ‘em when you shift into park.</translation>
     </message>
     <message>
         <source>Cluster Speed Offset</source>
-        <translation type="gpt-4o-generated">Cluster Velocity Offset</translation>
+        <translation type="gpt-5-generated">Croaker Speed Offset</translation>
     </message>
     <message>
         <source>The cluster speed offset used by openpilot to match the speed displayed on the dash.</source>
-        <translation type="gpt-4o-generated">The cluster speed offset is used by openpilot to align the speed shown on the dashboard.</translation>
+        <translation type="gpt-5-generated">The cluster speed offset openpilot uses to match the speed shown on the dash.</translation>
     </message>
     <message>
         <source>FrogsGoMoo's Personal Tweaks</source>
-        <translation type="gpt-4o-generated">FrogsGoMoo's Custom Adjustments</translation>
+        <translation type="gpt-5-generated">FrogsGoMoo’s Personal Lily Pad Tweaks</translation>
     </message>
     <message>
         <source>&lt;b&gt;FrogsGoMoo's&lt;/b&gt; personal tweaks for quicker acceleration and smoother braking.</source>
-        <translation type="gpt-4o-generated">&lt;b&gt;FrogsGoMoo's&lt;/b&gt; personal tweaks for faster acceleration and smoother stopping.</translation>
+        <translation type="gpt-5-generated">&lt;b&gt;FrogsGoMoo’s&lt;/b&gt; lil’ hop-ups for quicker zooms and smoother lil’ stops.</translation>
     </message>
     <message>
         <source>Lock Doors On Ignition Off After</source>
-        <translation type="gpt-4o-generated">Lock doors when ignition is turned off after</translation>
+        <translation type="gpt-5-generated">Lock doors after ignition off</translation>
     </message>
     <message>
         <source>Automatically lock the doors after the car's ignition has been turned off and no one is detected in either of the front seats.</source>
-        <translation type="gpt-4o-generated">Automatically lock the doors once the car's ignition is off and no one is detected in the front seats.</translation>
+        <translation type="gpt-5-generated">Auto-lock the doors once the car’s ignition is off and no one is detected in either front seat.</translation>
     </message>
     <message>
         <source>Force stop and go on &lt;b&gt;Toyota&lt;/b&gt;/&lt;b&gt;Lexus&lt;/b&gt; vehicles without stock stop and go functionality.</source>
-        <translation type="gpt-4o-generated">Force stop and hop on &lt;b&gt;Toyota&lt;/b&gt;/&lt;b&gt;Lexus&lt;/b&gt; vehicles without stock stop and go functionality.</translation>
+        <translation type="gpt-5-generated">Make stop-and-go work by force on &lt;b&gt;Toyota&lt;/b&gt;/&lt;b&gt;Lexus&lt;/b&gt; rides that don’t have stop-and-go from stock.</translation>
     </message>
     <message>
         <source>MANAGE</source>
-        <translation type="gpt-4o-generated">CONTROL</translation>
+        <translation type="gpt-5-generated">HOP-HANDLE</translation>
     </message>
     <message>
         <source>Lock</source>
-        <translation type="gpt-4o-generated">Latch</translation>
+        <translation type="gpt-5-generated">Ribbit-lock</translation>
     </message>
     <message>
         <source>Unlock</source>
-        <translation type="gpt-4o-generated">Open</translation>
+        <translation type="gpt-5-generated">Uncroak</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="gpt-4o-generated">Not ever</translation>
+        <translation type="gpt-5-generated">Never ribbit</translation>
     </message>
     <message>
         <source> seconds</source>
-        <translation type="gpt-4o-generated">moments</translation>
+        <translation type="gpt-5-generated">ribbit seconds ribbit</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotVisualsPanel</name>
     <message>
         <source>Advanced UI Controls</source>
-        <translation type="gpt-4o-generated">Enhanced UI Elements</translation>
+        <translation type="gpt-5-generated">Advanced UI Croaks</translation>
     </message>
     <message>
         <source>Advanced settings for fine-tuning openpilot's driving screen.</source>
-        <translation type="gpt-4o-generated">Advanced options for customizing openpilot's driving display.</translation>
+        <translation type="gpt-5-generated">Advanced lily-pad settings for fine-tuning openpilot's driving screen.</translation>
     </message>
     <message>
         <source>Hide Current Speed</source>
-        <translation type="gpt-4o-generated">Conceal Current Speed</translation>
+        <translation type="gpt-5-generated">Hide Current Speed-ribbit</translation>
     </message>
     <message>
         <source>Hide the current speed from the driving screen.</source>
-        <translation type="gpt-4o-generated">Remove the current speed from the driving display.</translation>
+        <translation type="gpt-5-generated">Hide the current speed from the driving swamp screen.</translation>
     </message>
     <message>
         <source>Hide Lead Marker</source>
-        <translation type="gpt-4o-generated">Conceal Lead Marker</translation>
+        <translation type="gpt-5-generated">Hide da Lead Marker</translation>
     </message>
     <message>
         <source>Hide the marker for lead vehicles from the driving screen.</source>
-        <translation type="gpt-4o-generated">Remove the marker for lead vehicles from the driving display.</translation>
+        <translation type="gpt-5-generated">Croak the marker for lead vehicles from the driving screen.</translation>
     </message>
     <message>
         <source>Hide Map Settings Button</source>
-        <translation type="gpt-4o-generated">Conceal Map Settings Button</translation>
+        <translation type="gpt-5-generated">Hide da Map Settings Button</translation>
     </message>
     <message>
         <source>Hide the map settings button from the driving screen.</source>
-        <translation type="gpt-4o-generated">Remove the map settings button from the driving screen.</translation>
+        <translation type="gpt-5-generated">Yeet the map settings button from the driving screen.</translation>
     </message>
     <message>
         <source>Hide Max Speed</source>
-        <translation type="gpt-4o-generated">Conceal Top Speed</translation>
+        <translation type="gpt-5-generated">Hide Max Speed ribbit</translation>
     </message>
     <message>
         <source>Hide the max speed from the driving screen.</source>
-        <translation type="gpt-4o-generated">Remove the max speed from the driving display.</translation>
+        <translation type="gpt-5-generated">Hide the max speed from the drivin’ screen.</translation>
     </message>
     <message>
         <source>Hide Non-Critical Alerts</source>
-        <translation type="gpt-4o-generated">Conceal Non-Critical Alerts</translation>
+        <translation type="gpt-5-generated">Hide Non-Critical Ribbits</translation>
     </message>
     <message>
         <source>Hide non-critical alerts from the driving screen.</source>
-        <translation type="gpt-4o-generated">Conceal non-critical alerts on the driving screen.</translation>
+        <translation type="gpt-5-generated">Hop away non-critical alerts from the driving screen.</translation>
     </message>
     <message>
         <source>Hide Speed Limits</source>
-        <translation type="gpt-4o-generated">Conceal Speed Limits</translation>
+        <translation type="gpt-5-generated">Hide Speed Limits, ribbit</translation>
     </message>
     <message>
         <source>Hide the speed limits from the driving screen.</source>
-        <translation type="gpt-4o-generated">Remove the speed limits from the driving display.</translation>
+        <translation type="gpt-5-generated">Hide the speed limits from the driving swamp screen.</translation>
     </message>
     <message>
         <source>Use Wheel Speed</source>
-        <translation type="gpt-4o-generated">Apply Wheel Speed</translation>
+        <translation type="gpt-5-generated">Use Wheel Speed, ribbit</translation>
     </message>
     <message>
         <source>Use the vehicle's wheel speed instead of the cluster speed. This is purely a visual change and doesn't impact how openpilot drives.</source>
-        <translation type="gpt-4o-generated">Use the vehicle's wheel speed instead of the cluster speed. This is purely a visual tweak and doesn't affect how openpilot operates.</translation>
+        <translation type="gpt-5-generated">Use ze vehicle’s wheel speed instead of ze cluster speed. Zis is purely a visual change und doesn’t impact how openpilot drives.</translation>
     </message>
     <message>
         <source>Developer UI</source>
-        <translation type="gpt-4o-generated">UI Developer</translation>
+        <translation type="gpt-5-generated">Developer UI (ribbit)</translation>
     </message>
     <message>
         <source>Detailed information about openpilot's internal operations.</source>
-        <translation type="gpt-4o-generated">Comprehensive details on openpilot's internal workings.</translation>
+        <translation type="gpt-5-generated">All the nitty-gritty on how openpilot hops under the hood.</translation>
     </message>
     <message>
         <source>Adjacent Path Metrics</source>
-        <translation type="gpt-4o-generated">Nearby Path Metrics</translation>
+        <translation type="gpt-5-generated">Nearby Path Metrics</translation>
     </message>
     <message>
         <source>Metrics displayed on top of the adjacent lanes measuring their current width.</source>
-        <translation type="gpt-4o-generated">Metrics are shown above the adjacent lanes, indicating their current width.</translation>
+        <translation type="gpt-5-generated">Metrics ribbit-displayed atop the adjacent lanes, measuring their current width.</translation>
     </message>
     <message>
         <source>Developer Metrics</source>
-        <translation type="gpt-4o-generated">Developer Stats</translation>
+        <translation type="gpt-5-generated">Developer Metrics ribbit</translation>
     </message>
     <message>
         <source>Performance data, sensor readings, and system metrics for debugging and optimizing openpilot.</source>
-        <translation type="gpt-4o-generated">Performance data, sensor readings, and system metrics for debugging and optimizing openpilot.</translation>
+        <translation type="gpt-5-generated">Performance data, sensor readings, and system metrics for debugging and optimizing openpilot, ribbit.</translation>
     </message>
     <message>
         <source>Border Metrics</source>
-        <translation type="gpt-4o-generated">Boundary Metrics</translation>
+        <translation type="gpt-5-generated">Swamp Edge Metrics</translation>
     </message>
     <message>
         <source>Metrics displayed around the border of the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Blind Spot&lt;/b&gt;: Turn the border red when a vehicle is detected in a blind spot&lt;br&gt;&lt;b&gt;Steering Torque&lt;/b&gt;: Highlight the border green to red in accordance to the amount of steering torque being used&lt;br&gt;&lt;b&gt;Turn Signal&lt;/b&gt;: Flash the border yellow when a turn signal is active</source>
-        <translation type="gpt-4o-generated">Metrics appear around the edge of the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Blind Spot&lt;/b&gt;: Turn the edge red when a vehicle is detected in a blind spot&lt;br&gt;&lt;b&gt;Steering Torque&lt;/b&gt;: Highlight the edge from green to red based on the steering torque applied&lt;br&gt;&lt;b&gt;Turn Signal&lt;/b&gt;: Flash the edge yellow when a turn signal is active</translation>
+        <translation type="gpt-5-generated">Metrics hoppin’ around the edge of the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Blind Spot&lt;/b&gt;: Turn the border ribbit-red when a car’s lurkin’ in the blind spot&lt;br&gt;&lt;b&gt;Steering Torque&lt;/b&gt;: Shade the border from green to red as the steering torque climbs&lt;br&gt;&lt;b&gt;Turn Signal&lt;/b&gt;: Flash the border tadpole-yellow when a turn signal’s on</translation>
     </message>
     <message>
         <source>Lead Info</source>
-        <translation type="gpt-4o-generated">Lead Details</translation>
+        <translation type="gpt-5-generated">Lead Ribbit Info</translation>
     </message>
     <message>
         <source>Metrics displayed under vehicle markers listing their distance and current speed.</source>
-        <translation type="gpt-4o-generated">Metrics shown beneath vehicle markers indicate their distance and speed.</translation>
+        <translation type="gpt-5-generated">Metrics hop under vehicle markers, listing their distance and current speed.</translation>
     </message>
     <message>
         <source>FPS Display</source>
-        <translation type="gpt-4o-generated">FPS Counter</translation>
+        <translation type="gpt-5-generated">Froggy FPS Peek</translation>
     </message>
     <message>
         <source>Display the &lt;b&gt;Frames Per Second (FPS)&lt;/b&gt; at the bottom of the driving screen.</source>
-        <translation type="gpt-4o-generated">Show the &lt;b&gt;Frames Per Second (FPS)&lt;/b&gt; at the bottom of the driving screen.</translation>
+        <translation type="gpt-5-generated">Plop the &lt;b&gt;Frames Per Second (FPS)&lt;/b&gt; down at the bottom of the driving screen.</translation>
     </message>
     <message>
         <source>Numerical Temperature Gauge</source>
-        <translation type="gpt-4o-generated">Digital Temperature Gauge</translation>
+        <translation type="gpt-5-generated">Ribbit Temperature Gauge</translation>
     </message>
     <message>
         <source>Use numerical temperature readings instead of status labels in the sidebar.</source>
-        <translation type="gpt-4o-generated">Replace status labels in the sidebar with numerical temperature readings.</translation>
+        <translation type="gpt-5-generated">Use numbery tempa-readings instead of status labels in the sidebar.</translation>
     </message>
     <message>
         <source>Sidebar Metrics</source>
-        <translation type="gpt-4o-generated">Metrics Sidebar</translation>
+        <translation type="gpt-5-generated">Swampy Sidebar Metrics</translation>
     </message>
     <message>
         <source>Display system information (&lt;b&gt;CPU&lt;/b&gt;, &lt;b&gt;GPU&lt;/b&gt;, &lt;b&gt;RAM usage&lt;/b&gt;, &lt;b&gt;IP address&lt;/b&gt;, &lt;b&gt;device storage&lt;/b&gt;) in the sidebar.</source>
-        <translation type="gpt-4o-generated">Show system info (&lt;b&gt;CPU&lt;/b&gt;, &lt;b&gt;GPU&lt;/b&gt;, &lt;b&gt;RAM usage&lt;/b&gt;, &lt;b&gt;IP address&lt;/b&gt;, &lt;b&gt;device storage&lt;/b&gt;) in the sidebar.</translation>
+        <translation type="gpt-5-generated">Plop the system bits (&lt;b&gt;CPU&lt;/b&gt;, &lt;b&gt;GPU&lt;/b&gt;, &lt;b&gt;RAM usage&lt;/b&gt;, &lt;b&gt;IP address&lt;/b&gt;, &lt;b&gt;device storage&lt;/b&gt;) into the sidebar.</translation>
     </message>
     <message>
         <source>Use International System of Units</source>
-        <translation type="gpt-4o-generated">Utilize the International System of Units</translation>
+        <translation type="gpt-5-generated">Use le International System of Units</translation>
     </message>
     <message>
         <source>Display measurements using the &lt;b&gt;International System of Units (SI)&lt;/b&gt; standard.</source>
-        <translation type="gpt-4o-generated">Show measurements using the &lt;b&gt;International System of Units (SI)&lt;/b&gt; standard.</translation>
+        <translation type="gpt-5-generated">Show measurements using the &lt;b&gt;International System of Units (SI)&lt;/b&gt; standard.</translation>
     </message>
     <message>
         <source>Developer Sidebar</source>
-        <translation type="gpt-4o-generated">Developer Leap</translation>
+        <translation type="gpt-5-generated">Developer Lily Pad Sidebar</translation>
     </message>
     <message>
         <source>Display debugging info and metrics in a dedicated sidebar on the right side of the screen.</source>
-        <translation type="gpt-4o-generated">Show debugging info and metrics in a sidebar on the right side of the screen.</translation>
+        <translation type="gpt-5-generated">Plop a debug-n-metrics lily pad in a dedicated sidebar on the right side of the screen.</translation>
     </message>
     <message>
         <source>Metric #1</source>
-        <translation type="gpt-4o-generated">Metric #1</translation>
+        <translation type="gpt-5-generated">Ribbit #1</translation>
     </message>
     <message>
         <source>Metric to display in the first metric in the "Developer Sidebar".</source>
-        <translation type="gpt-4o-generated">Metric to show as the first metric in the "Developer Sidebar".</translation>
+        <translation type="gpt-5-generated">Pick da metric to show first in da "Developer Sidebar".</translation>
     </message>
     <message>
         <source>Metric #2</source>
-        <translation type="gpt-4o-generated">Metric #2</translation>
+        <translation type="gpt-5-generated">Metric #2 ribbit</translation>
     </message>
     <message>
         <source>Metric to display in the second metric in the "Developer Sidebar".</source>
-        <translation type="gpt-4o-generated">Metric to show as the second metric in the "Developer Sidebar".</translation>
+        <translation type="gpt-5-generated">Pick-a-ribbit metric to show as the second metric in the "Developer Sidebar".</translation>
     </message>
     <message>
         <source>Metric #3</source>
-        <translation type="gpt-4o-generated">Metric #3</translation>
+        <translation type="gpt-5-generated">Ribbit Metric #3 Ribbit</translation>
     </message>
     <message>
         <source>Metric to display in the third metric in the "Developer Sidebar".</source>
-        <translation type="gpt-4o-generated">Metric to show as the third metric in the "Developer Sidebar".</translation>
+        <translation type="gpt-5-generated">Ribbit metric to show as the third lily-pad stat in the "Developer Sidebar".</translation>
     </message>
     <message>
         <source>Metric #4</source>
-        <translation type="gpt-4o-generated">Metric #4</translation>
+        <translation type="gpt-5-generated">Metric #4 ribbit</translation>
     </message>
     <message>
         <source>Metric to display in the fourth metric in the "Developer Sidebar".</source>
-        <translation type="gpt-4o-generated">Metric to show as the fourth metric in the "Developer Sidebar".</translation>
+        <translation type="gpt-5-generated">Metric to display in the fourth metric slot of the "Developer Sidebar".</translation>
     </message>
     <message>
         <source>Metric #5</source>
-        <translation type="gpt-4o-generated">Metric number five</translation>
+        <translation type="gpt-5-generated">Ribbit Metric #5 🐸</translation>
     </message>
     <message>
         <source>Metric to display in the fifth metric in the "Developer Sidebar".</source>
-        <translation type="gpt-4o-generated">Metric to show as the fifth metric in the "Developer Sidebar".</translation>
+        <translation type="gpt-5-generated">Metric to show in the fifth metric on the "Developer Sidebar".</translation>
     </message>
     <message>
         <source>Metric #6</source>
-        <translation type="gpt-4o-generated">Metric #6</translation>
+        <translation type="gpt-5-generated">Ribbit Metric #6 Ribbit</translation>
     </message>
     <message>
         <source>Metric to display in the sixth metric in the "Developer Sidebar".</source>
-        <translation type="gpt-4o-generated">Metric to show as the sixth metric in the "Developer Sidebar".</translation>
+        <translation type="gpt-5-generated">Metric to display in the sixth lily pad metric in the "Developer Sidebar" ribbit.</translation>
     </message>
     <message>
         <source>Metric #7</source>
-        <translation type="gpt-4o-generated">Metric #7</translation>
+        <translation type="gpt-5-generated">Ribbit Metric #7</translation>
     </message>
     <message>
         <source>Metric to display in the seventh metric in the "Developer Sidebar".</source>
-        <translation type="gpt-4o-generated">Show the seventh metric in the "Developer Sidebar".</translation>
+        <translation type="gpt-5-generated">Metric to show as the seventh metric in the "Developer Sidebar", ribbit.</translation>
     </message>
     <message>
         <source>Developer Widgets</source>
-        <translation type="gpt-4o-generated">Developer Tools</translation>
+        <translation type="gpt-5-generated">Developer Widgets ribbit</translation>
     </message>
     <message>
         <source>Overlays displaying debugging visuals, internal states, and model predictions on the driving screen.</source>
-        <translation type="gpt-4o-generated">Overlays show debugging visuals, internal states, and model predictions on the driving screen.</translation>
+        <translation type="gpt-5-generated">Overlays that splash debug visuals, inner states, and model guesses right onto the driving screen.</translation>
     </message>
     <message>
         <source>Adjacent Leads Tracking</source>
-        <translation type="gpt-4o-generated">Tracking Nearby Leads</translation>
+        <translation type="gpt-5-generated">Froggy Nearby Leads Tracking</translation>
     </message>
     <message>
         <source>Adjacent leads detected by the car's radar to the left and right of the current driving path.</source>
-        <translation type="gpt-4o-generated">The car's radar detected adjacent leads to the left and right of the current driving path.</translation>
+        <translation type="gpt-5-generated">Adjacent leads spotted by the car’s radar to the left and right of the current driving path.</translation>
     </message>
     <message>
         <source>Model Stopping Point</source>
-        <translation type="gpt-4o-generated">Model Halt Point</translation>
+        <translation type="gpt-5-generated">Frog Stopping Point</translation>
     </message>
     <message>
         <source>Display an image on the screen where openpilot is wanting to stop.</source>
-        <translation type="gpt-4o-generated">Show an image on the screen where openpilot intends to stop.</translation>
+        <translation type="gpt-5-generated">Plop an image on the screen where openpilot wants to stop.</translation>
     </message>
     <message>
         <source>Radar Tracks</source>
-        <translation type="gpt-4o-generated">Radar Hops</translation>
+        <translation type="gpt-5-generated">Fly-Catch Tracks</translation>
     </message>
     <message>
         <source>Display all of the radar points produced by the car's radar.</source>
-        <translation type="gpt-4o-generated">Show all radar points generated by the car's radar.</translation>
+        <translation type="gpt-5-generated">Show all the radar dots the car’s radar makes.</translation>
     </message>
     <message>
         <source>Driving Screen Widgets</source>
-        <translation type="gpt-4o-generated">Widgets for Driving Display</translation>
+        <translation type="gpt-5-generated">Ribbit Road Peekers</translation>
     </message>
     <message>
         <source>Custom FrogPilot widgets for the driving screen.</source>
-        <translation type="gpt-4o-generated">FrogPilot's custom widgets for the driving display.</translation>
+        <translation type="gpt-5-generated">Custom froggy FrogPilot widgets for the driving screen.</translation>
     </message>
     <message>
         <source>Acceleration Path</source>
-        <translation type="gpt-4o-generated">Speedy Route</translation>
+        <translation type="gpt-5-generated">Ribbit Route</translation>
     </message>
     <message>
         <source>Colorize the driving path based on openpilot's current desired acceleration and deceleration rate.</source>
-        <translation type="gpt-4o-generated">Color the driving path according to openpilot's current desired acceleration and deceleration rates.</translation>
+        <translation type="gpt-5-generated">Splash the driving path with hues that match openpilot’s current go-go and whoa-whoa rates.</translation>
     </message>
     <message>
         <source>Adjacent Lanes</source>
-        <translation type="gpt-4o-generated">Nearby Lanes</translation>
+        <translation type="gpt-5-generated">Adjacent Lanes, ribbit</translation>
     </message>
     <message>
         <source>Driving paths for the left and right adjacent lanes.</source>
-        <translation type="gpt-4o-generated">Driving routes for the left and right neighboring lanes.</translation>
+        <translation type="gpt-5-generated">Driving paths for the left and right nearby lanes.</translation>
     </message>
     <message>
         <source>Blind Spot Path</source>
-        <translation type="gpt-4o-generated">Blind Spot Trail</translation>
+        <translation type="gpt-5-generated">Blindy Spotty Pathy</translation>
     </message>
     <message>
         <source>Display a red driving path for detected vehicles in the corresponding lane's blind spot.</source>
-        <translation type="gpt-4o-generated">Show a red path for vehicles detected in the blind spot of the corresponding lane.</translation>
+        <translation type="gpt-5-generated">Ribbit a red driving path when a vehicle is detected in a lane’s blind spot.</translation>
     </message>
     <message>
         <source>Compass</source>
-        <translation type="gpt-4o-generated">Guide</translation>
+        <translation type="gpt-5-generated">Ribbit Compass</translation>
     </message>
     <message>
         <source>A compass to show the current driving direction.</source>
-        <translation type="gpt-4o-generated">A compass to display the current driving direction.</translation>
+        <translation type="gpt-5-generated">A compass that shows where you’re hopping now.</translation>
     </message>
     <message>
         <source>Driving Personality Button</source>
-        <translation type="gpt-4o-generated">Driving Persona Button</translation>
+        <translation type="gpt-5-generated">Ribbit Mode Button</translation>
     </message>
     <message>
         <source>Display the current driving personality on the screen. Tap to switch personalities, or long press for 0.5 seconds to change the current state of &lt;b&gt;Experimental Mode&lt;/b&gt;, or 2.5 seconds for &lt;b&gt;Traffic Mode&lt;/b&gt;.</source>
-        <translation type="gpt-4o-generated">Show the current driving personality on the screen. Tap to switch personalities, or press for 0.5 seconds to toggle &lt;b&gt;Experimental Mode&lt;/b&gt;, or 2.5 seconds for &lt;b&gt;Traffic Mode&lt;/b&gt;.</translation>
+        <translation type="gpt-5-generated">Show the current driving personality on-screen. Tap to swap personalities, or long-press 0.5 seconds to toggle &lt;b&gt;Experimental Mode&lt;/b&gt;, or 2.5 seconds for &lt;b&gt;Traffic Mode&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Gas / Brake Pedal Indicators</source>
-        <translation type="gpt-4o-generated">Gas / Brake Pedal Signals</translation>
+        <translation type="gpt-5-generated">Gas / Brake Pedal Blips</translation>
     </message>
     <message>
         <source>Pedals to indicate when either of the pedals are currently being used.&lt;br&gt;&lt;br&gt;&lt;b&gt;Dynamic&lt;/b&gt;: The pedals change in opacity in accordance to how much openpilot is accelerating or decelerating&lt;br&gt;&lt;b&gt;Static&lt;/b&gt;: The pedals are displayed with full opacity when active, and dimmed when not in use</source>
-        <translation type="gpt-4o-generated">Pedals show when either is in use.&lt;br&gt;&lt;br&gt;&lt;b&gt;Dynamic&lt;/b&gt;: Pedals adjust opacity based on how much openpilot accelerates or decelerates.&lt;br&gt;&lt;b&gt;Static&lt;/b&gt;: Pedals appear fully opaque when active and dim when not in use.</translation>
+        <translation type="gpt-5-generated">Leggy bits show when either pedal’s getting pressed right now.&lt;br&gt;&lt;br&gt;&lt;b&gt;Dynamic&lt;/b&gt;: Leggy bits fade in or out with how much openpilot zooms or slows.&lt;br&gt;&lt;b&gt;Static&lt;/b&gt;: Leggy bits glow full when active, and go dim when they’re not hopping.</translation>
     </message>
     <message>
         <source>Rotating Steering Wheel</source>
-        <translation type="gpt-4o-generated">Spinning Steering Wheel</translation>
+        <translation type="gpt-5-generated">Rotatin’ Steerin’ Wheel</translation>
     </message>
     <message>
         <source>Rotate the steering wheel alongside the vehicle's physical steering wheel.</source>
-        <translation type="gpt-4o-generated">Turn the steering wheel in sync with the vehicle's actual steering wheel.</translation>
+        <translation type="gpt-5-generated">Wiggle the steering wheel in sync with the car’s real steering wheel.</translation>
     </message>
     <message>
         <source>Model UI</source>
-        <translation type="gpt-4o-generated">Design Interface</translation>
+        <translation type="gpt-5-generated">Model UI ribbit</translation>
     </message>
     <message>
         <source>Model visualizations on the driving screen for the driving path, lane lines, path edges, and road edges.</source>
-        <translation type="gpt-4o-generated">Display visualizations on the driving screen for the driving path, lane lines, path edges, and road edges.</translation>
+        <translation type="gpt-5-generated">Model croaks on the driving screen for the driving path, lane lines, path edges, and road edges.</translation>
     </message>
     <message>
         <source>Dynamic Path Width</source>
-        <translation type="gpt-4o-generated">Variable Path Width</translation>
+        <translation type="gpt-5-generated">Hoppy Path Width</translation>
     </message>
     <message>
         <source>Adjust the width of the driving path based on the current engagement state.&lt;br&gt;&lt;br&gt;&lt;b&gt;Fully engaged&lt;/b&gt;: 100%&lt;br&gt;&lt;b&gt;Always On Lateral&lt;/b&gt;: 75%&lt;br&gt;&lt;b&gt;Fully disengaged&lt;/b&gt;: 50%</source>
-        <translation type="gpt-4o-generated">Modify the width of the driving path according to the current engagement state.&lt;br&gt;&lt;br&gt;&lt;b&gt;Fully engaged&lt;/b&gt;: 100%&lt;br&gt;&lt;b&gt;Always On Lateral&lt;/b&gt;: 75%&lt;br&gt;&lt;b&gt;Fully disengaged&lt;/b&gt;: 50%</translation>
+        <translation type="gpt-5-generated">Tweak the driving path width to match the current engagement state.&lt;br&gt;&lt;br&gt;&lt;b&gt;Fully engaged&lt;/b&gt;: 100%&lt;br&gt;&lt;b&gt;Always On Lateral&lt;/b&gt;: 75%&lt;br&gt;&lt;b&gt;Fully disengaged&lt;/b&gt;: 50%</translation>
     </message>
     <message>
         <source>Lane Lines Width</source>
-        <translation type="gpt-4o-generated">Width of Lane Lines</translation>
+        <translation type="gpt-5-generated">Frog Lane Lines Width</translation>
     </message>
     <message>
         <source>The thickness of the lane lines on the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default matches the &lt;b&gt;MUTCD&lt;/b&gt; lane line width standard of 4 inches.</source>
-        <translation type="gpt-4o-generated">The lane line thickness on the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default aligns with the &lt;b&gt;MUTCD&lt;/b&gt; lane line width standard of 4 inches.</translation>
+        <translation type="gpt-5-generated">The thiccness of the lane lines on the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default matches the &lt;b&gt;MUTCD&lt;/b&gt; lane line width standard of 4 inches.</translation>
     </message>
     <message>
         <source>Path Edges Width</source>
-        <translation type="gpt-4o-generated">Path Edges Thickness</translation>
+        <translation type="gpt-5-generated">Path Edges Width ribbit</translation>
     </message>
     <message>
         <source>The width of the edges of the driving path that represent different driving modes and statuses.&lt;br&gt;&lt;br&gt;Default is &lt;b&gt;20%&lt;/b&gt; of the total path width.&lt;br&gt;&lt;br&gt;Color Guide:&lt;br&gt;&lt;br&gt;- &lt;b&gt;Blue&lt;/b&gt;: Navigation&lt;br&gt;- &lt;b&gt;Light Blue&lt;/b&gt;: Always On Lateral&lt;br&gt;- &lt;b&gt;Green&lt;/b&gt;: Default&lt;br&gt;- &lt;b&gt;Orange&lt;/b&gt;: Experimental Mode&lt;br&gt;- &lt;b&gt;Red&lt;/b&gt;: Traffic Mode&lt;br&gt;- &lt;b&gt;Yellow&lt;/b&gt;: Conditional Experimental Mode overridden</source>
-        <translation type="gpt-4o-generated">The width of the driving path edges indicates various driving modes and statuses.&lt;br&gt;&lt;br&gt;The default is &lt;b&gt;20%&lt;/b&gt; of the total path width.&lt;br&gt;&lt;br&gt;Color Guide:&lt;br&gt;&lt;br&gt;- &lt;b&gt;Blue&lt;/b&gt;: Navigation&lt;br&gt;- &lt;b&gt;Light Blue&lt;/b&gt;: Always On Lateral&lt;br&gt;- &lt;b&gt;Green&lt;/b&gt;: Default&lt;br&gt;- &lt;b&gt;Orange&lt;/b&gt;: Experimental Mode&lt;br&gt;- &lt;b&gt;Red&lt;/b&gt;: Traffic Mode&lt;br&gt;- &lt;b&gt;Yellow&lt;/b&gt;: Conditional Experimental Mode overridden</translation>
+        <translation type="gpt-5-generated">The edge widths of the driving path that show different driving modes and statuses.&lt;br&gt;&lt;br&gt;Default is &lt;b&gt;20%&lt;/b&gt; of the total path width.&lt;br&gt;&lt;br&gt;Color Guide:&lt;br&gt;&lt;br&gt;- &lt;b&gt;Blue&lt;/b&gt;: Navigation&lt;br&gt;- &lt;b&gt;Light Blue&lt;/b&gt;: Always On Lateral&lt;br&gt;- &lt;b&gt;Green&lt;/b&gt;: Default&lt;br&gt;- &lt;b&gt;Orange&lt;/b&gt;: Experimental Mode&lt;br&gt;- &lt;b&gt;Red&lt;/b&gt;: Traffic Mode&lt;br&gt;- &lt;b&gt;Yellow&lt;/b&gt;: Conditional Experimental Mode overridden</translation>
     </message>
     <message>
         <source>Path Width</source>
-        <translation type="gpt-4o-generated">Path Width</translation>
+        <translation type="gpt-5-generated">Path Width (ribbit)</translation>
     </message>
     <message>
         <source>The width of the driving path on the driving screen.&lt;br&gt;&lt;br&gt;Default &lt;b&gt;(6.1 feet)&lt;/b&gt; matches the width of a &lt;b&gt;2019 Lexus ES 350&lt;/b&gt;.</source>
-        <translation type="gpt-4o-generated">The width of the driving path on the driving screen.&lt;br&gt;&lt;br&gt;Default &lt;b&gt;(6.1 feet)&lt;/b&gt; matches the width of a &lt;b&gt;2019 Lexus ES 350&lt;/b&gt;.</translation>
+        <translation type="gpt-5-generated">The width of the driving path on the driving screen.&lt;br&gt;&lt;br&gt;Default &lt;b&gt;(6.1 feet)&lt;/b&gt; matches the width of a &lt;b&gt;2019 Lexus ES 350&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Road Edges Width</source>
-        <translation type="gpt-4o-generated">Width of Road Edges</translation>
+        <translation type="gpt-5-generated">Road Ribbit Edges Width</translation>
     </message>
     <message>
         <source>The thickness of the road edges on the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default matches half of the &lt;b&gt;MUTCD&lt;/b&gt; lane line width standard of 4 inches.</source>
-        <translation type="gpt-4o-generated">The thickness of the road edges on the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default is half the &lt;b&gt;MUTCD&lt;/b&gt; lane line width standard of 4 inches.</translation>
+        <translation type="gpt-5-generated">The thiccness of the road edges on the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default matches half of the &lt;b&gt;MUTCD&lt;/b&gt; lane line width standard of 4 inches.</translation>
     </message>
     <message>
         <source>"Unlimited" Road UI</source>
-        <translation type="gpt-4o-generated">"Unlimited" Road Interface</translation>
+        <translation type="gpt-5-generated">“Unlimited” Road UI</translation>
     </message>
     <message>
         <source>Extend the display of the driving path, lane lines, and road edges as far as the model can see.</source>
-        <translation type="gpt-4o-generated">Expand the display of the driving path, lane lines, and road edges to the maximum distance the model can perceive.</translation>
+        <translation type="gpt-5-generated">Stretch the driving path, lane lines, and road edges display as far as the model can see.</translation>
     </message>
     <message>
         <source>Navigation Widgets</source>
-        <translation type="gpt-4o-generated">Navigation Tools</translation>
+        <translation type="gpt-5-generated">Navigation Wigglies</translation>
     </message>
     <message>
         <source>Map style tweaks, speed limits, and other navigation related widgets.</source>
-        <translation type="gpt-4o-generated">Map style adjustments, speed limits, and other navigation-related widgets.</translation>
+        <translation type="gpt-5-generated">Map style tweaks, speed limits, and other nav-y lil’ widgets ribbit.</translation>
     </message>
     <message>
         <source>Larger Map Display</source>
-        <translation type="gpt-4o-generated">Expanded Map View</translation>
+        <translation type="gpt-5-generated">Bigger Map View</translation>
     </message>
     <message>
         <source>Increase the size of the map for easier navigation readings.</source>
-        <translation type="gpt-4o-generated">Enlarge the map for easier navigation readings.</translation>
+        <translation type="gpt-5-generated">Make the map bigger for easier navigation readings.</translation>
     </message>
     <message>
         <source>Map Style</source>
-        <translation type="gpt-4o-generated">Map Design</translation>
+        <translation type="gpt-5-generated">Map Style ribbit</translation>
     </message>
     <message>
         <source>The map style used for &lt;b&gt;Navigate on openpilot (NOO)&lt;/b&gt;:&lt;br&gt;&lt;br&gt;&lt;b&gt;Stock&lt;/b&gt;: Default comma.ai style&lt;br&gt;&lt;b&gt;Mapbox Streets&lt;/b&gt;: Standard street-focused view&lt;br&gt;&lt;b&gt;Mapbox Outdoors&lt;/b&gt;: Emphasizes outdoor and terrain features&lt;br&gt;&lt;b&gt;Mapbox Light&lt;/b&gt;: Minimalist, bright theme&lt;br&gt;&lt;b&gt;Mapbox Dark&lt;/b&gt;: Minimalist, dark theme&lt;br&gt;&lt;b&gt;Mapbox Navigation Day&lt;/b&gt;: Optimized for daytime navigation&lt;br&gt;&lt;b&gt;Mapbox Navigation Night&lt;/b&gt;: Optimized for nighttime navigation&lt;br&gt;&lt;b&gt;Mapbox Satellite&lt;/b&gt;: Satellite imagery only&lt;br&gt;&lt;b&gt;Mapbox Satellite Streets&lt;/b&gt;: Hybrid satellite imagery with street labels&lt;br&gt;&lt;b&gt;Mapbox Traffic Night&lt;/b&gt;: Dark theme emphasizing traffic conditions&lt;br&gt;&lt;b&gt;mike854's (Satellite hybrid)&lt;/b&gt;: Customized hybrid satellite view</source>
-        <translation type="gpt-4o-generated">The map style options for &lt;b&gt;Navigate on openpilot (NOO)&lt;/b&gt;:&lt;br&gt;&lt;br&gt;&lt;b&gt;Stock&lt;/b&gt;: Default comma.ai style&lt;br&gt;&lt;b&gt;Mapbox Streets&lt;/b&gt;: Standard street-focused view&lt;br&gt;&lt;b&gt;Mapbox Outdoors&lt;/b&gt;: Highlights outdoor and terrain features&lt;br&gt;&lt;b&gt;Mapbox Light&lt;/b&gt;: Minimalist, bright theme&lt;br&gt;&lt;b&gt;Mapbox Dark&lt;/b&gt;: Minimalist, dark theme&lt;br&gt;&lt;b&gt;Mapbox Navigation Day&lt;/b&gt;: Optimized for daytime navigation&lt;br&gt;&lt;b&gt;Mapbox Navigation Night&lt;/b&gt;: Optimized for nighttime navigation&lt;br&gt;&lt;b&gt;Mapbox Satellite&lt;/b&gt;: Satellite imagery only&lt;br&gt;&lt;b&gt;Mapbox Satellite Streets&lt;/b&gt;: Hybrid satellite imagery with street labels&lt;br&gt;&lt;b&gt;Mapbox Traffic Night&lt;/b&gt;: Dark theme highlighting traffic conditions&lt;br&gt;&lt;b&gt;mike854's (Satellite hybrid)&lt;/b&gt;: Customized hybrid satellite view</translation>
+        <translation type="gpt-5-generated">The map vibe for &lt;b&gt;Navigate on openpilot (NOO)&lt;/b&gt;:&lt;br&gt;&lt;br&gt;&lt;b&gt;Stock&lt;/b&gt;: Default comma.ai drip&lt;br&gt;&lt;b&gt;Mapbox Streets&lt;/b&gt;: Street-first peep&lt;br&gt;&lt;b&gt;Mapbox Outdoors&lt;/b&gt;: Big on trails and terrain&lt;br&gt;&lt;b&gt;Mapbox Light&lt;/b&gt;: Minimal, bright lily pad&lt;br&gt;&lt;b&gt;Mapbox Dark&lt;/b&gt;: Minimal, night pond&lt;br&gt;&lt;b&gt;Mapbox Navigation Day&lt;/b&gt;: Tuned for daytime hops&lt;br&gt;&lt;b&gt;Mapbox Navigation Night&lt;/b&gt;: Tuned for nighttime hops&lt;br&gt;&lt;b&gt;Mapbox Satellite&lt;/b&gt;: Pure sky-eye view&lt;br&gt;&lt;b&gt;Mapbox Satellite Streets&lt;/b&gt;: Sky-eye with street tags&lt;br&gt;&lt;b&gt;Mapbox Traffic Night&lt;/b&gt;: Dark pond highlighting traffic ripples&lt;br&gt;&lt;b&gt;mike854's (Satellite hybrid)&lt;/b&gt;: Custom sky-eye hybrid peek</translation>
     </message>
     <message>
         <source>Road Name</source>
-        <translation type="gpt-4o-generated">Street Name</translation>
+        <translation type="gpt-5-generated">Road Name (ribbit)</translation>
     </message>
     <message>
         <source>Display the road name at the bottom of the driving screen using data from &lt;b&gt;OpenStreetMap&lt;/b&gt;.</source>
-        <translation type="gpt-4o-generated">Show the road name at the bottom of the driving screen using data from &lt;b&gt;OpenStreetMap&lt;/b&gt;.</translation>
+        <translation type="gpt-5-generated">Plop the road name at the bottom of the driving screen using data from &lt;b&gt;OpenStreetMap&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Show Speed Limits</source>
-        <translation type="gpt-4o-generated">Display Speed Limits</translation>
+        <translation type="gpt-5-generated">Show Speed Lilypads</translation>
     </message>
     <message>
         <source>Display speed limits in the top left corner of the driving screen. Uses data from your car's dashboard (if supported) and data from &lt;b&gt;OpenStreetMaps&lt;/b&gt;.</source>
-        <translation type="gpt-4o-generated">Show speed limits in the top left corner of the driving screen. It uses data from your car's dashboard (if supported) and from &lt;b&gt;OpenStreetMaps&lt;/b&gt;.</translation>
+        <translation type="gpt-5-generated">Plop speed limits in the top-left corner of the driving screen. Uses data from your car’s dashboard (if supported) and data from &lt;b&gt;OpenStreetMaps&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Show Speed Limits from Mapbox</source>
-        <translation type="gpt-4o-generated">Display Speed Limits from Mapbox</translation>
+        <translation type="gpt-5-generated">Show Speed Limits from Mapbox ribbit</translation>
     </message>
     <message>
         <source>Use &lt;b&gt;Mapbox&lt;/b&gt; speed limit data when no other sources are available.</source>
-        <translation type="gpt-4o-generated">When other sources are unavailable, use &lt;b&gt;Mapbox&lt;/b&gt; speed limit data.</translation>
+        <translation type="gpt-5-generated">Use &lt;b&gt;Mapbox&lt;/b&gt; speed limit data when no other sources be croakin’ available.</translation>
     </message>
     <message>
         <source>Use Vienna-Style Speed Signs</source>
-        <translation type="gpt-4o-generated">Adopt Vienna-Style Speed Signs</translation>
+        <translation type="gpt-5-generated">Use Vienna-Style Speed Signs, ribbit</translation>
     </message>
     <message>
         <source>Force &lt;b&gt;Vienna-style (EU)&lt;/b&gt; speed limit signs instead of &lt;b&gt;MUTCD (US)&lt;/b&gt;.</source>
-        <translation type="gpt-4o-generated">Enforce &lt;b&gt;Vienna-style (EU)&lt;/b&gt; speed limit signs instead of &lt;b&gt;MUTCD (US)&lt;/b&gt;.</translation>
+        <translation type="gpt-5-generated">Make it so the speed limit signs hop like &lt;b&gt;Vienna-style (EU)&lt;/b&gt; instead of croaking like &lt;b&gt;MUTCD (US)&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Quality of Life</source>
-        <translation type="gpt-4o-generated">Life Quality</translation>
+        <translation type="gpt-5-generated">Quality of Life (ribbit)</translation>
     </message>
     <message>
         <source>Visual features to improve your overall openpilot experience.</source>
-        <translation type="gpt-4o-generated">Visual elements to enhance your overall openpilot experience.</translation>
+        <translation type="gpt-5-generated">Froggy features to make your overall openpilot experience ribbit-better.</translation>
     </message>
     <message>
         <source>Camera View</source>
-        <translation type="gpt-4o-generated">Camera Angle</translation>
+        <translation type="gpt-5-generated">Froggy View</translation>
     </message>
     <message>
         <source>The active camera view display. This is purely a visual change and doesn't impact how openpilot drives!</source>
-        <translation type="gpt-4o-generated">The active camera view is displayed. This is purely a visual change and doesn't affect how openpilot operates!</translation>
+        <translation type="gpt-5-generated">The active camera view, ribbit! Just a visual swap—no change to how openpilot drives!</translation>
     </message>
     <message>
         <source>Show Driver Camera When In Reverse</source>
-        <translation type="gpt-4o-generated">Display Rear Camera When Reversing</translation>
+        <translation type="gpt-5-generated">Show Driver Camera While Backing Up</translation>
     </message>
     <message>
         <source>Display the driver camera feed when the vehicle is in reverse.</source>
-        <translation type="gpt-4o-generated">Show the driver camera feed when the vehicle is in reverse.</translation>
-    </message>
-    <message>
-        <source>Standby Mode</source>
-        <translation type="gpt-4o-generated">Sleep Mode</translation>
-    </message>
-    <message>
-        <source>Turn the screen off when driving and automatically wake it up if engagement state changes or important alerts occur.</source>
-        <translation type="gpt-4o-generated">Switch off the screen while driving, and automatically activate it if the engagement state changes or important alerts ribbit.</translation>
+        <translation type="gpt-5-generated">Show the driver camera feed when the vehicle is ribbit-verse.</translation>
     </message>
     <message>
         <source>Stopped Timer</source>
-        <translation type="gpt-4o-generated">Timer Halted</translation>
+        <translation type="gpt-5-generated">Timer Stopped</translation>
     </message>
     <message>
         <source>Replace the current speed with a timer when stopped to indicate how long the vehicle has been stopped for.</source>
-        <translation type="gpt-4o-generated">When the vehicle stops, replace the current speed with a timer to show how long it has been stationary.</translation>
+        <translation type="gpt-5-generated">When stopped, swap the current speed with a timer showing how long the vehicle has been stopped.</translation>
     </message>
     <message>
         <source>Blind Spot</source>
-        <translation type="gpt-4o-generated">Blind Spot</translation>
+        <translation type="gpt-5-generated">Blindy Spotty</translation>
     </message>
     <message>
         <source>Steering Torque</source>
-        <translation type="gpt-4o-generated">Steering Force</translation>
+        <translation type="gpt-5-generated">Steerin’ Torque</translation>
     </message>
     <message>
         <source>Turn Signal</source>
-        <translation type="gpt-4o-generated">Blinker</translation>
+        <translation type="gpt-5-generated">Turny Blinkers</translation>
     </message>
     <message>
         <source>Fahrenheit</source>
-        <translation type="gpt-4o-generated">Fahrenheit</translation>
+        <translation type="gpt-5-generated">Frogahrenheit</translation>
     </message>
     <message>
         <source>CPU</source>
-        <translation type="gpt-4o-generated">Processor</translation>
+        <translation type="gpt-5-generated">CPU ribbit</translation>
     </message>
     <message>
         <source>GPU</source>
-        <translation type="gpt-4o-generated">Graphics card</translation>
+        <translation type="gpt-5-generated">GPU</translation>
     </message>
     <message>
         <source>IP</source>
-        <translation type="gpt-4o-generated">IP</translation>
+        <translation type="gpt-5-generated">Ribbit IP</translation>
     </message>
     <message>
         <source>RAM</source>
-        <translation type="gpt-4o-generated">RAM</translation>
+        <translation type="gpt-5-generated">Ribbit RAM</translation>
     </message>
     <message>
         <source>SSD Left</source>
-        <translation type="gpt-4o-generated">SSD Remaining</translation>
+        <translation type="gpt-5-generated">SSS D-Left Ribbit</translation>
     </message>
     <message>
         <source>SSD Used</source>
-        <translation type="gpt-4o-generated">SSD Utilized</translation>
+        <translation type="gpt-5-generated">SSD Chomped Up</translation>
     </message>
     <message>
         <source>None</source>
-        <translation type="gpt-4o-generated">None</translation>
+        <translation type="gpt-5-generated">None</translation>
     </message>
     <message>
         <source>Acceleration: Current</source>
-        <translation type="gpt-4o-generated">Acceleration: Present</translation>
+        <translation type="gpt-5-generated">Acceleration: Ribbit Current</translation>
     </message>
     <message>
         <source>Acceleration: Max</source>
-        <translation type="gpt-4o-generated">Acceleration: Peak</translation>
+        <translation type="gpt-5-generated">Acceleration: Ribbit Max</translation>
     </message>
     <message>
         <source>Auto Tune: Actuator Delay</source>
-        <translation type="gpt-4o-generated">Auto Tune: Actuator Lag</translation>
+        <translation type="gpt-5-generated">Auto Tune: Actuator Delay ribbit</translation>
     </message>
     <message>
         <source>Auto Tune: Friction</source>
-        <translation type="gpt-4o-generated">Auto Tune: Resistance</translation>
+        <translation type="gpt-5-generated">Auto Tune: Slippy-Slide</translation>
     </message>
     <message>
         <source>Auto Tune: Lateral Acceleration</source>
-        <translation type="gpt-4o-generated">Auto Tune: Sideways Acceleration</translation>
+        <translation type="gpt-5-generated">Auto Tune: Lateral Accel-hop-hopperation</translation>
     </message>
     <message>
         <source>Auto Tune: Steer Ratio</source>
-        <translation type="gpt-4o-generated">Auto Tune: Hop Ratio</translation>
+        <translation type="gpt-5-generated">Auto Tune: Ribbit Ratio</translation>
     </message>
     <message>
         <source>Auto Tune: Stiffness Factor</source>
-        <translation type="gpt-4o-generated">Auto Tune: Ribbit Factor</translation>
+        <translation type="gpt-5-generated">Auto Tune: Stiffness Factor, ribbit</translation>
     </message>
     <message>
         <source>Engagement %: Lateral</source>
-        <translation type="gpt-4o-generated">Engagement %: Sideways</translation>
+        <translation type="gpt-5-generated">Engagement %: Ribbiteral</translation>
     </message>
     <message>
         <source>Engagement %: Longitudinal</source>
-        <translation type="gpt-4o-generated">Engagement %: Over Time</translation>
+        <translation type="gpt-5-generated">Engagement %: Ribbitudinal</translation>
     </message>
     <message>
         <source>Lateral Control: Steering Angle</source>
-        <translation type="gpt-4o-generated">Steering Angle: Lateral Control</translation>
+        <translation type="gpt-5-generated">Lateral Control: Steering Angle (ribbit)</translation>
     </message>
     <message>
         <source>Lateral Control: Torque % Used</source>
-        <translation type="gpt-4o-generated">Lateral Control: Torque % Utilized</translation>
+        <translation type="gpt-5-generated">Sideways Control: Torque % Used</translation>
     </message>
     <message>
         <source>Longitudinal Control: Actuator Acceleration Output</source>
-        <translation type="gpt-4o-generated">Longitudinal Control: Actuator Acceleration Ribbit</translation>
+        <translation type="gpt-5-generated">Longitudinal Control: Actuator Acceleration Output, ribbit</translation>
     </message>
     <message>
         <source>Longitudinal MPC Jerk: Acceleration</source>
-        <translation type="gpt-4o-generated">Longitudinal MPC Jerk: Acceleration</translation>
+        <translation type="gpt-5-generated">Longitudinal MPC Ribbit: Acceleration</translation>
     </message>
     <message>
         <source>Longitudinal MPC Jerk: Danger Zone</source>
-        <translation type="gpt-4o-generated">Longitudinal MPC Jerk: Risk Zone</translation>
+        <translation type="gpt-5-generated">Longitudinal MPC Jerk: Swamp Danger Zone</translation>
     </message>
     <message>
         <source>Longitudinal MPC Jerk: Speed Control</source>
-        <translation type="gpt-4o-generated">Longitudinal MPC Jerk: Velocity Management</translation>
+        <translation type="gpt-5-generated">Longitudinal MPC Jerk: Ribbit Speed Control</translation>
     </message>
     <message>
         <source>SELECT</source>
-        <translation type="gpt-4o-generated">SELECT</translation>
+        <translation type="gpt-5-generated">RIBBIT SELECT RIBBIT</translation>
     </message>
     <message>
         <source>Select a metric to display</source>
-        <translation type="gpt-4o-generated">Choose a metric to show</translation>
+        <translation type="gpt-5-generated">Pick a metric to show</translation>
     </message>
     <message>
         <source>Show Distance</source>
-        <translation type="gpt-4o-generated">Display Distance</translation>
+        <translation type="gpt-5-generated">Show Ribbit Distance</translation>
     </message>
     <message>
         <source>Dynamic</source>
-        <translation type="gpt-4o-generated">Energetic</translation>
+        <translation type="gpt-5-generated">Ribbit-dynamic</translation>
     </message>
     <message>
         <source>Static</source>
-        <translation type="gpt-4o-generated">Unchanging</translation>
+        <translation type="gpt-5-generated">Froggy Static</translation>
     </message>
     <message>
         <source> inches</source>
-        <translation type="gpt-4o-generated">inches</translation>
+        <translation type="gpt-5-generated">ribbits</translation>
     </message>
     <message>
         <source>Off</source>
-        <translation type="gpt-4o-generated">Off</translation>
+        <translation type="gpt-5-generated">Ribbit off</translation>
     </message>
     <message>
         <source> feet</source>
-        <translation type="gpt-4o-generated">feet</translation>
+        <translation type="gpt-5-generated"> ribbit-feet</translation>
     </message>
     <message>
         <source>Full Map</source>
-        <translation type="gpt-4o-generated">Complete Map</translation>
+        <translation type="gpt-5-generated">Big Ribbit Map</translation>
     </message>
     <message>
         <source>Stock openpilot</source>
-        <translation type="gpt-4o-generated">Standard openpilot</translation>
+        <translation type="gpt-5-generated">Stock openpilot, ribbit</translation>
     </message>
     <message>
         <source>FrogsGoMoo's Personalized Style</source>
-        <translation type="gpt-4o-generated">FrogsGoMoo's Unique Style</translation>
+        <translation type="gpt-5-generated">FrogsGoMoo’s Ribbit-Ready Style</translation>
     </message>
     <message>
         <source>Mapbox Streets</source>
-        <translation type="gpt-4o-generated">Mapbox Paths</translation>
+        <translation type="gpt-5-generated">Mapbox Ribbits</translation>
     </message>
     <message>
         <source>Mapbox Outdoors</source>
-        <translation type="gpt-4o-generated">Mapbox Adventure</translation>
+        <translation type="gpt-5-generated">Mapbox Outdoors ribbit</translation>
     </message>
     <message>
         <source>Mapbox Light</source>
-        <translation type="gpt-4o-generated">Mapbox Ribbit</translation>
+        <translation type="gpt-5-generated">Mapbox Light ribbit</translation>
     </message>
     <message>
         <source>Mapbox Dark</source>
-        <translation type="gpt-4o-generated">Mapbox Night</translation>
+        <translation type="gpt-5-generated">Mapbox Dark ribbit</translation>
     </message>
     <message>
         <source>Mapbox Navigation Day</source>
-        <translation type="gpt-4o-generated">Mapbox Navigation Day</translation>
+        <translation type="gpt-5-generated">Mapbox Navigation Day ribbit</translation>
     </message>
     <message>
         <source>Mapbox Navigation Night</source>
-        <translation type="gpt-4o-generated">Mapbox Navigation Evening</translation>
+        <translation type="gpt-5-generated">Mapbox Navigation Night, ribbit!</translation>
     </message>
     <message>
         <source>Mapbox Satellite</source>
-        <translation type="gpt-4o-generated">Mapbox Aerial</translation>
+        <translation type="gpt-5-generated">Mapbox Skypuddle Satellite</translation>
     </message>
     <message>
         <source>Mapbox Satellite Streets</source>
-        <translation type="gpt-4o-generated">Mapbox Satellite Hops</translation>
+        <translation type="gpt-5-generated">Mapbox Swampy Satellite Streets Ribbit</translation>
     </message>
     <message>
         <source>Mapbox Traffic Night</source>
-        <translation type="gpt-4o-generated">Mapbox Traffic After Dark</translation>
+        <translation type="gpt-5-generated">Mapbox Traffic Night, ribbit</translation>
     </message>
     <message>
         <source>Mike's Personalized Style</source>
-        <translation type="gpt-4o-generated">Mike's Unique Style</translation>
+        <translation type="gpt-5-generated">Mike’s Ribbit-Ready Style</translation>
     </message>
     <message>
         <source>Select a map style</source>
-        <translation type="gpt-4o-generated">Choose a map style</translation>
+        <translation type="gpt-5-generated">Pick a lily pad look for your map</translation>
     </message>
     <message>
         <source>Auto</source>
-        <translation type="gpt-4o-generated">Car</translation>
+        <translation type="gpt-5-generated">Ribbit Auto</translation>
     </message>
     <message>
         <source>Driver</source>
-        <translation type="gpt-4o-generated">Chauffeur</translation>
+        <translation type="gpt-5-generated">Frog Driver</translation>
     </message>
     <message>
         <source>Standard</source>
-        <translation type="gpt-4o-generated">Regular</translation>
+        <translation type="gpt-5-generated">Ribbit Standard Ribbit</translation>
     </message>
     <message>
         <source>Wide</source>
-        <translation type="gpt-4o-generated">Broad</translation>
+        <translation type="gpt-5-generated">Wide</translation>
     </message>
     <message>
         <source> foot</source>
-        <translation type="gpt-4o-generated">foot</translation>
+        <translation type="gpt-5-generated">froggy foot</translation>
     </message>
     <message>
         <source> inch</source>
-        <translation type="gpt-4o-generated">inch</translation>
+        <translation type="gpt-5-generated">ribbit-inch</translation>
     </message>
     <message>
         <source> meter</source>
-        <translation type="gpt-4o-generated">meter</translation>
+        <translation type="gpt-5-generated">ribbit meter 🐸</translation>
     </message>
     <message>
         <source> meters</source>
-        <translation type="gpt-4o-generated">metres</translation>
+        <translation type="gpt-5-generated">ribbit-meters</translation>
     </message>
     <message>
         <source> centimeter</source>
-        <translation type="gpt-4o-generated">cm</translation>
+        <translation type="gpt-5-generated">ribbit-centimeter</translation>
     </message>
     <message>
         <source> centimeters</source>
-        <translation type="gpt-4o-generated">cm</translation>
+        <translation type="gpt-5-generated">centi-hoppers</translation>
     </message>
     <message>
         <source>The thickness of the lane lines on the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default matches the &lt;b&gt;MUTCD&lt;/b&gt; lane line width standard of 10 centimeters.</source>
-        <translation type="gpt-4o-generated">The lane line thickness on the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default aligns with the &lt;b&gt;MUTCD&lt;/b&gt; lane line width standard of 10 centimeters.</translation>
+        <translation type="gpt-5-generated">The thiccness of the lane lines on the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default matches the &lt;b&gt;MUTCD&lt;/b&gt; lane line width standard of 10 centimeters.</translation>
     </message>
     <message>
         <source>The width of the driving path on the driving screen.&lt;br&gt;&lt;br&gt;Default &lt;b&gt;(1.9 meters)&lt;/b&gt; matches the width of a &lt;b&gt;2019 Lexus ES 350&lt;/b&gt;.</source>
-        <translation type="gpt-4o-generated">The width of the driving path on the driving screen.&lt;br&gt;&lt;br&gt;Default &lt;b&gt;(1.9 meters)&lt;/b&gt; matches the width of a &lt;b&gt;2019 Lexus ES 350&lt;/b&gt;.</translation>
+        <translation type="gpt-5-generated">The width of the driving path on the driving screen.&lt;br&gt;&lt;br&gt;Default &lt;b&gt;(1.9 meters)&lt;/b&gt; matches the width of a &lt;b&gt;2019 Lexus ES 350&lt;/b&gt;, ribbit.</translation>
     </message>
     <message>
         <source>The thickness of the road edges on the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default matches half of the &lt;b&gt;MUTCD&lt;/b&gt; lane line width standard of 10 centimeters.</source>
-        <translation type="gpt-4o-generated">The thickness of the road edges on the driving screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;By default, it matches half of the &lt;b&gt;MUTCD&lt;/b&gt; lane line width standard of 10 centimeters.</translation>
+        <translation type="gpt-5-generated">The thiccness of the road edges on the drivin’ screen.&lt;br&gt;&lt;br&gt;&lt;b&gt;Default matches half of the &lt;b&gt;MUTCD&lt;/b&gt; lane line width standard of 10 centimeters.</translation>
     </message>
 </context>
 <context>
     <name>FrogPilotWheelPanel</name>
     <message>
         <source>Distance Button</source>
-        <translation type="gpt-4o-generated">Range Button</translation>
+        <translation type="gpt-5-generated">Distance Button Ribbit</translation>
     </message>
     <message>
         <source>The action for a short press of the &lt;b&gt;Distance&lt;/b&gt; button.</source>
-        <translation type="gpt-4o-generated">The function of a quick press on the &lt;b&gt;Distance&lt;/b&gt; button.</translation>
+        <translation type="gpt-5-generated">The action when you give the &lt;b&gt;Distance&lt;/b&gt; button a quick boop.</translation>
     </message>
     <message>
         <source>Distance Button (Long Press)</source>
-        <translation type="gpt-4o-generated">Distance Button (Press and Hold)</translation>
+        <translation type="gpt-5-generated">Distance Button (Long Press) ribbit</translation>
     </message>
     <message>
         <source>The action for a 0.5+ second press of the &lt;b&gt;Distance&lt;/b&gt; button.</source>
-        <translation type="gpt-4o-generated">The action triggered by pressing the &lt;b&gt;Distance&lt;/b&gt; button for over 0.5 seconds.</translation>
+        <translation type="gpt-5-generated">The thing that happens when you hold the &lt;b&gt;Distance&lt;/b&gt; button for 0.5+ seconds.</translation>
     </message>
     <message>
         <source>Distance Button (Very Long Press)</source>
-        <translation type="gpt-4o-generated">Distance Button (Extended Press)</translation>
+        <translation type="gpt-5-generated">Distance Button (Super Duper Long Press)</translation>
     </message>
     <message>
         <source>The action for a 2.5+ second press of the &lt;b&gt;Distance&lt;/b&gt; button.</source>
-        <translation type="gpt-4o-generated">The action triggered by pressing the &lt;b&gt;Distance&lt;/b&gt; button for over 2.5 seconds.</translation>
+        <translation type="gpt-5-generated">The deed for a 2.5+ second hold of the &lt;b&gt;Distance&lt;/b&gt; button.</translation>
     </message>
     <message>
         <source>LKAS Button</source>
-        <translation type="gpt-4o-generated">LKAS Control</translation>
+        <translation type="gpt-5-generated">Ribbit LKAS Button</translation>
     </message>
     <message>
         <source>The action for pressing the &lt;b&gt;LKAS&lt;/b&gt; button.</source>
-        <translation type="gpt-4o-generated">Press the &lt;b&gt;LKAS&lt;/b&gt; button.</translation>
+        <translation type="gpt-5-generated">The hop for pressing the &lt;b&gt;LKAS&lt;/b&gt; button.</translation>
     </message>
     <message>
         <source>Nothing</source>
-        <translation type="gpt-4o-generated">Nothing</translation>
+        <translation type="gpt-5-generated">Ribbit: Nothing</translation>
     </message>
     <message>
         <source>Pause Lateral</source>
-        <translation type="gpt-4o-generated">Hold Lateral</translation>
+        <translation type="gpt-5-generated">Ribbit Pause Lateral 🐸</translation>
     </message>
     <message>
         <source>Change "Personality Profile"</source>
-        <translation type="gpt-4o-generated">Character Snapshot</translation>
+        <translation type="gpt-5-generated">Change "Ribbit-sonality Profile"</translation>
     </message>
     <message>
         <source>Force openpilot to Coast</source>
-        <translation type="gpt-4o-generated">Make openpilot coast</translation>
+        <translation type="gpt-5-generated">Make openpilot coast</translation>
     </message>
     <message>
         <source>Pause Longitudinal</source>
-        <translation type="gpt-4o-generated">Pause Lengthwise</translation>
+        <translation type="gpt-5-generated">Ribbit Pause Longitudinal</translation>
     </message>
     <message>
         <source>Toggle "Experimental Mode" On/Off</source>
-        <translation type="gpt-4o-generated">Switch "Experimental Mode" On/Off</translation>
+        <translation type="gpt-5-generated">Flip “Experimental Mode” On/Off</translation>
     </message>
     <message>
         <source>Toggle "Traffic Mode" On/Off</source>
-        <translation type="gpt-4o-generated">Switch "Traffic Mode" On/Off</translation>
+        <translation type="gpt-5-generated">Ribbit “Traffic Mode” On/Off</translation>
     </message>
     <message>
         <source>SELECT</source>
-        <translation type="gpt-4o-generated">SELECT</translation>
+        <translation type="gpt-5-generated">RIBBIT SELECT</translation>
     </message>
     <message>
         <source>Select a function to assign to this button</source>
-        <translation type="gpt-4o-generated">Choose a function for this button</translation>
+        <translation type="gpt-5-generated">Pick a function to stick on this button</translation>
     </message>
 </context>
 <context>
     <name>InputDialog</name>
     <message>
         <source>Cancel</source>
-        <translation type="gpt-4o-generated">Cancel</translation>
+        <translation type="gpt-5-generated">Ribbit-cancel</translation>
     </message>
     <message numerus="yes">
         <source>Need at least %n character(s)!</source>
-        <translation type="gpt-4o-generated">
-            <numerusform>At least %n character required!</numerusform>
-            <numerusform>At least %n characters required!</numerusform>
+        <translation type="gpt-5-generated">
+            <numerusform>Need at least %n ribbit(s)!</numerusform>
+            <numerusform>Need at least %n ribbit(s)!</numerusform>
         </translation>
     </message>
     <message>
         <source>Characters: %1/%2</source>
-        <translation type="gpt-4o-generated">Characters: %1 out of %2</translation>
+        <translation type="gpt-5-generated">Ribbits: %1/%2</translation>
     </message>
 </context>
 <context>
     <name>Installer</name>
     <message>
         <source>Installing...</source>
-        <translation type="gpt-4o-generated">Installing...</translation>
+        <translation type="gpt-5-generated">Ribbiting install...</translation>
     </message>
 </context>
 <context>
     <name>MapETA</name>
     <message>
         <source>eta</source>
-        <translation type="gpt-4o-generated">eta</translation>
+        <translation type="gpt-5-generated">ribbit-time arrival (eta)</translation>
     </message>
     <message>
         <source>min</source>
-        <translation type="gpt-4o-generated">min</translation>
+        <translation type="gpt-5-generated">ribbit min ribbit</translation>
     </message>
     <message>
         <source>hr</source>
-        <translation type="gpt-4o-generated">hr</translation>
+        <translation type="gpt-5-generated">hr</translation>
     </message>
 </context>
 <context>
     <name>MapSettings</name>
     <message>
         <source>NAVIGATION</source>
-        <translation type="gpt-4o-generated">NAVIGATE</translation>
+        <translation type="gpt-5-generated">HOP-VIGATION</translation>
     </message>
     <message>
         <source>Manage at %1</source>
-        <translation type="gpt-4o-generated">Hop to %1</translation>
+        <translation type="gpt-5-generated">Hop over to %1</translation>
     </message>
 </context>
 <context>
     <name>MapWindow</name>
     <message>
         <source>Map Loading</source>
-        <translation type="gpt-4o-generated">Loading Map</translation>
+        <translation type="gpt-5-generated">Map Loadin’ Ribbit</translation>
     </message>
     <message>
         <source>Waiting for GPS</source>
-        <translation type="gpt-4o-generated">Awaiting GPS</translation>
+        <translation type="gpt-5-generated">Waitin’ for GPS ribbit</translation>
     </message>
     <message>
         <source>Waiting for route</source>
-        <translation type="gpt-4o-generated">Awaiting route</translation>
+        <translation type="gpt-5-generated">Waiting for route, ribbit</translation>
     </message>
 </context>
 <context>
     <name>ModelReview</name>
     <message>
         <source>How would you rate that drive?</source>
-        <translation type="gpt-4o-generated">How would you rate that hop?</translation>
+        <translation type="gpt-5-generated">How’d ya rate that drive, ribbit?</translation>
     </message>
     <message>
         <source>Blacklist this model</source>
-        <translation type="gpt-4o-generated">Block this model</translation>
+        <translation type="gpt-5-generated">Put this model on the lily pad blacklist</translation>
     </message>
     <message>
         <source>The model used during that drive was:</source>
-        <translation type="gpt-4o-generated">The model employed during that drive was:</translation>
+        <translation type="gpt-5-generated">The model used on that hop was:</translation>
     </message>
     <message>
         <source>Current Model Score: 0</source>
-        <translation type="gpt-4o-generated">Current Model Score: 0</translation>
+        <translation type="gpt-5-generated">Current Model Score: 0 ribbit</translation>
     </message>
     <message>
         <source>Current Model Rank: 0</source>
-        <translation type="gpt-4o-generated">Current Model Status: 0</translation>
+        <translation type="gpt-5-generated">Current Model Rank: 0</translation>
     </message>
     <message>
         <source>Total Model Drives: 0</source>
-        <translation type="gpt-4o-generated">Total Model Hops: 0</translation>
+        <translation type="gpt-5-generated">Total Model Hops: 0</translation>
     </message>
     <message>
         <source>Total Overall Model Drives: 0</source>
-        <translation type="gpt-4o-generated">Total Model Drives: 0</translation>
+        <translation type="gpt-5-generated">Total Overall Model Hops: 0</translation>
     </message>
     <message>
         <source>Total Model Drives: %1</source>
-        <translation type="gpt-4o-generated">Total Model Drives: %1</translation>
+        <translation type="gpt-5-generated">Total Model Drives: %1 ribbit</translation>
     </message>
     <message>
         <source>Current Model Rank: %1</source>
-        <translation type="gpt-4o-generated">Current Model Rank: %1</translation>
+        <translation type="gpt-5-generated">Ribbit Rank o’ the Current Model: %1</translation>
     </message>
     <message>
         <source>Current Model Score: %1</source>
-        <translation type="gpt-4o-generated">Current Model Score: %1</translation>
+        <translation type="gpt-5-generated">Current Model Score: %1 🐸</translation>
     </message>
     <message>
         <source>Total Overall Drives: %1</source>
-        <translation type="gpt-4o-generated">Total Drives Overall: %1</translation>
+        <translation type="gpt-5-generated">Total Overall Drives: %1 ribbit</translation>
     </message>
     <message>
         <source>Model successfully blacklisted!</source>
-        <translation type="gpt-4o-generated">Model blacklisted successfully!</translation>
+        <translation type="gpt-5-generated">Model blacklisted, ribbit!</translation>
     </message>
 </context>
 <context>
     <name>MultiOptionDialog</name>
     <message>
         <source>Select</source>
-        <translation type="gpt-4o-generated">Choose</translation>
+        <translation type="gpt-5-generated">Ribbit-select</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="gpt-4o-generated">Cancel</translation>
+        <translation type="gpt-5-generated">Ribbit cancel</translation>
     </message>
 </context>
 <context>
     <name>Networking</name>
     <message>
         <source>Advanced</source>
-        <translation type="gpt-4o-generated">Expert</translation>
+        <translation type="gpt-5-generated">Advanced</translation>
     </message>
     <message>
         <source>Enter password</source>
-        <translation type="gpt-4o-generated">Input password</translation>
+        <translation type="gpt-5-generated">Hop in your password</translation>
     </message>
     <message>
         <source>for "%1"</source>
-        <translation type="gpt-4o-generated">for "%1"</translation>
+        <translation type="gpt-5-generated">for "%1"</translation>
     </message>
     <message>
         <source>Wrong password</source>
-        <translation type="gpt-4o-generated">Incorrect password</translation>
+        <translation type="gpt-5-generated">Ribbit… wrong password</translation>
     </message>
 </context>
 <context>
     <name>OffroadAlert</name>
     <message>
         <source>Device temperature too high. System cooling down before starting. Current internal component temperature: %1</source>
-        <translation type="gpt-4o-generated">Device temperature too high. Cooling down before starting. Current internal component temperature: %1</translation>
+        <translation type="gpt-5-generated">Device temp too hot. System chillin’ before it starts. Current internal part temp: %1</translation>
     </message>
     <message>
         <source>Immediately connect to the internet to check for updates. If you do not connect to the internet, openpilot won't engage in %1</source>
-        <translation type="gpt-4o-generated">Connect to the internet right away to check for updates. Without an internet connection, openpilot won't engage in %1.</translation>
+        <translation type="gpt-5-generated">Hop online right now to check for updates. If you don’t hop onto the internet, openpilot won’t engage in %1</translation>
     </message>
     <message>
         <source>Connect to internet to check for updates. openpilot won't automatically start until it connects to internet to check for updates.</source>
-        <translation type="gpt-4o-generated">Connect to the internet to check for updates. openpilot won't start automatically until it hops online to check for updates.</translation>
+        <translation type="gpt-5-generated">Hop online to check for updates. openpilot won’t auto-start until it hops online to check for updates.</translation>
     </message>
     <message>
         <source>Unable to download updates
 %1</source>
-        <translation type="gpt-4o-generated">Cannot download updates
+        <translation type="gpt-5-generated">Can’t snag updates
 %1</translation>
     </message>
     <message>
         <source>Taking camera snapshots. System won't start until finished.</source>
-        <translation type="gpt-4o-generated">Capturing camera snapshots. The system won't start until complete.</translation>
+        <translation type="gpt-5-generated">Snappin’ pics with the camera. System ain’t hoppin’ on till it’s done.</translation>
     </message>
     <message>
         <source>An update to your device's operating system is downloading in the background. You will be prompted to update when it's ready to install.</source>
-        <translation type="gpt-4o-generated">Your device's operating system update is downloading in the background. You'll be prompted to install it when it's ready.</translation>
+        <translation type="gpt-5-generated">An update to your device’s operating system is sneaking in the swampy background. When it’s ready to hop onto your system, we’ll croak to prompt you to install.</translation>
     </message>
     <message>
         <source>Device failed to register. It will not connect to or upload to comma.ai servers, and receives no support from comma.ai. If this is an official device, visit https://comma.ai/support.</source>
-        <translation type="gpt-4o-generated">Device registration failed. It won't connect to or upload to comma.ai servers, and receives no support from comma.ai. If this is an official device, hop over to https://comma.ai/support.</translation>
+        <translation type="gpt-5-generated">Ribbit! Device didn’t register. It won’t connect to or upload to comma.ai lily pads, and gets no support from comma.ai. If this is an official device, hop to https://comma.ai/support.</translation>
     </message>
     <message>
         <source>NVMe drive not mounted.</source>
-        <translation type="gpt-4o-generated">NVMe drive not attached.</translation>
+        <translation type="gpt-5-generated">NVMe drive no mounty.</translation>
     </message>
     <message>
         <source>Unsupported NVMe drive detected. Device may draw significantly more power and overheat due to the unsupported NVMe.</source>
-        <translation type="gpt-4o-generated">Unsupported NVMe drive detected. The device might draw more power and overheat because of the unsupported NVMe.</translation>
+        <translation type="gpt-5-generated">Ribbit! Unsupported NVMe drive detected. This device might slurp extra power and get toasty due to the unsupported NVMe.</translation>
     </message>
     <message>
         <source>openpilot was unable to identify your car. Your car is either unsupported or its ECUs are not recognized. Please submit a pull request to add the firmware versions to the proper vehicle. Need help? Join discord.comma.ai.</source>
-        <translation type="gpt-4o-generated">openpilot couldn't identify your car. It might be unsupported, or its ECUs aren't recognized. Please submit a pull request to add the firmware versions to the correct vehicle. Need help? Hop over to discord.comma.ai.</translation>
+        <translation type="gpt-5-generated">openpilot couldn’t spot your ride. It’s either not supported, or its ECUs didn’t croak back. Hop over and submit a pull request to add the firmware versions to the correct vehicle. Need help? Leap into discord.comma.ai.</translation>
     </message>
     <message>
         <source>openpilot was unable to identify your car. Check integrity of cables and ensure all connections are secure, particularly that the comma power is fully inserted in the OBD-II port of the vehicle. Need help? Join discord.comma.ai.</source>
-        <translation type="gpt-4o-generated">openpilot couldn't identify your car. Check cable integrity and ensure all connections are secure, especially that the comma power is fully inserted in the vehicle's OBD-II port. Need help? Hop over to discord.comma.ai.</translation>
+        <translation type="gpt-5-generated"></translation>
     </message>
     <message>
         <source>openpilot detected a change in the device's mounting position. Ensure the device is fully seated in the mount and the mount is firmly secured to the windshield.</source>
-        <translation type="gpt-4o-generated">openpilot noticed a shift in the device's mounting position. Make sure the device is snugly seated in the mount and that the mount is firmly attached to the windshield.</translation>
+        <translation type="gpt-5-generated">ribbit! openpilot spotted a change in your device’s perch. Make sure the device is snug in its mount, and the mount is stuck firm to the windshield.</translation>
     </message>
 </context>
 <context>
     <name>OffroadHome</name>
     <message>
         <source>UPDATE</source>
-        <translation type="gpt-4o-generated">REFRESH</translation>
+        <translation type="gpt-5-generated">RIBBIT UPDATE</translation>
     </message>
     <message>
         <source> ALERTS</source>
-        <translation type="gpt-4o-generated">ALERTS</translation>
+        <translation type="gpt-5-generated">RIBBIT ALERTS</translation>
     </message>
     <message>
         <source> ALERT</source>
-        <translation type="gpt-4o-generated">ALERT</translation>
+        <translation type="gpt-5-generated">RIBBIT ALERT</translation>
     </message>
 </context>
 <context>
     <name>OnroadAlerts</name>
     <message>
-        <source>openpilot crashed 💩</source>
-        <translation type="gpt-4o-generated">openpilot croaked 💩</translation>
-    </message>
-    <message>
         <source>Please post the "Error Log" in the FrogPilot Discord!</source>
-        <translation type="gpt-4o-generated">Please share the "Error Log" in the FrogPilot Discord!</translation>
+        <translation type="gpt-5-generated">Ribbit! Please drop the "Error Log" in the FrogPilot Discord!</translation>
     </message>
     <message>
         <source>openpilot crashed</source>
-        <translation type="gpt-4o-generated">openpilot ribbited</translation>
+        <translation type="gpt-5-generated">ribbit! openpilot crashed</translation>
     </message>
     <message>
         <source>openpilot Unavailable</source>
-        <translation type="gpt-4o-generated">openpilot Not Available</translation>
+        <translation type="gpt-5-generated">openpilot Not Croaking Right Now</translation>
     </message>
     <message>
         <source>Waiting for controls to start</source>
-        <translation type="gpt-4o-generated">Awaiting controls to begin</translation>
+        <translation type="gpt-5-generated">Waiting for ribbits to start</translation>
     </message>
     <message>
         <source>TAKE CONTROL IMMEDIATELY</source>
-        <translation type="gpt-4o-generated">SEIZE CONTROL NOW</translation>
+        <translation type="gpt-5-generated">GRAB THE WHEEL NOW RIBBIT</translation>
     </message>
     <message>
         <source>Controls Unresponsive</source>
-        <translation type="gpt-4o-generated">Controls Not Responding</translation>
+        <translation type="gpt-5-generated">Controls Not Ribbit-sponsive</translation>
     </message>
     <message>
         <source>Reboot Device</source>
-        <translation type="gpt-4o-generated">Restart Device</translation>
+        <translation type="gpt-5-generated">Ribbit Device Reboot</translation>
     </message>
 </context>
 <context>
     <name>PairingPopup</name>
     <message>
         <source>Pair your device to your %1 account</source>
-        <translation type="gpt-4o-generated">Connect your device to your %1 account</translation>
+        <translation type="gpt-5-generated">Pair your lilypad to your %1 account</translation>
     </message>
     <message>
         <source>Go to https://%1 on your phone</source>
-        <translation type="gpt-4o-generated">Visit https://%1 on your phone.</translation>
+        <translation type="gpt-5-generated">Hop over to https://%1 on your phone</translation>
     </message>
     <message>
         <source>Click "add new device" and scan the QR code on the right</source>
-        <translation type="gpt-4o-generated">Click "add new device" and scan the QR code to the right.</translation>
+        <translation type="gpt-5-generated">Click "add new lily pad" and scan the QR code on the right ribbit</translation>
     </message>
     <message>
         <source>Bookmark %1 to your home screen to use it like an app</source>
-        <translation type="gpt-4o-generated">Add %1 to your home screen to use it like an app.</translation>
+        <translation type="gpt-5-generated">Hopmark %1 to your lily pad home screen to use it like an app</translation>
     </message>
 </context>
 <context>
     <name>ParamControl</name>
     <message>
         <source>Enable</source>
-        <translation type="gpt-4o-generated">Activate</translation>
+        <translation type="gpt-5-generated">Ribbit on</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="gpt-4o-generated">Cancel</translation>
+        <translation type="gpt-5-generated">Ribbit, cancel</translation>
     </message>
 </context>
 <context>
     <name>PrimeAdWidget</name>
     <message>
         <source>Upgrade Now</source>
-        <translation type="gpt-4o-generated">Hop to it—Upgrade Now</translation>
+        <translation type="gpt-5-generated">Hop to it, upgrade now</translation>
     </message>
     <message>
         <source>Become a comma prime member at connect.comma.ai</source>
-        <translation type="gpt-4o-generated">Join as a comma prime member at connect.comma.ai</translation>
+        <translation type="gpt-5-generated">Hop into comma prime at connect.comma.ai</translation>
     </message>
     <message>
         <source>PRIME FEATURES:</source>
-        <translation type="gpt-4o-generated">KEY FEATURES:</translation>
+        <translation type="gpt-5-generated">PRIME FEATURES, ribbit:</translation>
     </message>
     <message>
         <source>Remote access</source>
-        <translation type="gpt-4o-generated">Remote entry</translation>
+        <translation type="gpt-5-generated">Remote hopcess</translation>
     </message>
     <message>
         <source>24/7 LTE connectivity</source>
-        <translation type="gpt-4o-generated">LTE connectivity available 24/7</translation>
+        <translation type="gpt-5-generated">24/7 LTE croaknectivity</translation>
     </message>
     <message>
         <source>1 year of drive storage</source>
-        <translation type="gpt-4o-generated">1 year of cloud storage</translation>
+        <translation type="gpt-5-generated">1 year of drive stash</translation>
     </message>
     <message>
         <source>Turn-by-turn navigation</source>
-        <translation type="gpt-4o-generated">Step-by-step navigation</translation>
+        <translation type="gpt-5-generated">Ribbit-by-ribbit navigation</translation>
     </message>
 </context>
 <context>
     <name>PrimeUserWidget</name>
     <message>
         <source>✓ SUBSCRIBED</source>
-        <translation type="gpt-4o-generated">✓ SUBSCRIBED</translation>
+        <translation type="gpt-5-generated">✓ RIBBIT-SUBSCRIBED</translation>
     </message>
     <message>
         <source>comma prime</source>
-        <translation type="gpt-4o-generated">comma prime</translation>
+        <translation type="gpt-5-generated">comma prime ribbit</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>km</source>
-        <translation type="gpt-4o-generated">km</translation>
+        <translation type="gpt-5-generated">ribbit km</translation>
     </message>
     <message>
         <source>m</source>
-        <translation type="gpt-4o-generated">m</translation>
+        <translation type="gpt-5-generated">ribbit</translation>
     </message>
     <message>
         <source>mi</source>
-        <translation type="gpt-4o-generated">mi</translation>
+        <translation type="gpt-5-generated">ribbit mi ribbit</translation>
     </message>
     <message>
         <source>ft</source>
-        <translation type="gpt-4o-generated">ft</translation>
+        <translation type="gpt-5-generated">ribbit ft ribbit</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="gpt-4o-generated">Leave</translation>
+        <translation type="gpt-5-generated">Ribbit Exit</translation>
     </message>
     <message>
         <source>FrogPilot</source>
-        <translation type="gpt-4o-generated">PilotFrog</translation>
+        <translation type="gpt-5-generated">FrogPilot</translation>
     </message>
     <message>
         <source>now</source>
-        <translation type="gpt-4o-generated">currently</translation>
+        <translation type="gpt-5-generated">ribbit now</translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s) ago</source>
-        <translation type="gpt-4o-generated">
-            <numerusform>%n minute past</numerusform>
-            <numerusform>%n minutes past</numerusform>
+        <translation type="gpt-5-generated">
+            <numerusform>%n lil’ ribbit minute(s) ago</numerusform>
+            <numerusform>%n lil’ ribbit minute(s) ago</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s) ago</source>
-        <translation type="gpt-4o-generated">
-            <numerusform>%n hour past</numerusform>
-            <numerusform>%n hours past</numerusform>
+        <translation type="gpt-5-generated">
+            <numerusform>%n ribbit hour(s) ago</numerusform>
+            <numerusform>%n ribbit hour(s) ago</numerusform>
         </translation>
     </message>
     <message numerus="yes">
         <source>%n day(s) ago</source>
-        <translation type="gpt-4o-generated">
-            <numerusform>%n day past</numerusform>
-            <numerusform>%n days past</numerusform>
+        <translation type="gpt-5-generated">
+            <numerusform>%n ribbit(s) ago</numerusform>
+            <numerusform>%n ribbit(s) ago</numerusform>
         </translation>
     </message>
     <message>
         <source>Restore</source>
-        <translation type="gpt-4o-generated">Reinstate</translation>
+        <translation type="gpt-5-generated">Ribbit-restore</translation>
     </message>
 </context>
 <context>
     <name>Reset</name>
     <message>
         <source>Reset failed. Reboot to try again.</source>
-        <translation type="gpt-4o-generated">Reset unsuccessful. Reboot to retry.</translation>
+        <translation type="gpt-5-generated">Reset croaked. Reboot and hop again.</translation>
     </message>
     <message>
         <source>Resetting device...
 This may take up to a minute.</source>
-        <translation type="gpt-4o-generated">Resetting device...
-This might take up to a minute.</translation>
+        <translation type="gpt-5-generated">Ribbit… resetting device…
+This may take up to a minute, hop-hop.</translation>
     </message>
     <message>
         <source>Are you sure you want to reset your device?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to reset your device?</translation>
+        <translation type="gpt-5-generated">Ya sure ya wanna reset your device?</translation>
     </message>
     <message>
         <source>System Reset</source>
-        <translation type="gpt-4o-generated">System Reboot</translation>
+        <translation type="gpt-5-generated">Ribbit Reset</translation>
     </message>
     <message>
         <source>System reset triggered. Press confirm to erase all content and settings. Press cancel to resume boot.</source>
-        <translation type="gpt-4o-generated">System reset initiated. Press confirm to erase all content and settings. Press cancel to continue booting.</translation>
+        <translation type="gpt-5-generated">Ribbit! System reset triggered. Press confirm to erase all content and settings. Press cancel to resume boot.</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="gpt-4o-generated">Cancel</translation>
+        <translation type="gpt-5-generated">Ribbit, cancel</translation>
     </message>
     <message>
         <source>Reboot</source>
-        <translation type="gpt-4o-generated">Restart</translation>
+        <translation type="gpt-5-generated">Ribbitboot</translation>
     </message>
     <message>
         <source>Confirm</source>
-        <translation type="gpt-4o-generated">Affirm</translation>
+        <translation type="gpt-5-generated">Ribbit-confirm</translation>
     </message>
     <message>
         <source>Unable to mount data partition. Partition may be corrupted. Press confirm to erase and reset your device.</source>
-        <translation type="gpt-4o-generated">Cannot mount data partition. The partition might be corrupted. Press confirm to erase and reset your device.</translation>
+        <translation type="gpt-5-generated">Unable to mount the data swamp. The lily pad partition may be croaked. Press confirm to wipe the bog and reset your device.</translation>
     </message>
 </context>
 <context>
     <name>ScreenRecorder</name>
     <message>
         <source>RECORDING</source>
-        <translation type="gpt-4o-generated">RECORDING</translation>
+        <translation type="gpt-5-generated">RIBBITING</translation>
     </message>
     <message>
         <source>RECORD</source>
-        <translation type="gpt-4o-generated">LOG</translation>
+        <translation type="gpt-5-generated">RIBBIT RECORD</translation>
     </message>
 </context>
 <context>
     <name>SettingsWindow</name>
     <message>
         <source>← Back</source>
-        <translation type="gpt-4o-generated">← Return</translation>
+        <translation type="gpt-5-generated">← Ribbit Back</translation>
     </message>
     <message>
         <source>Device</source>
-        <translation type="gpt-4o-generated">Gadget</translation>
+        <translation type="gpt-5-generated">Croaker Device</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation type="gpt-4o-generated">Network</translation>
+        <translation type="gpt-5-generated">Ribbitwork</translation>
     </message>
     <message>
         <source>Toggles</source>
-        <translation type="gpt-4o-generated">Switches</translation>
+        <translation type="gpt-5-generated">Ribbit Switches</translation>
     </message>
     <message>
         <source>Software</source>
-        <translation type="gpt-4o-generated">Program</translation>
+        <translation type="gpt-5-generated">Softwarribbit</translation>
     </message>
     <message>
         <source>FrogPilot</source>
-        <translation type="gpt-4o-generated">FrogNavigator</translation>
+        <translation type="gpt-5-generated">FrogPilot ribbit</translation>
     </message>
     <message>
         <source>Welcome to FrogPilot! Since you're new to openpilot, the "Minimal" toggle preset has been applied, but you can change this at any time via the "Tuning Level" button!</source>
-        <translation type="gpt-4o-generated">Welcome to FrogPilot! As you're new to openpilot, the "Minimal" toggle preset is applied, but you can hop to change it anytime using the "Tuning Level" button!</translation>
+        <translation type="gpt-5-generated">Ribbit to FrogPilot! Since you’re tadpole-new to openpilot, the “Minimal” lily-pad toggle preset is on, but you can hop and change it anytime via the “Tuning Level” button!</translation>
     </message>
     <message>
         <source>Welcome to FrogPilot! Since you're new to FrogPilot, the "Minimal" toggle preset has been applied, but you can change this at any time via the "Tuning Level" button!</source>
-        <translation type="gpt-4o-generated">Welcome to FrogPilot! As a newcomer, the "Minimal" toggle preset is active, but you can hop over to the "Tuning Level" button to change it anytime!</translation>
+        <translation type="gpt-5-generated">Ribbit! Welcome to FrogPilot! Since you’re new to FrogPilot, the “Minimal” toggle preset is on—hop to the “Tuning Level” button anytime to change it!</translation>
     </message>
     <message>
         <source>Since you're fairly new to FrogPilot, the "Minimal" toggle preset has been applied, but you can change this at any time via the "Tuning Level" button!</source>
-        <translation type="gpt-4o-generated">As you're new to FrogPilot, the "Minimal" toggle preset is active, but you can hop over to change it anytime using the "Tuning Level" button!</translation>
+        <translation type="gpt-5-generated">Since you’re tadpole-new to FrogPilot, we’ve flipped on the “Minimal” lily pad preset—but you can hop over and change it anytime with the “Tuning Level” button!</translation>
     </message>
     <message>
         <source>Since you're experienced with openpilot, the "Standard" toggle preset has been applied, but you can change this at any time via the "Tuning Level" button!</source>
-        <translation type="gpt-4o-generated">As you're familiar with openpilot, the "Standard" toggle preset is now active, but you can hop over and change it anytime using the "Tuning Level" button!</translation>
+        <translation type="gpt-5-generated">Since you’re savvy with openpilot, we’ve set the preset to “Standard.” You can switch it anytime using the “Tuning Level” button!</translation>
     </message>
     <message>
         <source>Since you're experienced with FrogPilot, the "Standard" toggle preset has been applied, but you can change this at any time via the "Tuning Level" button!</source>
-        <translation type="gpt-4o-generated">Given your experience with FrogPilot, the "Standard" toggle preset is active, but you can hop over to the "Tuning Level" button to change it anytime!</translation>
+        <translation type="gpt-5-generated">Since you’re hip with FrogPilot, the “Standard” toggle brew is on—change it anytime with the “Tuning Level” button!</translation>
     </message>
     <message>
         <source>Since you're very experienced with FrogPilot, the "Advanced" toggle preset has been applied, but you can change this at any time via the "Tuning Level" button!</source>
-        <translation type="gpt-4o-generated">Given your expertise with FrogPilot, the "Advanced" toggle preset is active, but you can adjust it anytime using the "Tuning Level" button!</translation>
+        <translation type="gpt-5-generated">Since you’re super tadpole-wise with FrogPilot, the “Advanced” lily pad has been flipped on, but you can hop and switch it anytime with the “Tuning Level” button!</translation>
     </message>
 </context>
 <context>
     <name>Setup</name>
     <message>
         <source>Something went wrong. Reboot the device.</source>
-        <translation type="gpt-4o-generated">An error occurred. Restart the device.</translation>
+        <translation type="gpt-5-generated">Ribbit—something went wrong. Hop to it and reboot the device.</translation>
     </message>
     <message>
         <source>Ensure the entered URL is valid, and the device’s internet connection is good.</source>
-        <translation type="gpt-4o-generated">Verify the entered URL is valid and ensure the device's internet connection is strong.</translation>
+        <translation type="gpt-5-generated">Make sure the URL you typed is legit, and your device’s internet is solid.</translation>
     </message>
     <message>
         <source>No custom software found at this URL.</source>
-        <translation type="gpt-4o-generated">No custom software located at this URL.</translation>
+        <translation type="gpt-5-generated">No custom software be found at this URL, ribbit.</translation>
     </message>
     <message>
         <source>WARNING: Low Voltage</source>
-        <translation type="gpt-4o-generated">CAUTION: Low Voltage</translation>
+        <translation type="gpt-5-generated">WARNING: Low Volt froggie</translation>
     </message>
     <message>
         <source>Power your device in a car with a harness or proceed at your own risk.</source>
-        <translation type="gpt-4o-generated">Use a harness to power your device in a car, or hop ahead at your own risk.</translation>
+        <translation type="gpt-5-generated">Juice up your device in a car with a harness, or hop ahead at your own risk.</translation>
     </message>
     <message>
         <source>Power off</source>
-        <translation type="gpt-4o-generated">Shut down</translation>
+        <translation type="gpt-5-generated">Power ribbit off</translation>
     </message>
     <message>
         <source>Continue</source>
-        <translation type="gpt-4o-generated">Proceed</translation>
+        <translation type="gpt-5-generated">Keep hoppin’</translation>
     </message>
     <message>
         <source>Getting Started</source>
-        <translation type="gpt-4o-generated">Beginning Steps</translation>
+        <translation type="gpt-5-generated">Gettin’ Started, ribbit</translation>
     </message>
     <message>
         <source>Before we get on the road, let’s finish installation and cover some details.</source>
-        <translation type="gpt-4o-generated">Before we hop on the road, let’s complete the installation and cover some details.</translation>
+        <translation type="gpt-5-generated">Before we hop on the road, let’s wrap up installation and cover a few lily-pad details.</translation>
     </message>
     <message>
         <source>Connect to Wi-Fi</source>
-        <translation type="gpt-4o-generated">Join the Wi-Fi</translation>
+        <translation type="gpt-5-generated">Hop onto Wi‑Fi</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation type="gpt-4o-generated">Return</translation>
+        <translation type="gpt-5-generated">Ribbit Back</translation>
     </message>
     <message>
         <source>Continue without Wi-Fi</source>
-        <translation type="gpt-4o-generated">Proceed without Wi-Fi</translation>
+        <translation type="gpt-5-generated">Hop ahead without Wi-Fi</translation>
     </message>
     <message>
         <source>Waiting for internet</source>
-        <translation type="gpt-4o-generated">Awaiting internet</translation>
+        <translation type="gpt-5-generated">Waitin’ for the internet ribbit</translation>
     </message>
     <message>
         <source>Choose Software to Install</source>
-        <translation type="gpt-4o-generated">Select Software to Install</translation>
+        <translation type="gpt-5-generated">Pick Software to Install</translation>
     </message>
     <message>
         <source>openpilot</source>
-        <translation type="gpt-4o-generated">openpilot</translation>
+        <translation type="gpt-5-generated">openpilot</translation>
     </message>
     <message>
         <source>Custom Software</source>
-        <translation type="gpt-4o-generated">Bespoke Software</translation>
+        <translation type="gpt-5-generated">Custom Softwaribbit</translation>
     </message>
     <message>
         <source>Enter URL</source>
-        <translation type="gpt-4o-generated">Input URL</translation>
+        <translation type="gpt-5-generated">Hop in a URL</translation>
     </message>
     <message>
         <source>for Custom Software</source>
-        <translation type="gpt-4o-generated">for Tailored Software</translation>
+        <translation type="gpt-5-generated">for Custom Software, ribbit</translation>
     </message>
     <message>
         <source>Downloading...</source>
-        <translation type="gpt-4o-generated">Downloading...</translation>
+        <translation type="gpt-5-generated">Ribbit... downloading...</translation>
     </message>
     <message>
         <source>Download Failed</source>
-        <translation type="gpt-4o-generated">Download Unsuccessful</translation>
+        <translation type="gpt-5-generated">Ribbit! Download croaked</translation>
     </message>
     <message>
         <source>Reboot device</source>
-        <translation type="gpt-4o-generated">Restart device</translation>
+        <translation type="gpt-5-generated">Ribbit reboot device</translation>
     </message>
     <message>
         <source>Start over</source>
-        <translation type="gpt-4o-generated">Begin again</translation>
+        <translation type="gpt-5-generated">Ribbit, start over</translation>
     </message>
     <message>
         <source>Select a language</source>
-        <translation type="gpt-4o-generated">Choose a language</translation>
+        <translation type="gpt-5-generated">Pick a lingo</translation>
     </message>
 </context>
 <context>
     <name>SetupWidget</name>
     <message>
         <source>Finish Setup</source>
-        <translation type="gpt-4o-generated">Complete Setup</translation>
+        <translation type="gpt-5-generated">Finishin’ Setup Ribbit</translation>
     </message>
     <message>
         <source>Pair your device with Konik connect (stable.konik.ai).</source>
-        <translation type="gpt-4o-generated">Connect your device with Konik using stable.konik.ai.</translation>
+        <translation type="gpt-5-generated">Pair ur device w/ Konik connect (stable.konik.ai), ribbit.</translation>
     </message>
     <message>
         <source>Pair your device with comma connect (connect.comma.ai) and claim your comma prime offer.</source>
-        <translation type="gpt-4o-generated">Link your device with comma connect (connect.comma.ai) and claim your comma prime offer.</translation>
+        <translation type="gpt-5-generated">Pair your device with comma connect (connect.comma.ai) and snag your comma prime offer, ribbit.</translation>
     </message>
     <message>
         <source>Pair device</source>
-        <translation type="gpt-4o-generated">Connect device</translation>
+        <translation type="gpt-5-generated">Hop-n-sync device</translation>
     </message>
 </context>
 <context>
     <name>Sidebar</name>
     <message>
         <source>CONNECT</source>
-        <translation type="gpt-4o-generated">LINK</translation>
+        <translation type="gpt-5-generated">HOPNECT</translation>
     </message>
     <message>
         <source>OFFLINE</source>
-        <translation type="gpt-4o-generated">OFFLINE</translation>
+        <translation type="gpt-5-generated">OFFRIBBIT</translation>
     </message>
     <message>
         <source>ONLINE</source>
-        <translation type="gpt-4o-generated">ONLINE</translation>
+        <translation type="gpt-5-generated">ONLINE ribbit</translation>
     </message>
     <message>
         <source>ERROR</source>
-        <translation type="gpt-4o-generated">MISTAKE</translation>
+        <translation type="gpt-5-generated">RIBBIT ERROR</translation>
     </message>
     <message>
         <source>TEMP</source>
-        <translation type="gpt-4o-generated">TEMP</translation>
+        <translation type="gpt-5-generated">RIBBIT TEMP</translation>
     </message>
     <message>
         <source>HIGH</source>
-        <translation type="gpt-4o-generated">ELEVATED</translation>
+        <translation type="gpt-5-generated">HIGH</translation>
     </message>
     <message>
         <source>GOOD</source>
-        <translation type="gpt-4o-generated">EXCELLENT</translation>
+        <translation type="gpt-5-generated">RIBBIT GOOD</translation>
     </message>
     <message>
         <source>OK</source>
-        <translation type="gpt-4o-generated">Alright</translation>
+        <translation type="gpt-5-generated">ribbit OK</translation>
     </message>
     <message>
         <source>VEHICLE</source>
-        <translation type="gpt-4o-generated">VEHICLE</translation>
+        <translation type="gpt-5-generated">VEHICLE-ribbit</translation>
     </message>
     <message>
         <source>NO</source>
-        <translation type="gpt-4o-generated">NO</translation>
+        <translation type="gpt-5-generated">NO ribbit</translation>
     </message>
     <message>
         <source>PANDA</source>
-        <translation type="gpt-4o-generated">PANDA</translation>
+        <translation type="gpt-5-generated">PANDA-ribbit</translation>
     </message>
     <message>
         <source>GPS</source>
-        <translation type="gpt-4o-generated">Global Positioning System</translation>
+        <translation type="gpt-5-generated">Ribbit GPS</translation>
     </message>
     <message>
         <source>SEARCH</source>
-        <translation type="gpt-4o-generated">FIND</translation>
+        <translation type="gpt-5-generated">SEARCH-ribbit</translation>
     </message>
     <message>
         <source>GPU</source>
-        <translation type="gpt-4o-generated">Graphics card</translation>
+        <translation type="gpt-5-generated">GPU</translation>
     </message>
     <message>
         <source>CPU</source>
-        <translation type="gpt-4o-generated">Processor</translation>
+        <translation type="gpt-5-generated">Ribbit CPU</translation>
     </message>
     <message>
         <source> GB</source>
-        <translation type="gpt-4o-generated">GB</translation>
+        <translation type="gpt-5-generated">GB</translation>
     </message>
     <message>
         <source>MEMORY</source>
-        <translation type="gpt-4o-generated">MEMORY</translation>
+        <translation type="gpt-5-generated">MEMRY</translation>
     </message>
     <message>
         <source>LEFT</source>
-        <translation type="gpt-4o-generated">LEFT</translation>
+        <translation type="gpt-5-generated">HOP LEFT</translation>
     </message>
     <message>
         <source>USED</source>
-        <translation type="gpt-4o-generated">UTILIZED</translation>
+        <translation type="gpt-5-generated">USED-ribbit</translation>
     </message>
     <message>
         <source>--</source>
-        <translation type="gpt-4o-generated">--</translation>
+        <translation type="gpt-5-generated">ribbit—</translation>
     </message>
     <message>
         <source>Wi-Fi</source>
-        <translation type="gpt-4o-generated">Wi-Fi</translation>
+        <translation type="gpt-5-generated">Ribbit-Fi</translation>
     </message>
     <message>
         <source>ETH</source>
-        <translation type="gpt-4o-generated">ETH</translation>
+        <translation type="gpt-5-generated">ETH ribbit</translation>
     </message>
     <message>
         <source>2G</source>
-        <translation type="gpt-4o-generated">2G</translation>
+        <translation type="gpt-5-generated">2G ribbit</translation>
     </message>
     <message>
         <source>3G</source>
-        <translation type="gpt-4o-generated">3G</translation>
+        <translation type="gpt-5-generated">ribbit-3G</translation>
     </message>
     <message>
         <source>LTE</source>
-        <translation type="gpt-4o-generated">LTE</translation>
+        <translation type="gpt-5-generated">Ribbit LTE</translation>
     </message>
     <message>
         <source>5G</source>
-        <translation type="gpt-4o-generated">5G</translation>
+        <translation type="gpt-5-generated">5G ribbit</translation>
     </message>
 </context>
 <context>
     <name>SoftwarePanel</name>
     <message>
         <source>Updates are only downloaded while the car is off or in park.</source>
-        <translation type="gpt-4o-generated">Updates download only when the car is off or in park.</translation>
+        <translation type="gpt-5-generated">Updates only hop in while the car is off or in park.</translation>
     </message>
     <message>
         <source>Current Version</source>
-        <translation type="gpt-4o-generated">Present Version</translation>
+        <translation type="gpt-5-generated">Current Version (ribbit)</translation>
     </message>
     <message>
         <source>Automatically Update FrogPilot</source>
-        <translation type="gpt-4o-generated">Auto-Update FrogPilot</translation>
+        <translation type="gpt-5-generated">Auto-hop Update FrogPilot</translation>
     </message>
     <message>
         <source>FrogPilot will automatically update itself and it's assets when you're offroad and have an active internet connection.</source>
-        <translation type="gpt-4o-generated">FrogPilot will automatically update itself and its assets when you're off-road and connected to the internet.</translation>
+        <translation type="gpt-5-generated">FrogPilot gonna auto-update itself and its lil’ assets when you’re offroad and got an active internet connection.</translation>
     </message>
     <message>
         <source>Download</source>
-        <translation type="gpt-4o-generated">Retrieve</translation>
+        <translation type="gpt-5-generated">Ribbit-load</translation>
     </message>
     <message>
         <source>CHECK</source>
-        <translation type="gpt-4o-generated">VERIFY</translation>
+        <translation type="gpt-5-generated">RIBBIT CHECK</translation>
     </message>
     <message>
         <source>Install Update</source>
-        <translation type="gpt-4o-generated">Apply Update</translation>
+        <translation type="gpt-5-generated">Hop to Update Installation</translation>
     </message>
     <message>
         <source>INSTALL</source>
-        <translation type="gpt-4o-generated">SETUP</translation>
+        <translation type="gpt-5-generated">RIBBET INSTALL</translation>
     </message>
     <message>
         <source>Target Branch</source>
-        <translation type="gpt-4o-generated">Destination Branch</translation>
+        <translation type="gpt-5-generated">Lily Pad Branch</translation>
     </message>
     <message>
         <source>SELECT</source>
-        <translation type="gpt-4o-generated">CHOOSE</translation>
+        <translation type="gpt-5-generated">SPLASH</translation>
     </message>
     <message>
         <source>Select a branch</source>
-        <translation type="gpt-4o-generated">Choose a branch</translation>
+        <translation type="gpt-5-generated">Pick a lilypad branch</translation>
     </message>
     <message>
         <source>This branch must be downloaded before switching. Would you like to download it now?</source>
-        <translation type="gpt-4o-generated">You need to download this branch before switching. Would you like to ribbit it now?</translation>
+        <translation type="gpt-5-generated">Dis branch gotta be downloaded before you switch. Wanna download it now?</translation>
     </message>
     <message>
         <source>Uninstall %1</source>
-        <translation type="gpt-4o-generated">Remove %1</translation>
+        <translation type="gpt-5-generated">Unhopstall %1</translation>
     </message>
     <message>
         <source>UNINSTALL</source>
-        <translation type="gpt-4o-generated">REMOVE</translation>
+        <translation type="gpt-5-generated">UNINSTALLOPPED</translation>
     </message>
     <message>
         <source>Are you sure you want to uninstall?</source>
-        <translation type="gpt-4o-generated">Are you certain you want to uninstall?</translation>
+        <translation type="gpt-5-generated">Ya sure you wanna uninstall?</translation>
     </message>
     <message>
         <source>Uninstall</source>
-        <translation type="gpt-4o-generated">Remove</translation>
+        <translation type="gpt-5-generated">Unribstall</translation>
     </message>
     <message>
         <source>Do you want to delete deep storage FrogPilot assets? This includes your toggle settings for quick reinstalls.</source>
-        <translation type="gpt-4o-generated">Would you like to delete deep storage FrogPilot assets? This includes your toggle settings for swift reinstalls.</translation>
+        <translation type="gpt-5-generated">Wanna toss those deep storage FrogPilot shinies? That’ll eat your toggle stash for speedy re-hops.</translation>
     </message>
     <message>
         <source>Are you sure? This is 100% unrecoverable and if you reinstall FrogPilot you'll lose all your previous settings!</source>
-        <translation type="gpt-4o-generated">Are you sure? This is 100% irreversible, and if you reinstall FrogPilot, you'll lose all your previous settings!</translation>
+        <translation type="gpt-5-generated">You sure? This is 100% unrecoverable, and if you reinstall FrogPilot you’ll lose all your previous settings!</translation>
     </message>
     <message>
         <source>Error Log</source>
-        <translation type="gpt-4o-generated">Error Log</translation>
+        <translation type="gpt-5-generated">Ribbit Log</translation>
     </message>
     <message>
         <source>VIEW</source>
-        <translation type="gpt-4o-generated">LOOK</translation>
+        <translation type="gpt-5-generated">RIBBIT VIEW</translation>
     </message>
     <message>
         <source>View the error log for openpilot crashes.</source>
-        <translation type="gpt-4o-generated">Check the error log for openpilot crashes.</translation>
+        <translation type="gpt-5-generated">Peek the error log for openpilot crashes.</translation>
     </message>
     <message>
         <source>failed to check for update</source>
-        <translation type="gpt-4o-generated">Unable to check for update</translation>
+        <translation type="gpt-5-generated">ribbit... failed to check for update 🐸</translation>
     </message>
     <message>
         <source>DOWNLOAD</source>
-        <translation type="gpt-4o-generated">GET</translation>
+        <translation type="gpt-5-generated">RIBBIT LOAD</translation>
     </message>
     <message>
         <source>update available</source>
-        <translation type="gpt-4o-generated">new update ready</translation>
+        <translation type="gpt-5-generated">ribbit! update available</translation>
     </message>
     <message>
         <source>never</source>
-        <translation type="gpt-4o-generated">not ever</translation>
+        <translation type="gpt-5-generated">never</translation>
     </message>
     <message>
         <source>up to date, last checked %1</source>
-        <translation type="gpt-4o-generated">current as of %1</translation>
+        <translation type="gpt-5-generated">ribbit up to date, last checked %1</translation>
     </message>
 </context>
 <context>
     <name>SshControl</name>
     <message>
         <source>SSH Keys</source>
-        <translation type="gpt-4o-generated">SSH Keys</translation>
+        <translation type="gpt-5-generated">SSH Keys (ribbit)</translation>
     </message>
     <message>
         <source>Warning: This grants SSH access to all public keys in your GitHub settings. Never enter a GitHub username other than your own. A comma employee will NEVER ask you to add their GitHub username.</source>
-        <translation type="gpt-4o-generated">Warning: This provides SSH access to all public keys in your GitHub settings. Never enter a GitHub username other than your own. A comma employee will NEVER request you to add their GitHub username.</translation>
+        <translation type="gpt-5-generated">Ribbit: this lets all public keys in your GitHub settings hop in via SSH. Never croak a GitHub username that isn’t yours. A comma employee will NEVER ask you to add their GitHub username.</translation>
     </message>
     <message>
         <source>ADD</source>
-        <translation type="gpt-4o-generated">ADD</translation>
+        <translation type="gpt-5-generated">RIBBIT ADD</translation>
     </message>
     <message>
         <source>Enter your GitHub username</source>
-        <translation type="gpt-4o-generated">Please enter your GitHub username</translation>
+        <translation type="gpt-5-generated">Hop in your GitHub username</translation>
     </message>
     <message>
         <source>LOADING</source>
-        <translation type="gpt-4o-generated">LOADING</translation>
+        <translation type="gpt-5-generated">LOADING ribbit</translation>
     </message>
     <message>
         <source>REMOVE</source>
-        <translation type="gpt-4o-generated">DELETE</translation>
+        <translation type="gpt-5-generated">RIBBIT REMOVE</translation>
     </message>
     <message>
         <source>Username '%1' has no keys on GitHub</source>
-        <translation type="gpt-4o-generated">The username '%1' has no keys on GitHub.</translation>
+        <translation type="gpt-5-generated">Ribbit! Username '%1' has no keys on GitHub 🐸</translation>
     </message>
     <message>
         <source>Request timed out</source>
-        <translation type="gpt-4o-generated">The request took too long to process.</translation>
+        <translation type="gpt-5-generated">Ribbit: request timed out</translation>
     </message>
     <message>
         <source>Username '%1' doesn't exist on GitHub</source>
-        <translation type="gpt-4o-generated">The username '%1' doesn't exist on GitHub.</translation>
+        <translation type="gpt-5-generated">GitHub no find username '%1'</translation>
     </message>
 </context>
 <context>
     <name>SshToggle</name>
     <message>
         <source>Enable SSH</source>
-        <translation type="gpt-4o-generated">Activate SSH</translation>
+        <translation type="gpt-5-generated">Hop on SSH</translation>
     </message>
 </context>
 <context>
     <name>TermsPage</name>
     <message>
         <source>Terms &amp; Conditions</source>
-        <translation type="gpt-4o-generated">Terms &amp; Conditions</translation>
+        <translation type="gpt-5-generated">Ribbets &amp; Conditions</translation>
     </message>
     <message>
         <source>Decline</source>
-        <translation type="gpt-4o-generated">Refuse</translation>
+        <translation type="gpt-5-generated">Croak no</translation>
     </message>
     <message>
         <source>Scroll to accept</source>
-        <translation type="gpt-4o-generated">Hop to accept</translation>
+        <translation type="gpt-5-generated">Hop down to accept</translation>
     </message>
     <message>
         <source>Agree</source>
-        <translation type="gpt-4o-generated">Consent</translation>
+        <translation type="gpt-5-generated">Ribbit, agree</translation>
     </message>
 </context>
 <context>
     <name>TogglesPanel</name>
     <message>
         <source>Enable openpilot</source>
-        <translation type="gpt-4o-generated">Activate openpilot</translation>
+        <translation type="gpt-5-generated">Enable openpilot, ribbit</translation>
     </message>
     <message>
         <source>Use the openpilot system for adaptive cruise control and lane keep driver assistance. Your attention is required at all times to use this feature. Changing this setting takes effect when the car is powered off.</source>
-        <translation type="gpt-4o-generated">Utilize the openpilot system for adaptive cruise control and lane-keeping assistance. Your attention is needed at all times when using this feature. Adjustments to this setting take effect once the car is powered off.</translation>
+        <translation type="gpt-5-generated">Hop into openpilot for adaptive cruise control and lane-keep driver assist. Keep your eyes and mind on the road at all times to use this feature. Flip this setting, and it takes effect after the car powers off.</translation>
     </message>
     <message>
         <source>openpilot Longitudinal Control (Alpha)</source>
-        <translation type="gpt-4o-generated">openpilot Longitudinal Control (Ribbit)</translation>
+        <translation type="gpt-5-generated">openpilot Longitudinal Control (Ribbit Alpha)</translation>
     </message>
     <message>
         <source>WARNING: openpilot longitudinal control is in alpha for this car and will disable Automatic Emergency Braking (AEB).</source>
-        <translation type="gpt-4o-generated">WARNING: openpilot's longitudinal control is in alpha for this car and will disable Automatic Emergency Braking (AEB).</translation>
+        <translation type="gpt-5-generated">WARNING: openpilot long-hoppy control is in alpha for this car and will disable Automatic Emergency Braking (AEB).</translation>
     </message>
     <message>
         <source>On this car, openpilot defaults to the car's built-in ACC instead of openpilot's longitudinal control. Enable this to switch to openpilot longitudinal control. Enabling Experimental mode is recommended when enabling openpilot longitudinal control alpha.</source>
-        <translation type="gpt-4o-generated">In this car, openpilot defaults to the vehicle's built-in ACC rather than using openpilot's longitudinal control. Activate this to switch to openpilot's longitudinal control. It's recommended to enable Experimental mode when activating openpilot's longitudinal control alpha.</translation>
+        <translation type="gpt-5-generated">On this car, openpilot croaks to the car’s built-in ACC instead of openpilot’s own long control. Flip this on to hop over to openpilot long control. Turning on Experimental mode is recommended when enabling openpilot long control alpha.</translation>
     </message>
     <message>
         <source>Experimental Mode</source>
-        <translation type="gpt-4o-generated">Trial Mode</translation>
+        <translation type="gpt-5-generated">Experimental Mode ribbit</translation>
     </message>
     <message>
         <source>Disengage on Accelerator Pedal</source>
-        <translation type="gpt-4o-generated">Release the Accelerator Pedal</translation>
+        <translation type="gpt-5-generated">Hop off with Accelerator Pedal</translation>
     </message>
     <message>
         <source>When enabled, pressing the accelerator pedal will disengage openpilot.</source>
-        <translation type="gpt-4o-generated">When activated, pressing the accelerator pedal will disengage openpilot.</translation>
+        <translation type="gpt-5-generated">When enabled, a press on the go-pedal will hop openpilot off.</translation>
     </message>
     <message>
         <source>Enable Lane Departure Warnings</source>
-        <translation type="gpt-4o-generated">Activate Lane Departure Alerts</translation>
+        <translation type="gpt-5-generated">Enable Ribbit Lane Departure Warnings</translation>
     </message>
     <message>
         <source>Receive alerts to steer back into the lane when your vehicle drifts over a detected lane line without a turn signal activated while driving over 31 mph (50 km/h).</source>
-        <translation type="gpt-4o-generated">Get alerts to hop back into your lane if your vehicle drifts over a detected lane line without a turn signal while driving over 31 mph (50 km/h).</translation>
+        <translation type="gpt-5-generated">Ribbit alerts nudge you back into the lane if your vehicle hops over a detected lane line without a turn signal while cruising over 31 mph (50 km/h).</translation>
     </message>
     <message>
         <source>Record and Upload Driver Camera</source>
-        <translation type="gpt-4o-generated">Capture and Upload Driver Camera</translation>
+        <translation type="gpt-5-generated">Ribbit: Record and Upload Driver Camera</translation>
     </message>
     <message>
         <source>Upload data from the driver facing camera and help improve the driver monitoring algorithm.</source>
-        <translation type="gpt-4o-generated">Upload data from the driver-facing camera to enhance the driver monitoring algorithm.</translation>
+        <translation type="gpt-5-generated">Ribbit! Upload data from the driver-facing camera to help improve the driver monitoring algorithm, ribbit.</translation>
     </message>
     <message>
         <source>Use Metric System</source>
-        <translation type="gpt-4o-generated">Adopt Metric System</translation>
+        <translation type="gpt-5-generated">Use Metric System, ribbit</translation>
     </message>
     <message>
         <source>Display speed in km/h instead of mph.</source>
-        <translation type="gpt-4o-generated">Show speed in km/h instead of mph.</translation>
+        <translation type="gpt-5-generated">Show speed in km/h not mph.</translation>
     </message>
     <message>
         <source>Show ETA in 24h Format</source>
-        <translation type="gpt-4o-generated">Display ETA in 24h Format</translation>
+        <translation type="gpt-5-generated">Show ETA in 24h format</translation>
     </message>
     <message>
         <source>Use 24h format instead of am/pm</source>
-        <translation type="gpt-4o-generated">Switch to the 24-hour format instead of using am/pm.</translation>
+        <translation type="gpt-5-generated">Use 24h format instead of ribbit/ribbit</translation>
     </message>
     <message>
         <source>Show Map on Left Side of UI</source>
-        <translation type="gpt-4o-generated">Display Map on Left Side of UI</translation>
+        <translation type="gpt-5-generated">Plop the Map on the left side of the UI</translation>
     </message>
     <message>
         <source>Show map on left side when in split screen view.</source>
-        <translation type="gpt-4o-generated">Display the map on the left side in split screen view.</translation>
+        <translation type="gpt-5-generated">Plop the map on the left side when in split screen view.</translation>
     </message>
     <message>
         <source>Aggressive</source>
-        <translation type="gpt-4o-generated">Forceful</translation>
+        <translation type="gpt-5-generated">Aggressive ribbit</translation>
     </message>
     <message>
         <source>Standard</source>
-        <translation type="gpt-4o-generated">Regular</translation>
+        <translation type="gpt-5-generated">Standard ribbit</translation>
     </message>
     <message>
         <source>Relaxed</source>
-        <translation type="gpt-4o-generated">At ease</translation>
+        <translation type="gpt-5-generated">Chill hop</translation>
     </message>
     <message>
         <source>Driving Personality</source>
-        <translation type="gpt-4o-generated">Driving Style</translation>
+        <translation type="gpt-5-generated">Froggy Driving Vibes</translation>
     </message>
     <message>
         <source>Standard is recommended. In aggressive mode, openpilot will follow lead cars closer and be more aggressive with the gas and brake. In relaxed mode openpilot will stay further away from lead cars. On supported cars, you can cycle through these personalities with your steering wheel distance button.</source>
-        <translation type="gpt-4o-generated">Standard is recommended. In aggressive mode, openpilot will tail lead cars more closely and be more assertive with the gas and brake. In relaxed mode, openpilot will maintain a greater distance from lead cars. On supported vehicles, you can hop through these settings using your steering wheel distance button.</translation>
+        <translation type="gpt-5-generated">Standard is froggily recommended. In aggressive mode, openpilot will hop closer to lead cars and be more jumpy with the gas and brake. In relaxed mode, openpilot will linger further from lead cars. On supported cars, you can cycle these personalities with your steering wheel distance button.</translation>
     </message>
     <message>
         <source>openpilot defaults to driving in &lt;b&gt;chill mode&lt;/b&gt;. Experimental mode enables &lt;b&gt;alpha-level features&lt;/b&gt; that aren't ready for chill mode. Experimental features are listed below:</source>
-        <translation type="gpt-4o-generated">openpilot defaults to driving in &lt;b&gt;chill mode&lt;/b&gt;. Experimental mode activates &lt;b&gt;alpha-level features&lt;/b&gt; not yet suited for chill mode. The experimental features are listed below:</translation>
+        <translation type="gpt-5-generated">openpilot hops along in &lt;b&gt;chill mode&lt;/b&gt; by default. Flip to Experimental mode to try &lt;b&gt;alpha-level features&lt;/b&gt; that aren’t ready for chill mode. See the experimental features below:</translation>
     </message>
     <message>
         <source>End-to-End Longitudinal Control</source>
-        <translation type="gpt-4o-generated">Comprehensive Longitudinal Control</translation>
+        <translation type="gpt-5-generated">End-to-End Longitudinal Control (ribbit)</translation>
     </message>
     <message>
         <source>Let the driving model control the gas and brakes. openpilot will drive as it thinks a human would, including stopping for red lights and stop signs. Since the driving model decides the speed to drive, the set speed will only act as an upper bound. This is an alpha quality feature; mistakes should be expected.</source>
-        <translation type="gpt-4o-generated">Allow the driving model to manage the gas and brakes. openpilot will drive as it believes a human would, including stopping for red lights and stop signs. Since the driving model determines the speed, the set speed serves only as an upper limit. This is an alpha-quality feature; expect some mistakes.</translation>
+        <translation type="gpt-5-generated">Let the driving model hop on the gas and brakes. openpilot will drive like a human would, pausing at red lights and stop signs. Since the driving model picks the speed, the set speed is only the upper lily pad. This is an alpha feature; expect some ribbit-worthy mistakes.</translation>
     </message>
     <message>
         <source>New Driving Visualization</source>
-        <translation type="gpt-4o-generated">Fresh Driving Visualization</translation>
+        <translation type="gpt-5-generated">New Ribbit-Driving Visualization</translation>
     </message>
     <message>
         <source>The driving visualization will transition to the road-facing wide-angle camera at low speeds to better show some turns. The Experimental mode logo will also be shown in the top right corner.</source>
-        <translation type="gpt-4o-generated">The driving visualization will switch to the road-facing wide-angle camera at low speeds to better display certain turns. The Experimental mode logo will appear in the top right corner.</translation>
+        <translation type="gpt-5-generated">At low speeds, the driving visualization will hop to the road-facing wide-angle camera to better show some turns. The Experimental mode logo will also pop up in the top-right corner.</translation>
     </message>
     <message>
         <source>Experimental mode is currently unavailable on this car since the car's stock ACC is used for longitudinal control.</source>
-        <translation type="gpt-4o-generated">Experimental mode is currently unavailable on this car because the stock ACC is used for longitudinal control.</translation>
+        <translation type="gpt-5-generated">ribbit: Experimental mode not hopping here, since this car’s stock ACC handles the long-hop control.</translation>
     </message>
     <message>
         <source>openpilot longitudinal control may come in a future update.</source>
-        <translation type="gpt-4o-generated">openpilot's longitudinal control might hop into a future update.</translation>
+        <translation type="gpt-5-generated">openpilot longy control might hop in with a future update.</translation>
     </message>
     <message>
         <source>Enable the openpilot longitudinal control (alpha) toggle to allow Experimental mode.</source>
-        <translation type="gpt-4o-generated">Activate the openpilot longitudinal control (alpha) toggle to enable Experimental mode.</translation>
+        <translation type="gpt-5-generated">Flip the openpilot longitudinal control (alpha) toggle to hop into Experimental mode.</translation>
     </message>
 </context>
 <context>
     <name>Updater</name>
     <message>
         <source>Update Required</source>
-        <translation type="gpt-4o-generated">Update Needed</translation>
+        <translation type="gpt-5-generated">Ribbit Needed</translation>
     </message>
     <message>
         <source>An operating system update is required. Connect your device to Wi-Fi for the fastest update experience. The download size is approximately 1GB.</source>
-        <translation type="gpt-4o-generated">An operating system update is needed. Connect your device to Wi-Fi for the quickest update experience. The download size is about 1GB.</translation>
+        <translation type="gpt-5-generated">Ribbit! You need an operating system update. Hop onto Wi‑Fi for the fastest update. The download is about 1GB.</translation>
     </message>
     <message>
         <source>Connect to Wi-Fi</source>
-        <translation type="gpt-4o-generated">Join the Wi-Fi</translation>
+        <translation type="gpt-5-generated">Hop onto Wi‑Fi</translation>
     </message>
     <message>
         <source>Install</source>
-        <translation type="gpt-4o-generated">Set up</translation>
+        <translation type="gpt-5-generated">Ribbitstall</translation>
     </message>
     <message>
         <source>Back</source>
-        <translation type="gpt-4o-generated">Return</translation>
+        <translation type="gpt-5-generated">Ribbit Back</translation>
     </message>
     <message>
         <source>Loading...</source>
-        <translation type="gpt-4o-generated">Loading...</translation>
+        <translation type="gpt-5-generated">Ribbiting...</translation>
     </message>
     <message>
         <source>Reboot</source>
-        <translation type="gpt-4o-generated">Restart</translation>
+        <translation type="gpt-5-generated">Riboot</translation>
     </message>
     <message>
         <source>Update failed</source>
-        <translation type="gpt-4o-generated">Update unsuccessful</translation>
+        <translation type="gpt-5-generated">Update went splat</translation>
     </message>
 </context>
 <context>
     <name>WiFiPromptWidget</name>
     <message>
         <source>Setup Wi-Fi</source>
-        <translation type="gpt-4o-generated">Set up Wi-Fi</translation>
+        <translation type="gpt-5-generated">Hop onto Wi‑Fi</translation>
     </message>
     <message>
         <source>Connect to Wi-Fi to upload driving data and help improve openpilot</source>
-        <translation type="gpt-4o-generated">Connect to Wi-Fi to upload driving data and enhance openpilot.</translation>
+        <translation type="gpt-5-generated">Hop onto Wi‑Fi to share driving data and help openpilot get better</translation>
     </message>
     <message>
         <source>Open Settings</source>
-        <translation type="gpt-4o-generated">Access Settings</translation>
+        <translation type="gpt-5-generated">Open Settings ribbit</translation>
     </message>
     <message>
         <source>Ready to upload</source>
-        <translation type="gpt-4o-generated">Prepared to upload</translation>
+        <translation type="gpt-5-generated">Ready to hop-load</translation>
     </message>
     <message>
         <source>Training data will be pulled periodically while your device is on Wi-Fi</source>
-        <translation type="gpt-4o-generated">Training data will be updated regularly when your device is connected to Wi-Fi.</translation>
+        <translation type="gpt-5-generated">Training data will hop in periodically while your device is on Wi-Fi</translation>
     </message>
     <message>
         <source>Uploading disabled</source>
-        <translation type="gpt-4o-generated">Upload disabled</translation>
+        <translation type="gpt-5-generated">Uploading croaked off</translation>
     </message>
     <message>
         <source>Toggle off the "Turn Off Data Uploads" toggle to re-enable uploads.</source>
-        <translation type="gpt-4o-generated">Switch off the "Turn Off Data Uploads" toggle to re-enable uploads.</translation>
+        <translation type="gpt-5-generated">Flip off the "Turn Off Data Uploads" switch to turn uploads back on.</translation>
     </message>
 </context>
 <context>
     <name>WifiUI</name>
     <message>
         <source>Scanning for networks...</source>
-        <translation type="gpt-4o-generated">Searching for networks...</translation>
+        <translation type="gpt-5-generated">Ribbiting for networks...</translation>
     </message>
     <message>
         <source>CONNECTING...</source>
-        <translation type="gpt-4o-generated">ESTABLISHING CONNECTION...</translation>
+        <translation type="gpt-5-generated">RIBBITING CONNECTION...</translation>
     </message>
     <message>
         <source>FORGET</source>
-        <translation type="gpt-4o-generated">OVERLOOK</translation>
+        <translation type="gpt-5-generated">FORRIBBIT</translation>
     </message>
     <message>
         <source>Forget Wi-Fi Network "%1"?</source>
-        <translation type="gpt-4o-generated">Forget Wi-Fi Network "%1"?</translation>
+        <translation type="gpt-5-generated">Forget Wi-Fi Pond "%1"?</translation>
     </message>
     <message>
         <source>Forget</source>
-        <translation type="gpt-4o-generated">Overlook</translation>
+        <translation type="gpt-5-generated">Fergit</translation>
     </message>
 </context>
 </TS>

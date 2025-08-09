@@ -91,7 +91,9 @@ class ModelState:
   output: np.ndarray
   prev_desire: np.ndarray  # for tracking the rising edge of the pulse
 
-  def __init__(self, context: CLContext, model: str):
+  def __init__(self, context: CLContext, model: str, model_version: str):
+    self.use_lateral_control_params = model_version in {"v7", "v8"}
+
     with open(MODELS_PATH / f'{model}_driving_vision_metadata.pkl', 'rb') as f:
       vision_metadata = pickle.load(f)
       self.vision_input_shapes =  vision_metadata['input_shapes']
@@ -117,8 +119,8 @@ class ModelState:
     self.numpy_inputs = {
       'desire': np.zeros((1, ModelConstants.INPUT_HISTORY_BUFFER_LEN, ModelConstants.DESIRE_LEN), dtype=np.float32),
       'traffic_convention': np.zeros((1, ModelConstants.TRAFFIC_CONVENTION_LEN), dtype=np.float32),
-      'lateral_control_params': np.zeros((1, ModelConstants.LATERAL_CONTROL_PARAMS_LEN), dtype=np.float32),
-      'prev_desired_curv': np.zeros((1, ModelConstants.INPUT_HISTORY_BUFFER_LEN, ModelConstants.PREV_DESIRED_CURV_LEN), dtype=np.float32),
+      **({'lateral_control_params': np.zeros((1, ModelConstants.LATERAL_CONTROL_PARAMS_LEN), dtype=np.float32)} if self.use_lateral_control_params else {}),
+      **({'prev_desired_curv': np.zeros((1, ModelConstants.INPUT_HISTORY_BUFFER_LEN, ModelConstants.PREV_DESIRED_CURV_LEN), dtype=np.float32)} if self.use_lateral_control_params else {}),
       'features_buffer': np.zeros((1, ModelConstants.INPUT_HISTORY_BUFFER_LEN,  ModelConstants.FEATURE_LEN), dtype=np.float32),
     }
 
@@ -151,7 +153,8 @@ class ModelState:
     self.numpy_inputs['desire'][:] = self.full_desire.reshape((1,ModelConstants.INPUT_HISTORY_BUFFER_LEN,ModelConstants.TEMPORAL_SKIP,-1)).max(axis=2)
 
     self.numpy_inputs['traffic_convention'][:] = inputs['traffic_convention']
-    self.numpy_inputs['lateral_control_params'][:] = inputs['lateral_control_params']
+    if self.use_lateral_control_params:
+      self.numpy_inputs['lateral_control_params'][:] = inputs['lateral_control_params']
     imgs_cl = {name: self.frames[name].prepare(bufs[name], transforms[name].flatten()) for name in self.vision_input_names}
 
     if TICI and not USBGPU:
@@ -177,10 +180,11 @@ class ModelState:
     self.policy_output = self.policy_run(**self.policy_inputs).numpy().flatten()
     policy_outputs_dict = self.parser.parse_policy_outputs(self.slice_outputs(self.policy_output, self.policy_output_slices))
 
-    # TODO model only uses last value now
-    self.full_prev_desired_curv[0,:-1] = self.full_prev_desired_curv[0,1:]
-    self.full_prev_desired_curv[0,-1,:] = policy_outputs_dict['desired_curvature'][0, :]
-    self.numpy_inputs['prev_desired_curv'][:] = 0*self.full_prev_desired_curv[0, self.temporal_idxs]
+    if self.use_lateral_control_params:
+      # TODO model only uses last value now
+      self.full_prev_desired_curv[0,:-1] = self.full_prev_desired_curv[0,1:]
+      self.full_prev_desired_curv[0,-1,:] = policy_outputs_dict['desired_curvature'][0, :]
+      self.numpy_inputs['prev_desired_curv'][:] = 0*self.full_prev_desired_curv[0, self.temporal_idxs]
 
     combined_outputs_dict = {**vision_outputs_dict, **policy_outputs_dict}
     if SEND_RAW_PRED:
@@ -194,7 +198,8 @@ def main(demo=False):
   frogpilot_toggles = get_frogpilot_toggles()
 
   model_name = frogpilot_toggles.model
-  use_curvature_from_plan = frogpilot_toggles.model_version not in {"v7", "v8"}
+  model_version = frogpilot_toggles.model_version
+  use_curvature_from_plan = frogpilot_toggles.model_version != "v7"
 
   cloudlog.warning("tinygrad_modeld init")
 
@@ -210,7 +215,7 @@ def main(demo=False):
   cloudlog.warning("setting up CL context")
   cl_context = CLContext()
   cloudlog.warning("CL context ready; loading model")
-  model = ModelState(cl_context, model_name)
+  model = ModelState(cl_context, model_name, model_version)
   cloudlog.warning(f"models loaded in {time.monotonic() - st:.1f}s, modeld starting")
 
   # visionipc clients
@@ -237,7 +242,7 @@ def main(demo=False):
     cloudlog.warning(f"connected extra cam with buffer size: {vipc_client_extra.buffer_len} ({vipc_client_extra.width} x {vipc_client_extra.height})")
 
   # messaging
-  pm = PubMaster(["modelV2", "drivingModelData", "cameraOdometry"])
+  pm = PubMaster(["modelV2", "drivingModelData", "cameraOdometry", "frogpilotModelV2"])
   sm = SubMaster(["deviceState", "carState", "roadCameraState", "liveCalibration", "driverMonitoringState", "carControl", "liveDelay", "frogpilotPlan"])
 
   publish_state = PublishState()
@@ -343,7 +348,7 @@ def main(demo=False):
     inputs:dict[str, np.ndarray] = {
       'desire': vec_desire,
       'traffic_convention': traffic_convention,
-      'lateral_control_params': lateral_control_params,
+      **({'lateral_control_params': lateral_control_params} if model.use_lateral_control_params else {}),
     }
 
     mt1 = time.perf_counter()
@@ -353,6 +358,7 @@ def main(demo=False):
 
     if model_output is not None:
       modelv2_send = messaging.new_message('modelV2')
+      frogpilot_modelv2_send = messaging.new_message('frogpilotModelV2')
       drivingdata_send = messaging.new_message('drivingModelData')
       posenet_send = messaging.new_message('cameraOdometry')
 
@@ -369,12 +375,13 @@ def main(demo=False):
       DH.update(sm['carState'], sm['carControl'].latActive, lane_change_prob, sm['frogpilotPlan'], frogpilot_toggles)
       modelv2_send.modelV2.meta.laneChangeState = DH.lane_change_state
       modelv2_send.modelV2.meta.laneChangeDirection = DH.lane_change_direction
-      modelv2_send.modelV2.meta.turnDirection = DH.turn_direction
+      frogpilot_modelv2_send.frogpilotModelV2.turnDirection = DH.turn_direction
       drivingdata_send.drivingModelData.meta.laneChangeState = DH.lane_change_state
       drivingdata_send.drivingModelData.meta.laneChangeDirection = DH.lane_change_direction
 
       fill_pose_msg(posenet_send, model_output, meta_main.frame_id, vipc_dropped_frames, meta_main.timestamp_eof, live_calib_seen)
       pm.send('modelV2', modelv2_send)
+      pm.send('frogpilotModelV2', frogpilot_modelv2_send)
       pm.send('drivingModelData', drivingdata_send)
       pm.send('cameraOdometry', posenet_send)
     last_vipc_frame_id = meta_main.frame_id

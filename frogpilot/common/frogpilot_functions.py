@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-from pathlib import Path
-
 import datetime
 import filecmp
 import glob
@@ -14,6 +12,8 @@ import threading
 import time
 import zstandard as zstd
 
+from pathlib import Path
+
 from openpilot.common.basedir import BASEDIR
 from openpilot.common.params import Params
 from openpilot.common.time import system_time_valid
@@ -21,7 +21,7 @@ from openpilot.system.athena.registration import register
 from openpilot.system.hardware import HARDWARE
 
 from openpilot.frogpilot.assets.model_manager import ModelManager
-from openpilot.frogpilot.assets.theme_manager import HOLIDAY_THEME_PATH, ThemeManager
+from openpilot.frogpilot.assets.theme_manager import ThemeManager
 from openpilot.frogpilot.common.frogpilot_utilities import delete_file, run_cmd, use_konik_server
 from openpilot.frogpilot.common.frogpilot_variables import (
   ERROR_LOGS_PATH, EXCLUDED_KEYS, HD_LOGS_PATH, KONIK_LOGS_PATH, MODELS_PATH, SCREEN_RECORDINGS_PATH,
@@ -130,6 +130,15 @@ def backup_toggles(params_cache):
 def convert_params(params_cache):
   print("Starting to convert params")
 
+  if Path("/cache/tracking").exists():
+    params_tracking = Params("/cache/tracking")
+
+    params.put_int("FrogPilotDrives", params_tracking.get_int("FrogPilotDrives"))
+    params.put_int("FrogPilotKilometers", params_tracking.get_int("FrogPilotKilometers"))
+    params.put_int("FrogPilotMinutes", params_tracking.get_int("FrogPilotMinutes"))
+
+    delete_file("/cache/tracking")
+
   print("Param conversion completed")
 
 def frogpilot_boot_functions(build_metadata, params_cache):
@@ -137,8 +146,8 @@ def frogpilot_boot_functions(build_metadata, params_cache):
     params_cache.clear_all()
 
   FrogPilotVariables().update(holiday_theme="stock", started=False, boot_run=True)
-  ModelManager().copy_default_model()
-  ThemeManager().update_active_theme(time_validated=system_time_valid(), frogpilot_toggles=get_frogpilot_toggles(), boot_run=True)
+  ModelManager(boot_run=True)
+  ThemeManager(boot_run=True).update_active_theme(time_validated=system_time_valid(), frogpilot_toggles=get_frogpilot_toggles(), boot_run=True)
 
   if use_konik_server():
     if params.get("KonikDongleId", encoding="utf8") != None:
@@ -171,26 +180,6 @@ def setup_frogpilot(build_metadata):
   MODELS_PATH.mkdir(parents=True, exist_ok=True)
   SCREEN_RECORDINGS_PATH.mkdir(parents=True, exist_ok=True)
   THEME_SAVE_PATH.mkdir(parents=True, exist_ok=True)
-
-  for source_suffix, destination_suffix in [
-    ("world_frog_day/colors", "theme_packs/frog/colors"),
-    ("world_frog_day/distance_icons", "theme_packs/frog-animated/distance_icons"),
-    ("world_frog_day/icons", "theme_packs/frog-animated/icons"),
-    ("world_frog_day/signals", "theme_packs/frog/signals"),
-    ("world_frog_day/sounds", "theme_packs/frog/sounds"),
-  ]:
-    source = Path(HOLIDAY_THEME_PATH) / source_suffix
-    destination = THEME_SAVE_PATH / destination_suffix
-    destination.mkdir(parents=True, exist_ok=True)
-    shutil.copytree(source, destination, dirs_exist_ok=True)
-
-  for source_suffix, destination_suffix in [
-    ("world_frog_day/steering_wheel/wheel.png", "steering_wheels/frog.png"),
-  ]:
-    source = Path(HOLIDAY_THEME_PATH) / source_suffix
-    destination = THEME_SAVE_PATH / destination_suffix
-    destination.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(source, destination)
 
   boot_logo_location = Path("/usr/comma/bg.jpg")
   frogpilot_boot_logo = Path(__file__).parents[1] / "assets/other_images/frogpilot_boot_logo.png"

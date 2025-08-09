@@ -3,15 +3,15 @@ import json
 
 from openpilot.common.realtime import DT_MDL
 
-from openpilot.frogpilot.common.frogpilot_variables import params, params_tracking
+from openpilot.frogpilot.common.frogpilot_variables import params
 
 class FrogPilotTracking:
   def __init__(self):
     self.frogpilot_stats = json.loads(params.get("FrogPilotStats") or "{}")
 
-    self.total_drives = params_tracking.get_int("FrogPilotDrives")
-    self.total_kilometers = params_tracking.get_float("FrogPilotKilometers")
-    self.total_minutes = params_tracking.get_float("FrogPilotMinutes")
+    self.total_drives = params.get_int("FrogPilotDrives")
+    self.total_kilometers = params.get_float("FrogPilotKilometers")
+    self.total_minutes = params.get_float("FrogPilotMinutes")
 
     self.drive_added = False
     self.enabled = False
@@ -42,11 +42,11 @@ class FrogPilotTracking:
 
     if self.drive_time > 60 and sm["carState"].standstill and self.enabled:
       self.total_kilometers += self.drive_distance / 1000
-      params_tracking.put_float_nonblocking("FrogPilotKilometers", self.total_kilometers)
+      params.put_float_nonblocking("FrogPilotKilometers", self.total_kilometers)
       self.drive_distance = 0
 
       self.total_minutes += self.drive_time / 60
-      params_tracking.put_float_nonblocking("FrogPilotMinutes", self.total_minutes)
+      params.put_float_nonblocking("FrogPilotMinutes", self.total_minutes)
 
       self.total_aol_engaged += self.aol_engaged_time
       self.total_lateral_engaged += self.lateral_engaged_time
@@ -67,5 +67,5 @@ class FrogPilotTracking:
 
       if not self.drive_added:
         self.total_drives += 1
-        params_tracking.put_int_nonblocking("FrogPilotDrives", self.total_drives)
+        params.put_int_nonblocking("FrogPilotDrives", self.total_drives)
         self.drive_added = True

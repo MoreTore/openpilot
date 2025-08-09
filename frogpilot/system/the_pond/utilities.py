@@ -3,13 +3,17 @@ import base64
 import json
 import os
 import re
+import secrets
 import subprocess
 import time
 import uuid
 
 from datetime import datetime
 from pathlib import Path
+from PIL import Image
+from pydub import AudioSegment
 from typing import List
+from werkzeug.utils import secure_filename
 
 from openpilot.common.conversions import Conversions as CV
 from openpilot.system.loggerd.config import get_available_bytes, get_used_bytes
@@ -17,7 +21,8 @@ from openpilot.system.loggerd.deleter import PRESERVE_ATTR_NAME, PRESERVE_ATTR_V
 from openpilot.system.loggerd.uploader import listdir_by_creation
 from openpilot.tools.lib.route import SegmentName
 
-from openpilot.frogpilot.common.frogpilot_variables import params, params_tracking
+from openpilot.frogpilot.common.frogpilot_variables import THEME_SAVE_PATH, params
+from openpilot.frogpilot.assets.theme_manager import HOLIDAY_THEME_PATH
 
 LOG_CANDIDATES = [
   "qlog",
@@ -29,7 +34,292 @@ LOG_CANDIDATES = [
 
 SEGMENT_RE = re.compile(r"^[0-9a-fA-F]{8}--[0-9a-fA-F]{10}--\d+$")
 
+TARGET_LOUDNESS = -15.0
+
 XOR_KEY = "s8#pL3*Xj!aZ@dWq"
+
+MAX_FILE_SIZE = 5 * 1024 * 1024
+
+def check_theme_components(theme_path):
+  components = {
+    "hasColors": False,
+    "hasIcons": False,
+    "hasSounds": False,
+    "hasTurnSignals": False,
+    "hasDistanceIcons": False,
+    "hasSteeringWheel": False
+  }
+
+  colors_path = theme_path / "colors" / "colors.json"
+  if colors_path.exists():
+    components["hasColors"] = True
+
+  icons_path = theme_path / "icons"
+  if icons_path.exists() and any(icons_path.iterdir()):
+    components["hasIcons"] = True
+
+  sounds_path = theme_path / "sounds"
+  if sounds_path.exists() and any(sounds_path.iterdir()):
+    components["hasSounds"] = True
+
+  signals_path = theme_path / "signals"
+  if signals_path.exists() and any(signals_path.iterdir()):
+    components["hasTurnSignals"] = True
+
+  distance_icons_path = theme_path / "distance_icons"
+  if distance_icons_path.exists() and any(distance_icons_path.iterdir()):
+    components["hasDistanceIcons"] = True
+
+  is_holiday_theme = str(HOLIDAY_THEME_PATH) in str(theme_path)
+
+  if is_holiday_theme:
+    wheel_path = theme_path / "steering_wheel"
+    if wheel_path.exists() and any(f.name.startswith("wheel.") for f in wheel_path.iterdir()):
+      components["hasSteeringWheel"] = True
+  else:
+    wheel_path = THEME_SAVE_PATH / "steering_wheels"
+    if wheel_path.exists():
+      theme_name = theme_path.name.replace('-user_created', '')
+      if any(wheel_path.glob(f"{theme_name}-user_created.*")):
+        components["hasSteeringWheel"] = True
+
+  return components
+
+def covert_audio(input_file):
+  sound = AudioSegment.from_file(input_file)
+  sound = sound.set_frame_rate(48000)
+  sound = sound.set_channels(1)
+
+  output_filename = os.path.splitext(input_file)[0] + ".wav"
+  sound.export(output_filename, format="wav", parameters=["-acodec", "pcm_s16le"])
+
+  if input_file != output_filename:
+    os.remove(input_file)
+
+def create_theme(form_data, files, temporary=False):
+  theme_name = form_data.get("themeName")
+  if not theme_name:
+    return None, "Theme name is required."
+
+  sane_theme_name = secure_filename(theme_name.replace(" ", "_"))
+
+  save_checklist_str = form_data.get("saveChecklist", "{}")
+  save_checklist = json.loads(save_checklist_str)
+
+  needs_theme_pack = any([
+    save_checklist.get("colors"),
+    save_checklist.get("icons"),
+    save_checklist.get("sounds"),
+    save_checklist.get("turn_signals"),
+    save_checklist.get("distance_icons"),
+  ])
+
+  if temporary:
+    base_path = Path(f"/tmp/{sane_theme_name}_{secrets.token_hex(8)}")
+  else:
+    base_path = THEME_SAVE_PATH / "theme_packs" if needs_theme_pack else None
+
+  theme_path = (base_path / f"{sane_theme_name}-user_created") if base_path else None
+  if theme_path:
+    theme_path.mkdir(parents=True, exist_ok=True)
+
+  if save_checklist.get("colors"):
+    (theme_path / "colors").mkdir(exist_ok=True)
+    colors_str = form_data.get("colors")
+    if colors_str:
+      color_data = json.loads(colors_str)
+      for key, values in color_data.items():
+        if "alpha" in values:
+          values["alpha"] = values.pop("alpha")
+      colors_file = theme_path / "colors" / "colors.json"
+      with open(colors_file, "w") as f:
+        json.dump(color_data, f, indent=2)
+
+  if save_checklist.get("turn_signals"):
+    signals_path = theme_path / "signals"
+    signals_path.mkdir(exist_ok=True)
+
+    if turn_signal_length := form_data.get("turnSignalLength"):
+      style = form_data.get("turnSignalStyle", "Traditional").lower()
+      (signals_path / f"{style}_{turn_signal_length}").touch()
+
+    turn_signal_type = form_data.get("turnSignalType", "Single Image").lower()
+
+    if turn_signal_type == "single image":
+      for f in signals_path.glob("turn_signal.*"):
+        f.unlink()
+      for f in signals_path.glob("turn_signal_blindspot.*"):
+        f.unlink()
+
+      file = files.get("turnSignal")
+      if file and file.filename:
+        if file.content_length > MAX_FILE_SIZE:
+          return None, f"File {file.filename} exceeds 1MB limit."
+        ext = Path(file.filename).suffix
+        file.save(signals_path / f"turn_signal{ext}")
+
+      file = files.get("turnSignalBlindspot")
+      if file and file.filename:
+        if file.content_length > MAX_FILE_SIZE:
+          return None, f"File {file.filename} exceeds 1MB limit."
+        ext = Path(file.filename).suffix
+        file.save(signals_path / f"turn_signal_blindspot{ext}")
+
+    elif turn_signal_type == "sequential":
+      for f in signals_path.glob("turn_signal_*"):
+        f.unlink()
+
+      signal_map = {
+        "turnSignal": "turn_signal",
+        "turnSignalBlindspot": "turn_signal_blindspot",
+      }
+      for field, base_name in signal_map.items():
+        file = files.get(field)
+        if file and file.filename:
+          if file.content_length > MAX_FILE_SIZE:
+            return None, f"File {file.filename} exceeds 1MB limit."
+          for f in signals_path.glob(f"{base_name}.*"):
+            f.unlink()
+          ext = Path(file.filename).suffix.lower()
+          file.save(signals_path / f"{base_name}{ext}")
+
+      for f in signals_path.glob("turn_signal.*"):
+        f.unlink()
+      for f in signals_path.glob("turn_signal_blindspot.*"):
+        f.unlink()
+
+      sequential_keys = sorted(
+        [k for k in files if k.startswith("turn_signal_")],
+        key=lambda name: int(name.split("_")[-1])
+      )
+
+      for key in sequential_keys:
+        file = files.get(key)
+        if file and file.filename:
+          if file.content_length > MAX_FILE_SIZE:
+            return None, f"File {file.filename} exceeds 1MB limit."
+          idx = key.split("_")[-1]
+          ext = Path(file.filename).suffix
+          file.save(signals_path / f"turn_signal_{idx}{ext}")
+
+  if save_checklist.get("icons"):
+    (theme_path / "icons").mkdir(exist_ok=True)
+
+    icon_map = {
+      "settingsButton": (theme_path / "icons", "button_settings", (169, 104)),
+      "homeButton": (theme_path / "icons", "button_home", (250, 250)),
+    }
+
+    for field, (dest_path, base_name, resize_dims) in icon_map.items():
+      file = files.get(field)
+      if file and file.filename:
+        if file.content_length > MAX_FILE_SIZE:
+          return None, f"File {file.filename} exceeds 1MB limit."
+
+        for f in dest_path.glob(f"{base_name}.*"):
+          f.unlink()
+
+        ext = Path(file.filename).suffix.lower()
+        save_path = dest_path / f"{base_name}{ext}"
+        file.save(save_path)
+
+        if resize_dims:
+          if ext == ".gif":
+            width, height = resize_dims
+            palette_path = save_path.with_suffix(".palette.png")
+            temp_output_path = save_path.with_suffix(".resized.gif")
+            subprocess.run(["ffmpeg", "-i", str(save_path), "-vf", "palettegen", "-y", str(palette_path)], check=True)
+            subprocess.run(["ffmpeg", "-i", str(save_path), "-i", str(palette_path), "-lavfi", f"fps=20,scale={width}:{height}:flags=lanczos[x];[x][1:v]paletteuse", "-y", str(temp_output_path)], check=True)
+            palette_path.unlink()
+            temp_output_path.rename(save_path)
+          else:
+            img = Image.open(save_path).resize(resize_dims, Image.Resampling.LANCZOS)
+            if ext != ".png":
+              save_path.unlink()
+              save_path = save_path.with_suffix(".png")
+            img.save(save_path, "PNG")
+
+  if save_checklist.get("steering_wheel"):
+    wheels_dir = THEME_SAVE_PATH / "steering_wheels"
+    wheels_dir.mkdir(parents=True, exist_ok=True)
+    file = files.get("steeringWheel")
+    saved_wheel_path = None
+    if file and file.filename:
+      if file.content_length > MAX_FILE_SIZE:
+        return None, f"File {file.filename} exceeds 1MB limit."
+      for f in wheels_dir.glob(f"{sane_theme_name}-user_created.*"):
+        f.unlink()
+      ext = Path(file.filename).suffix.lower()
+      saved_wheel_path = wheels_dir / f"{sane_theme_name}-user_created{ext}"
+      file.save(saved_wheel_path)
+      if ext == ".gif":
+        width, height = (250, 250)
+        palette_path = saved_wheel_path.with_suffix(".palette.png")
+        temp_output_path = saved_wheel_path.with_suffix(".resized.gif")
+        subprocess.run(["ffmpeg", "-i", str(saved_wheel_path), "-vf", "palettegen", "-y", str(palette_path)], check=True)
+        subprocess.run(["ffmpeg", "-i", str(saved_wheel_path), "-i", str(palette_path), "-lavfi", f"fps=20,scale={width}:{height}:flags=lanczos[x];[x][1:v]paletteuse", "-y", str(temp_output_path)], check=True)
+        palette_path.unlink()
+        temp_output_path.rename(saved_wheel_path)
+      else:
+        img = Image.open(saved_wheel_path).resize((250, 250), Image.Resampling.LANCZOS)
+        if ext != ".png":
+          saved_wheel_path.unlink()
+          saved_wheel_path = saved_wheel_path.with_suffix(".png")
+        img.save(saved_wheel_path, "PNG")
+    if temporary and (theme_path is not None):
+      existing = saved_wheel_path if saved_wheel_path is not None else next(wheels_dir.glob(f"{sane_theme_name}-user_created.*"), None)
+      if existing:
+        wheel_icon_dir = theme_path / "WheelIcon"
+        wheel_icon_dir.mkdir(parents=True, exist_ok=True)
+        dest = wheel_icon_dir / f"wheel{existing.suffix.lower()}"
+        if dest.exists():
+          dest.unlink()
+        dest.symlink_to(existing)
+
+  if save_checklist.get("distance_icons"):
+    dist_path = theme_path / "distance_icons"
+    dist_path.mkdir(exist_ok=True)
+    for name in ["traffic", "aggressive", "standard", "relaxed"]:
+      file = files.get(f"distanceIcons_{name}")
+      if file and file.filename:
+        if file.content_length > MAX_FILE_SIZE:
+          return None, f"File {file.filename} exceeds 1MB limit."
+
+        for f in dist_path.glob(f"{name}.*"):
+          f.unlink()
+
+        ext = Path(file.filename).suffix.lower()
+        save_path = dist_path / f"{name}{ext}"
+        file.save(save_path)
+        if ext == ".gif":
+          width, height = (250, 250)
+          palette_path = save_path.with_suffix(".palette.png")
+          temp_output_path = save_path.with_suffix(".resized.gif")
+          subprocess.run(["ffmpeg", "-i", str(save_path), "-vf", "palettegen", "-y", str(palette_path)], check=True)
+          subprocess.run(["ffmpeg", "-i", str(save_path), "-i", str(palette_path), "-lavfi", f"fps=20,scale={width}:{height}:flags=lanczos[x];[x][1:v]paletteuse", "-y", str(temp_output_path)], check=True)
+          palette_path.unlink()
+          temp_output_path.rename(save_path)
+        else:
+          img = Image.open(save_path).resize((250, 250), Image.Resampling.LANCZOS)
+          if ext != ".png":
+            save_path.unlink()
+            save_path = save_path.with_suffix(".png")
+          img.save(save_path, "PNG")
+
+  if save_checklist.get("sounds"):
+    sounds_path = theme_path / "sounds"
+    sounds_path.mkdir(exist_ok=True)
+    for name in ["engage", "disengage", "prompt", "startup"]:
+      file = files.get(name)
+      if file and file.filename:
+        if file.content_length > MAX_FILE_SIZE:
+          return None, f"File {file.filename} exceeds 1MB limit."
+
+        save_path = sounds_path / f"{name}{Path(file.filename).suffix}"
+        file.save(save_path)
+        covert_audio(str(save_path))
+
+  return theme_path, None
 
 def decode_parameters(encoded_string):
   obfuscated_data = base64.b64decode(encoded_string.encode("utf-8")).decode("utf-8")
@@ -126,9 +416,9 @@ def get_drive_stats():
   stats["all"] = process("all")
   stats["week"] = process("week")
   stats["frogpilot"] = {
-    "distance": params_tracking.get_int("FrogPilotKilometers") * conversion,
-    "hours": params_tracking.get_int("FrogPilotMinutes") / 60,
-    "drives": params_tracking.get_int("FrogPilotDrives"),
+    "distance": params.get_int("FrogPilotKilometers") * conversion,
+    "hours": params.get_int("FrogPilotMinutes") / 60,
+    "drives": params.get_int("FrogPilotDrives"),
     "unit": unit
   }
 
@@ -172,6 +462,18 @@ def has_preserve_attr(path: str):
 
 def list_file(path):
   return sorted(os.listdir(path), reverse=True)
+
+def normalize_theme_name(name, for_path=False):
+  name = name.replace("-user_created", "")
+  if for_path:
+    return name.lower().replace(" (", "-").replace(")", "").replace(" ", "-").replace("'", "").replace(".", "")
+
+  parts = re.split(r'[-_]', name)
+  normalized_parts = [part.capitalize() for part in parts]
+
+  if '-' in name and len(normalized_parts) > 1:
+    return f"{normalized_parts[0]} ({' '.join(normalized_parts[1:])})".replace(" Week", "")
+  return ' '.join(normalized_parts).replace(" Week", "")
 
 def process_route(footage_path, route_name):
   segment_path = f"{footage_path}{route_name}--0"

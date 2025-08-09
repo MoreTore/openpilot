@@ -37,6 +37,7 @@ FrogPilotLateralPanel::FrogPilotLateralPanel(FrogPilotSettingsWindow *parent) : 
     {"SteerRatio", steerRatio != 0 ? QString(tr("Steer Ratio (Default: %1)")).arg(QString::number(steerRatio, 'f', 2)) : tr("Steer Ratio"), tr("How much the steering wheel turns in response to commands. Higher values feel more stable; lower values feel quicker."), ""},
     {"ForceAutoTune", tr("Force Auto Tune On"), tr("Force-enable comma’s auto lateral tuning."), ""},
     {"ForceAutoTuneOff", tr("Force Auto Tune Off"), tr("Force-disable comma’s auto lateral tuning."), ""},
+    {"ForceTorqueController", tr("Force Torque Controller"), tr("Use a steadier steering method that holds lane center more firmly, especially through curves and in crosswinds."), ""},
 
     {"AlwaysOnLateral", tr("Always on Lateral"), tr("openpilot's steering control stays active even when the brake or gas pedals are pressed.<br><br>Deactivation only occurs with the <b>Cruise Control</b> button."), "../../frogpilot/assets/toggle_icons/icon_always_on_lateral.png"},
     {"AlwaysOnLateralMain", tr("Enable With Cruise Control"), tr("Allow <b>Always on Lateral</b> to be active whenever <b>Cruise Control</b> is active, bypassing the need to enable openpilot first."), ""},
@@ -52,8 +53,6 @@ FrogPilotLateralPanel::FrogPilotLateralPanel(FrogPilotSettingsWindow *parent) : 
 
     {"LateralTune", tr("Lateral Tuning"), tr("Settings for fine-tuning openpilot's lateral controls."), "../../frogpilot/assets/toggle_icons/icon_lateral_tune.png"},
     {"TurnDesires", tr("Force Turn Desires Below Lane Change Speed"), tr("Force turn desires below the minimum lane change speed to improve turning accuracy."), ""},
-    {"NNFF", tr("Neural Network Feedforward (NNFF)"), tr("Use <b>Twilsonco’s</b> <b>Neural Network FeedForward</b> model for smoother, model-based steering trained on your vehicle's data."), ""},
-    {"NNFFLite", tr("Smooth Curve Handling"), tr("Use <b>Twilsonco’s</b> torque-based adjustments to smooth out steering during curves."), ""},
 
     {"QOLLateral", tr("Quality of Life"), tr("Miscellaneous features to improve the steering experience."), "../../frogpilot/assets/toggle_icons/icon_quality_of_life.png"},
     {"PauseLateralSpeed", tr("Pause Steering Below"), tr("Temporarily pause steering control below the set speed."), ""},
@@ -162,24 +161,18 @@ FrogPilotLateralPanel::FrogPilotLateralPanel(FrogPilotSettingsWindow *parent) : 
     });
   }
 
-  std::set<QString> forceUpdateKeys = {"ForceAutoTune", "ForceAutoTuneOff", "LateralTune", "NNFF", "NudgelessLaneChange"};
+  std::set<QString> forceUpdateKeys = {"ForceAutoTune", "ForceAutoTuneOff", "LateralTune","NudgelessLaneChange"};
   for (const QString &key : forceUpdateKeys) {
     QObject::connect(static_cast<ToggleControl*>(toggles[key]), &ToggleControl::toggleFlipped, this, &FrogPilotLateralPanel::updateToggles);
   }
 
-  std::set<QString> rebootKeys = {"AlwaysOnLateral", "NNFF", "NNFFLite"};
+  std::set<QString> rebootKeys = {"AlwaysOnLateral", "ForceTorqueController"};
   for (const QString &key : rebootKeys) {
     QObject::connect(static_cast<ToggleControl*>(toggles[key]), &ToggleControl::toggleFlipped, [this, key](bool state) {
       if (started) {
         if (key == "AlwaysOnLateral" && state) {
           if (FrogPilotConfirmationDialog::toggleReboot(this)) {
             Hardware::reboot();
-          }
-        } else if (key == "NNFF" || key == "NNFFLite") {
-          if (!isTorqueCar) {
-            if (FrogPilotConfirmationDialog::toggleReboot(this)) {
-              Hardware::reboot();
-            }
           }
         } else if (key != "AlwaysOnLateral") {
           if (FrogPilotConfirmationDialog::toggleReboot(this)) {
@@ -239,7 +232,6 @@ void FrogPilotLateralPanel::showEvent(QShowEvent *event) {
   frogpilotToggleLevels = parent->frogpilotToggleLevels;
   friction = parent->friction;
   hasAutoTune = parent->hasAutoTune;
-  hasNNFFLog = parent->hasNNFFLog;
   hasOpenpilotLongitudinal = parent->hasOpenpilotLongitudinal;
   isAngleCar = parent->isAngleCar;
   isHKGCanFd = parent->isHKGCanFd;
@@ -344,7 +336,7 @@ void FrogPilotLateralPanel::updateToggles() {
 
     bool forcingAutoTune = !hasAutoTune && params.getBool("ForceAutoTune");
     bool forcingAutoTuneOff = hasAutoTune && params.getBool("ForceAutoTuneOff");
-    bool usingNNFF = hasNNFFLog && params.getBool("LateralTune") && params.getBool("NNFF");
+    bool forcingTorqueController = !isAngleCar && params.getBool("ForceTorqueController");
 
     bool setVisible = tuningLevel >= frogpilotToggleLevels[key].toDouble();
 
@@ -361,25 +353,20 @@ void FrogPilotLateralPanel::updateToggles() {
     else if (key == "ForceAutoTune") {
       setVisible &= !hasAutoTune;
       setVisible &= !isAngleCar;
-      setVisible &= isTorqueCar;
+      setVisible &= isTorqueCar || forcingTorqueController;
     }
 
     else if (key == "ForceAutoTuneOff") {
       setVisible &= hasAutoTune;
     }
 
+    else if (key == "ForceTorqueController") {
+      setVisible &= !isAngleCar;
+      setVisible &= !isTorqueCar;
+    }
+
     else if (key == "LaneChangeTime") {
       setVisible &= params.getBool("LaneChangeCustomizations") && params.getBool("NudgelessLaneChange");
-    }
-
-    else if (key == "NNFF") {
-      setVisible &= hasNNFFLog;
-      setVisible &= !isAngleCar;
-    }
-
-    else if (key == "NNFFLite") {
-      setVisible &= !usingNNFF;
-      setVisible &= !isAngleCar;
     }
 
     else if (key == "SteerDelay") {
@@ -389,21 +376,19 @@ void FrogPilotLateralPanel::updateToggles() {
     else if (key == "SteerFriction") {
       setVisible &= friction != 0;
       setVisible &= hasAutoTune ? forcingAutoTuneOff : !forcingAutoTune;
-      setVisible &= isTorqueCar;
-      setVisible &= !usingNNFF;
+      setVisible &= isTorqueCar || forcingTorqueController;
     }
 
     else if (key == "SteerKP") {
       setVisible &= steerKp != 0;
       setVisible &= hasAutoTune ? forcingAutoTuneOff : !forcingAutoTune;
-      setVisible &= isTorqueCar;
+      setVisible &= isTorqueCar || forcingTorqueController;
     }
 
     else if (key == "SteerLatAccel") {
       setVisible &= latAccelFactor != 0;
       setVisible &= hasAutoTune ? forcingAutoTuneOff : !forcingAutoTune;
-      setVisible &= isTorqueCar;
-      setVisible &= !usingNNFF;
+      setVisible &= isTorqueCar || forcingTorqueController;
     }
 
     else if (key == "SteerRatio") {

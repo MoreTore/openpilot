@@ -38,6 +38,7 @@ signals:
   void closePanel();
   void closeSubPanel();
   void closeSubSubPanel();
+  void closeSubSubSubPanel();
   void updateMetric(bool metric, bool bootRun=false);
   void updateTuningLevel();
 
@@ -49,11 +50,11 @@ private:
 
   // FrogPilot variables
   Params params;
-  Params paramsTracking{"/cache/tracking"};
 
   bool panelOpen;
   bool subPanelOpen;
   bool subSubPanelOpen;
+  bool subSubSubPanelOpen;
 };
 
 class DevicePanel : public ListWidget {

@@ -17,25 +17,30 @@ OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
 FUN_LANG_KEYS = {"caveman", "duck", "frog", "pirate", "shakespearean"}
 
-FUN_PROMPT_TEMPLATE = """
-You are a safety-critical UI style transformer for an openpilot fork. Rewrite the user's message (an English source string) into the style '{language}'
-while preserving the original meaning, readability, and all functional elements. Output ONLY the transformed text, with no quotes or extra words.
+FUN_PROMPT_TEMPLATE = """You are GPT-5 acting as a playful *style translator* for OpenPilot UI strings.
 
-Hard requirements:
-1) Preserve placeholders, variables, and markup exactly as written: {{name}}, {{0}}, {{icu}}, %1, %n, %(speed)d, $SPEED, <b>…</b>, <a href="…">…</a>, etc.
-2) Keep all non-translatable tokens unchanged: product/brand names (e.g., openpilot, ACC), file paths, error codes, part numbers.
-3) Do not add, remove, or reorder placeholders. If grammar absolutely requires reordering, keep all placeholders intact and still produce a correct sentence; prefer wordings that avoid reordering.
-4) Do not convert units or numbers (e.g., mph↔km/h). Translate unit labels only if standard in the style and not part of a preserved token.
-5) Maintain the same warning/priority level and imperative tone. Never soften or intensify safety messages (“Do not…”, “Warning”, “Critical”).
-6) Preserve hotkeys/accelerators if present (e.g., &F, _O). If the exact letter is impossible, pick the nearest mnemonic but keep the marker.
-7) Follow normal punctuation and casing rules while respecting all technical tokens.
-8) If ICU MessageFormat/plural/select syntax is present, keep the structure and variable names unchanged and rewrite only the human-readable text.
-9) Keep the output as concise as the source. Do not append notes, explanations, or metadata.
+CONTEXT
+- Input: one English UI string from a Qt .ts file.
+- Style key: {language} (caveman, duck, frog, pirate, shakespearean).
+- Output: a fun, stylized rewrite that keeps technical structure intact.
 
-If the source is ambiguous or cannot be safely adapted to the style without risking meaning loss, choose the safest literal rendering that preserves meaning.
-If you cannot adapt it safely, return the source text unchanged.
+HARD REQUIREMENTS — DO NOT VIOLATE
+1) Preserve placeholders exactly and in order: %n, %1–%9, {{...}}, {…}, \\n.
+2) Preserve all tags/entities exactly: <b>…</b>, <i>…</i>, <u>…</u>, <a …>, &amp;, &lt;, etc.
+3) Preserve accelerator marks (&) exactly at the same character index; never move or remove them.
+4) Preserve all whitespace and line breaks; output a single line unless the source contains \\n.
+5) Do not add or remove punctuation; mirror ellipses form (`...` vs `…`) and any trailing punctuation.
+6) Do not translate ALL-CAPS tokens or brand/product names (e.g., OpenPilot, API, CAN).
+7) Do not add commentary, quotes/backticks, or surrounding spaces. Return only the final string.
 
-Your entire reply must be a single line containing only the final rewritten text.
+STYLE HINTS
+- caveman: terse but readable (“Car go now”).
+- duck: quacks mixed into short, playful phrases; may use pond imagery; fun, concise, and UI-usable.
+- frog: ribbits, hops, or lilypad imagery; whimsical or sage-like, still concise and UI-usable.
+- pirate: nautical slang, friendly.
+- shakespearean: archaic flourish, concise.
+
+Keep length close to source; avoid bloat. Respond with the styled string only.
 """
 
 OPENAI_PROMPT = """
@@ -226,8 +231,20 @@ def translate_file(path: pathlib.Path, language: str, all_: bool, vet_translatio
         print(f"Chosen translation: {best}")
         translation.text = best
       else:
+        numerus = (message.attrib.get("numerus") == "yes") or ("%n" in text)
         translation.set("type", f"{OPENAI_MODEL}-generated")
-        translation.text = llm_translation
+
+        if numerus:
+          translations = llm_translation or (translation.text or text)
+          for child in list(translation):
+            translation.remove(child)
+
+          translation.text = None
+
+          ET.SubElement(translation, "numerusform").text = translations
+          ET.SubElement(translation, "numerusform").text = translations
+        else:
+          translation.text = llm_translation
 
   with path.open("w", encoding="utf-8") as fp:
     fp.write('<?xml version="1.0" encoding="utf-8"?>\n' +

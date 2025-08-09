@@ -15,7 +15,6 @@ public:
   bool hasBSM = true;
   bool hasDashSpeedLimits = true;
   bool hasExperimentalOpenpilotLongitudinal = false;
-  bool hasNNFFLog = true;
   bool hasOpenpilotLongitudinal = true;
   bool hasPCMCruise = false;
   bool hasPedal = false;
@@ -54,9 +53,11 @@ public:
 signals:
   void closeSubPanel();
   void closeSubSubPanel();
+  void closeSubSubSubPanel();
   void openPanel();
   void openSubPanel();
   void openSubSubPanel();
+  void openSubSubSubPanel();
   void updateMetric(bool metric, bool bootRun=false);
 
 private:
@@ -68,6 +69,8 @@ private:
 
   bool panelOpen;
 
+  std::string carMake;
+
   FrogPilotButtonsControl *drivingPanelButtons;
   FrogPilotButtonsControl *systemPanelButtons;
   FrogPilotButtonsControl *togglePreset;
@@ -75,7 +78,6 @@ private:
 
   Params params;
   Params params_memory{"/dev/shm/params"};
-  Params params_tracking{"/cache/tracking"};
 
   QStackedLayout *mainLayout;
 

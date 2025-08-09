@@ -15,7 +15,7 @@ public:
   void paintBlindSpotPath(QPainter &p, const cereal::CarState::Reader &carState, const FrogPilotUIScene &frogpilot_scene);
   void paintFrogPilotWidgets(QPainter &p, UIState &s, FrogPilotUIState &fs, SubMaster &sm, SubMaster &fpsm, QJsonObject &frogpilot_toggles);
   void paintLeadMetrics(QPainter &p, bool adjacent, QPointF *chevron, const cereal::FrogPilotPlan::Reader &frogpilotPlan, const cereal::RadarState::LeadData::Reader &lead_data);
-  void paintPathEdges(QPainter &p, const cereal::NavInstruction::Reader &navInstruction, const UIScene &scene, const FrogPilotUIScene &frogpilot_scene, SubMaster &sm);
+  void paintPathEdges(QPainter &p, const cereal::NavInstruction::Reader &navInstruction, const cereal::FrogPilotPlan::Reader &frogpilotPlan, const UIScene &scene, const FrogPilotUIScene &frogpilot_scene, SubMaster &sm);
   void paintRainbowPath(QPainter &p, QLinearGradient &bg, float lin_grad_point, SubMaster &sm);
   void updateState(const FrogPilotUIState &fs, const QJsonObject &frogpilot_toggles);
 
@@ -61,19 +61,21 @@ protected:
   void showEvent(QShowEvent *event) override;
 
 private:
-  void paintCEMStatus(QPainter &p, FrogPilotUIScene &frogpilot_scene, SubMaster &sm);
+  void paintCEMStatus(QPainter &p, const cereal::FrogPilotPlan::Reader &frogpilotPlan, FrogPilotUIScene &frogpilot_scene, SubMaster &sm);
   void paintCompass(QPainter &p, QJsonObject &frogpilot_toggles);
-  void paintCurveSpeedControl(QPainter &p, const cereal::FrogPilotPlan::Reader &frogpilotPlan, QJsonObject &frogpilot_toggles);
+  void paintCurveSpeedControl(QPainter &p, const cereal::FrogPilotPlan::Reader &frogpilotPlan);
   void paintLateralPaused(QPainter &p, FrogPilotUIScene &frogpilot_scene);
   void paintLongitudinalPaused(QPainter &p, FrogPilotUIScene &frogpilot_scene);
   void paintPedalIcons(QPainter &p, const cereal::CarState::Reader &carState, const cereal::FrogPilotCarState::Reader &frogpilotCarState, FrogPilotUIScene &frogpilot_scene, QJsonObject &frogpilot_toggles);
   void paintPendingSpeedLimit(QPainter &p, const cereal::FrogPilotPlan::Reader &frogpilotPlan);
   void paintRadarTracks(QPainter &p, const cereal::ModelDataV2::Reader &model, UIState &s, FrogPilotUIScene &frogpilot_scene, SubMaster &sm, SubMaster &fpsm);
   void paintRoadName(QPainter &p);
+  void paintSmartControllerTraining(QPainter &p, const cereal::FrogPilotPlan::Reader &frogpilotPlan);
   void paintSpeedLimitSources(QPainter &p, const cereal::FrogPilotCarState::Reader &frogpilotCarState, const cereal::FrogPilotNavigation::Reader &frogpilotNavigation, const cereal::FrogPilotPlan::Reader &frogpilotPlan);
   void paintStandstillTimer(QPainter &p);
   void paintStoppingPoint(QPainter &p, UIScene &scene, FrogPilotUIScene &frogpilot_scene, QJsonObject &frogpilot_toggles);
   void paintTurnSignals(QPainter &p, const cereal::CarState::Reader &carState);
+  void paintWeather(QPainter &p, const cereal::FrogPilotPlan::Reader &frogpilotPlan, FrogPilotUIScene &frogpilot_scene);
   void updateSignals();
 
   int animationFrameIndex;
@@ -90,18 +92,14 @@ private:
   QColor redColor(int alpha = 255) { return QColor(201, 34, 49, alpha); }
   QColor whiteColor(int alpha = 255) { return QColor(255, 255, 255, alpha); }
 
+  QElapsedTimer glowTimer;
   QElapsedTimer pendingLimitTimer;
   QElapsedTimer standstillTimer;
 
   QPixmap brakePedalImg;
-  QPixmap chillModeIcon;
-  QPixmap curveIcon;
   QPixmap curveSpeedIcon;
   QPixmap dashboardIcon;
-  QPixmap experimentalModeIcon;
   QPixmap gasPedalImg;
-  QPixmap leadIcon;
-  QPixmap lightIcon;
   QPixmap mapDataIcon;
   QPixmap navigationIcon;
   QPixmap nextMapsIcon;
@@ -111,10 +109,22 @@ private:
   QPixmap turnIcon;
 
   QPoint cemStatusPosition;
+  QPoint compassPosition;
   QPoint lateralPausedPosition;
 
-  QString mtscSpeedStr;
-  QString vtscSpeedStr;
+  QSharedPointer<QMovie> cemCurveIcon;
+  QSharedPointer<QMovie> cemLeadIcon;
+  QSharedPointer<QMovie> cemSpeedIcon;
+  QSharedPointer<QMovie> cemStopIcon;
+  QSharedPointer<QMovie> cemTurnIcon;
+  QSharedPointer<QMovie> chillModeIcon;
+  QSharedPointer<QMovie> experimentalModeIcon;
+  QSharedPointer<QMovie> weather_clear_day;
+  QSharedPointer<QMovie> weather_clear_night;
+  QSharedPointer<QMovie> weather_rain;
+  QSharedPointer<QMovie> weather_snow;
+
+  QString cscSpeedStr;
 
   QTimer *animationTimer;
 

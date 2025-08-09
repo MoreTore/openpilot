@@ -24,6 +24,11 @@ FrogPilotLongitudinalPanel::FrogPilotLongitudinalPanel(FrogPilotSettingsWindow *
   FrogPilotListWidget *speedLimitControllerVisualList = new FrogPilotListWidget(this);
   FrogPilotListWidget *standardPersonalityList = new FrogPilotListWidget(this);
   FrogPilotListWidget *trafficPersonalityList = new FrogPilotListWidget(this);
+  FrogPilotListWidget *weatherList = new FrogPilotListWidget(this);
+  FrogPilotListWidget *weatherLowVisibilityList = new FrogPilotListWidget(this);
+  FrogPilotListWidget *weatherRainList = new FrogPilotListWidget(this);
+  FrogPilotListWidget *weatherRainStormList = new FrogPilotListWidget(this);
+  FrogPilotListWidget *weatherSnowList = new FrogPilotListWidget(this);
 
   ScrollView *advancedLongitudinalTunePanel = new ScrollView(advancedLongitudinalTuneList, this);
   ScrollView *aggressivePersonalityPanel = new ScrollView(aggressivePersonalityList, this);
@@ -39,6 +44,11 @@ FrogPilotLongitudinalPanel::FrogPilotLongitudinalPanel(FrogPilotSettingsWindow *
   ScrollView *speedLimitControllerVisualPanel = new ScrollView(speedLimitControllerVisualList, this);
   ScrollView *standardPersonalityPanel = new ScrollView(standardPersonalityList, this);
   ScrollView *trafficPersonalityPanel = new ScrollView(trafficPersonalityList, this);
+  ScrollView *weatherLowVisibilityPanel = new ScrollView(weatherLowVisibilityList, this);
+  ScrollView *weatherPanel = new ScrollView(weatherList, this);
+  ScrollView *weatherRainPanel = new ScrollView(weatherRainList, this);
+  ScrollView *weatherRainStormPanel = new ScrollView(weatherRainStormList, this);
+  ScrollView *weatherSnowPanel = new ScrollView(weatherSnowList, this);
 
   longitudinalLayout->addWidget(advancedLongitudinalTunePanel);
   longitudinalLayout->addWidget(aggressivePersonalityPanel);
@@ -54,6 +64,11 @@ FrogPilotLongitudinalPanel::FrogPilotLongitudinalPanel(FrogPilotSettingsWindow *
   longitudinalLayout->addWidget(speedLimitControllerVisualPanel);
   longitudinalLayout->addWidget(standardPersonalityPanel);
   longitudinalLayout->addWidget(trafficPersonalityPanel);
+  longitudinalLayout->addWidget(weatherLowVisibilityPanel);
+  longitudinalLayout->addWidget(weatherPanel);
+  longitudinalLayout->addWidget(weatherRainPanel);
+  longitudinalLayout->addWidget(weatherRainStormPanel);
+  longitudinalLayout->addWidget(weatherSnowPanel);
 
   const std::vector<std::tuple<QString, QString, QString, QString>> longitudinalToggles {
     {"AdvancedLongitudinalTune", tr("Advanced Longitudinal Tuning"), tr("Advanced settings for customizing how openpilot handles acceleration and braking."), "../../frogpilot/assets/toggle_icons/icon_advanced_longitudinal_tune.png"},
@@ -73,11 +88,10 @@ FrogPilotLongitudinalPanel::FrogPilotLongitudinalPanel(FrogPilotSettingsWindow *
     {"CESignalSpeed", tr("Turn Signal Below"), tr("Switch to <b>Experimental Mode</b> when using a turn signal below the set speed. Useful for letting the model choose the appropriate speed for upcoming left or right turns."), ""},
     {"ShowCEMStatus", tr("Status Widget"), tr("Show the <b>Conditional Experimental Mode</b> status on the driving screen."), ""},
 
-    {"CurveSpeedControl", tr("Curve Speed Control"), tr("Automatically slow down for upcoming curves using downloaded maps or the driving model."), "../../frogpilot/assets/toggle_icons/icon_speed_map.png"},
-    {"CurveDetectionMethod", tr("Curve Detection Method"), tr("How curves are detected. <b>Map-Based</b> uses downloaded map data to identify curves and determine the appropriate speed in which to handle them at, while <b>Vision</b> relies solely on the driving model."), ""},
-    {"MTSCCurvatureCheck", tr("Curve Detection Failsafe"), tr("Only trigger <b>Curve Speed Control</b> if a curve is detected with the model while using the <b>Map-Based</b> method. Useful to help prevent false positives."), ""},
-    {"CurveSensitivity", tr("Curve Detection Sensitivity"), tr("How sensitive openpilot is when detecting curves. Higher values trigger earlier responses at the risk of triggering too often, while lower values increase confidence at the risk of triggering too infrequently."), ""},
-    {"TurnAggressiveness", tr("Curve Speed Aggressiveness"), tr("How aggressive openpilot is when navigating through curves. Higher values result in faster turns but may reduce comfort or stability, while lower values result in slower, smoother turns at the risk of being overly cautious."), ""},
+    {"CurveSpeedController", tr("Curve Speed Controller"), tr("Automatically slows down for upcoming curves using data from your own driving, adapting to curves just like you would."), "../../frogpilot/assets/toggle_icons/icon_speed_map.png"},
+    {"CalibratedLateralAcceleration", tr("Calibrated Lateral Acceleration"), tr("Displays the learned lateral acceleration target based on your driving."), ""},
+    {"CalibrationProgress", tr("Calibration Progress"), tr("How much driving data has been collected to personalize the vehicle's curve handling behavior."), ""},
+    {"ResetCurveData", tr("Reset Curve Data"), tr("Reset collected user data for <b>Curve Speed Control</b>."), ""},
     {"ShowCSCStatus", tr("Status Widget"), tr("Show <b>Curve Speed Control</b>'s desired speed on the driving screen."), ""},
 
     {"CustomPersonalities", tr("Customize Driving Personalities"), tr("Customize the personality profiles to your driving style."), "../../frogpilot/assets/toggle_icons/icon_personality.png"},
@@ -130,12 +144,37 @@ FrogPilotLongitudinalPanel::FrogPilotLongitudinalPanel(FrogPilotSettingsWindow *
     {"QOLLongitudinal", tr("Quality of Life"), tr("Miscellaneous features to improve the acceleration and braking experience."), "../../frogpilot/assets/toggle_icons/icon_quality_of_life.png"},
     {"CustomCruise", tr("Cruise Interval"), tr("The interval used when changing the cruise control speed."), ""},
     {"CustomCruiseLong", tr("Cruise Interval (Long Press)"), tr("The interval used when changing the cruise control speed while holding down the button for 0.5+ seconds."), ""},
-    {"ForceStandstill", tr("Force Keep openpilot in the Standstill State"), tr("Keep openpilot in the standstill state until either the gas pedal or <b>resume</b> button is pressed."), ""},
     {"ForceStops", tr("Force Stop for \"Detected\" Stop Lights/Signs"), tr("Force a stop whenever openpilot <b>detects</b> a potential red light/stop sign to prevent it from running the red light/stop sign."), ""},
-    {"IncreasedStoppedDistance", tr("Increase Stopped Distance"), tr("Increase the distance openpilot stops behind vehicles."), ""},
-    {"SetSpeedOffset", tr("Set Speed Offset"), tr("How much higher or lower the set speed should be compared to your current set speed. For example, if you prefer to drive 5 mph above the speed limit, this setting will automatically add that difference when you adjust your set speed."), ""},
+    {"IncreasedStoppedDistance", tr("Increase Stopped Distance by:"), tr("Increase the distance openpilot stops behind vehicles by the set amount."), ""},
     {"MapGears", tr("Map Accel/Decel to Gears"), tr("Map the acceleration and deceleration profiles to your car's <b>Eco</b> or <b>Sport</b> gear modes."), ""},
+    {"SetSpeedOffset", tr("Offset Set Speed by:"), tr("How much higher or lower the set speed should be compared to your current set speed. For example, if you prefer to drive 5 mph above the speed limit, this setting will automatically add that difference when you adjust your set speed."), ""},
     {"ReverseCruise", tr("Reverse Cruise Increase"), tr("Reverse the <b>long press</b> cruise increase feature to increase the max speed by 5 instead of 1 on short presses."), ""},
+
+    {"WeatherPresets", tr("Weather Condition Offsets"), tr("Automatically adjust driving behavior based on real-time weather conditions."), ""},
+
+    {"LowVisibilityOffsets", tr("Low Visibility"), tr("Driving adjustments for when low visibility conditions are detected."), ""},
+    {"IncreaseFollowingLowVisibility", tr("Increase Following Distance by:"), tr("Increase the following distance by the set amount in low visibility conditions."), ""},
+    {"IncreasedStoppedDistanceLowVisibility", tr("Increase Stopping Distance by:"), tr("Increase the stopping distance behind leads by the set amount in low visibility conditions."), ""},
+    {"ReduceAccelerationLowVisibility", tr("Reduce Acceleration by:"), tr("Lower the acceleration by the set amount in low visibility conditions."), ""},
+    {"ReduceLateralAccelerationLowVisibility", tr("Reduce Speed In Curves by:"), tr("Lower the desired speed in curves by the set amount in low visibility conditions."), ""},
+
+    {"RainOffsets", tr("Rain"), tr("Driving adjustments for when rainy conditions are detected."), ""},
+    {"IncreaseFollowingRain", tr("Increase Following Distance by:"), tr("Increase the following distance by the set amount in rainy conditions."), ""},
+    {"IncreasedStoppedDistanceRain", tr("Increase Stopping Distance by:"), tr("Increase the stopping distance behind leads by the set amount in rainy conditions."), ""},
+    {"ReduceAccelerationRain", tr("Reduce Acceleration by:"), tr("Lower the acceleration by the set amount in rainy conditions."), ""},
+    {"ReduceLateralAccelerationRain", tr("Reduce Speed In Curves by:"), tr("Lower the desired speed in curves by the set amount in rainy conditions."), ""},
+
+    {"RainStormOffsets", tr("Rain Storms"), tr("Driving adjustments for when a rain storm is detected."), ""},
+    {"IncreaseFollowingRainStorm", tr("Increase Following Distance by:"), tr("Increase the following distance by the set amount in a rain storm."), ""},
+    {"IncreasedStoppedDistanceRainStorm", tr("Increase Stopping Distance by:"), tr("Increase the stopping distance behind leads by the set amount in a rain storm."), ""},
+    {"ReduceAccelerationRainStorm", tr("Reduce Acceleration by:"), tr("Lower the acceleration by the set amount in a rain storm."), ""},
+    {"ReduceLateralAccelerationRainStorm", tr("Reduce Speed In Curves by:"), tr("Lower the desired speed in curves by the set amount in a rain storm."), ""},
+
+    {"SnowOffsets", tr("Snow"), tr("Driving adjustments for when snowy conditions are detected."), ""},
+    {"IncreaseFollowingSnow", tr("Increase Following Distance by:"), tr("Increase the following distance by the set amount in snowy conditions."), ""},
+    {"IncreasedStoppedDistanceSnow", tr("Increase Stopping Distance by:"), tr("Increase the stopping distance behind leads by the set amount in snowy conditions."), ""},
+    {"ReduceAccelerationSnow", tr("Reduce Acceleration by:"), tr("Lower the acceleration by the set amount in snowy conditions."), ""},
+    {"ReduceLateralAccelerationSnow", tr("Reduce Speed In Curves by:"), tr("Lower the desired speed in curves by the set amount in snowy conditions."), ""},
 
     {"SpeedLimitController", tr("Speed Limit Controller"), tr("Limit openpilot's maximum driving speed based on data from downloaded maps, <b>Mapbox</b>, <b>Navigate on openpilot</b>, or the dashboard (supported vehicles: <b>Ford</b>, <b>Genesis</b>, <b>Hyundai</b>, <b>Kia</b>, <b>Lexus</b>, <b>Toyota</b>)."), "../assets/offroad/icon_speed_limit.png"},
     {"SLCFallback", tr("Fallback Speed"), tr("The speed limit source when no speed limit data is available."), ""},
@@ -223,36 +262,35 @@ FrogPilotLongitudinalPanel::FrogPilotLongitudinalPanel(FrogPilotSettingsWindow *
       std::vector<QString> ceSignalToggleNames{tr("Only For Detected Lanes")};
       longitudinalToggle = new FrogPilotParamValueButtonControl(param, title, desc, icon, 0, 99, tr(" mph"), std::map<float, QString>(), 1.0, true, ceSignalToggles, ceSignalToggleNames, true);
 
-    } else if (param == "CurveSpeedControl") {
+    } else if (param == "CurveSpeedController") {
       FrogPilotManageControl *curveControlToggle = new FrogPilotManageControl(param, title, desc, icon);
-      QObject::connect(curveControlToggle, &FrogPilotManageControl::manageButtonClicked, [this, longitudinalLayout, curveSpeedPanel]() {
-        curveDetectionToggle->setEnabledButtons(0, QDir("/data/media/0/osm/offline").exists());
-
+      QObject::connect(curveControlToggle, &FrogPilotManageControl::manageButtonClicked, [longitudinalLayout, curveSpeedPanel]() {
         longitudinalLayout->setCurrentWidget(curveSpeedPanel);
       });
       longitudinalToggle = curveControlToggle;
-    } else if (param == "CurveDetectionMethod") {
-      std::vector<QString> curveDetectionToggles{"MapTurnControl", "VisionTurnControl"};
-      std::vector<QString> curveDetectionToggleNames{tr("Map Based"), tr("Vision")};
-      curveDetectionToggle = new FrogPilotButtonsControl(title, desc, icon, curveDetectionToggleNames, true, false);
-      for (int i = 0; i < curveDetectionToggles.size(); ++i) {
-        if (params.getBool(curveDetectionToggles[i].toStdString())) {
-          curveDetectionToggle->setCheckedButton(i);
-        }
-      }
-      QObject::connect(curveDetectionToggle, &FrogPilotButtonsControl::buttonClicked, [this, curveDetectionToggles](int id) {
-        params.putBool(curveDetectionToggles[id].toStdString(), !params.getBool(curveDetectionToggles[id].toStdString()));
+    } else if (param == "CalibrationProgress") {
+      calibrationProgressLabel = new LabelControl(title, QString::number(params.getFloat("CalibrationProgress"), 'f', 2) + "%", desc);
+      longitudinalToggle = calibrationProgressLabel;
+    } else if (param == "CalibratedLateralAcceleration") {
+      calibratedLateralAccelerationLabel = new LabelControl(title, QString::number(params.getFloat("CalibratedLateralAcceleration"), 'f', 2) + tr(" m/s²"), desc);
+      longitudinalToggle = calibratedLateralAccelerationLabel;
+    } else if (param == "ResetCurveData") {
+      ButtonControl *resetCurveDataBtn = new ButtonControl(title, tr("RESET"), desc);
+      QObject::connect(resetCurveDataBtn, &ButtonControl::clicked, [this]() {
+        if (FrogPilotConfirmationDialog::yesorno(tr("Are you sure you want to completely reset your curvature data?"), this)) {
+          params.putFloat("CalibratedLateralAcceleration", 2.00);
+          params.remove("CalibrationProgress");
+          params.remove("CurvatureData");
 
-        updateToggles();
-      });
-      QObject::connect(curveDetectionToggle, &FrogPilotButtonsControl::disabledButtonClicked, [this](int id) {
-        if (id == 0) {
-          ConfirmationDialog::alert(tr("The <b>Map Based</b> option is only available when some <b>Map Data</b> has been downloaded!"), this);
+          params_cache.putFloat("CalibratedLateralAcceleration", 2.00);
+          params_cache.remove("CalibrationProgress");
+          params_cache.remove("CurvatureData");
+
+          calibratedLateralAccelerationLabel->setText(QString::number(2.00, 'f', 2) + tr(" m/s²"));
+          calibrationProgressLabel->setText(QString::number(0.00, 'f', 2) + "%");
         }
       });
-      longitudinalToggle = curveDetectionToggle;
-    } else if (param == "CurveSensitivity" || param == "TurnAggressiveness") {
-      longitudinalToggle = new FrogPilotParamValueControl(param, title, desc, icon, 1, 200, "%");
+      longitudinalToggle = resetCurveDataBtn;
 
     } else if (param == "CustomPersonalities") {
       FrogPilotManageControl *customPersonalitiesToggle = new FrogPilotManageControl(param, title, desc, icon);
@@ -309,13 +347,13 @@ FrogPilotLongitudinalPanel::FrogPilotLongitudinalPanel(FrogPilotSettingsWindow *
                trafficPersonalityKeys.find(param) != trafficPersonalityKeys.end()) {
       if (param == "TrafficFollow" || param == "AggressiveFollow" || param == "StandardFollow" || param == "RelaxedFollow") {
         std::map<float, QString> followTimeLabels;
-        for (float i = 0; i <= 5; i += 0.01) {
+        for (float i = 0; i <= 3; i += 0.01) {
           followTimeLabels[i] = std::lround(i / 0.01) == 1 / 0.01 ? QString::number(i, 'f', 2) + tr(" second") : QString::number(i, 'f', 2) + tr(" seconds");
         }
         if (param == "TrafficFollow") {
-          longitudinalToggle = new FrogPilotParamValueControl(param, title, desc, icon, 0.5, 5, QString(), followTimeLabels, 0.01, true);
+          longitudinalToggle = new FrogPilotParamValueControl(param, title, desc, icon, 0.5, 3, QString(), followTimeLabels, 0.01, true);
         } else {
-          longitudinalToggle = new FrogPilotParamValueControl(param, title, desc, icon, 1, 5, QString(), followTimeLabels, 0.01, true);
+          longitudinalToggle = new FrogPilotParamValueControl(param, title, desc, icon, 1, 3, QString(), followTimeLabels, 0.01, true);
         }
       } else {
         longitudinalToggle = new FrogPilotParamValueControl(param, title, desc, icon, 25, 200, "%");
@@ -358,6 +396,68 @@ FrogPilotLongitudinalPanel::FrogPilotLongitudinalPanel(FrogPilotSettingsWindow *
       longitudinalToggle = new FrogPilotButtonToggleControl(param, title, desc, icon, mapGearsToggles, mapGearsToggleNames);
     } else if (param == "SetSpeedOffset") {
       longitudinalToggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 99, tr(" mph"));
+    } else if (param == "WeatherPresets") {
+      ButtonControl *weatherToggle = new ButtonControl(title, tr("MANAGE"), desc);
+      QObject::connect(weatherToggle, &ButtonControl::clicked, [this, longitudinalLayout, weatherPanel]() {
+        openSubSubPanel();
+
+        longitudinalLayout->setCurrentWidget(weatherPanel);
+
+        qolOpen = true;
+      });
+      longitudinalToggle = weatherToggle;
+    } else if (param == "LowVisibilityOffsets") {
+      ButtonControl *manageLowVisibilitOffsetsBtn = new ButtonControl(title, tr("MANAGE"), desc);
+      QObject::connect(manageLowVisibilitOffsetsBtn, &ButtonControl::clicked, [this, longitudinalLayout, weatherLowVisibilityPanel]() {
+        openSubSubSubPanel();
+
+        longitudinalLayout->setCurrentWidget(weatherLowVisibilityPanel);
+
+        weatherOpen = true;
+      });
+      longitudinalToggle = manageLowVisibilitOffsetsBtn;
+    } else if (param == "RainOffsets") {
+      ButtonControl *manageRainOffsetsBtn = new ButtonControl(title, tr("MANAGE"), desc);
+      QObject::connect(manageRainOffsetsBtn, &ButtonControl::clicked, [this, longitudinalLayout, weatherRainPanel]() {
+        openSubSubSubPanel();
+
+        longitudinalLayout->setCurrentWidget(weatherRainPanel);
+
+        weatherOpen = true;
+      });
+      longitudinalToggle = manageRainOffsetsBtn;
+    } else if (param == "RainStormOffsets") {
+      ButtonControl *manageRainStormOffsetsBtn = new ButtonControl(title, tr("MANAGE"), desc);
+      QObject::connect(manageRainStormOffsetsBtn, &ButtonControl::clicked, [this, longitudinalLayout, weatherRainStormPanel]() {
+        openSubSubSubPanel();
+
+        longitudinalLayout->setCurrentWidget(weatherRainStormPanel);
+
+        weatherOpen = true;
+      });
+      longitudinalToggle = manageRainStormOffsetsBtn;
+    } else if (param == "SnowOffsets") {
+      ButtonControl *manageSnowOffsetsBtn = new ButtonControl(title, tr("MANAGE"), desc);
+      QObject::connect(manageSnowOffsetsBtn, &ButtonControl::clicked, [this, longitudinalLayout, weatherSnowPanel]() {
+        openSubSubSubPanel();
+
+        longitudinalLayout->setCurrentWidget(weatherSnowPanel);
+
+        weatherOpen = true;
+      });
+      longitudinalToggle = manageSnowOffsetsBtn;
+    } else if (param == "IncreaseFollowingLowVisibility" || param == "IncreaseFollowingRain" || param == "IncreaseFollowingRainStorm" || param == "IncreaseFollowingSnow") {
+      std::map<float, QString> followTimeLabels;
+      for (float i = 0; i <= 3; i += 0.01) {
+        followTimeLabels[i] = std::lround(i / 0.01) == 1 / 0.01 ? QString::number(i, 'f', 2) + tr(" second") : QString::number(i, 'f', 2) + tr(" seconds");
+      }
+      longitudinalToggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 3, QString(), followTimeLabels, 0.01, true);
+    } else if (param == "IncreasedStoppedDistanceLowVisibility" || param == "IncreasedStoppedDistanceRain" || param == "IncreasedStoppedDistanceRainStorm" || param == "IncreasedStoppedDistanceSnow") {
+      longitudinalToggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 10, tr(" feet"));
+    } else if (param == "ReduceAccelerationLowVisibility" || param == "ReduceAccelerationRain" || param == "ReduceAccelerationRainStorm" || param == "ReduceAccelerationSnow") {
+      longitudinalToggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 99, "%", std::map<float, QString>(), 1);
+    } else if (param == "ReduceLateralAccelerationLowVisibility" || param == "ReduceLateralAccelerationRain" || param == "ReduceLateralAccelerationRainStorm" || param == "ReduceLateralAccelerationSnow") {
+      longitudinalToggle = new FrogPilotParamValueControl(param, title, desc, icon, 0, 99, "%", std::map<float, QString>(), 1);
 
     } else if (param == "SpeedLimitController") {
       FrogPilotManageControl *speedLimitControllerToggle = new FrogPilotManageControl(param, title, desc, icon);
@@ -502,6 +602,16 @@ FrogPilotLongitudinalPanel::FrogPilotLongitudinalPanel(FrogPilotSettingsWindow *
       standardPersonalityList->addItem(longitudinalToggle);
     } else if (trafficPersonalityKeys.find(param) != trafficPersonalityKeys.end()) {
       trafficPersonalityList->addItem(longitudinalToggle);
+    } else if (weatherKeys.find(param) != weatherKeys.end()) {
+      weatherList->addItem(longitudinalToggle);
+    } else if (weatherLowVisibilityKeys.find(param) != weatherLowVisibilityKeys.end()) {
+      weatherLowVisibilityList->addItem(longitudinalToggle);
+    } else if (weatherRainKeys.find(param) != weatherRainKeys.end()) {
+      weatherRainList->addItem(longitudinalToggle);
+    } else if (weatherRainStormKeys.find(param) != weatherRainStormKeys.end()) {
+      weatherRainStormList->addItem(longitudinalToggle);
+    } else if (weatherSnowKeys.find(param) != weatherSnowKeys.end()) {
+      weatherSnowList->addItem(longitudinalToggle);
     } else {
       longitudinalList->addItem(longitudinalToggle);
 
@@ -623,15 +733,26 @@ FrogPilotLongitudinalPanel::FrogPilotLongitudinalPanel(FrogPilotSettingsWindow *
   });
 
   QObject::connect(parent, &FrogPilotSettingsWindow::closeSubPanel, [longitudinalLayout, longitudinalPanel] {longitudinalLayout->setCurrentWidget(longitudinalPanel);});
-  QObject::connect(parent, &FrogPilotSettingsWindow::closeSubSubPanel, [this, longitudinalLayout, customDrivingPersonalityPanel, speedLimitControllerPanel]() {
+  QObject::connect(parent, &FrogPilotSettingsWindow::closeSubSubPanel, [this, longitudinalLayout, customDrivingPersonalityPanel, qolPanel, speedLimitControllerPanel]() {
     if (customPersonalityOpen) {
       longitudinalLayout->setCurrentWidget(customDrivingPersonalityPanel);
 
       customPersonalityOpen = false;
+    } else if (qolOpen) {
+      longitudinalLayout->setCurrentWidget(qolPanel);
+
+      qolOpen = false;
     } else if (slcOpen) {
       longitudinalLayout->setCurrentWidget(speedLimitControllerPanel);
 
       slcOpen = false;
+    }
+  });
+  QObject::connect(parent, &FrogPilotSettingsWindow::closeSubSubSubPanel, [this, longitudinalLayout, weatherPanel]() {
+    if (weatherOpen) {
+      longitudinalLayout->setCurrentWidget(weatherPanel);
+
+      weatherOpen = false;
     }
   });
   QObject::connect(parent, &FrogPilotSettingsWindow::updateMetric, this, &FrogPilotLongitudinalPanel::updateMetric);
@@ -653,6 +774,9 @@ void FrogPilotLongitudinalPanel::showEvent(QShowEvent *event) {
   vEgoStarting = parent->vEgoStarting;
   vEgoStopping = parent->vEgoStopping;
 
+  calibratedLateralAccelerationLabel->setText(QString::number(params.getFloat("CalibratedLateralAcceleration"), 'f', 2) + tr(" m/s²"));
+  calibrationProgressLabel->setText(QString::number(params.getFloat("CalibrationProgress"), 'f', 2) + "%");
+
   longitudinalActuatorDelayToggle->setTitle(QString(tr("Actuator Delay (Default: %1)")).arg(QString::number(longitudinalActuatorDelay, 'f', 2)));
   startAccelToggle->setTitle(QString(tr("Start Acceleration (Default: %1)")).arg(QString::number(startAccel, 'f', 2)));
   stopAccelToggle->setTitle(QString(tr("Stop Acceleration (Default: %1)")).arg(QString::number(stopAccel, 'f', 2)));
@@ -670,6 +794,10 @@ void FrogPilotLongitudinalPanel::updateMetric(bool metric, bool bootRun) {
     double speedConversion = metric ? MILE_TO_KM : KM_TO_MILE;
 
     params.putIntNonBlocking("IncreasedStoppedDistance", params.getInt("IncreasedStoppedDistance") * distanceConversion);
+    params.putIntNonBlocking("IncreasedStoppedDistanceLowVisibility", params.getInt("IncreasedStoppedDistanceLowVisibility") * distanceConversion);
+    params.putIntNonBlocking("IncreasedStoppedDistanceRain", params.getInt("IncreasedStoppedDistanceRain") * distanceConversion);
+    params.putIntNonBlocking("IncreasedStoppedDistanceRainStorm", params.getInt("IncreasedStoppedDistanceRainStorm") * distanceConversion);
+    params.putIntNonBlocking("IncreasedStoppedDistanceSnow", params.getInt("IncreasedStoppedDistanceSnow") * distanceConversion);
 
     params.putIntNonBlocking("CESignalSpeed", params.getInt("CESignalSpeed") * speedConversion);
     params.putIntNonBlocking("CESpeed", params.getInt("CESpeed") * speedConversion);
@@ -725,6 +853,10 @@ void FrogPilotLongitudinalPanel::updateMetric(bool metric, bool bootRun) {
   FrogPilotParamValueControl *offset6Toggle = static_cast<FrogPilotParamValueControl*>(toggles["Offset6"]);
   FrogPilotParamValueControl *offset7Toggle = static_cast<FrogPilotParamValueControl*>(toggles["Offset7"]);
   FrogPilotParamValueControl *increasedStoppedDistanceToggle = static_cast<FrogPilotParamValueControl*>(toggles["IncreasedStoppedDistance"]);
+  FrogPilotParamValueControl *increasedStoppedDistanceLowVisibilityToggle = static_cast<FrogPilotParamValueControl*>(toggles["IncreasedStoppedDistanceLowVisibility"]);
+  FrogPilotParamValueControl *increasedStoppedDistanceRainToggle = static_cast<FrogPilotParamValueControl*>(toggles["IncreasedStoppedDistanceRain"]);
+  FrogPilotParamValueControl *increasedStoppedDistanceRainStormToggle = static_cast<FrogPilotParamValueControl*>(toggles["IncreasedStoppedDistanceRainStorm"]);
+  FrogPilotParamValueControl *increasedStoppedDistanceSnowToggle = static_cast<FrogPilotParamValueControl*>(toggles["IncreasedStoppedDistanceSnow"]);
   FrogPilotParamValueControl *setSpeedOffsetToggle = static_cast<FrogPilotParamValueControl*>(toggles["SetSpeedOffset"]);
 
   if (metric) {
@@ -745,6 +877,10 @@ void FrogPilotLongitudinalPanel::updateMetric(bool metric, bool bootRun) {
     offset7Toggle->setDescription(tr("Target speed offset applied for posted limits between 120 and 140 km/h."));
 
     increasedStoppedDistanceToggle->updateControl(0, 3, metricDistanceLabels);
+    increasedStoppedDistanceLowVisibilityToggle->updateControl(0, 3, metricDistanceLabels);
+    increasedStoppedDistanceRainToggle->updateControl(0, 3, metricDistanceLabels);
+    increasedStoppedDistanceRainStormToggle->updateControl(0, 3, metricDistanceLabels);
+    increasedStoppedDistanceSnowToggle->updateControl(0, 3, metricDistanceLabels);
 
     ceSignal->updateControl(0, 150, metricSpeedLabels);
     ceSpeedToggle->updateControl(0, 150, metricSpeedLabels);
@@ -776,6 +912,10 @@ void FrogPilotLongitudinalPanel::updateMetric(bool metric, bool bootRun) {
     offset7Toggle->setDescription(tr("Target speed offset applied for posted limits between 75 and 99 mph."));
 
     increasedStoppedDistanceToggle->updateControl(0, 10, imperialDistanceLabels);
+    increasedStoppedDistanceLowVisibilityToggle->updateControl(0, 10, imperialDistanceLabels);
+    increasedStoppedDistanceRainToggle->updateControl(0, 10, imperialDistanceLabels);
+    increasedStoppedDistanceRainStormToggle->updateControl(0, 10, imperialDistanceLabels);
+    increasedStoppedDistanceSnowToggle->updateControl(0, 10, imperialDistanceLabels);
 
     ceSignal->updateControl(0, 99, imperialSpeedLabels);
     ceSpeedToggle->updateControl(0, 99, imperialSpeedLabels);
@@ -806,10 +946,6 @@ void FrogPilotLongitudinalPanel::updateToggles() {
 
     bool setVisible = tuningLevel >= frogpilotToggleLevels[key].toDouble();
 
-    if (key == "CurveSensitivity" || key == "TurnAggressiveness") {
-      setVisible &= params.getBool("MapTurnControl") || params.getBool("VisionTurnControl");
-    }
-
     if (key == "CustomCruise" || key == "CustomCruiseLong" || key == "SetSpeedLimit" || key == "SetSpeedOffset") {
       setVisible &= !hasPCMCruise;
     }
@@ -821,10 +957,6 @@ void FrogPilotLongitudinalPanel::updateToggles() {
     else if (key == "MapGears") {
       setVisible &= isGM || isHKGCanFd || isToyota;
       setVisible &= !isTSK;
-    }
-
-    else if (key == "MTSCCurvatureCheck") {
-      setVisible &= params.getBool("MapTurnControl");
     }
 
     else if (key == "ReverseCruise") {
@@ -854,7 +986,7 @@ void FrogPilotLongitudinalPanel::updateToggles() {
       } else if (conditionalExperimentalKeys.find(key) != conditionalExperimentalKeys.end()) {
         toggles["ConditionalExperimental"]->setVisible(true);
       } else if (curveSpeedKeys.find(key) != curveSpeedKeys.end()) {
-        toggles["CurveSpeedControl"]->setVisible(true);
+        toggles["CurveSpeedController"]->setVisible(true);
       } else if (customDrivingPersonalityKeys.find(key) != customDrivingPersonalityKeys.end()) {
         toggles["CustomPersonalities"]->setVisible(true);
       } else if (longitudinalTuneKeys.find(key) != longitudinalTuneKeys.end()) {

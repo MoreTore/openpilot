@@ -39,6 +39,7 @@ FrogPilotDevicePanel::FrogPilotDevicePanel(FrogPilotSettingsWindow *parent) : Fr
     {"ScreenRecorder", tr("Screen Recorder"), tr("Enable a button in the driving screen to record the screen."), ""},
     {"ScreenTimeout", tr("Screen Timeout (Offroad)"), tr("How long it takes for the screen to turn off when not driving."), ""},
     {"ScreenTimeoutOnroad", tr("Screen Timeout (Onroad)"), tr("How long it takes for the screen to turn off while driving."), ""},
+    {"StandbyMode", tr("Standby Mode"), tr("Turn the screen off when driving and automatically wake it up if engagement state changes or important alerts occur."), ""},
 
     {"IgnoreMe", "Ignore Me", "This is simply used to fix the layout when the user opens the descriptions and the menu gets wonky. No idea why it happens, but I can't be asked to properly fix it so whatever. Sue me.", ""},
     {"IgnoreMe2", "Ignore Me", "This is simply used to fix the layout when the user opens the descriptions and the menu gets wonky. No idea why it happens, but I can't be asked to properly fix it so whatever. Sue me.", ""},

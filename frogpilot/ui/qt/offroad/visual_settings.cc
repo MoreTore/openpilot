@@ -100,7 +100,6 @@ FrogPilotVisualsPanel::FrogPilotVisualsPanel(FrogPilotSettingsWindow *parent) : 
     {"QOLVisuals", tr("Quality of Life"), tr("Visual features to improve your overall openpilot experience."), "../../frogpilot/assets/toggle_icons/icon_quality_of_life.png"},
     {"CameraView", tr("Camera View"), tr("The active camera view display. This is purely a visual change and doesn't impact how openpilot drives!"), ""},
     {"DriverCamera", tr("Show Driver Camera When In Reverse"), tr("Display the driver camera feed when the vehicle is in reverse."), ""},
-    {"StandbyMode", tr("Standby Mode"), tr("Turn the screen off when driving and automatically wake it up if engagement state changes or important alerts occur."), ""},
     {"StoppedTimer", tr("Stopped Timer"), tr("Replace the current speed with a timer when stopped to indicate how long the vehicle has been stopped for."), ""}
   };
 

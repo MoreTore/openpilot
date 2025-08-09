@@ -1,8 +1,8 @@
 #include "frogpilot/ui/qt/offroad/sounds_settings.h"
 
 void playSound(const QString &alert, int volume) {
-  QString stockPath = "/data/openpilot/selfdrive/assets/sounds/" + alert + ".wav";
-  QString themePath = "/data/openpilot/frogpilot/assets/active_theme/sounds/" + alert + ".wav";
+  QString stockPath = "../../selfdrive/assets/sounds/" + alert + ".wav";
+  QString themePath = "../../frogpilot/assets/active_theme/sounds/" + alert + ".wav";
 
   QString filePath = QFile::exists(themePath) ? themePath : stockPath;
 
@@ -35,7 +35,7 @@ FrogPilotSoundsPanel::FrogPilotSoundsPanel(FrogPilotSettingsWindow *parent) : Fr
   const std::vector<std::tuple<QString, QString, QString, QString>> soundsToggles {
     {"AlertVolumeControl", tr("Alert Volume Control"), tr("Adjust the volume for each alert in openpilot."), "../../frogpilot/assets/toggle_icons/icon_mute.png"},
     {"DisengageVolume", tr("Disengage Volume"), tr("Adjust the volume for alerts like:<br><br><b>Adaptive Cruise Disabled</b><br><b>Brake Pedal Pressed</b><br><b>Parking Brake Engaged</b><br><b>Speed too Low</b>"), ""},
-    {"EngageVolume", tr("Engage Volume"), tr("Adjust the volume for alerts like:<br><br><b>NNFF Torque Controller loaded</b><br><b>openpilot engaged</b>"), ""},
+    {"EngageVolume", tr("Engage Volume"), tr("Adjust the volume for alerts like:<br><b>openpilot engaged</b>"), ""},
     {"PromptVolume", tr("Prompt Volume"), tr("Adjust the volume for alerts like:<br><br><b>Car Detected in Blindspot</b><br><b>Steer Unavailable Below \"X\"</b><br><b>Speed too Low</b><br><b>Take Control, Turn Exceeds Steering Limit</b>"), ""},
     {"PromptDistractedVolume", tr("Prompt Distracted Volume"), tr("Adjust the volume for alerts like:<br><br><b>Pay Attention, Driver Distracted</b><br><b>Touch Steering Wheel, Driver Unresponsive</b>"), ""},
     {"RefuseVolume", tr("Refuse Volume"), tr("Adjust the volume for alerts like:<br><br><b>openpilot Unavailable</b>"), ""},

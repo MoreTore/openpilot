@@ -369,6 +369,7 @@ void SettingsWindow::hideEvent(QHideEvent *event) {
   panelOpen = false;
   subPanelOpen = false;
   subSubPanelOpen = false;
+  subSubSubPanelOpen = false;
 
   updateFrogPilotToggles();
 }
@@ -409,7 +410,11 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
   sidebar_layout->addSpacing(10);
   sidebar_layout->addWidget(close_btn, 0, Qt::AlignRight);
   QObject::connect(close_btn, &QPushButton::clicked, [this]() {
-    if (subSubPanelOpen) {
+    if (subSubSubPanelOpen) {
+      closeSubSubSubPanel();
+
+      subSubSubPanelOpen = false;
+    } else if (subSubPanelOpen) {
       closeSubSubPanel();
 
       subSubPanelOpen = false;
@@ -441,6 +446,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
   QObject::connect(frogpilotSettingsWindow, &FrogPilotSettingsWindow::openPanel, [this]() {panelOpen=true;});
   QObject::connect(frogpilotSettingsWindow, &FrogPilotSettingsWindow::openSubPanel, [this]() {subPanelOpen=true;});
   QObject::connect(frogpilotSettingsWindow, &FrogPilotSettingsWindow::openSubSubPanel, [this]() {subSubPanelOpen=true;});
+  QObject::connect(frogpilotSettingsWindow, &FrogPilotSettingsWindow::openSubSubSubPanel, [this]() {subSubSubPanelOpen=true;});
 
   QList<QPair<QString, QWidget *>> panels = {
     {tr("Device"), device},
@@ -485,7 +491,7 @@ SettingsWindow::SettingsWindow(QWidget *parent) : QFrame(parent) {
         bool tuningLevelConfirmed = params.getBool("TuningLevelConfirmed");
 
         if (!tuningLevelConfirmed) {
-          int frogpilotHours = paramsTracking.getInt("FrogPilotMinutes") / 60;
+          int frogpilotHours = params.getInt("FrogPilotMinutes") / 60;
           int openpilotHours = params.getInt("KonikMinutes") / 60 + params.getInt("openpilotMinutes") / 60;
 
           if (frogpilotHours < 1 && openpilotHours < 100) {

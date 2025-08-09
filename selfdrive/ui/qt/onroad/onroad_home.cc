@@ -158,6 +158,7 @@ void OnroadWindow::offroadTransition(bool offroad) {
   }
 #endif
   alerts->clear();
+  alerts->displayFerg = false;
 }
 
 void OnroadWindow::primeChanged(bool prime) {

@@ -13,6 +13,7 @@ public:
 signals:
   void openSubPanel();
   void openSubSubPanel();
+  void openSubSubSubPanel();
 
 protected:
   void showEvent(QShowEvent *event) override;
@@ -28,7 +29,9 @@ private:
   bool isHKGCanFd;
   bool isToyota;
   bool isTSK;
+  bool qolOpen;
   bool slcOpen;
+  bool weatherOpen;
 
   int tuningLevel;
 
@@ -44,10 +47,10 @@ private:
   std::set<QString> advancedLongitudinalTuneKeys = {"LongitudinalActuatorDelay", "StartAccel", "StopAccel", "StoppingDecelRate", "VEgoStarting", "VEgoStopping"};
   std::set<QString> aggressivePersonalityKeys = {"AggressiveFollow", "AggressiveJerkAcceleration", "AggressiveJerkDeceleration", "AggressiveJerkDanger", "AggressiveJerkSpeed", "AggressiveJerkSpeedDecrease", "ResetAggressivePersonality"};
   std::set<QString> conditionalExperimentalKeys = {"CESpeed", "CESpeedLead", "CECurves", "CELead", "CEModelStopTime", "CENavigation", "CESignalSpeed", "ShowCEMStatus"};
-  std::set<QString> curveSpeedKeys = {"CurveDetectionMethod", "CurveSensitivity", "MTSCCurvatureCheck", "ShowCSCStatus", "TurnAggressiveness"};
+  std::set<QString> curveSpeedKeys = {"CalibratedLateralAcceleration", "CalibrationProgress", "ResetCurveData", "ShowCSCStatus"};
   std::set<QString> customDrivingPersonalityKeys = {"AggressivePersonalityProfile", "RelaxedPersonalityProfile", "StandardPersonalityProfile", "TrafficPersonalityProfile"};
   std::set<QString> longitudinalTuneKeys = {"AccelerationProfile", "DecelerationProfile", "HumanAcceleration", "HumanFollowing", "LeadDetectionThreshold", "MaxDesiredAcceleration", "TacoTune"};
-  std::set<QString> qolKeys = {"CustomCruise", "CustomCruiseLong", "ForceStandstill", "ForceStops", "IncreasedStoppedDistance", "MapGears", "ReverseCruise", "SetSpeedOffset"};
+  std::set<QString> qolKeys = {"CustomCruise", "CustomCruiseLong", "ForceStops", "IncreasedStoppedDistance", "MapGears", "ReverseCruise", "SetSpeedOffset", "WeatherPresets"};
   std::set<QString> relaxedPersonalityKeys = {"RelaxedFollow", "RelaxedJerkAcceleration", "RelaxedJerkDeceleration", "RelaxedJerkDanger", "RelaxedJerkSpeed", "RelaxedJerkSpeedDecrease", "ResetRelaxedPersonality"};
   std::set<QString> speedLimitControllerKeys = {"SLCOffsets", "SLCFallback", "SLCOverride", "SLCPriority", "SLCQOL", "SLCVisuals"};
   std::set<QString> speedLimitControllerOffsetsKeys = {"Offset1", "Offset2", "Offset3", "Offset4", "Offset5", "Offset6", "Offset7"};
@@ -55,10 +58,13 @@ private:
   std::set<QString> speedLimitControllerVisualKeys = {"ShowSLCOffset", "SpeedLimitSources"};
   std::set<QString> standardPersonalityKeys = {"StandardFollow", "StandardJerkAcceleration", "StandardJerkDeceleration", "StandardJerkDanger", "StandardJerkSpeed", "StandardJerkSpeedDecrease", "ResetStandardPersonality"};
   std::set<QString> trafficPersonalityKeys = {"TrafficFollow", "TrafficJerkAcceleration", "TrafficJerkDeceleration", "TrafficJerkDanger", "TrafficJerkSpeed", "TrafficJerkSpeedDecrease", "ResetTrafficPersonality"};
+  std::set<QString> weatherKeys = {"LowVisibilityOffsets", "RainOffsets", "RainStormOffsets", "SnowOffsets"};
+  std::set<QString> weatherLowVisibilityKeys = {"IncreaseFollowingLowVisibility", "IncreasedStoppedDistanceLowVisibility", "ReduceAccelerationLowVisibility", "ReduceLateralAccelerationLowVisibility"};
+  std::set<QString> weatherRainKeys = {"IncreaseFollowingRain", "IncreasedStoppedDistanceRain", "ReduceAccelerationRain", "ReduceLateralAccelerationRain"};
+  std::set<QString> weatherRainStormKeys = {"IncreaseFollowingRainStorm", "IncreasedStoppedDistanceRainStorm", "ReduceAccelerationRainStorm", "ReduceLateralAccelerationRainStorm"};
+  std::set<QString> weatherSnowKeys = {"IncreaseFollowingSnow", "IncreasedStoppedDistanceSnow", "ReduceAccelerationSnow", "ReduceLateralAccelerationSnow"};
 
   std::set<QString> parentKeys;
-
-  FrogPilotButtonsControl *curveDetectionToggle;
 
   FrogPilotParamValueControl *longitudinalActuatorDelayToggle;
   FrogPilotParamValueControl *startAccelToggle;
@@ -68,6 +74,9 @@ private:
   FrogPilotParamValueControl *vEgoStoppingToggle;
 
   FrogPilotSettingsWindow *parent;
+
+  LabelControl *calibratedLateralAccelerationLabel;
+  LabelControl *calibrationProgressLabel;
 
   QJsonObject frogpilotToggleLevels;
 

@@ -1,5 +1,9 @@
 #include "frogpilot/ui/qt/offroad/theme_settings.h"
 
+bool isUserCreatedTheme(const QString &themeName) {
+  return themeName.endsWith("-user_created");
+}
+
 void updateAssetParam(const QString &assetParam, Params &params, const QString &value, bool add) {
   QStringList assets = QString::fromStdString(params.get(assetParam.toStdString())).split(",", QString::SkipEmptyParts);
   if (add) {
@@ -17,19 +21,44 @@ void updateAssetParam(const QString &assetParam, Params &params, const QString &
 void deleteThemeAsset(QDir &directory, const QString &subFolder, const QString &assetParam, const QString &themeToDelete, Params &params) {
   bool useFiles = subFolder.isEmpty();
 
-  QString themeName = themeToDelete.toLower().replace(" (", "-").replace(")", "").replace(" ", "-");
+  QString baseName = themeToDelete.toLower();
+  baseName.replace("(", "-").replace(")", "").replace(" ", "-");
+  baseName.remove(QRegularExpression("[^a-z0-9\\-]"));
+  while (baseName.endsWith("-")) {
+    baseName.chop(1);
+  }
+
+  QString baseUnderscore = baseName;
+  baseUnderscore.replace("-", "_");
+
+  QStringList candidateNames = {
+    baseName,
+    baseName + "-user-created",
+    baseUnderscore,
+    baseUnderscore + "-user_created"
+  };
+
   if (useFiles) {
-    for (const QString &file : directory.entryList(QDir::Files)) {
-      QString fileName = QFileInfo(file).baseName().toLower().replace("_", "-");
-      if (fileName == themeName) {
+    QStringList files = directory.entryList(QDir::Files);
+    for (QString &file : files) {
+      QString normalizedFile = QFileInfo(file).baseName().toLower();
+      normalizedFile.replace("_", "-");
+      normalizedFile.remove(QRegularExpression("[^a-z0-9\\-~]"));
+
+      if (candidateNames.contains(normalizedFile)) {
         QFile::remove(directory.filePath(file));
         break;
       }
     }
   } else {
-    QDir targetDir(directory.filePath(QDir(themeName).filePath(subFolder)));
-    if (targetDir.exists()) {
-      targetDir.removeRecursively();
+    for (QString &candidate : candidateNames) {
+      QString fullSubPath = QDir(candidate).filePath(subFolder);
+      QDir targetDir(directory.filePath(fullSubPath));
+
+      if (targetDir.exists()) {
+        targetDir.removeRecursively();
+        break;
+      }
     }
   }
 
@@ -37,12 +66,17 @@ void deleteThemeAsset(QDir &directory, const QString &subFolder, const QString &
 }
 
 void downloadThemeAsset(const QString &input, const std::string &paramKey, const QString &assetParam, Params &params, Params &params_memory) {
-  QString output = input.toLower().remove("(").remove(")");
+  QString output = input;
+  int tilde = output.indexOf("~");
+  if (tilde >= 0) {
+    output = output.left(tilde).toLower() + "~" + output.mid(tilde + 1);
+  } else {
+    output = output.toLower();
+  }
+  output.remove("(").remove(")");
   output.replace(" ", input.contains("(") ? "-" : "_");
 
   params_memory.put(paramKey, output.toStdString());
-
-  updateAssetParam(assetParam, params, input, false);
 }
 
 QStringList getHolidayThemes() {
@@ -84,12 +118,39 @@ QStringList getThemeList(const bool &randomThemes, const QDir &themePacksDirecto
       }
     }
 
-    QStringList parts = entry.baseName().split(entry.baseName().contains("-") ? "-" : "_", QString::SkipEmptyParts);
+    QString baseName = entry.baseName();
+    bool userCreated = isUserCreatedTheme(baseName);
+    if (userCreated) {
+      baseName = baseName.replace("-user_created", "");
+    }
+
+    int tildeIdx = baseName.indexOf("~");
+    QString creator;
+    if (tildeIdx >= 0) {
+      creator = baseName.mid(tildeIdx + 1);
+      baseName = baseName.left(tildeIdx);
+    }
+
+    QStringList parts = baseName.split(baseName.contains("-") ? "-" : "_", QString::SkipEmptyParts);
     for (QString &part : parts) {
       part[0] = part[0].toUpper();
     }
 
-    themeList.append(parts.size() <= 1 || useFiles ? parts.join(" ") : QString("%1 (%2)").arg(parts[0], parts.mid(1).join(" ")));
+    QString displayName;
+    if (userCreated) {
+      displayName = parts.join(" ");
+    } else {
+      displayName = (parts.size() <= 1 || useFiles) ? parts.join(" ") : QString("%1 (%2)").arg(parts[0], parts.mid(1).join(" "));
+    }
+
+    if (userCreated) {
+      displayName += " 🌟";
+    }
+    if (!creator.isEmpty()) {
+      displayName += " - by: " + creator;
+    }
+
+    themeList.append(displayName);
   }
 
   return themeList;
@@ -98,22 +159,45 @@ QStringList getThemeList(const bool &randomThemes, const QDir &themePacksDirecto
 QString getThemeName(const std::string &paramKey, Params &params) {
   QString value = QString::fromStdString(params.get(paramKey));
 
-  QStringList parts = value.split(value.contains("-") ? "-" : "_", QString::SkipEmptyParts);
+  QString baseName = value;
+
+  int tildeIdx = baseName.indexOf("~");
+  QString creator;
+  if (tildeIdx >= 0) {
+    creator = baseName.mid(tildeIdx + 1);
+    baseName = baseName.left(tildeIdx);
+  }
+
+  QStringList parts = baseName.split(baseName.contains("-") ? "-" : "_", QString::SkipEmptyParts);
   for (QString &part : parts) {
     part[0] = part[0].toUpper();
   }
 
-  if (value.contains("-") && parts.size() > 1) {
-    return QString("%1 (%2)").arg(parts[0], parts.mid(1).join(" "));
+  QString displayName;
+  if (baseName.contains("-") && parts.size() > 1) {
+    displayName = QString("%1 (%2)").arg(parts[0], parts.mid(1).join(" "));
+  } else {
+    displayName = parts.join(" ");
   }
-  return parts.join(" ");
+
+  if (isUserCreatedTheme(value)) {
+    displayName = displayName.split(" (")[0] + " 🌟";
+  }
+  if (!creator.isEmpty()) {
+    displayName += " - by: " + creator;
+  }
+
+  return displayName;
 }
 
 QString storeThemeName(const QString &input, const std::string &paramKey, Params &params) {
   QString output = input.toLower().remove("(").remove(")").remove("'").remove(".");
   output.replace(" ", input.contains("(") ? "-" : "_");
+  output.replace("_🌟", "-user_created");
+  output = output.trimmed();
 
   params.put(paramKey, output.toStdString());
+
   return getThemeName(paramKey, params);
 }
 
@@ -177,8 +261,6 @@ FrogPilotThemesPanel::FrogPilotThemesPanel(FrogPilotSettingsWindow *parent) : Fr
 
             params_memory.putBool("CancelThemeDownload", true);
 
-            updateAssetParam("DownloadableColors", params, colorSchemeToDownload, true);
-
             QTimer::singleShot(2500, [this]() {
               cancellingDownload = false;
               colorDownloading = false;
@@ -230,8 +312,6 @@ FrogPilotThemesPanel::FrogPilotThemesPanel(FrogPilotSettingsWindow *parent) : Fr
             cancellingDownload = true;
 
             params_memory.putBool("CancelThemeDownload", true);
-
-            updateAssetParam("DownloadableDistanceIcons", params, distanceIconPackToDownload, true);
 
             QTimer::singleShot(2500, [this]() {
               cancellingDownload = false;
@@ -285,8 +365,6 @@ FrogPilotThemesPanel::FrogPilotThemesPanel(FrogPilotSettingsWindow *parent) : Fr
 
             params_memory.putBool("CancelThemeDownload", true);
 
-            updateAssetParam("DownloadableIcons", params, iconPackToDownload, true);
-
             QTimer::singleShot(2500, [this]() {
               cancellingDownload = false;
               iconDownloading = false;
@@ -338,8 +416,6 @@ FrogPilotThemesPanel::FrogPilotThemesPanel(FrogPilotSettingsWindow *parent) : Fr
             cancellingDownload = true;
 
             params_memory.putBool("CancelThemeDownload", true);
-
-            updateAssetParam("DownloadableSignals", params, signalAnimationToDownload, true);
 
             QTimer::singleShot(2500, [this]() {
               cancellingDownload = false;
@@ -393,8 +469,6 @@ FrogPilotThemesPanel::FrogPilotThemesPanel(FrogPilotSettingsWindow *parent) : Fr
 
             params_memory.putBool("CancelThemeDownload", true);
 
-            updateAssetParam("DownloadableSounds", params, soundPackToDownload, true);
-
             QTimer::singleShot(2500, [this]() {
               cancellingDownload = false;
               soundDownloading = false;
@@ -446,8 +520,6 @@ FrogPilotThemesPanel::FrogPilotThemesPanel(FrogPilotSettingsWindow *parent) : Fr
             cancellingDownload = true;
 
             params_memory.putBool("CancelThemeDownload", true);
-
-            updateAssetParam("DownloadableWheels", params, wheelToDownload, true);
 
             QTimer::singleShot(2500, [this]() {
               cancellingDownload = false;
@@ -681,13 +753,7 @@ void FrogPilotThemesPanel::updateState(const UIState &s, const FrogPilotUIState 
         wheelsDownloaded = params.get("DownloadableWheels").empty();
 
         params_memory.remove("CancelThemeDownload");
-        params_memory.remove("ColorToDownload");
-        params_memory.remove("DistanceIconToDownload");
-        params_memory.remove("IconToDownload");
-        params_memory.remove("SignalToDownload");
-        params_memory.remove("SoundToDownload");
         params_memory.remove("ThemeDownloadProgress");
-        params_memory.remove("WheelToDownload");
 
         downloadStatusLabel->setText("Idle");
       });
@@ -698,32 +764,32 @@ void FrogPilotThemesPanel::updateState(const UIState &s, const FrogPilotUIState 
 
   manageCustomColorsBtn->setText(1, colorDownloading ? tr("CANCEL") : tr("DOWNLOAD"));
   manageCustomColorsBtn->setEnabledButtons(0, !themeDownloading);
-  manageCustomColorsBtn->setEnabledButtons(1, fs.frogpilot_scene.online && (!themeDownloading || colorDownloading) && !cancellingDownload && !colorsDownloaded && parked);
+  manageCustomColorsBtn->setEnabledButtons(1, fs.frogpilot_scene.online && (!themeDownloading || colorDownloading) && !cancellingDownload && !finalizingDownload && !colorsDownloaded && parked);
   manageCustomColorsBtn->setEnabledButtons(2, !themeDownloading);
 
   manageCustomIconsBtn->setText(1, iconDownloading ? tr("CANCEL") : tr("DOWNLOAD"));
   manageCustomIconsBtn->setEnabledButtons(0, !themeDownloading);
-  manageCustomIconsBtn->setEnabledButtons(1, fs.frogpilot_scene.online && (!themeDownloading || iconDownloading) && !cancellingDownload && !iconsDownloaded && parked);
+  manageCustomIconsBtn->setEnabledButtons(1, fs.frogpilot_scene.online && (!themeDownloading || iconDownloading) && !cancellingDownload && !finalizingDownload && !iconsDownloaded && parked);
   manageCustomIconsBtn->setEnabledButtons(2, !themeDownloading);
 
   manageCustomSignalsBtn->setText(1, signalDownloading ? tr("CANCEL") : tr("DOWNLOAD"));
   manageCustomSignalsBtn->setEnabledButtons(0, !themeDownloading);
-  manageCustomSignalsBtn->setEnabledButtons(1, fs.frogpilot_scene.online && (!themeDownloading || signalDownloading) && !cancellingDownload && !signalsDownloaded && parked);
+  manageCustomSignalsBtn->setEnabledButtons(1, fs.frogpilot_scene.online && (!themeDownloading || signalDownloading) && !cancellingDownload && !finalizingDownload && !signalsDownloaded && parked);
   manageCustomSignalsBtn->setEnabledButtons(2, !themeDownloading);
 
   manageCustomSoundsBtn->setText(1, soundDownloading ? tr("CANCEL") : tr("DOWNLOAD"));
   manageCustomSoundsBtn->setEnabledButtons(0, !themeDownloading);
-  manageCustomSoundsBtn->setEnabledButtons(1, fs.frogpilot_scene.online && (!themeDownloading || soundDownloading) && !cancellingDownload && !soundsDownloaded && parked);
+  manageCustomSoundsBtn->setEnabledButtons(1, fs.frogpilot_scene.online && (!themeDownloading || soundDownloading) && !cancellingDownload && !finalizingDownload && !soundsDownloaded && parked);
   manageCustomSoundsBtn->setEnabledButtons(2, !themeDownloading);
 
   manageDistanceIconsBtn->setText(1, distanceIconDownloading ? tr("CANCEL") : tr("DOWNLOAD"));
   manageDistanceIconsBtn->setEnabledButtons(0, !themeDownloading);
-  manageDistanceIconsBtn->setEnabledButtons(1, fs.frogpilot_scene.online && (!themeDownloading || distanceIconDownloading) && !cancellingDownload && !distanceIconsDownloaded && parked);
+  manageDistanceIconsBtn->setEnabledButtons(1, fs.frogpilot_scene.online && (!themeDownloading || distanceIconDownloading) && !cancellingDownload && !finalizingDownload && !distanceIconsDownloaded && parked);
   manageDistanceIconsBtn->setEnabledButtons(2, !themeDownloading);
 
   manageWheelIconsBtn->setText(1, wheelDownloading ? tr("CANCEL") : tr("DOWNLOAD"));
   manageWheelIconsBtn->setEnabledButtons(0, !themeDownloading);
-  manageWheelIconsBtn->setEnabledButtons(1, fs.frogpilot_scene.online && (!themeDownloading || wheelDownloading) && !cancellingDownload && !wheelsDownloaded && parked);
+  manageWheelIconsBtn->setEnabledButtons(1, fs.frogpilot_scene.online && (!themeDownloading || wheelDownloading) && !cancellingDownload && !finalizingDownload && !wheelsDownloaded && parked);
   manageWheelIconsBtn->setEnabledButtons(2, !themeDownloading);
 
   parent->keepScreenOn = themeDownloading;
