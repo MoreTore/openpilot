@@ -11,8 +11,6 @@ import urllib.error
 import urllib.request
 import zipfile
 
-import openpilot.system.sentry as sentry
-
 from functools import cache
 from pathlib import Path
 
@@ -40,22 +38,22 @@ locks = {
 }
 
 def run_thread_with_lock(name, target, args=(), report=True):
-  if not running_threads.get(name, threading.Thread()).is_alive():
-    with locks[name]:
-      def wrapped_target(*t_args):
-        try:
-          target(*t_args)
-        except urllib.error.HTTPError as error:
-          print(f"HTTP error: {error}")
-        except subprocess.CalledProcessError as error:
-          print(f"CalledProcessError in thread '{name}': {error}")
-        except Exception as exception:
-          print(f"Error in thread '{name}': {exception}")
-          if report:
-            sentry.capture_exception(exception)
-      thread = threading.Thread(target=wrapped_target, args=args, daemon=True)
-      thread.start()
-      running_threads[name] = thread
+  import openpilot.system.sentry as sentry
+  with locks[name]:
+    def wrapped_target(*t_args):
+      try:
+        target(*t_args)
+      except urllib.error.HTTPError as error:
+        print(f"HTTP error: {error}")
+      except subprocess.CalledProcessError as error:
+        print(f"CalledProcessError in thread '{name}': {error}")
+      except Exception as exception:
+        print(f"Error in thread '{name}': {exception}")
+        if report:
+          sentry.capture_exception(exception)
+    thread = threading.Thread(target=wrapped_target, args=args, daemon=True)
+    thread.start()
+    running_threads[name] = thread
 
 def calculate_bearing_offset(latitude, longitude, current_bearing, distance):
   bearing = math.radians(current_bearing)
@@ -125,6 +123,7 @@ def extract_zip(zip_file, extract_path):
   print(f"Extraction completed: {zip_file} has been removed")
 
 def flash_panda():
+  import openpilot.system.sentry as sentry
   for serial in Panda.list():
     try:
       panda = Panda(serial)
@@ -152,6 +151,7 @@ def is_url_pingable(url):
     print(f"Network/HTTP error for {url}: {exception}")
     return False
   except Exception as exception:
+    import openpilot.system.sentry as sentry
     print(f"An unexpected error occurred while checking {url}: {exception}")
     sentry.capture_exception(exception)
     return False
@@ -179,6 +179,7 @@ def lock_doors(lock_doors_timer, sm):
       break
 
 def run_cmd(cmd, success_message, fail_message, report=True, env=None):
+  import openpilot.system.sentry as sentry
   try:
     subprocess.run(cmd, capture_output=True, check=True, env=env, text=True)
     print(success_message)

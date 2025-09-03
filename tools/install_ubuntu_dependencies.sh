@@ -103,7 +103,9 @@ function install_ubuntu_focal_requirements() {
   $SUDO apt-get install -y --no-install-recommends \
     libavresample-dev \
     qt5-default \
-    python-dev
+    python-dev \
+    llvm-18 \
+    llvm-18-dev
 }
 
 # Detect OS using /etc/os-release file
