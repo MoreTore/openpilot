@@ -96,7 +96,7 @@ class CarState(CarStateBase):
 
     ret.steeringTorqueEps = cp.vl["STEER_TORQUE"]["STEER_TORQUE_MOTOR"]
 
-    lkas_blocked = 0
+    lkas_blocked = False
     if not self.CP.flags & MazdaFlags.NO_FSC: # old mazdas without fsc don't have this signal
       ret.steeringRateDeg = cp.vl["STEER_RATE"]["STEER_ANGLE_RATE"]
       # Either due to low speed or hands off
