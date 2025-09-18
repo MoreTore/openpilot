@@ -95,7 +95,12 @@ class CarState(CarStateBase):
     ret.steeringPressed = abs(ret.steeringTorque) > LKAS_LIMITS.STEER_THRESHOLD
 
     ret.steeringTorqueEps = cp.vl["STEER_TORQUE"]["STEER_TORQUE_MOTOR"]
-    ret.steeringRateDeg = cp.vl["STEER_RATE"]["STEER_ANGLE_RATE"]
+
+    lkas_blocked = 0
+    if not self.CP.flags & MazdaFlags.NO_FSC: # old mazdas without fsc don't have this signal
+      ret.steeringRateDeg = cp.vl["STEER_RATE"]["STEER_ANGLE_RATE"]
+      # Either due to low speed or hands off
+      lkas_blocked = cp.vl["STEER_RATE"]["LKAS_BLOCK"] == 1
 
     # TODO: this should be from 0 - 1.
     ret.brakePressed = cp.vl["PEDALS"]["BRAKE_ON"] == 1
@@ -109,8 +114,6 @@ class CarState(CarStateBase):
     ret.gas = cp.vl["ENGINE_DATA"]["PEDAL_GAS"]
     ret.gasPressed = ret.gas > 0
 
-    # Either due to low speed or hands off
-    lkas_blocked = cp.vl["STEER_RATE"]["LKAS_BLOCK"] == 1
 
     if self.CP.minSteerSpeed > 0:
       # LKAS is enabled at 52kph going up and disabled at 45kph going down
@@ -248,10 +251,13 @@ class CarState(CarStateBase):
         # sig_address, frequency
         ("BLINK_INFO", 10),
         ("STEER", 67),
-        ("STEER_RATE", 83),
         ("STEER_TORQUE", 83),
         ("WHEEL_SPEEDS", 100),
       ]
+      if not CP.flags & MazdaFlags.NO_FSC:
+        messages += [
+          ("STEER_RATE", 83),
+        ]
 
     if CP.flags & MazdaFlags.GEN1:
       messages += [
