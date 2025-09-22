@@ -304,7 +304,7 @@ class CarState(CarStateBase):
     if not (CP.flags & (MazdaFlags.GEN2 | MazdaFlags.GEN3)):
       messages += [
         # sig_address, frequency
-        ("CRZ_BTNS", 10)
+        ("CRZ_BTNS", 10),
         ("BLINK_INFO", 10),
         ("STEER", 67),
         ("STEER_RATE", 83),
