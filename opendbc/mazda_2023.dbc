@@ -478,15 +478,15 @@ BO_ 544 ACC: 8 XXX
  SG_ CHECKSUM : 56|8@1+ (1,0) [0|15] "" XXX
 
 BO_ 546 ACC_2: 8 XXX
- SG_ ACCEL_CMD : 0|12@0+ (1,0) [0|65535] "" XXX
- SG_ ACC_NOT_ENABLED : 1|1@0+ (1,0) [0|1] "" XXX
- SG_ NEW_SIGNAL_4 : 2|1@0+ (1,0) [0|1] "" XXX
- SG_ CTR : 7|4@0+ (1,0) [0|15] "" XXX
- SG_ ACC_ENABLED : 18|1@0+ (1,0) [0|255] "" XXX
- SG_ BRAKE_RELATED : 20|1@0+ (1,0) [0|15] "" XXX
- SG_ NEW_SIGNAL_2 : 31|16@0+ (1,0) [0|255] "" XXX
- SG_ NEW_SIGNAL_1 : 47|16@0+ (1,0) [0|65535] "" XXX
- SG_ CHKSUM : 63|8@0+ (1,0) [0|15] "" XXX
+ SG_ CHECKSUM : 7|8@0+ (1,0) [0|255] "" XXX
+ SG_ COUNTER : 11|4@0+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_5 : 16|1@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_4 : 20|1@0+ (1,0) [0|1] "" XXX
+ SG_ ENABLED : 21|1@0+ (1,0) [0|255] "" XXX
+ SG_ GAS_OVERRIDE : 22|1@0+ (1,0) [0|1] "" XXX
+ SG_ ACCEL_CMD : 31|16@0- (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_1 : 40|16@1- (1,0) [0|65535] "" XXX
+ SG_ BYTE_7 : 63|8@0+ (1,0) [0|15] "" XXX
 
 BO_ 547 NEW_MSG_223: 8 XXX
 
