@@ -56,7 +56,7 @@ TogglesPanel::TogglesPanel(SettingsWindow *parent) : ListWidget(parent) {
     {
       "RadarInterceptorEnabled",
       tr("Radar Interceptor Installed"),
-      tr("Enable if you have installed the radar Iterceptor."),
+      tr("Enable if you have installed the radar interceptor."),
       "../assets/offroad/icon_openpilot.png",
     },
     {
