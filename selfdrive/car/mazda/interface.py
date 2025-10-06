@@ -15,6 +15,8 @@ EventName = car.CarEvent.EventName
 
 NON_LINEAR_TORQUE_PARAMS = {
   CAR.MAZDA_3_2019: (3.8818, 0.6873, 0.0999, 0.3605),
+  CAR.MAZDA_CX_30: (4.68689, 0.79999, 0.18244, 0.38763),
+  CAR.MAZDA_CX_50: (4.68689, 0.79999, 0.18244, 0.38763)
 }
 
 class CarInterface(CarInterfaceBase):
