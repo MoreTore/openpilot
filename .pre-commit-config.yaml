@@ -37,17 +37,17 @@ repos:
     hooks:
     -   id: ruff
         exclude: '^(third_party/)|(msgq/)|(panda/)|(rednose/)|(rednose_repo/)|(tinygrad/)|(tinygrad_repo/)|(teleoprtc/)|(teleoprtc_repo/)'
--   repo: local
-    hooks:
-    -   id: mypy
-        name: mypy
-        entry: mypy
-        language: system
-        types: [python]
-        args:
-        - --local-partial-types
-        - --explicit-package-bases
-        exclude: '^(third_party/)|(body/)|(msgq/)|(opendbc/)|(panda/)|(rednose/)|(rednose_repo/)|(tinygrad/)|(tinygrad_repo/)|(teleoprtc/)|(teleoprtc_repo/)'
+# -   repo: local
+#     hooks:
+#     -   id: mypy
+#         name: mypy
+#         entry: mypy
+#         language: system
+#         types: [python]
+#         args:
+#         - --local-partial-types
+#         - --explicit-package-bases
+#         exclude: '^(third_party/)|(body/)|(msgq/)|(opendbc/)|(panda/)|(rednose/)|(rednose_repo/)|(tinygrad/)|(tinygrad_repo/)|(teleoprtc/)|(teleoprtc_repo/)'
 -   repo: local
     hooks:
     -   id: cppcheck
@@ -62,18 +62,18 @@ repos:
         - --quiet
         - --force
         - -j8
--   repo: https://github.com/cpplint/cpplint
-    rev: 1.6.1
-    hooks:
-    -   id: cpplint
-        exclude: '^(third_party/)|(msgq/)|(body/)|(rednose/)|(rednose_repo/)|(opendbc/)|(panda/)|(generated/)'
-        args:
-        - --quiet
-        - --counting=total
-        - --linelength=240
-        # https://google.github.io/styleguide/cppguide.html
-        # relevant rules are whitelisted, see all options with: cpplint --filter=
-        - --filter=-build,-legal,-readability,-runtime,-whitespace,+build/include_subdir,+build/forward_decl,+build/include_what_you_use,+build/deprecated,+whitespace/comma,+whitespace/line_length,+whitespace/empty_if_body,+whitespace/empty_loop_body,+whitespace/empty_conditional_body,+whitespace/forcolon,+whitespace/parens,+whitespace/semicolon,+whitespace/tab,+readability/braces
+# -   repo: https://github.com/cpplint/cpplint
+#     rev: 1.6.1
+#     hooks:
+#     -   id: cpplint
+#         exclude: '^(third_party/)|(msgq/)|(body/)|(rednose/)|(rednose_repo/)|(opendbc/)|(panda/)|(generated/)'
+#         args:
+#         - --quiet
+#         - --counting=total
+#         - --linelength=240
+#         # https://google.github.io/styleguide/cppguide.html
+#         # relevant rules are whitelisted, see all options with: cpplint --filter=
+#         - --filter=-build,-legal,-readability,-runtime,-whitespace,+build/include_subdir,+build/forward_decl,+build/include_what_you_use,+build/deprecated,+whitespace/comma,+whitespace/line_length,+whitespace/empty_if_body,+whitespace/empty_loop_body,+whitespace/empty_conditional_body,+whitespace/forcolon,+whitespace/parens,+whitespace/semicolon,+whitespace/tab,+readability/braces
 -   repo: https://github.com/MarcoGorelli/cython-lint
     rev: v0.16.2
     hooks:

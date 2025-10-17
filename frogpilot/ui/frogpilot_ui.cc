@@ -1,4 +1,5 @@
 #include "frogpilot/ui/frogpilot_ui.h"
+#include "frogpilot/ui/qt/widgets/frogpilot_controls.h"
 
 static void update_state(FrogPilotUIState *fs) {
   FrogPilotUIScene &frogpilot_scene = fs->frogpilot_scene;
