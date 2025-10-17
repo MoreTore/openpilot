@@ -46,6 +46,9 @@ def manager_init() -> None:
     ("LanguageSetting", "main_en"),
     ("OpenpilotEnabledToggle", "1"),
     ("LongitudinalPersonality", str(log.LongitudinalPersonality.standard)),
+    ("BlendedACC", "0"),
+    ("RecordRoad", "1"),
+    ("RemoteAccess", "0"),
   ]
   if not PC:
     default_params.append(("LastUpdateTime", datetime.datetime.utcnow().isoformat().encode('utf8')))
@@ -152,7 +155,10 @@ def manager_thread() -> None:
   pm = messaging.PubMaster(['managerState'])
 
   write_onroad_params(False, params)
-  ensure_running(managed_processes.values(), False, params=params, CP=sm['carParams'], not_run=ignore, classic_model=False, tinygrad_model=False, frogpilot_toggles=get_frogpilot_toggles())
+  ensure_running(
+    managed_processes.values(), False, params=params,CP=sm['carParams'], not_run=ignore,
+    classic_model=False, tinygrad_model=False, frogpilot_toggles=get_frogpilot_toggles()
+  )
 
   started_prev = False
 
@@ -187,7 +193,11 @@ def manager_thread() -> None:
 
     started_prev = started
 
-    ensure_running(managed_processes.values(), started, params=params, CP=sm['carParams'], not_run=ignore, classic_model=classic_model, tinygrad_model=tinygrad_model, frogpilot_toggles=frogpilot_toggles)
+    ensure_running(
+      managed_processes.values(), started, params=params, CP=sm['carParams'],
+      not_run=ignore, classic_model=classic_model, tinygrad_model=tinygrad_model,
+      frogpilot_toggles=frogpilot_toggles
+    )
 
     running = ' '.join("{}{}\u001b[0m".format("\u001b[32m" if p.proc.is_alive() else "\u001b[31m", p.name)
                        for p in managed_processes.values() if p.proc)

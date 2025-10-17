@@ -4,6 +4,7 @@ from openpilot.common.realtime import DT_CTRL
 from openpilot.selfdrive.controls.lib.drive_helpers import CONTROL_N, apply_deadzone
 from openpilot.selfdrive.controls.lib.pid import PIDController
 from openpilot.selfdrive.modeld.constants import ModelConstants
+from openpilot.common.params import Params
 
 CONTROL_N_T_IDX = ModelConstants.T_IDXS[:CONTROL_N]
 
@@ -95,6 +96,9 @@ class LongControl:
                              k_f=CP.longitudinalTuning.kf, rate=1 / DT_CTRL)
     self.v_pid = 0.0
     self.last_output_accel = 0.0
+    self.params = Params()
+    self.params_memory = Params("/dev/shm/params")
+    self.experimental_mode_last = False
 
   def reset(self):
     self.pid.reset()
@@ -107,6 +111,14 @@ class LongControl:
     self.long_control_state = long_control_state_trans(self.CP, active, self.long_control_state, CS.vEgo,
                                                        should_stop, CS.brakePressed,
                                                        CS.cruiseState.standstill, frogpilot_toggles)
+
+
+    if self.params.get_bool("BlendedACC"):
+      experimental_mode = self.params_memory.get_int("CEStatus") # 0 means expereimental mode is off
+      if experimental_mode and not self.experimental_mode_last:
+        self.reset()
+      self.experimental_mode_last = experimental_mode
+
     if self.long_control_state == LongCtrlState.off:
       self.reset()
       output_accel = 0.

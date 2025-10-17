@@ -59,12 +59,14 @@ public:
 const EncoderInfo main_road_encoder_info = {
   .publish_name = "roadEncodeData",
   .filename = "fcamera.hevc",
+  .record = Params().getBool("RecordRoad"),
   INIT_ENCODE_FUNCTIONS(RoadEncode),
 };
 
 const EncoderInfo main_wide_road_encoder_info = {
   .publish_name = "wideRoadEncodeData",
   .filename = "ecamera.hevc",
+  .record = Params().getBool("RecordRoad"),
   INIT_ENCODE_FUNCTIONS(WideRoadEncode),
 };
 
