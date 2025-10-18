@@ -36,7 +36,7 @@ class CarInterface(CarInterfaceBase):
       steer_torque = (sig * b) + (lateral_acceleration * c)
       return float(steer_torque)
 
-    lataccel_values = np.arange(-5.0, 5.0, 0.01)
+    lataccel_values = np.arange(-8.0, 8.0, 0.01)
     torque_values = [torque_from_lateral_accel_siglin_func(x) for x in lataccel_values]
     assert min(torque_values) < -1 and max(torque_values) > 1, "The torque values should cover the range [-1, 1]"
     return torque_values, lataccel_values
