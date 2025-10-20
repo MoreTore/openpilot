@@ -676,9 +676,8 @@ class Controls:
       steer, steeringAngleDeg, lac_log = self.LaC.update(CC.latActive, CS, self.VM, lp,
                                                          self.steer_limited_by_safety, self.desired_curvature,
                                                          curvature_limited,
-                                                         self.sm['liveLocationKalman'],
-                                                         self.sm['modelV2'],
-                                                         self.frogpilot_toggles)
+                                                         self.sm['liveDelay'].lateralDelay
+                                                         )
       actuators.steer = float(steer)
       actuators.steeringAngleDeg = float(steeringAngleDeg)
 
