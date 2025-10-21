@@ -17,7 +17,6 @@ from openpilot.frogpilot.common.frogpilot_utilities import flash_panda, is_url_p
 from openpilot.frogpilot.common.frogpilot_variables import ERROR_LOGS_PATH, FrogPilotVariables, get_frogpilot_toggles, params, params_cache, params_memory
 from openpilot.frogpilot.controls.frogpilot_planner import FrogPilotPlanner
 from openpilot.frogpilot.controls.lib.frogpilot_tracking import FrogPilotTracking
-from openpilot.frogpilot.system.frogpilot_stats import send_stats
 
 ASSET_CHECK_RATE = (1 / DT_MDL)
 
@@ -106,8 +105,8 @@ def frogpilot_thread():
       if frogpilot_toggles.random_themes:
         theme_manager.update_active_theme(time_validated, frogpilot_toggles, randomize_theme=True)
 
-      if time_validated and is_url_pingable(os.environ.get("STATS_URL", "")):
-        send_stats()
+      # if time_validated and is_url_pingable(os.environ.get("STATS_URL", "")):
+      #   send_stats()
 
     elif started and not started_previously:
       if error_log.is_file():
