@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import datetime
 import json
-import os
 import time
 
 import openpilot.system.sentry as sentry
@@ -13,8 +12,8 @@ from openpilot.common.time import system_time_valid
 from openpilot.frogpilot.assets.model_manager import MODEL_DOWNLOAD_ALL_PARAM, MODEL_DOWNLOAD_PARAM, ModelManager
 from openpilot.frogpilot.assets.theme_manager import THEME_COMPONENT_PARAMS, ThemeManager
 from openpilot.frogpilot.common.frogpilot_functions import backup_toggles
-from openpilot.frogpilot.common.frogpilot_utilities import flash_panda, is_url_pingable, lock_doors, run_thread_with_lock, update_maps, update_openpilot
-from openpilot.frogpilot.common.frogpilot_variables import ERROR_LOGS_PATH, FrogPilotVariables, get_frogpilot_toggles, params, params_cache, params_memory
+from openpilot.frogpilot.common.frogpilot_utilities import flash_panda, is_url_pingable, lock_doors, run_thread_with_lock, update_maps
+from openpilot.frogpilot.common.frogpilot_variables import ERROR_LOGS_PATH, FrogPilotVariables, get_frogpilot_toggles, params_cache, params_memory
 from openpilot.frogpilot.controls.frogpilot_planner import FrogPilotPlanner
 from openpilot.frogpilot.controls.lib.frogpilot_tracking import FrogPilotTracking
 
@@ -52,9 +51,6 @@ def update_checks(model_manager, now, theme_manager, frogpilot_toggles, boot_run
 
   run_thread_with_lock("update_maps", update_maps, (now,))
 
-  if frogpilot_toggles.automatic_updates:
-    run_thread_with_lock("update_openpilot", update_openpilot)
-
   time.sleep(1)
 
 def frogpilot_thread():
@@ -72,7 +68,7 @@ def frogpilot_thread():
   model_manager = ModelManager()
   theme_manager = ThemeManager()
 
-  toggles_last_updated = datetime.datetime.now(datetime.timezone.utc)
+  toggles_last_updated = datetime.datetime.now(datetime.UTC)
 
   pm = messaging.PubMaster(["frogpilotPlan"])
   sm = messaging.SubMaster(["carControl", "carState", "controlsState", "deviceState", "driverMonitoringState",
@@ -89,7 +85,7 @@ def frogpilot_thread():
   while True:
     sm.update()
 
-    now = datetime.datetime.now(datetime.timezone.utc)
+    now = datetime.datetime.now(datetime.UTC)
 
     started = sm["deviceState"].started
 
