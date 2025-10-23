@@ -2878,7 +2878,7 @@ Developer - Many custom setting for seasoned enthusiast</translation>
     </message>
     <message>
         <source>FrogPilot Alerts</source>
-        <translation type="gpt-5-generated" />
+        <translation type="gpt-5-generated"></translation>
     </message>
     <message>
         <source>&lt;b&gt;Optional FrogPilot alerts&lt;/b&gt; that highlight driving events in a more noticeable way.</source>
@@ -5348,6 +5348,62 @@ This take up to one minute.</translation>
     <message>
         <source>Enable the openpilot longitudinal control (alpha) toggle to allow Experimental mode.</source>
         <translation type="gpt-5-generated">Turn on openpilot longitudinal control (alpha) toggle. Then Experimental mode work.</translation>
+    </message>
+    <message>
+        <source>Blended Acc (Experimental)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Blend stock MRCC and Experimental Mode longitudinal control.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Torque Interceptor Installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable the torque interceptor to control the steering wheel.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Radar Interceptor Installed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable if you have installed the radar Iterceptor.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Car Does not have stock MRCC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable if your car does not have stock MRCC.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Car Does not have stock FSC</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable if your car does not have stock FSC.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manual Transmission</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable if your is a manual.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Record and Upload Road Cameras</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Upload data from the road cameras.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

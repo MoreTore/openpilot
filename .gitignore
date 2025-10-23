@@ -74,9 +74,10 @@ comma*.sh
 selfdrive/modeld/thneed/compile
 selfdrive/modeld/models/*.thneed
 selfdrive/modeld/models/*.pkl
-
+frogpilot/tinygrad_modeld/models/*.pkl
 *.bz2
-
+*moc_*
+frogpilot/tinygrad_modeld/models/commonmodel_pyx.cpp
 build/
 
 !**/.gitkeep
