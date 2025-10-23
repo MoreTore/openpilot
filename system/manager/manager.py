@@ -49,6 +49,8 @@ def manager_init() -> None:
     ("BlendedACC", "0"),
     ("RecordRoad", "1"),
     ("RemoteAccess", "0"),
+    ("TorqueInterceptorEnabled", "1"),
+
   ]
   if not PC:
     default_params.append(("LastUpdateTime", datetime.datetime.utcnow().isoformat().encode('utf8')))
