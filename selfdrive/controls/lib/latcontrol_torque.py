@@ -22,7 +22,7 @@ from openpilot.frogpilot.controls.lib.neural_network_feedforward import LOW_SPEE
 # move it at all, this is compensated for too.
 
 LOW_SPEED_X = [0, 10, 20, 30]
-LOW_SPEED_Y = [15, 13, 10, 5]
+LOW_SPEED_Y = [25, 13, 10, 5]
 
 
 class LatControlTorque(LatControl):
