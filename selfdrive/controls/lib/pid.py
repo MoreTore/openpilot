@@ -50,14 +50,17 @@ class PIDController:
     self.f = feedforward * self.k_f
     self.d = error_rate * self.k_d
 
-    if not freeze_integrator:
-      i = self.i + error * self.k_i * self.i_rate
+    i_candidate = self.i if freeze_integrator else self.i + error * self.k_i * self.i_rate
+    u = self.p + i_candidate + self.d + self.f
+    u_sat = np.clip(u, self.neg_limit, self.pos_limit)
 
-      # Don't allow windup if already clipping
-      test_control = self.p + i + self.d + self.f
-      i_upperbound = self.i if test_control > self.pos_limit else self.pos_limit
-      i_lowerbound = self.i if test_control < self.neg_limit else self.neg_limit
-      self.i = np.clip(i, i_lowerbound, i_upperbound)
+    if u == u_sat:
+      self.i = i_candidate
+    else:
+      if u > self.pos_limit and error < 0:
+        self.i = i_candidate
+      elif u < self.neg_limit and error > 0:
+        self.i = i_candidate
 
     control = self.p + self.i + self.d + self.f
     self.control = np.clip(control, self.neg_limit, self.pos_limit)
