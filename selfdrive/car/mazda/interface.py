@@ -20,7 +20,8 @@ NON_LINEAR_TORQUE_PARAMS = {
  #CAR.MAZDA_3_2019: (8.47125, 0.59462, 0.17099, 0.29543),
  #CAR.MAZDA_3_2019: (11.30242, 0.62977, 0.15728, 0.32293),
  #CAR.MAZDA_3_2019: (16.76508, 0.71466, 0.15496, 0.39772), # this is going to seriously suck
-  CAR.MAZDA_3_2019: (9, 0.6, 0.2, 0.32293),
+  #CAR.MAZDA_3_2019: (9, 0.6, 0.2, 0.32293),
+  CAR.MAZDA_3_2019: (14.13208, 0.71564, 0.15621, 0.39431), #i cant wait for this to fucking slam the wheel to the right and kill me
   CAR.MAZDA_CX_30: (4.68689, 0.79999, 0.18244, 0.38763),
   CAR.MAZDA_CX_50: (4.68689, 0.79999, 0.18244, 0.38763)
 }
