@@ -211,7 +211,7 @@ class CarState(CarStateBase):
       ret.steeringAngleDeg = cp.vl["STEER"]["STEER_ANGLE"]
       ret.cruiseState.speed = cp_body.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
       ret.cruiseState.enabled = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
-      ret.cruiseState.available = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] != 0)
+      ret.cruiseState.available = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 1)
     ret.cruiseState.standstill = ret.standstill
 
     self.cp = cp
