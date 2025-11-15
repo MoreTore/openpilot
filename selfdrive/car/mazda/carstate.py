@@ -387,11 +387,16 @@ class CarState(CarStateBase):
           ("GEAR", 40),
         ]
 
-    if CP.flags & MazdaFlags.GEN3:
-      if CP.flags & MazdaFlags.MANUAL_TRANSMISSION:
-        messages += [
-          ("MANUAL_GEAR", 50),
-        ]
+      messages += [
+        # sig_address, frequency
+        ("CRZ_BTNS", 10)
+        ("BLINK_INFO", 10),
+        ("STEER", 67),
+        ("STEER_RATE", 83),
+        ("STEER_TORQUE", 83),
+        ("WHEEL_SPEEDS", 100),
+        ("SYSTEM_SETTINGS", 2),
+      ]
 
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 2)
 
@@ -399,7 +404,9 @@ class CarState(CarStateBase):
   def get_body_can_parser(CP):
     messages = CarState.get_ti_messages(CP)
     if CP.flags & MazdaFlags.GEN3:
-      messages += [
-        ("SYSTEM_SETTINGS", 2),
-      ]
+      if CP.flags & MazdaFlags.MANUAL_TRANSMISSION:
+        messages += [
+          ("MANUAL_GEAR", 50),
+        ]
+
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 1)
