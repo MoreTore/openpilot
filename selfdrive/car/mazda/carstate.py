@@ -39,10 +39,8 @@ class CarState(CarStateBase):
     self.update = self.update_gen1
     if CP.flags & MazdaFlags.GEN1:
       self.update = self.update_gen1
-    if CP.flags & MazdaFlags.GEN2:
+    if CP.flags & MazdaFlags.GEN2 or  CP.flags & MazdaFlags.GEN3:
       self.update = self.update_gen2
-    if CP.flags & MazdaFlags.GEN3:
-      self.update = self.update_gen3
 
   def update_gen1(self, cp, cp_cam, cp_body, frogpilot_variables):
 
@@ -226,10 +224,10 @@ class CarState(CarStateBase):
     fp_ret = custom.FrogPilotCarState.new_message()
 
     ret.wheelSpeeds = self.get_wheel_speeds(
-        cp_body.vl["WHEEL_SPEEDS"]["FL"],
-        cp_body.vl["WHEEL_SPEEDS"]["FR"],
-        cp_body.vl["WHEEL_SPEEDS"]["RL"],
-        cp_body.vl["WHEEL_SPEEDS"]["RR"],
+        cp_cam.vl["WHEEL_SPEEDS"]["FL"],
+        cp_cam.vl["WHEEL_SPEEDS"]["FR"],
+        cp_cam.vl["WHEEL_SPEEDS"]["RL"],
+        cp_cam.vl["WHEEL_SPEEDS"]["RR"],
     )
 
     ret.vEgoRaw = (ret.wheelSpeeds.fl + ret.wheelSpeeds.fr + ret.wheelSpeeds.rl + ret.wheelSpeeds.rr) / 4.
@@ -238,14 +236,14 @@ class CarState(CarStateBase):
     ret.leftBlinker, ret.rightBlinker = self.update_blinker_from_lamp(100, cp_body.vl["BLINK_INFO"]["LEFT_BLINK"] == 1,
                                                                       cp_body.vl["BLINK_INFO"]["RIGHT_BLINK"] == 1)
 
-    ret.engineRpm = cp_body.vl["ENGINE_DATA"]["RPM"]
+    ret.engineRpm = cp_cam.vl["ENGINE_DATA"]["RPM"]
     #self.shifting = cp_cam.vl["GEAR"]["SHIFT"]
     #self.torque_converter_lock = cp_cam.vl["GEAR"]["TORQUE_CONVERTER_LOCK"]
 
-    ret.steeringAngleDeg = cp_body.vl["STEER"]["STEER_ANGLE"]
+    ret.steeringAngleDeg = cp_cam.vl["STEER"]["STEER_ANGLE"]
 
     ret.steeringTorque = cp_body.vl["EPS_FEEDBACK"]["STEER_TORQUE_SENSOR"]
-    ret.gas = cp.vl["ENGINE_DATA"]["PEDAL_GAS"]
+    ret.gas = cp_cam.vl["ENGINE_DATA"]["PEDAL_GAS"]
 
     unit_conversion = CV.MPH_TO_MS if cp.vl["SYSTEM_SETTINGS"]["IMPERIAL_UNIT"] else CV.KPH_TO_MS
 
@@ -264,9 +262,14 @@ class CarState(CarStateBase):
     ret.steerFaultTemporary = False # TODO locate signal. Car shows light on dash if there is a fault
 
     ret.standstill = ret.vEgoRaw < 0.1
-    ret.cruiseState.speed = cp_body.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
-    ret.cruiseState.enabled = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 3)
-    ret.cruiseState.available = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
+    if self.CP.flags & MazdaFlags.GEN2:
+      ret.cruiseState.speed = cp.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
+      ret.cruiseState.enabled = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
+      ret.cruiseState.available = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] != 0)
+    else: # GEN3
+      ret.cruiseState.speed = cp_body.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
+      ret.cruiseState.enabled = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 3)
+      ret.cruiseState.available = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
     ret.cruiseState.standstill = ret.standstill
 
     self.cp = cp
@@ -335,13 +338,10 @@ class CarState(CarStateBase):
 
     if CP.flags & MazdaFlags.GEN3:
       messages += [
-        ("CRUZE_STATE", 10),
-        ("GEAR", 50),
         ("BRAKE_PEDAL", 5),
-        ("ENGINE_DATA", 100),
         ("BLINK_INFO", 10),
-        ("WHEEL_SPEEDS", 50),
-        ("STEER", 50),
+        ("ACC", 50),
+        ("SYSTEM_SETTINGS", 10),
       ]
 
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 0)
@@ -369,13 +369,12 @@ class CarState(CarStateBase):
             (msg,10),
           ]
 
-    if CP.flags & MazdaFlags.GEN2:
+    if CP.flags & MazdaFlags.GEN2 or CP.flags & MazdaFlags.GEN3:
       messages += [
         ("ENGINE_DATA", 100),
         ("STEER_TORQUE", 100),
-        ("WHEEL_SPEEDS", 100),
-        ("STEER", 100),
-        ("SPEED", 50),
+        ("WHEEL_SPEEDS", 100), # GEN3 also uses this message
+        ("STEER", 50), # GEN3 also uses this message
       ]
 
       if CP.flags & MazdaFlags.MANUAL_TRANSMISSION:
@@ -387,26 +386,14 @@ class CarState(CarStateBase):
           ("GEAR", 40),
         ]
 
-      messages += [
-        # sig_address, frequency
-        ("CRZ_BTNS", 10)
-        ("BLINK_INFO", 10),
-        ("STEER", 67),
-        ("STEER_RATE", 83),
-        ("STEER_TORQUE", 83),
-        ("WHEEL_SPEEDS", 100),
-        ("SYSTEM_SETTINGS", 2),
-      ]
-
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 2)
 
   @staticmethod
   def get_body_can_parser(CP):
     messages = CarState.get_ti_messages(CP)
     if CP.flags & MazdaFlags.GEN3:
-      if CP.flags & MazdaFlags.MANUAL_TRANSMISSION:
-        messages += [
-          ("MANUAL_GEAR", 50),
-        ]
+      messages += [
+        ("CRUZE_STATE", 10),
+      ]
 
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 1)
