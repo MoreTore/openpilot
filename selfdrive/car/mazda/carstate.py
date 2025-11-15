@@ -219,67 +219,6 @@ class CarState(CarStateBase):
 
     return ret, fp_ret
 
-  def update_gen3(self, cp, cp_cam, cp_body, frogpilot_variables):
-    ret = car.CarState.new_message()
-    fp_ret = custom.FrogPilotCarState.new_message()
-
-    ret.wheelSpeeds = self.get_wheel_speeds(
-        cp_cam.vl["WHEEL_SPEEDS"]["FL"],
-        cp_cam.vl["WHEEL_SPEEDS"]["FR"],
-        cp_cam.vl["WHEEL_SPEEDS"]["RL"],
-        cp_cam.vl["WHEEL_SPEEDS"]["RR"],
-    )
-
-    ret.vEgoRaw = (ret.wheelSpeeds.fl + ret.wheelSpeeds.fr + ret.wheelSpeeds.rl + ret.wheelSpeeds.rr) / 4.
-    ret.vEgo, ret.aEgo = self.update_speed_kf(ret.vEgoRaw) # Doesn't match cluster speed exactly
-
-    ret.leftBlinker, ret.rightBlinker = self.update_blinker_from_lamp(100, cp_body.vl["BLINK_INFO"]["LEFT_BLINK"] == 1,
-                                                                      cp_body.vl["BLINK_INFO"]["RIGHT_BLINK"] == 1)
-
-    ret.engineRpm = cp_cam.vl["ENGINE_DATA"]["RPM"]
-    #self.shifting = cp_cam.vl["GEAR"]["SHIFT"]
-    #self.torque_converter_lock = cp_cam.vl["GEAR"]["TORQUE_CONVERTER_LOCK"]
-
-    ret.steeringAngleDeg = cp_cam.vl["STEER"]["STEER_ANGLE"]
-
-    ret.steeringTorque = cp_body.vl["EPS_FEEDBACK"]["STEER_TORQUE_SENSOR"]
-    ret.gas = cp_cam.vl["ENGINE_DATA"]["PEDAL_GAS"]
-
-    unit_conversion = CV.MPH_TO_MS if cp.vl["SYSTEM_SETTINGS"]["IMPERIAL_UNIT"] else CV.KPH_TO_MS
-
-    ret.steeringPressed = abs(ret.steeringTorque) > self.params.STEER_DRIVER_ALLOWANCE
-    if self.CP.flags & MazdaFlags.MANUAL_TRANSMISSION:
-      can_gear = int(cp_body.vl["MANUAL_GEAR"]["GEAR"])
-    else:
-      can_gear = int(cp_body.vl["GEAR"]["GEAR"])
-    ret.gearShifter = self.parse_gear_shifter(self.shifter_values.get(can_gear, None))
-    ret.gasPressed = ret.gas > 0
-    ret.seatbeltUnlatched = False # Cruise will not engage if seatbelt is unlatched (handled by car)
-    ret.doorOpen = False # Cruise will not engage if door is open (handled by car)
-    ret.brakePressed = cp.vl["BRAKE_PEDAL"]["BRAKE_PEDAL_PRESSED"] == 1
-    ret.brake = .1
-    ret.steerFaultPermanent = False # TODO locate signal. Car shows light on dash if there is a fault
-    ret.steerFaultTemporary = False # TODO locate signal. Car shows light on dash if there is a fault
-
-    ret.standstill = ret.vEgoRaw < 0.1
-    if self.CP.flags & MazdaFlags.GEN2:
-      ret.cruiseState.speed = cp.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
-      ret.cruiseState.enabled = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
-      ret.cruiseState.available = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] != 0)
-    else: # GEN3
-      ret.cruiseState.speed = cp_body.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
-      ret.cruiseState.enabled = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 3)
-      ret.cruiseState.available = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
-    ret.cruiseState.standstill = ret.standstill
-
-    self.cp = cp
-    self.cp_cam = cp_cam
-
-    # FrogPilot CarState functions
-    self.lkas_previously_enabled = self.lkas_enabled
-    self.lkas_enabled = not self.lkas_disabled
-
-    return ret, fp_ret
 
   @staticmethod
   def get_ti_messages(CP):
@@ -373,8 +312,9 @@ class CarState(CarStateBase):
       messages += [
         ("ENGINE_DATA", 100),
         ("STEER_TORQUE", 100),
-        ("WHEEL_SPEEDS", 100), # GEN3 also uses this message
-        ("STEER", 50), # GEN3 also uses this message
+        ("WHEEL_SPEEDS", 100),
+        ("STEER", 50),
+        ("SPEED", 50),
       ]
 
       if CP.flags & MazdaFlags.MANUAL_TRANSMISSION:
