@@ -151,7 +151,7 @@ class CarController(CarControllerBase):
 
     elif self.CP.flags & MazdaFlags.GEN3:
       if Timer.interval(2):
-        raw_acc_output = (CC.actuators.accel * 240) + 2000
+        raw_acc_output = (CC.actuators.accel * 240)
         acc_output = raw_acc_output
         if CC.longActive:
           CS.acc["ACCEL_CMD"] = acc_output

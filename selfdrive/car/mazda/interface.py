@@ -65,7 +65,7 @@ class CarInterface(CarInterfaceBase):
     if candidate in GEN3:
       ret.safetyConfigs[0].safetyParam |= Panda.FLAG_MAZDA_GEN3
       ret.steerActuatorDelay = 0.3
-      ret.openpilotLongitudinalControl = True
+      ret.experimentalLongitudinalAvailable = True
       ret.longitudinalTuning.kpBP = [0., 5., 35.]
       ret.longitudinalTuning.kpV = [0.0, 0.0, 0.0]
       ret.longitudinalTuning.kiBP = [0., 35.]
