@@ -91,7 +91,7 @@ const CanMsg MAZDA_TI_RI_TX_MSGS[] = {{MAZDA_LKAS, 0, 8}, {MAZDA_TI_LKAS, 1, 8},
                                 {MAZDA_RADAR_363, 0, 8}, {MAZDA_RADAR_364, 0, 8}, {MAZDA_RADAR_365, 0, 8}, {MAZDA_RADAR_366, 0, 8},
                                 {MAZDA_RADAR_499, 0, 8}};
 
-const CanMsg MAZDA_2019_TX_MSGS[] = {{MAZDA_TI_LKAS, 1, 8}, {MAZDA_2019_ACC, 2, 8}};
+const CanMsg MAZDA_2019_TX_MSGS[] = {{MAZDA_TI_LKAS, 1, 8}, {MAZDA_2019_ACC, 2, 8}, {MAZDA_2023_ACC, 2, 8}};
 
 RxCheck mazda_rx_checks[] = {
   {.msg = {{MAZDA_CRZ_CTRL,     0, 8, .frequency = 50U}, { 0 }, { 0 }}},
