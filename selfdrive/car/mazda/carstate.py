@@ -243,17 +243,6 @@ class CarState(CarStateBase):
   @staticmethod
   def get_can_parser(CP):
     messages = []
-    if not (CP.flags & (MazdaFlags.GEN2 | MazdaFlags.GEN3)):
-      messages += [
-        # sig_address, frequency
-        ("CRZ_BTNS", 10)
-        ("BLINK_INFO", 10),
-        ("STEER", 67),
-        ("STEER_RATE", 83),
-        ("STEER_TORQUE", 83),
-        ("WHEEL_SPEEDS", 100),
-      ]
-
     if CP.flags & MazdaFlags.GEN1:
       messages += [
         ("ENGINE_DATA", 100),
@@ -264,6 +253,12 @@ class CarState(CarStateBase):
         ("DOORS", 10),
         ("GEAR", 20),
         ("BSM", 10),
+        ("CRZ_BTNS", 10)
+        ("BLINK_INFO", 10),
+        ("STEER", 67),
+        ("STEER_RATE", 83),
+        ("STEER_TORQUE", 83),
+        ("WHEEL_SPEEDS", 100),
       ]
 
       if not (CP.flags & MazdaFlags.RADAR_INTERCEPTOR) and not (CP.flags & MazdaFlags.NO_MRCC):
@@ -271,21 +266,21 @@ class CarState(CarStateBase):
           ("CRZ_CTRL", 50),
         ]
 
+    if not CP.flags & MazdaFlags.GEN1:
+      messages += [
+        ("BRAKE_PEDAL", 5),
+        ("BLINK_INFO", 10),
+        ("SYSTEM_SETTINGS", 10),
+        ("ACC", 50),
+      ]
+
     if CP.flags & MazdaFlags.GEN2:
       messages += [
-        ("BRAKE_PEDAL", 20),
         ("CRUZE_STATE", 10),
-        ("BLINK_INFO", 10),
-        ("ACC", 50),
-        ("SYSTEM_SETTINGS", 10),
       ]
 
     if CP.flags & MazdaFlags.GEN3:
       messages += [
-        ("BRAKE_PEDAL", 5),
-        ("BLINK_INFO", 10),
-        ("ACC", 50),
-        ("SYSTEM_SETTINGS", 10),
         ("STEER", 50),
       ]
 
@@ -319,6 +314,7 @@ class CarState(CarStateBase):
         ("ENGINE_DATA", 100),
         ("WHEEL_SPEEDS", 100),
         ("STEER", 50),
+        ("SPEED",50),
       ]
       if CP.flags & MazdaFlags.MANUAL_TRANSMISSION:
         messages += [
