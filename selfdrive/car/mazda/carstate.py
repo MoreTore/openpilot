@@ -204,9 +204,14 @@ class CarState(CarStateBase):
     ret.steerFaultTemporary = False # TODO locate signal. Car shows light on dash if there is a fault
 
     ret.standstill = cp_cam.vl["SPEED"]["SPEED"] * unit_conversion < 0.1
-    ret.cruiseState.speed = cp.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
-    ret.cruiseState.enabled = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
-    ret.cruiseState.available = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] != 0)
+    if self.CP.flags & MazdaFlags.GEN2:
+      ret.cruiseState.speed = cp.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
+      ret.cruiseState.enabled = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
+      ret.cruiseState.available = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] != 0)
+    else:
+      ret.cruiseState.speed = cp_body.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
+      ret.cruiseState.enabled = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
+      ret.cruiseState.available = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] != 0)
     ret.cruiseState.standstill = ret.standstill
 
     self.cp = cp
