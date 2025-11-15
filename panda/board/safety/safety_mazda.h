@@ -204,10 +204,9 @@ static void mazda_rx_hook(const CANPacket_t *to_push) {
       if (addr == MAZDA_2019_CRUISE) {
         uint8_t state = GET_BYTE(to_push, 0) & 0x70U;
         bool cruise_engaged = (0x30U == state);
-        bool cruise_ready = (0x20U == state);
         bool cruise_override = (0x40U == state);
         //bool cruise_disable = (state == 0x10U);
-        acc_main_on = cruise_ready;
+        acc_main_on = true;
         pcm_cruise_check(cruise_engaged || cruise_override);
       }
     }
