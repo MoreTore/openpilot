@@ -274,7 +274,7 @@ static int mazda_fwd_hook(int bus, int addr) {
   int bus_fwd = -1;
   bool block = (addr == MAZDA_TI_LKAS);
   if (bus == MAZDA_MAIN) {
-    block |= ((addr == MAZDA_2019_ACC) && gen2);
+    block |= ((addr == MAZDA_2019_ACC) && (gen2 || gen3));
     if (!block) {
       bus_fwd = MAZDA_CAM;
     }

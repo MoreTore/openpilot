@@ -460,13 +460,22 @@ BO_ 537 MANUAL_GEAR: 8 XXX
  SG_ NEW_SIGNAL_4 : 55|16@0+ (1,0) [0|65535] "" XXX
 
 BO_ 542 ACC: 8 XXX
- SG_ NEW_SIGNAL_2 : 7|8@0+ (1,0) [0|1] "" XXX
- SG_ NEW_SIGNAL_7 : 15|8@0+ (1,0) [0|255] "" XXX
- SG_ ACCEL_CMD : 23|13@0+ (1,-2000) [0|8191] "" XXX
- SG_ NEW_SIGNAL_3 : 39|8@0+ (1,0) [0|255] "" XXX
- SG_ NEW_SIGNAL_4 : 47|8@0+ (1,0) [0|255] "" XXX
- SG_ NEW_SIGNAL_5 : 55|8@0+ (1,0) [0|255] "" XXX
- SG_ NEW_SIGNAL_6 : 63|8@0+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_10 : 4|5@0+ (1,0) [0|31] "" XXX
+ SG_ NEW_SIGNAL_2 : 5|1@0+ (1,0) [0|7] "" XXX
+ SG_ ACTIVE_STOP : 6|1@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_3 : 7|1@0+ (1,0) [0|1] "" XXX
+ SG_ CTR : 11|4@0+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_5 : 12|1@0+ (1,0) [0|1] "" XXX
+ SG_ ACC_ACTIVE : 13|1@0+ (1,0) [0|15] "" XXX
+ SG_ NEW_SIGNAL_4 : 15|2@0+ (1,0) [0|3] "" XXX
+ SG_ ACCEL_CMD : 23|12@0+ (1,-2000) [0|8191] "" XXX
+ SG_ ACC_ACTIVE2 : 27|1@0+ (1,0) [0|7] "" XXX
+ SG_ NEW_SIGNAL_8 : 35|4@0+ (1,0) [0|15] "" XXX
+ SG_ CTR2 : 37|2@0+ (1,0) [0|3] "" XXX
+ SG_ NEW_SIGNAL_6 : 39|2@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_7 : 47|8@0+ (1,0) [0|16777215] "" XXX
+ SG_ NEW_SIGNAL_9 : 48|8@1+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_11 : 63|8@0+ (1,0) [0|255] "" XXX
 
 BO_ 543 NEW_MSG_21F: 8 XXX
  SG_ NEW_SIGNAL_1 : 22|7@0+ (1,0) [0|127] "" XXX

@@ -149,6 +149,14 @@ class CarController(CarControllerBase):
         resume = self.resume_timer.active() # stay on for 0.5s to release the brake. This allows the car to move.
         can_sends.append(mazdacan.create_acc_cmd(self, self.packer, CS.acc, hold, resume))
 
+    elif self.CP.flags & MazdaFlags.GEN3:
+      if Timer.interval(2):
+        raw_acc_output = (CC.actuators.accel * 240) + 2000
+        acc_output = raw_acc_output
+        if CC.longActive:
+          CS.acc["ACCEL_CMD"] = acc_output
+        can_sends.append(self.packer.make_can_msg("ACC", 2, CS.acc))
+
     # send steering command
     can_sends.extend(mazdacan.create_steering_control(self.packer, self.CP,
                                                       self.frame, apply_steer, CS.cam_lkas))
