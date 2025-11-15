@@ -181,8 +181,10 @@ class CarState(CarStateBase):
     ret.engineRpm = cp_cam.vl["ENGINE_DATA"]["RPM"]
     #self.shifting = cp_cam.vl["GEAR"]["SHIFT"]
     #self.torque_converter_lock = cp_cam.vl["GEAR"]["TORQUE_CONVERTER_LOCK"]
-
-    ret.steeringAngleDeg = cp_cam.vl["STEER"]["STEER_ANGLE"]
+    if self.CP.flags & MazdaFlags.GEN2:
+      ret.steeringAngleDeg = cp_cam.vl["STEER"]["STEER_ANGLE"]
+    else: # GEN3
+      ret.steeringAngleDeg = cp.vl["STEER"]["STEER_ANGLE"]
 
     ret.steeringTorque = cp_body.vl["EPS_FEEDBACK"]["STEER_TORQUE_SENSOR"]
     ret.gas = cp_cam.vl["ENGINE_DATA"]["PEDAL_GAS"]
