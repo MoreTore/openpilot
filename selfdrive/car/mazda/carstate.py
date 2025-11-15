@@ -286,6 +286,7 @@ class CarState(CarStateBase):
         ("BLINK_INFO", 10),
         ("ACC", 50),
         ("SYSTEM_SETTINGS", 10),
+        ("STEER", 50),
       ]
 
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 0)
@@ -313,15 +314,12 @@ class CarState(CarStateBase):
             (msg,10),
           ]
 
-    if CP.flags & MazdaFlags.GEN2 or CP.flags & MazdaFlags.GEN3:
+    if not CP.flags & MazdaFlags.GEN1:
       messages += [
         ("ENGINE_DATA", 100),
-        ("STEER_TORQUE", 100),
         ("WHEEL_SPEEDS", 100),
         ("STEER", 50),
-        ("SPEED", 50),
       ]
-
       if CP.flags & MazdaFlags.MANUAL_TRANSMISSION:
         messages += [
           ("MANUAL_GEAR", 50),
@@ -330,6 +328,11 @@ class CarState(CarStateBase):
         messages += [
           ("GEAR", 40),
         ]
+
+    if CP.flags & MazdaFlags.GEN2:
+      messages += [
+        ("STEER", 50),
+      ]
 
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 2)
 
