@@ -39,7 +39,7 @@ class CarState(CarStateBase):
     self.update = self.update_gen1
     if CP.flags & MazdaFlags.GEN1:
       self.update = self.update_gen1
-    if CP.flags & MazdaFlags.GEN2 or  CP.flags & MazdaFlags.GEN3:
+    if CP.flags & MazdaFlags.GEN2 or CP.flags & MazdaFlags.GEN3:
       self.update = self.update_gen2
 
   def update_gen1(self, cp, cp_cam, cp_body, frogpilot_variables):

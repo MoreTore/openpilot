@@ -118,9 +118,9 @@ RxCheck mazda_2019_rx_checks[] = {
 
 RxCheck mazda_2023_rx_checks[] = {
   {.msg = {{MAZDA_2023_BRAKE,         0, 8, .frequency = 5U}, { 0 }, { 0 }}},
-  {.msg = {{MAZDA_2019_GAS,           0, 8, .frequency = 100U}, { 0 }, { 0 }}},
-  {.msg = {{MAZDA_2019_CRUISE,        0, 8, .frequency = 10U}, { 0 }, { 0 }}},
-  {.msg = {{MAZDA_2023_SPEED,         0, 8, .frequency = 30U}, { 0 }, { 0 }}},
+  {.msg = {{MAZDA_2019_GAS,           2, 8, .frequency = 100U}, { 0 }, { 0 }}},
+  {.msg = {{MAZDA_2019_CRUISE,        1, 8, .frequency = 10U}, { 0 }, { 0 }}},
+  {.msg = {{MAZDA_2023_SPEED,         2, 8, .frequency = 30U}, { 0 }, { 0 }}},
   {.msg = {{MAZDA_2019_STEER_TORQUE,  1, 8, .frequency = 50U}, { 0 }, { 0 }}},
 };
 
@@ -179,26 +179,14 @@ static void mazda_rx_hook(const CANPacket_t *to_push) {
       generic_rx_checks(addr == MAZDA_2019_SPEED);
     }
     if (gen3) {
-      if (addr == MAZDA_2019_GAS) {
-        gas_pressed = (GET_BYTE(to_push, 4) || ((GET_BYTE(to_push, 5) & 0xC0U)));
-      }
       if (addr == MAZDA_2023_BRAKE) {
         brake_pressed = (GET_BYTE(to_push, 7) & 0x8U);
-      }
-      if (addr == MAZDA_2019_CRUISE) {
-        uint8_t state = GET_BYTE(to_push, 0) & 0x70U;
-        bool cruise_engaged = (0x30U == state);
-        bool cruise_ready = (0x20U == state);
-        bool cruise_override = (0x40U == state);
-        //bool cruise_disable = (state == 0x10U);
-        acc_main_on = cruise_ready;
-        pcm_cruise_check(cruise_engaged || cruise_override);
       }
       if (addr == MAZDA_2023_SPEED) {
         int speed = ( (GET_BYTE(to_push, 0) << 8) | (GET_BYTE(to_push, 1)) ) - 10000; // Front Left Wheel Speed
         vehicle_moving = speed != 0;
       }
-      generic_rx_checks(addr == 0x219);
+      generic_rx_checks(false);
     }
   }
 
@@ -210,6 +198,18 @@ static void mazda_rx_hook(const CANPacket_t *to_push) {
 
     if (addr == MAZDA_2019_STEER_TORQUE && (gen2 || gen3)) {
       update_sample(&torque_driver, (int16_t)(GET_BYTE(to_push, 0) << 8 | GET_BYTE(to_push, 1)));
+    }
+
+    if (gen3) {
+      if (addr == MAZDA_2019_CRUISE) {
+        uint8_t state = GET_BYTE(to_push, 0) & 0x70U;
+        bool cruise_engaged = (0x30U == state);
+        bool cruise_ready = (0x20U == state);
+        bool cruise_override = (0x40U == state);
+        //bool cruise_disable = (state == 0x10U);
+        acc_main_on = cruise_ready;
+        pcm_cruise_check(cruise_engaged || cruise_override);
+      }
     }
   }
 
@@ -225,6 +225,12 @@ static void mazda_rx_hook(const CANPacket_t *to_push) {
         vehicle_moving = (speed > 10);  // moving when speed > 0.1 kph
       }
       generic_rx_checks(addr == MAZDA_2019_CRUISE);
+    }
+    if (gen3) {
+      if (addr == MAZDA_2019_GAS) {
+        gas_pressed = (GET_BYTE(to_push, 4) || ((GET_BYTE(to_push, 5) & 0xC0U)));
+      }
+      generic_rx_checks(false);
     }
   }
 }
