@@ -313,7 +313,6 @@ class CarState(CarStateBase):
       messages += [
         ("ENGINE_DATA", 100),
         ("WHEEL_SPEEDS", 100),
-        ("STEER", 50),
         ("SPEED",50),
       ]
       if CP.flags & MazdaFlags.MANUAL_TRANSMISSION:
