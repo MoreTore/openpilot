@@ -929,14 +929,14 @@ class Controls:
     self.frogpilot_AM.add_many(self.sm.frame, frogpilot_alerts)
     current_frogpilot_alert = self.frogpilot_AM.process_alerts(self.sm.frame, clear_event_types)
 
-    if current_frogpilot_alert:
-      frogpilotControlsState.alertText1 = current_frogpilot_alert.alert_text_1
-      frogpilotControlsState.alertText2 = current_frogpilot_alert.alert_text_2
-      frogpilotControlsState.alertSize = current_frogpilot_alert.alert_size
-      frogpilotControlsState.alertStatus = current_frogpilot_alert.alert_status
-      frogpilotControlsState.alertBlinkingRate = current_frogpilot_alert.alert_rate
-      frogpilotControlsState.alertType = current_frogpilot_alert.alert_type
-      frogpilotControlsState.alertSound = current_frogpilot_alert.audible_alert
+    # if current_frogpilot_alert:
+    #   frogpilotControlsState.alertText1 = current_frogpilot_alert.alert_text_1
+    #   frogpilotControlsState.alertText2 = current_frogpilot_alert.alert_text_2
+    #   frogpilotControlsState.alertSize = current_frogpilot_alert.alert_size
+    #   frogpilotControlsState.alertStatus = current_frogpilot_alert.alert_status
+    #   frogpilotControlsState.alertBlinkingRate = current_frogpilot_alert.alert_rate
+    #   frogpilotControlsState.alertType = current_frogpilot_alert.alert_type
+    #   frogpilotControlsState.alertSound = current_frogpilot_alert.audible_alert
 
     self.pm.send('frogpilotControlsState', frogpilot_dat)
 

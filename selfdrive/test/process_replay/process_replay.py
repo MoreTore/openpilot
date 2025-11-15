@@ -16,6 +16,7 @@ import capnp
 import cereal.messaging as messaging
 from cereal import car
 from cereal.services import SERVICE_LIST
+from frogpilot.common.frogpilot_variables import FrogPilotVariables
 from msgq.visionipc import VisionIpcServer, get_endpoint_name as vipc_get_endpoint_name
 from openpilot.common.params import Params
 from openpilot.common.prefix import OpenpilotPrefix
@@ -355,14 +356,17 @@ def get_car_params_callback(rc, pm, msgs, fingerprint):
     assert os.environ.get("SKIP_FW_QUERY", False) or has_cached_cp, \
             "CarParamsCache is required for fingerprinting. Make sure to keep carParams msgs in the logs."
 
+    FrogPilotVariables().update(holiday_theme="stock", started=False)
+
     for m in canmsgs[:300]:
       can.send(m.as_builder().to_bytes())
-    _, CP = get_car(can, sendcan, Params().get_bool("ExperimentalLongitudinalEnabled"), get_frogpilot_toggles())
+    _, CP, FPCP = get_car(can, sendcan, Params().get_bool("ExperimentalLongitudinalEnabled"), Params(), frogpilot_toggles=get_frogpilot_toggles())
 
     if not params.get_bool("DisengageOnAccelerator"):
       CP.alternativeExperience |= ALTERNATIVE_EXPERIENCE.DISABLE_DISENGAGE_ON_GAS
 
   params.put("CarParams", CP.to_bytes())
+  params.put("FrogPilotCarParams", FPCP.to_bytes())
   return CP
 
 

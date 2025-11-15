@@ -12,7 +12,7 @@ from openpilot.common.basedir import BASEDIR
 from openpilot.common.conversions import Conversions as CV
 from openpilot.common.params import Params
 from openpilot.selfdrive.car import gen_empty_fingerprint
-from openpilot.selfdrive.car.car_helpers import interfaces
+
 from openpilot.selfdrive.car.gm.values import GMFlags
 from openpilot.selfdrive.car.interfaces import CarInterfaceBase
 from openpilot.selfdrive.car.mock.interface import CarInterface
@@ -518,6 +518,7 @@ class FrogPilotVariables:
       with car.CarParams.from_bytes(msg_bytes) as cp_reader:
         CP = cp_reader.as_builder()
     else:
+      from openpilot.selfdrive.car.car_helpers import interfaces
       CarInterface, _, _ = interfaces[MOCK.MOCK]
       CP = CarInterface.get_params(MOCK.MOCK, gen_empty_fingerprint(), [], False, toggle, False)
       CarInterface.configure_torque_tune(MOCK.MOCK, CP.lateralTuning)
@@ -531,6 +532,7 @@ class FrogPilotVariables:
       with custom.FrogPilotCarParams.from_bytes(fpmsg_bytes) as fpcp_reader:
         FPCP = fpcp_reader.as_builder()
     else:
+      from openpilot.selfdrive.car.car_helpers import interfaces
       CarInterface, _, _ = interfaces[MOCK.MOCK]
       FPCP = CarInterface.get_frogpilot_params(MOCK.MOCK, gen_empty_fingerprint(), [], CP, toggle)
 
