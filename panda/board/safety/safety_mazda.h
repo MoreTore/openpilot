@@ -30,7 +30,8 @@
 #define MAZDA_2019_ACC            0x220  // main bus. DBC: ACC
 
 #define MAZDA_2023_SPEED          0x215  // main bus. DBC: WHEEL_SPEEDS
-#define MAZDA_2023_BRAKE          0x9F  // main bus
+#define MAZDA_2023_BRAKE          0x9F  // main bus. DBC: BRAKE_PEDAL
+#define MAZDA_2023_ACC            0x21e  // main bus. DBC: ACC
 
 #define MAZDA_TI_LKAS       0x249
 
@@ -274,7 +275,7 @@ static int mazda_fwd_hook(int bus, int addr) {
   int bus_fwd = -1;
   bool block = (addr == MAZDA_TI_LKAS);
   if (bus == MAZDA_MAIN) {
-    block |= ((addr == MAZDA_2019_ACC) && (gen2 || gen3));
+    block |= ((addr == MAZDA_2019_ACC | addr == MAZDA_2023_ACC) && (gen2 || gen3));
     if (!block) {
       bus_fwd = MAZDA_CAM;
     }
