@@ -235,8 +235,6 @@ class CarState(CarStateBase):
     elif CP.flags & (MazdaFlags.GEN2 | MazdaFlags.GEN3):
       messages += [
         ("EPS_FEEDBACK", 50),
-        ("EPS_FEEDBACK2", 50),
-        ("EPS_FEEDBACK3", 50),
       ]
     return messages
 
