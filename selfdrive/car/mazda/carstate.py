@@ -226,34 +226,34 @@ class CarState(CarStateBase):
     fp_ret = custom.FrogPilotCarState.new_message()
 
     ret.wheelSpeeds = self.get_wheel_speeds(
-        cp.vl["WHEEL_SPEEDS"]["FL"],
-        cp.vl["WHEEL_SPEEDS"]["FR"],
-        cp.vl["WHEEL_SPEEDS"]["RL"],
-        cp.vl["WHEEL_SPEEDS"]["RR"],
+        cp_body.vl["WHEEL_SPEEDS"]["FL"],
+        cp_body.vl["WHEEL_SPEEDS"]["FR"],
+        cp_body.vl["WHEEL_SPEEDS"]["RL"],
+        cp_body.vl["WHEEL_SPEEDS"]["RR"],
     )
 
     ret.vEgoRaw = (ret.wheelSpeeds.fl + ret.wheelSpeeds.fr + ret.wheelSpeeds.rl + ret.wheelSpeeds.rr) / 4.
     ret.vEgo, ret.aEgo = self.update_speed_kf(ret.vEgoRaw) # Doesn't match cluster speed exactly
 
-    ret.leftBlinker, ret.rightBlinker = self.update_blinker_from_lamp(100, cp.vl["BLINK_INFO"]["LEFT_BLINK"] == 1,
-                                                                      cp.vl["BLINK_INFO"]["RIGHT_BLINK"] == 1)
+    ret.leftBlinker, ret.rightBlinker = self.update_blinker_from_lamp(100, cp_body.vl["BLINK_INFO"]["LEFT_BLINK"] == 1,
+                                                                      cp_body.vl["BLINK_INFO"]["RIGHT_BLINK"] == 1)
 
-    ret.engineRpm = cp.vl["ENGINE_DATA"]["RPM"]
+    ret.engineRpm = cp_body.vl["ENGINE_DATA"]["RPM"]
     #self.shifting = cp_cam.vl["GEAR"]["SHIFT"]
     #self.torque_converter_lock = cp_cam.vl["GEAR"]["TORQUE_CONVERTER_LOCK"]
 
-    ret.steeringAngleDeg = cp.vl["STEER"]["STEER_ANGLE"]
+    ret.steeringAngleDeg = cp_body.vl["STEER"]["STEER_ANGLE"]
 
     ret.steeringTorque = cp_body.vl["EPS_FEEDBACK"]["STEER_TORQUE_SENSOR"]
     ret.gas = cp.vl["ENGINE_DATA"]["PEDAL_GAS"]
 
-    unit_conversion = CV.MPH_TO_MS if cp_body.vl["SYSTEM_SETTINGS"]["IMPERIAL_UNIT"] else CV.KPH_TO_MS
+    unit_conversion = CV.MPH_TO_MS if cp.vl["SYSTEM_SETTINGS"]["IMPERIAL_UNIT"] else CV.KPH_TO_MS
 
     ret.steeringPressed = abs(ret.steeringTorque) > self.params.STEER_DRIVER_ALLOWANCE
     if self.CP.flags & MazdaFlags.MANUAL_TRANSMISSION:
-      can_gear = int(cp_cam.vl["MANUAL_GEAR"]["GEAR"])
+      can_gear = int(cp_body.vl["MANUAL_GEAR"]["GEAR"])
     else:
-      can_gear = int(cp.vl["GEAR"]["GEAR"])
+      can_gear = int(cp_body.vl["GEAR"]["GEAR"])
     ret.gearShifter = self.parse_gear_shifter(self.shifter_values.get(can_gear, None))
     ret.gasPressed = ret.gas > 0
     ret.seatbeltUnlatched = False # Cruise will not engage if seatbelt is unlatched (handled by car)
@@ -264,9 +264,9 @@ class CarState(CarStateBase):
     ret.steerFaultTemporary = False # TODO locate signal. Car shows light on dash if there is a fault
 
     ret.standstill = ret.vEgoRaw < 0.1
-    ret.cruiseState.speed = cp.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
-    ret.cruiseState.enabled = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] >= 3)
-    ret.cruiseState.available = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
+    ret.cruiseState.speed = cp_body.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
+    ret.cruiseState.enabled = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 3)
+    ret.cruiseState.available = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
     ret.cruiseState.standstill = ret.standstill
 
     self.cp = cp
