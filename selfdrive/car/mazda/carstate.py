@@ -181,10 +181,6 @@ class CarState(CarStateBase):
     ret.engineRpm = cp_cam.vl["ENGINE_DATA"]["RPM"]
     #self.shifting = cp_cam.vl["GEAR"]["SHIFT"]
     #self.torque_converter_lock = cp_cam.vl["GEAR"]["TORQUE_CONVERTER_LOCK"]
-    if self.CP.flags & MazdaFlags.GEN2:
-      ret.steeringAngleDeg = cp_cam.vl["STEER"]["STEER_ANGLE"]
-    else: # GEN3
-      ret.steeringAngleDeg = cp.vl["STEER"]["STEER_ANGLE"]
 
     ret.steeringTorque = cp_body.vl["EPS_FEEDBACK"]["STEER_TORQUE_SENSOR"]
     ret.gas = cp_cam.vl["ENGINE_DATA"]["PEDAL_GAS"]
@@ -207,10 +203,12 @@ class CarState(CarStateBase):
 
     ret.standstill = cp_cam.vl["SPEED"]["SPEED"] * unit_conversion < 0.1
     if self.CP.flags & MazdaFlags.GEN2:
+      ret.steeringAngleDeg = cp_cam.vl["STEER"]["STEER_ANGLE"]
       ret.cruiseState.speed = cp.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
       ret.cruiseState.enabled = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
       ret.cruiseState.available = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] != 0)
     else:
+      ret.steeringAngleDeg = cp.vl["STEER"]["STEER_ANGLE"]
       ret.cruiseState.speed = cp_body.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
       ret.cruiseState.enabled = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
       ret.cruiseState.available = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] != 0)
