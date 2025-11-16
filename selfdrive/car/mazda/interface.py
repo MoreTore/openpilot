@@ -120,6 +120,7 @@ class CarInterface(CarInterfaceBase):
       ret.safetyConfigs[0].safetyParam |= Panda.FLAG_MAZDA_GEN3
       ret.experimentalLongitudinalAvailable = False
       ret.openpilotLongitudinalControl = False
+      ret.steerActuatorDelay = 0.335
       if p.get_bool("ManualTransmission"):
         ret.flags |= MazdaFlags.MANUAL_TRANSMISSION.value
 
