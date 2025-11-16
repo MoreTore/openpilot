@@ -5,7 +5,7 @@ import numpy as np
 from cereal import car, custom
 from panda import Panda
 from openpilot.common.conversions import Conversions as CV
-from openpilot.selfdrive.car.mazda.values import CAR, LKAS_LIMITS, MazdaFlags, GEN1, GEN2
+from openpilot.selfdrive.car.mazda.values import CAR, LKAS_LIMITS, MazdaFlags, GEN1, GEN2, GEN3
 from openpilot.selfdrive.car import create_button_events, get_safety_config
 from openpilot.selfdrive.car.interfaces import CarInterfaceBase, TorqueFromLateralAccelCallbackType, LateralAccelFromTorqueCallbackType
 from openpilot.common.params import Params
@@ -17,6 +17,7 @@ EventName = car.CarEvent.EventName
 NON_LINEAR_TORQUE_PARAMS = {
   CAR.MAZDA_3_2019: (4.6, 0.6, 0.134, 0.3605),
   CAR.MAZDA_CX_30: (4.68689, 0.79999, 0.18244, 0.38763),
+  CAR.MAZDA_CX_30_2023: (4.68689, 0.79999, 0.18244, 0.38763),
   CAR.MAZDA_CX_50: (4.68689, 0.79999, 0.18244, 0.38763)
 }
 
@@ -115,11 +116,18 @@ class CarInterface(CarInterfaceBase):
       ret.startingState = True
       ret.steerActuatorDelay = 0.335
 
+    if candidate in GEN3:
+      ret.safetyConfigs[0].safetyParam |= Panda.FLAG_MAZDA_GEN3
+      ret.experimentalLongitudinalAvailable = False
+      ret.openpilotLongitudinalControl = False
+      if p.get_bool("ManualTransmission"):
+        ret.flags |= MazdaFlags.MANUAL_TRANSMISSION.value
+
     ret.steerLimitTimer = 0.8
 
     CarInterfaceBase.configure_torque_tune(candidate, ret.lateralTuning)
 
-    if candidate not in (CAR.MAZDA_CX5_2022, CAR.MAZDA_3_2019, CAR.MAZDA_CX_30, CAR.MAZDA_CX_50) and not ret.flags & MazdaFlags.TORQUE_INTERCEPTOR:
+    if candidate not in (CAR.MAZDA_CX5_2022, CAR.MAZDA_3_2019, CAR.MAZDA_CX_30, CAR.MAZDA_CX_50, CAR.MAZDA_3_2023, CAR.MAZDA_CX_30_2023) and not ret.flags & MazdaFlags.TORQUE_INTERCEPTOR:
       ret.minSteerSpeed = LKAS_LIMITS.DISABLE_SPEED * CV.KPH_TO_MS
 
     ret.centerToFront = ret.wheelbase * 0.41

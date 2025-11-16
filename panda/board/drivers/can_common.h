@@ -197,10 +197,9 @@ void can_set_forwarding(uint8_t from, uint8_t to) {
 
 void ignition_can_hook(CANPacket_t *to_push) {
   int bus = GET_BUS(to_push);
+  int addr = GET_ADDR(to_push);
+  int len = GET_LEN(to_push);
   if (bus == 0) {
-    int addr = GET_ADDR(to_push);
-    int len = GET_LEN(to_push);
-
     // GM exception
     if ((addr == 0x1F1) && (len == 8)) {
       // SystemPowerMode (2=Run, 3=Crank Request)
@@ -226,9 +225,13 @@ void ignition_can_hook(CANPacket_t *to_push) {
       ignition_can_cnt = 0U;
     }
 
+  } else if (bus == 1) {
+    // Mazda 2019 exception
+    if ((addr == 0x274) && (len == 8)) {
+      ignition_can = (GET_BYTE(to_push, 5) & 0x4U) != 0U;
+      ignition_can_cnt = 0U;
+    }
   } else if (bus == 2) {
-    int addr = GET_ADDR(to_push);
-    int len = GET_LEN(to_push);
     // GM exception, SDGM cars have this message on bus 2
     if ((addr == 0x1F1) && (len == 8)) {
       // SystemPowerMode (2=Run, 3=Crank Request)

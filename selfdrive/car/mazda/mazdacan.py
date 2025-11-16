@@ -67,12 +67,12 @@ def create_steering_control(packer, CP, frame, apply_steer, lkas):
       }
       msgs.append(packer.make_can_msg("CAM_LKAS2", 1, values))
 
-  elif CP.flags & MazdaFlags.GEN2:
+  elif CP.flags & ( MazdaFlags.GEN2 | MazdaFlags.GEN3 ):
     bus = 1
     sig_name = "EPS_LKAS"
     values = {
       "LKAS_REQUEST": apply_steer,
-      "STEER_FEEL": 12000,
+      "STEER_FEEL": 10000,
     }
     msgs.append(packer.make_can_msg(sig_name, bus, values))
 
