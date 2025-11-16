@@ -31,7 +31,7 @@ class CarControllerParams:
       self.TI_STEER_DRIVER_MULTIPLIER = 40     # weight driver torque
       self.TI_STEER_DRIVER_FACTOR = 1         # from dbc
       self.TI_STEER_ERROR_MAX = 350           # max delta between torque cmd and torque motor
-    if CP.flags & MazdaFlags.GEN2:
+    if CP.flags & (MazdaFlags.GEN2 | MazdaFlags.GEN3):
       self.STEER_MAX = 8000
       self.STEER_DELTA_UP = 45              # torque increase per refresh
       self.STEER_DELTA_DOWN = 80            # torque decrease per refresh
@@ -62,16 +62,19 @@ class MazdaFlags(IntFlag):
   # Gen 1 hardware: same CAN messages and same camera
   GEN1 = 1
   GEN2 = 2
-  TORQUE_INTERCEPTOR = 4
-  RADAR_INTERCEPTOR = 8
-  NO_FSC = 16
-  NO_MRCC = 32
-  MANUAL_TRANSMISSION = 64
+  GEN3 = 4
+  TORQUE_INTERCEPTOR = 8
+  RADAR_INTERCEPTOR = 16
+  NO_FSC = 32
+  NO_MRCC = 64
+  MANUAL_TRANSMISSION = 128
 
 @dataclass
 class MazdaPlatformConfig(PlatformConfig):
   dbc_dict: DbcDict = field(default_factory=lambda: dbc_dict('mazda_2017', None))
   def init(self):
+    if self.flags & MazdaFlags.GEN3:
+      self.dbc_dict = dbc_dict('mazda_2023', None)
     if self.flags & MazdaFlags.GEN2:
       self.dbc_dict = dbc_dict('mazda_2019', None)
     elif self.flags & MazdaFlags.GEN1 and self.flags & MazdaFlags.RADAR_INTERCEPTOR:
@@ -116,7 +119,7 @@ class CAR(Platforms):
     flags=MazdaFlags.GEN2,
   )
   MAZDA_CX_30 = MazdaPlatformConfig(
-    [MazdaCarDocs("Mazda CX-30 2019-24")],
+    [MazdaCarDocs("Mazda CX-30 2019-22")],
     MazdaCarSpecs(mass=3375 * CV.LB_TO_KG, wheelbase=2.814, steerRatio=15.5),
     flags=MazdaFlags.GEN2,
   )
@@ -124,6 +127,16 @@ class CAR(Platforms):
     [MazdaCarDocs("Mazda CX-50 2022-24")],
     MazdaCarSpecs(mass=3375 * CV.LB_TO_KG, wheelbase=2.814, steerRatio=15.5),
     flags=MazdaFlags.GEN2,
+  )
+  MAZDA_3_2023 = MazdaPlatformConfig(
+    [MazdaCarDocs("Mazda 3 2024-26")],
+    MazdaCarSpecs(mass=3000 * CV.LB_TO_KG, wheelbase=2.725, steerRatio=18.8),
+    flags=MazdaFlags.GEN3,
+  )
+  MAZDA_CX_30_2023 = MazdaPlatformConfig(
+    [MazdaCarDocs("Mazda CX-30 23-26")],
+    MazdaCarSpecs(mass=3375 * CV.LB_TO_KG, wheelbase=2.814, steerRatio=15.5),
+    flags=MazdaFlags.GEN3,
   )
 
 
@@ -169,3 +182,4 @@ FW_QUERY_CONFIG = FwQueryConfig(
 DBC = CAR.create_dbc_map()
 GEN1 = CAR.with_flags(MazdaFlags.GEN1)
 GEN2 = CAR.with_flags(MazdaFlags.GEN2)
+GEN3 = CAR.with_flags(MazdaFlags.GEN3)
