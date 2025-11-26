@@ -5,6 +5,7 @@ import numpy as np
 from cereal import log
 from openpilot.selfdrive.car.interfaces import ACCEL_MIN, ACCEL_MAX
 from openpilot.common.realtime import DT_MDL
+from openpilot.common.filter_simple import FirstOrderFilter
 from openpilot.common.swaglog import cloudlog
 # WARNING: imports outside of constants will not trigger a rebuild
 from openpilot.selfdrive.modeld.constants import index_function
@@ -250,6 +251,9 @@ class LongitudinalMpc:
     self.mode = mode
     self.dt = dt
     self.solver = AcadosOcpSolverCython(MODEL_NAME, ACADOS_SOLVER_TYPE, N)
+    self.v_lead_filter = [FirstOrderFilter(0.0, 0.5, dt), FirstOrderFilter(0.0, 0.5, dt)]
+    self.a_lead_filter = [FirstOrderFilter(0.0, 0.5, dt), FirstOrderFilter(0.0, 0.5, dt)]
+    self.v_lead_filter_initialized = [False, False]
     self.reset()
     self.source = SOURCES[2]
 
@@ -281,6 +285,10 @@ class LongitudinalMpc:
     self.time_integrator = 0.0
     self.x0 = np.zeros(X_DIM)
     self.set_weights()
+    for i in range(2):
+      self.v_lead_filter[i].x = 0.0
+      self.a_lead_filter[i].x = 0.0
+      self.v_lead_filter_initialized[i] = False
 
   def set_cost_weights(self, cost_weights, constraint_cost_weights):
     W = np.asfortranarray(np.diag(cost_weights))
@@ -327,14 +335,25 @@ class LongitudinalMpc:
     lead_xv = np.column_stack((x_lead_traj, v_lead_traj))
     return lead_xv
 
-  def process_lead(self, lead):
+  def process_lead(self, lead, idx):
     v_ego = self.x0[1]
     if lead is not None and lead.status:
       x_lead = lead.dRel
       v_lead = lead.vLead
       a_lead = lead.aLeadK
       a_lead_tau = lead.aLeadTau
+
+      if not self.v_lead_filter_initialized[idx]:
+        self.v_lead_filter[idx].x = v_lead
+        self.a_lead_filter[idx].x = a_lead
+        self.v_lead_filter_initialized[idx] = True
+
+      self.v_lead_filter[idx].update(v_lead)
+      self.a_lead_filter[idx].update(a_lead)
+      v_lead = self.v_lead_filter[idx].x
+      a_lead = self.a_lead_filter[idx].x
     else:
+      self.v_lead_filter_initialized[idx] = False
       # Fake a fast lead car, so mpc can keep running in the same mode
       x_lead = 50.0
       v_lead = v_ego + 10.0
@@ -354,8 +373,8 @@ class LongitudinalMpc:
     v_ego = self.x0[1]
     self.status = radarstate.leadOne.status or radarstate.leadTwo.status
 
-    lead_xv_0 = self.process_lead(radarstate.leadOne)
-    lead_xv_1 = self.process_lead(radarstate.leadTwo)
+    lead_xv_0 = self.process_lead(radarstate.leadOne, 0)
+    lead_xv_1 = self.process_lead(radarstate.leadTwo, 1)
 
     # To estimate a safe distance from a moving lead, we calculate how much stopping
     # distance that lead needs as a minimum. We can add that to the current distance
