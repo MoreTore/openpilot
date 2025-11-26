@@ -65,16 +65,31 @@ class LatControlTorque(LatControl):
       actual_lateral_accel = actual_curvature * CS.vEgo ** 2
       lateral_accel_deadzone = curvature_deadzone * CS.vEgo ** 2
 
-      low_speed_factor = np.interp(CS.vEgo, LOW_SPEED_X, LOW_SPEED_Y_NN if frogpilot_toggles.nnff else LOW_SPEED_Y)**2
+      # STUBBED: Always use LOW_SPEED_Y regardless of toggle since NNFF is disabled
+      low_speed_factor = np.interp(CS.vEgo, LOW_SPEED_X, LOW_SPEED_Y)**2
       setpoint = desired_lateral_accel + low_speed_factor * desired_curvature
       measurement = actual_lateral_accel + low_speed_factor * actual_curvature
       gravity_adjusted_lateral_accel = desired_lateral_accel - roll_compensation
 
-      if self.nnff_loaded and frogpilot_toggles.nnff or frogpilot_toggles.nnff_lite:
+      # --- Lane Centering Correction (Ported from new.py) ---
+      # We calculate the raw acceleration error for the correction gain to match upstream logic
+      accel_error = desired_lateral_accel - actual_lateral_accel
+
+      CENTERING_GAIN_BP = [0, 10, 20, 30]  # m/s breakpoints
+      CENTERING_GAIN_V = [0.15, 0.12, 0.08, 0.05]  # correction gains
+      centering_gain = np.interp(CS.vEgo, CENTERING_GAIN_BP, CENTERING_GAIN_V)
+      lane_centering_correction = centering_gain * accel_error
+      # ------------------------------------------------------
+
+      # STUBBED: Condition set to False to always skip NNFF and go to 'else'
+      if False: # self.nnff_loaded and frogpilot_toggles.nnff or frogpilot_toggles.nnff_lite:
         pid_log, ff = self.nnff.compute_nnff(
           CS, VM, actual_lateral_accel, desired_lateral_accel, gravity_adjusted_lateral_accel, lateral_accel_deadzone,
           llk, measurement, model_data, params, pid_log, roll_compensation, setpoint, frogpilot_toggles
         )
+
+        # Apply centering correction to NNFF error
+        pid_log.error += float(lane_centering_correction)
 
         freeze_integrator = steer_limited_by_safety or CS.steeringPressed or CS.vEgo < 5
         output_torque = self.pid.update(pid_log.error,
@@ -83,7 +98,9 @@ class LatControlTorque(LatControl):
                                         freeze_integrator=freeze_integrator)
       else:
         # do error correction in lateral acceleration space, convert at end to handle non-linear torque responses correctly
-        pid_log.error = float(setpoint - measurement)
+        # Apply centering correction to standard error
+        pid_log.error = float(setpoint - measurement + lane_centering_correction)
+
         ff = gravity_adjusted_lateral_accel
         # latAccelOffset corrects roll compensation bias from device roll misalignment relative to car roll
         ff -= self.torque_params.latAccelOffset
