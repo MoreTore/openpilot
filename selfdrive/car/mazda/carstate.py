@@ -124,7 +124,7 @@ class CarState(CarStateBase):
 
     # TODO: the signal used for available seems to be the adaptive cruise signal, instead of the main on
     #       it should be used for carState.cruiseState.nonAdaptive instead
-    ret.cruiseState.standstill = ret.standstill
+    ret.cruiseState.standstill = cp.vl["PEDALS"]["STANDSTILL"] == 1
     ret.cruiseState.speed = cp.vl["CRZ_EVENTS"]["CRZ_SPEED"] * CV.KPH_TO_MS
     if self.CP.flags & MazdaFlags.RADAR_INTERCEPTOR:
       self.crz_info = copy.copy(cp_cam.vl["CRZ_INFO"])
@@ -176,6 +176,7 @@ class CarState(CarStateBase):
 
     ret.vEgoRaw = (ret.wheelSpeeds.fl + ret.wheelSpeeds.fr + ret.wheelSpeeds.rl + ret.wheelSpeeds.rr) / 4.
     ret.vEgo, ret.aEgo = self.update_speed_kf(ret.vEgoRaw) # Doesn't match cluster speed exactly
+    #ret.vEgoCluster = ret.vEgo * (2179/2285) #For alt tire size
 
     ret.leftBlinker, ret.rightBlinker = self.update_blinker_from_lamp(100, cp.vl["BLINK_INFO"]["LEFT_BLINK"] == 1,
                                                                       cp.vl["BLINK_INFO"]["RIGHT_BLINK"] == 1)
@@ -217,6 +218,7 @@ class CarState(CarStateBase):
     self.cp = cp
     self.cp_cam = cp_cam
     self.acc = copy.copy(cp.vl["ACC"])
+    self.distance_setting = copy.copy(cp.vl["CRUZE_STATE"]["DISTANCE_SETTING"])
 
     # FrogPilot CarState functions
     self.lkas_previously_enabled = self.lkas_enabled
@@ -241,12 +243,12 @@ class CarState(CarStateBase):
 
   @staticmethod
   def get_can_parser(CP, FPCP):
-    messages = []
-
+    messages = [
+      ("CRZ_BTNS", 10),
+    ]
     if not (CP.flags & MazdaFlags.GEN2):
       messages += [
         # sig_address, frequency
-        ("CRZ_BTNS", 10),
         ("BLINK_INFO", 10),
         ("STEER", 67),
         ("STEER_RATE", 83),
