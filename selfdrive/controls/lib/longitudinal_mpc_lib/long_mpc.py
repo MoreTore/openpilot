@@ -373,11 +373,8 @@ class LongitudinalMpc:
       # Fake an obstacle for cruise, this ensures smooth acceleration to set speed
       # when the leads are no factor.
       v_lower = v_ego + (T_IDXS * CRUISE_MIN_ACCEL * 1.05)
-      # TODO does this make sense when max_a is negative?
       v_upper = v_ego + (T_IDXS * CRUISE_MAX_ACCEL * 1.05)
-      v_cruise_clipped = np.clip(v_cruise * np.ones(N+1),
-                                 v_lower,
-                                 v_upper)
+      v_cruise_clipped = np.clip(v_cruise * np.ones(N+1), np.minimum(v_lower, v_cruise), v_upper)
       cruise_obstacle = np.cumsum(T_DIFFS * v_cruise_clipped) + get_safe_obstacle_distance(v_cruise_clipped, t_follow)
       x_obstacles = np.column_stack([lead_0_obstacle, lead_1_obstacle, cruise_obstacle])
       self.source = SOURCES[np.argmin(x_obstacles[0])]

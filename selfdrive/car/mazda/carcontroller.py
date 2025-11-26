@@ -1,3 +1,4 @@
+import numpy as np
 from cereal import car
 from opendbc.can.packer import CANPacker
 from openpilot.selfdrive.car import apply_driver_steer_torque_limits, apply_ti_steer_torque_limits
@@ -7,6 +8,8 @@ from openpilot.selfdrive.car.mazda.values import CarControllerParams, Buttons, M
 from openpilot.common.realtime import ControlsTimer as Timer, DT_CTRL
 from openpilot.common.filter_simple import FirstOrderFilter
 from openpilot.common.params import Params
+
+import cereal.messaging as messaging
 
 VisualAlert = car.CarControl.HUDControl.VisualAlert
 LongCtrlState = car.CarControl.Actuators.LongControlState
@@ -27,12 +30,30 @@ class CarController(CarControllerBase):
     self.cancel_delay = Timer(0.07) # 70ms delay to try to avoid a race condition with stock system
     self.acc_filter = FirstOrderFilter(0.0, .1, DT_CTRL, initialized=False)
     self.filtered_acc_last = 0
-    self.long_active_last = False
     self.params = Params()
     self.params_memory = Params("/dev/shm/params")
+    self.blend_coeff = 0 #factor for blending OP and stock long. 0 is fully stock, 1 is fully OP
+    self.transition_time = 2.5 #After this number of seconds, the smooth blending from stock to OP (or vice versa) is complete
+    self.distance_last = None
+    self.sm = messaging.SubMaster(['longitudinalPlan', 'radarState'])
+    # self.accel_transition_thresh = 1.25 #m/s^2, if aEgo is less than this we want to use MRCC, if more than this we transition to OP long
 
 
   def update(self, CC, CS, now_nanos, frogpilot_toggles):
+    self.sm.update(0)
+    long_plan = self.sm['longitudinalPlan']
+    allow_throttle = long_plan.allowThrottle
+
+    lead_one = self.sm['radarState'].leadOne
+    lead_status = lead_one.status  # whether lead is valid
+    if lead_status:
+      lead_distance = lead_one.dRel  # relative distance in meters
+      lead_velocity = lead_one.vRel  # relative velocity in m/s
+    else:
+      lead_distance = None
+      lead_velocity = None
+
+
     can_sends = []
 
     apply_steer = 0
@@ -75,8 +96,7 @@ class CarController(CarControllerBase):
         steer_required = CC.hudControl.visualAlert == VisualAlert.steerRequired
         # TODO: find a way to silence audible warnings so we can add more hud alerts
         steer_required = steer_required and CS.lkas_allowed_speed
-        if not self.CP.flags & MazdaFlags.NO_FSC:
-          can_sends.append(mazdacan.create_alert_command(self.packer, CS.cam_laneinfo, ldw, steer_required))
+        can_sends.append(mazdacan.create_alert_command(self.packer, CS.cam_laneinfo, ldw, steer_required))
 
       if self.CP.flags & MazdaFlags.RADAR_INTERCEPTOR:
         hold = False
@@ -108,30 +128,81 @@ class CarController(CarControllerBase):
 
     else:
       raw_acc_output = (CC.actuators.accel * 200) + 2000
-      if CC.longActive:
+      OPlong = (self.params.get_bool("ExperimentalLongitudinalEnabled") and CC.longActive)
+
+      # if self.params.get_bool("BlendedACC"):
+        # if self.params_memory.get_int("CEStatus"):
+          # self.acc_filter.update_alpha(abs(raw_acc_output-self.filtered_acc_last)/1000)
+          # filtered_acc_output = int(self.acc_filter.update(raw_acc_output))
+          # if OPlong:
+            # CS.acc["ACCEL_CMD"] = raw_acc_output
+        # else:
+          # we want to use the stock value in this case but we need a smooth transition.
+          # self.acc_filter.update_alpha(abs(CS.acc["ACCEL_CMD"]-self.filtered_acc_last)/1000)
+          # filtered_acc_output = CS.acc["ACCEL_CMD"]
+
+        # self.filtered_acc_last = filtered_acc_output
+      # elif OPlong:
+        # CS.acc["ACCEL_CMD"] = raw_acc_output
+
+      if OPlong:
+        #Force CEM with distance setting
+        if CS.distance_setting == 1:
+          self.params_memory.put_int("CEStatus", 2)
+        elif self.distance_last == 1:
+          self.params_memory.put_int("CEStatus", 0)
+
+        #Force CEM more aggressively when approaching leads
+        if lead_status and (lead_distance < CS.out.vEgo or lead_velocity < -2):
+          self.params_memory.put_int("CEStatus", 2)
+        elif CS.distance_setting != 1:
+          self.params_memory.put_int("CEStatus", 0)
+
+
+
         if self.params.get_bool("BlendedACC"):
-          if not self.long_active_last:
-            # reset the filter when we start ACC
-            self.acc_filter.initialized = False
+          blended_acc_output = (self.blend_coeff * raw_acc_output) + ((1 - self.blend_coeff) * CS.acc["ACCEL_CMD"])
+          CEStatus = self.params_memory.get_int("CEStatus")
 
-          if self.params_memory.get_int("CEStatus"):
-            self.acc_filter.update_alpha(abs(raw_acc_output-self.filtered_acc_last)/1000)
-            filtered_acc_output = int(self.acc_filter.update(raw_acc_output))
-          else:
-            # we want to use the stock value in this case but we need a smooth transition.
-            self.acc_filter.update_alpha(abs(CS.acc["ACCEL_CMD"]-self.filtered_acc_last)/1000)
-            filtered_acc_output = int(self.acc_filter.update(CS.acc["ACCEL_CMD"]))
+          # gas_gate_thresh = np.interp(CS.out.vEgo, [0,1,5,15,25], [0,500,250,20,0])
+          #If OP is gas gating, we'll allow it to take over control of long from MRCC. But only if MRCC commands are within this range.
+          #This is mainly to prevent the car from drifting away from the lead at highway speeds.
 
-          acc_output = filtered_acc_output
-          self.filtered_acc_last = filtered_acc_output
+          #blend in OP long
+          if (CEStatus and self.blend_coeff < 1):# or (allow_throttle == False and (2000 - gas_gate_thresh) < CS.acc["ACCEL_CMD"] < (2000 + gas_gate_thresh)):
+            self.blend_coeff += min((DT_CTRL / self.transition_time), (1 - self.blend_coeff))
+
+          #blend out to MRCC
+          elif CEStatus < 2 and self.blend_coeff > 0: #CEStatus == 1 is when CEM is forced off, but we still want to be decrementing in that scenario
+            self.blend_coeff -= min((DT_CTRL / self.transition_time), self.blend_coeff)
+            # self.accel_transition_thresh = 1.25
+
+          if self.blend_coeff > 0:
+            CS.acc["ACCEL_CMD"] = blended_acc_output
+
+
+          self.transition_time = (0.045455 * CS.out.vEgo) + 0.5 #ramp transition time depending on vehicle speed. 0.5s at standstill, 3s at 55mph
+          self.distance_last = CS.distance_setting
 
         else:
-          acc_output = raw_acc_output
+          # blended_acc_output = (self.blend_coeff * raw_acc_output) + ((1 - self.blend_coeff) * CS.acc["ACCEL_CMD"])
 
-        if self.params.get_bool("ExperimentalLongitudinalEnabled"):
-          CS.acc["ACCEL_CMD"] = acc_output
+          # #Blend in MRCC when gas gating is active to disable it. Remove this section when gas gating gets better.
+          # if allow_throttle or CC.actuators.accel < -3:
+          #   self.blend_coeff += min((DT_CTRL / self.transition_time), (1 - self.blend_coeff))
 
-      self.long_active_last = CC.longActive
+          # else: #gas gating is active, so transition back to MRCC
+          #   self.blend_coeff -= min((DT_CTRL / self.transition_time), self.blend_coeff)
+
+          # if self.blend_coeff > 0:
+          #   CS.acc["ACCEL_CMD"] = blended_acc_output
+
+          # self.transition_time = (0.045455 * CS.out.vEgo) + 0.5 #ramp transition time depending on vehicle speed. 0.5s at standstill, 3s at 55mph
+
+          CS.acc["ACCEL_CMD"] = raw_acc_output
+
+
+
       resume = False
       hold = False
       if Timer.interval(2): # send ACC command at 50hz
