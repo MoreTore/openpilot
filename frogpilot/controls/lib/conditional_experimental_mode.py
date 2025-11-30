@@ -55,15 +55,7 @@ class ConditionalExperimentalMode:
       self.status_value = 8
       return True
 
-    # "Aggressive Lead" Logic (Safety Snap for Cut-ins)
-    # This handles the immediate danger that requires 100% OP braking
-    if self.frogpilot_planner.tracking_lead:
-       lead = self.frogpilot_planner.lead_one
-       if lead.dRel < v_ego or lead.vRel < -2:
-           self.status_value = 10 
-           return True
-
-    # Standard "Slower Lead" Logic (Reverted to Stock behavior)
+    # Standard "Slower Lead" Logic (Stock Behavior)
     if self.slow_lead_detected and frogpilot_toggles.conditional_lead:
       self.status_value = 9 if self.frogpilot_planner.lead_one.vLead < 1 else 10
       return True
@@ -80,7 +72,7 @@ class ConditionalExperimentalMode:
 
   def update_conditions(self, v_ego, sm, frogpilot_toggles):
     self.curve_detection(v_ego, frogpilot_toggles)
-    self.slow_lead(frogpilot_toggles) # Removed v_ego argument
+    self.slow_lead(frogpilot_toggles)
     self.stop_sign_and_light(v_ego, sm, frogpilot_toggles.conditional_model_stop_time)
 
   def curve_detection(self, v_ego, frogpilot_toggles):
@@ -88,8 +80,8 @@ class ConditionalExperimentalMode:
     self.curve_detected = self.curvature_filter.x >= THRESHOLD and v_ego > CRUISING_SPEED
 
   def slow_lead(self, frogpilot_toggles):
-    # Reverted to use FrogPilot's native 'slower_lead' calculation
     if self.frogpilot_planner.tracking_lead:
+      # Stock Logic: Uses planner's internal flags instead of raw math
       slower_lead = frogpilot_toggles.conditional_slower_lead and self.frogpilot_planner.frogpilot_following.slower_lead
       stopped_lead = frogpilot_toggles.conditional_stopped_lead and self.frogpilot_planner.lead_one.vLead < 1
 
@@ -110,3 +102,5 @@ class ConditionalExperimentalMode:
     else:
       self.stop_light_filter.x = 0
       self.stop_light_detected = False
+
+
