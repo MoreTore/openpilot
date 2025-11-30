@@ -132,15 +132,15 @@ class CarController(CarControllerBase):
       if OPlong:
         if self.params.get_bool("BlendedACC"):
           CEStatus = self.params_memory.get_int("CEStatus")
-
+          
           if CEStatus >= 2:
-            # Fully disregard Mazda inputs if CEStatus is >= 2.
+            # Fully disregard Mazda inputs if CEStatus is >= 2. 
             # Force direct control and reset blend coeff to max.
             CS.acc["ACCEL_CMD"] = raw_acc_output
             self.blend_coeff = 1.0
           else:
             blended_acc_output = (self.blend_coeff * raw_acc_output) + ((1 - self.blend_coeff) * CS.acc["ACCEL_CMD"])
-
+            
             # blend in OP long
             if (CEStatus and self.blend_coeff < 1):
               self.blend_coeff += min((DT_CTRL / self.transition_time), (1 - self.blend_coeff))
@@ -199,3 +199,5 @@ class CarController(CarControllerBase):
     self.frame += 1
     Timer.tick()
     return new_actuators, can_sends
+
+
