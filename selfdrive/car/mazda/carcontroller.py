@@ -161,24 +161,31 @@ class CarController(CarControllerBase):
 
 
         if self.params.get_bool("BlendedACC"):
-          blended_acc_output = (self.blend_coeff * raw_acc_output) + ((1 - self.blend_coeff) * CS.acc["ACCEL_CMD"])
           CEStatus = self.params_memory.get_int("CEStatus")
 
-          # gas_gate_thresh = np.interp(CS.out.vEgo, [0,1,5,15,25], [0,500,250,20,0])
-          #If OP is gas gating, we'll allow it to take over control of long from MRCC. But only if MRCC commands are within this range.
-          #This is mainly to prevent the car from drifting away from the lead at highway speeds.
+          if CEStatus >= 2:
+            # Fully disregard Mazda inputs if CEStatus is >= 2.
+            # Force direct control and reset blend coeff to max.
+            CS.acc["ACCEL_CMD"] = raw_acc_output
+            self.blend_coeff = 1.0
+          else:
+            blended_acc_output = (self.blend_coeff * raw_acc_output) + ((1 - self.blend_coeff) * CS.acc["ACCEL_CMD"])
 
-          #blend in OP long
-          if (CEStatus and self.blend_coeff < 1):# or (allow_throttle == False and (2000 - gas_gate_thresh) < CS.acc["ACCEL_CMD"] < (2000 + gas_gate_thresh)):
-            self.blend_coeff += min((DT_CTRL / self.transition_time), (1 - self.blend_coeff))
+            # gas_gate_thresh = np.interp(CS.out.vEgo, [0,1,5,15,25], [0,500,250,20,0])
+            #If OP is gas gating, we'll allow it to take over control of long from MRCC. But only if MRCC commands are within this range.
+            #This is mainly to prevent the car from drifting away from the lead at highway speeds.
 
-          #blend out to MRCC
-          elif CEStatus < 2 and self.blend_coeff > 0: #CEStatus == 1 is when CEM is forced off, but we still want to be decrementing in that scenario
-            self.blend_coeff -= min((DT_CTRL / self.transition_time), self.blend_coeff)
-            # self.accel_transition_thresh = 1.25
+            #blend in OP long
+            if (CEStatus and self.blend_coeff < 1):# or (allow_throttle == False and (2000 - gas_gate_thresh) < CS.acc["ACCEL_CMD"] < (2000 + gas_gate_thresh)):
+              self.blend_coeff += min((DT_CTRL / self.transition_time), (1 - self.blend_coeff))
 
-          if self.blend_coeff > 0:
-            CS.acc["ACCEL_CMD"] = blended_acc_output
+            #blend out to MRCC
+            elif CEStatus < 2 and self.blend_coeff > 0: #CEStatus == 1 is when CEM is forced off, but we still want to be decrementing in that scenario
+              self.blend_coeff -= min((DT_CTRL / self.transition_time), self.blend_coeff)
+              # self.accel_transition_thresh = 1.25
+
+            if self.blend_coeff > 0:
+              CS.acc["ACCEL_CMD"] = blended_acc_output
 
 
           self.transition_time = (0.045455 * CS.out.vEgo) + 0.5 #ramp transition time depending on vehicle speed. 0.5s at standstill, 3s at 55mph
@@ -227,6 +234,9 @@ class CarController(CarControllerBase):
           self.hold_delay.reset() # reset the hold delay
 
         resume = self.resume_timer.active() # stay on for 0.5s to release the brake. This allows the car to move.
+        if CS.out.vEgo < 1.0:
+          resume = True
+          hold = False
         can_sends.append(mazdacan.create_acc_cmd(self, self.packer, CS.acc, hold, resume))
 
     # send steering command
