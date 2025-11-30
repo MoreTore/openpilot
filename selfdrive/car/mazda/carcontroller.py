@@ -36,7 +36,6 @@ class CarController(CarControllerBase):
     self.transition_time = 2.5 #After this number of seconds, the smooth blending from stock to OP (or vice versa) is complete
     self.distance_last = None
     self.sm = messaging.SubMaster(['longitudinalPlan', 'radarState'])
-    # self.accel_transition_thresh = 1.25 #m/s^2, if aEgo is less than this we want to use MRCC, if more than this we transition to OP long
 
 
   def update(self, CC, CS, now_nanos, frogpilot_toggles):
@@ -130,36 +129,7 @@ class CarController(CarControllerBase):
       raw_acc_output = (CC.actuators.accel * 200) + 2000
       OPlong = (self.params.get_bool("ExperimentalLongitudinalEnabled") and CC.longActive)
 
-      # if self.params.get_bool("BlendedACC"):
-        # if self.params_memory.get_int("CEStatus"):
-          # self.acc_filter.update_alpha(abs(raw_acc_output-self.filtered_acc_last)/1000)
-          # filtered_acc_output = int(self.acc_filter.update(raw_acc_output))
-          # if OPlong:
-            # CS.acc["ACCEL_CMD"] = raw_acc_output
-        # else:
-          # we want to use the stock value in this case but we need a smooth transition.
-          # self.acc_filter.update_alpha(abs(CS.acc["ACCEL_CMD"]-self.filtered_acc_last)/1000)
-          # filtered_acc_output = CS.acc["ACCEL_CMD"]
-
-        # self.filtered_acc_last = filtered_acc_output
-      # elif OPlong:
-        # CS.acc["ACCEL_CMD"] = raw_acc_output
-
       if OPlong:
-        #Force CEM with distance setting
-        if CS.distance_setting == 1:
-          self.params_memory.put_int("CEStatus", 2)
-        elif self.distance_last == 1:
-          self.params_memory.put_int("CEStatus", 0)
-
-        #Force CEM more aggressively when approaching leads
-        if lead_status and (lead_distance < CS.out.vEgo or lead_velocity < -2):
-          self.params_memory.put_int("CEStatus", 2)
-        elif CS.distance_setting != 1:
-          self.params_memory.put_int("CEStatus", 0)
-
-
-
         if self.params.get_bool("BlendedACC"):
           CEStatus = self.params_memory.get_int("CEStatus")
 
@@ -171,18 +141,13 @@ class CarController(CarControllerBase):
           else:
             blended_acc_output = (self.blend_coeff * raw_acc_output) + ((1 - self.blend_coeff) * CS.acc["ACCEL_CMD"])
 
-            # gas_gate_thresh = np.interp(CS.out.vEgo, [0,1,5,15,25], [0,500,250,20,0])
-            #If OP is gas gating, we'll allow it to take over control of long from MRCC. But only if MRCC commands are within this range.
-            #This is mainly to prevent the car from drifting away from the lead at highway speeds.
-
-            #blend in OP long
-            if (CEStatus and self.blend_coeff < 1):# or (allow_throttle == False and (2000 - gas_gate_thresh) < CS.acc["ACCEL_CMD"] < (2000 + gas_gate_thresh)):
+            # blend in OP long
+            if (CEStatus and self.blend_coeff < 1):
               self.blend_coeff += min((DT_CTRL / self.transition_time), (1 - self.blend_coeff))
 
-            #blend out to MRCC
-            elif CEStatus < 2 and self.blend_coeff > 0: #CEStatus == 1 is when CEM is forced off, but we still want to be decrementing in that scenario
+            # blend out to MRCC
+            elif CEStatus < 2 and self.blend_coeff > 0:
               self.blend_coeff -= min((DT_CTRL / self.transition_time), self.blend_coeff)
-              # self.accel_transition_thresh = 1.25
 
             if self.blend_coeff > 0:
               CS.acc["ACCEL_CMD"] = blended_acc_output
@@ -192,23 +157,7 @@ class CarController(CarControllerBase):
           self.distance_last = CS.distance_setting
 
         else:
-          # blended_acc_output = (self.blend_coeff * raw_acc_output) + ((1 - self.blend_coeff) * CS.acc["ACCEL_CMD"])
-
-          # #Blend in MRCC when gas gating is active to disable it. Remove this section when gas gating gets better.
-          # if allow_throttle or CC.actuators.accel < -3:
-          #   self.blend_coeff += min((DT_CTRL / self.transition_time), (1 - self.blend_coeff))
-
-          # else: #gas gating is active, so transition back to MRCC
-          #   self.blend_coeff -= min((DT_CTRL / self.transition_time), self.blend_coeff)
-
-          # if self.blend_coeff > 0:
-          #   CS.acc["ACCEL_CMD"] = blended_acc_output
-
-          # self.transition_time = (0.045455 * CS.out.vEgo) + 0.5 #ramp transition time depending on vehicle speed. 0.5s at standstill, 3s at 55mph
-
           CS.acc["ACCEL_CMD"] = raw_acc_output
-
-
 
       resume = False
       hold = False

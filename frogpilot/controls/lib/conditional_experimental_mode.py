@@ -22,7 +22,7 @@ class ConditionalExperimentalMode:
     else:
       self.status_value = 0
 
-    if self.status_value not in {1, 2} and not sm["carState"].standstill:
+    if self.status_value not in (1, 2) and not sm["carState"].standstill:
       self.update_conditions(v_ego, sm, frogpilot_toggles)
 
       self.experimental_mode = self.check_conditions(v_ego, sm, frogpilot_toggles)
@@ -30,12 +30,12 @@ class ConditionalExperimentalMode:
       params_memory.put_int("CEStatus", self.status_value if self.experimental_mode else 0)
     else:
       self.experimental_mode = self.status_value == 2 or sm["carState"].standstill and self.experimental_mode and self.frogpilot_planner.model_stopped
-      self.stop_light_detected &= self.status_value not in {1, 2}
+      self.stop_light_detected &= self.status_value not in (1, 2)
       self.stop_light_filter.x = 0
 
   def check_conditions(self, v_ego, sm, frogpilot_toggles):
-    below_speed = frogpilot_toggles.conditional_limit > v_ego and not self.frogpilot_planner.frogpilot_following.following_lead
-    below_speed_with_lead = frogpilot_toggles.conditional_limit_lead > v_ego and self.frogpilot_planner.frogpilot_following.following_lead
+    below_speed = not self.frogpilot_planner.frogpilot_following.following_lead and v_ego < frogpilot_toggles.conditional_limit
+    below_speed_with_lead = self.frogpilot_planner.frogpilot_following.following_lead and v_ego < frogpilot_toggles.conditional_limit_lead
     if below_speed or below_speed_with_lead:
       self.status_value = 3 if self.frogpilot_planner.frogpilot_following.following_lead else 4
       return True
@@ -47,19 +47,27 @@ class ConditionalExperimentalMode:
       return True
 
     approaching_maneuver = sm["frogpilotNavigation"].approachingIntersection or sm["frogpilotNavigation"].approachingTurn
-    if frogpilot_toggles.conditional_navigation and approaching_maneuver and (frogpilot_toggles.conditional_navigation_lead or not self.frogpilot_planner.frogpilot_following.following_lead):
+    if approaching_maneuver and (not self.frogpilot_planner.frogpilot_following.following_lead or frogpilot_toggles.conditional_navigation_lead) and frogpilot_toggles.conditional_navigation:
       self.status_value = 6 if sm["frogpilotNavigation"].approachingIntersection else 7
       return True
 
-    if frogpilot_toggles.conditional_curves and self.curve_detected and (frogpilot_toggles.conditional_curves_lead or not self.frogpilot_planner.frogpilot_following.following_lead):
+    if self.curve_detected and (not self.frogpilot_planner.frogpilot_following.following_lead or frogpilot_toggles.conditional_curves_lead) and frogpilot_toggles.conditional_curves:
       self.status_value = 8
       return True
 
-    if frogpilot_toggles.conditional_lead and self.slow_lead_detected:
+    # "Aggressive Lead" Logic (Moved from CarController)
+    # Triggers if lead is within ~1 second following distance OR braking hard
+    if self.frogpilot_planner.tracking_lead:
+       lead = self.frogpilot_planner.lead_one
+       if lead.dRel < v_ego or lead.vRel < -2:
+           self.status_value = 10
+           return True
+
+    if self.slow_lead_detected and frogpilot_toggles.conditional_lead:
       self.status_value = 9 if self.frogpilot_planner.lead_one.vLead < 1 else 10
       return True
 
-    if frogpilot_toggles.conditional_model_stop_time != 0 and self.stop_light_detected:
+    if self.stop_light_detected and frogpilot_toggles.conditional_model_stop_time != 0:
       self.status_value = 11 if not self.frogpilot_planner.frogpilot_vcruise.forcing_stop else 12
       return True
 
@@ -71,17 +79,17 @@ class ConditionalExperimentalMode:
 
   def update_conditions(self, v_ego, sm, frogpilot_toggles):
     self.curve_detection(v_ego, frogpilot_toggles)
-    self.slow_lead(frogpilot_toggles)
+    self.slow_lead(v_ego, frogpilot_toggles)
     self.stop_sign_and_light(v_ego, sm, frogpilot_toggles.conditional_model_stop_time)
 
   def curve_detection(self, v_ego, frogpilot_toggles):
     self.curvature_filter.update(self.frogpilot_planner.road_curvature_detected or self.frogpilot_planner.driving_in_curve)
     self.curve_detected = self.curvature_filter.x >= THRESHOLD and v_ego > CRUISING_SPEED
 
-  def slow_lead(self, frogpilot_toggles):
+  def slow_lead(self, v_ego, frogpilot_toggles):
     if self.frogpilot_planner.tracking_lead:
-      slower_lead = frogpilot_toggles.conditional_slower_lead and self.frogpilot_planner.frogpilot_following.slower_lead
-      stopped_lead = frogpilot_toggles.conditional_stopped_lead and self.frogpilot_planner.lead_one.vLead < 1
+      slower_lead = (v_ego - self.frogpilot_planner.lead_one.vLead) > CRUISING_SPEED and frogpilot_toggles.conditional_slower_lead
+      stopped_lead = self.frogpilot_planner.lead_one.vLead < 1 and frogpilot_toggles.conditional_stopped_lead
 
       self.slow_lead_filter.update(slower_lead or stopped_lead)
       self.slow_lead_detected = self.slow_lead_filter.x >= THRESHOLD
@@ -94,7 +102,10 @@ class ConditionalExperimentalMode:
       model_stopping = self.frogpilot_planner.model_length < v_ego * model_time
 
       self.stop_light_filter.update(self.frogpilot_planner.model_stopped or model_stopping)
-      self.stop_light_detected = self.stop_light_filter.x >= THRESHOLD and not self.frogpilot_planner.tracking_lead
+
+      # FIX: Removed "and not self.frogpilot_planner.tracking_lead"
+      # Now it will detect stop signs even if following a car.
+      self.stop_light_detected = self.stop_light_filter.x >= THRESHOLD
     else:
       self.stop_light_filter.x = 0
       self.stop_light_detected = False
