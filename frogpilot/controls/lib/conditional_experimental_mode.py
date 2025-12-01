@@ -115,38 +115,30 @@ class ConditionalExperimentalMode:
 
   def stop_sign_and_light(self, v_ego, sm, model_time):
     if not sm["frogpilotCarState"].trafficModeEnabled:
-      model_stopping = self.frogpilot_planner.model_length < v_ego * model_time
+      model_length = self.frogpilot_planner.model_length
+      model_stopping = model_length < v_ego * model_time
 
       self.stop_light_filter.update(self.frogpilot_planner.model_stopped or model_stopping)
-
       light_detected = self.stop_light_filter.x >= THRESHOLD
 
-      lead_ignored = False
+      # We will stop if we see a red light (or if the model wants us to stop soon)
+      should_stop_for_light = light_detected
+
       if self.frogpilot_planner.tracking_lead:
-          lead = self.frogpilot_planner.lead_one
+        lead = self.frogpilot_planner.lead_one
 
-          relative_speed = v_ego - lead.vLead
-          # Find how long until we hit the lead
-          time_to_impact_lead = lead.dRel / max(relative_speed, 0.1)
+        # If the lead is stopped
+        lead_is_stopped = lead.vLead < 2.0
 
-          # Find how long until we hit the stop line
-          time_to_reach_light = self.frogpilot_planner.model_length / max(v_ego, 0.1)
+        # Is the stop line closer than the lead? (They drove thru an intersection from another direction or ran the red light)
+        # Allow a 6 meter buffer to fight noise. If we miss a red light by 6 meters, we deserved it.
+        stop_is_distinct = model_length < (lead.dRel - 6)
 
-          # If we hit the line before the lead, ignore the lead
-          # so we dont follow a red light runner thru the intersection, or a right turn from the road to our right
-          if time_to_reach_light < time_to_impact_lead:
-              lead_ignored = True
+        # We only want to force CEM if we see a light, and either have a stopped lead or the lead is beyond the stop line
+        should_stop_for_light = light_detected and (lead_is_stopped or stop_is_distinct)
 
-          # if they are going faster than us leading up to the intersection, let frog deal with it
-          if lead.vLead > v_ego:
-              lead_ignored = True
-
-          # stopped lead check (just in case the toggle is disabled)
-          if lead.vLead < 2.0:
-              lead_ignored = True
-
-      # Stop for the stop sign if we don't like our lead car (or if we dont have one)
-      self.stop_light_detected = light_detected and (not self.frogpilot_planner.tracking_lead or lead_ignored)
+      # If lead, and lead is stopped or beyond the light, stop. if no lead, stop. otherwise, follow lead and trust slow/stop lead
+      self.stop_light_detected = should_stop_for_light
 
     else:
       self.stop_light_filter.x = 0

@@ -183,7 +183,7 @@ class CarController(CarControllerBase):
           self.hold_delay.reset() # reset the hold delay
 
         resume = self.resume_timer.active() # stay on for 0.5s to release the brake. This allows the car to move.
-        if CS.out.vEgo < 1.0:
+        if CS.out.vEgo < 1.0 and CS.acc["ACCEL_CMD"] > 2000:
           resume = True
           hold = False
         can_sends.append(mazdacan.create_acc_cmd(self, self.packer, CS.acc, hold, resume))
