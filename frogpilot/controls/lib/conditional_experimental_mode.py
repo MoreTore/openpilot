@@ -23,7 +23,7 @@ class ConditionalExperimentalMode:
     else:
       self.status_value = 0
 
-    if self.status_value not in (1, 2) and not sm["carState"].standstill:
+    if self.status_value not in (1, 2):
       self.update_conditions(v_ego, sm, frogpilot_toggles)
 
       self.experimental_mode = self.check_conditions(v_ego, sm, frogpilot_toggles)
