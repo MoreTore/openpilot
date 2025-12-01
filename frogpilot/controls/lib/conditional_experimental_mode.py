@@ -121,18 +121,31 @@ class ConditionalExperimentalMode:
 
       light_detected = self.stop_light_filter.x >= THRESHOLD
 
-      # If someone in front of us is going faster than us, we dont care about them
       lead_ignored = False
       if self.frogpilot_planner.tracking_lead:
-          lead_speed = self.frogpilot_planner.lead_one.vLead
+          lead = self.frogpilot_planner.lead_one
 
-          if lead_speed > v_ego:
+          relative_speed = v_ego - lead.vLead
+          # Find how long until we hit the lead
+          time_to_impact_lead = lead.dRel / max(relative_speed, 0.1)
+
+          # Find how long until we hit the stop line
+          time_to_reach_light = self.frogpilot_planner.model_length / max(v_ego, 0.1)
+
+          # If we hit the line before the lead, ignore the lead
+          # so we dont follow a red light runner thru the intersection, or a right turn from the road to our right
+          if time_to_reach_light < time_to_impact_lead:
               lead_ignored = True
 
-          if lead_speed < 2:
+          # if they are going faster than us leading up to the intersection, let frog deal with it
+          if lead.vLead > v_ego:
               lead_ignored = True
 
-      # Red light and there is not a stopped lead (or lead stopped or slower than us)
+          # stopped lead check (just in case the toggle is disabled)
+          if lead.vLead < 2.0:
+              lead_ignored = True
+
+      # Stop for the stop sign if we don't like our lead car (or if we dont have one)
       self.stop_light_detected = light_detected and (not self.frogpilot_planner.tracking_lead or lead_ignored)
 
     else:
