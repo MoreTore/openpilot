@@ -80,8 +80,18 @@ class ConditionalExperimentalMode:
 
   def slow_lead(self, v_ego, frogpilot_toggles):
     if self.frogpilot_planner.tracking_lead:
-      slower_lead = (v_ego - self.frogpilot_planner.lead_one.vLead) > 9 and frogpilot_toggles.conditional_slower_lead
-      stopped_lead = self.frogpilot_planner.lead_one.vLead < 1 and frogpilot_toggles.conditional_stopped_lead
+      lead = self.frogpilot_planner.lead_one
+      lead_speed = lead.vLead
+      lead_distance = lead.dRel
+      relative_speed = v_ego - lead_speed
+
+      # Maintain CRUISING_SPEED (5 m/s) from mr froggy
+      # Multiply distance down by speed. (So we dont go experimental when we're still a mile behind them)
+      closing_quickly = relative_speed > CRUISING_SPEED
+      close_proximity = lead_distance < (relative_speed * 4) # If we hit them in 4 seconds, then engage CEM.
+
+      slower_lead = closing_quickly and close_proximity and frogpilot_toggles.conditional_slower_lead
+      stopped_lead = lead_speed < 1 and frogpilot_toggles.conditional_stopped_lead
 
       self.slow_lead_filter.update(slower_lead or stopped_lead)
       self.slow_lead_detected = self.slow_lead_filter.x >= THRESHOLD
