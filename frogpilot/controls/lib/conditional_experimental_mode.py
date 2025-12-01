@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import math
 from openpilot.common.filter_simple import FirstOrderFilter
 from openpilot.common.realtime import DT_MDL
 
@@ -81,20 +82,33 @@ class ConditionalExperimentalMode:
   def slow_lead(self, v_ego, frogpilot_toggles):
     if self.frogpilot_planner.tracking_lead:
       lead = self.frogpilot_planner.lead_one
-      lead_speed = lead.vLead
       lead_distance = lead.dRel
-      relative_speed = v_ego - lead_speed
+      relative_speed = v_ego - lead.vLead
 
-      # Maintain CRUISING_SPEED (5 m/s) from mr froggy
-      # Multiply distance down by speed. (So we dont go experimental when we're still a mile behind them)
-      closing_quickly = relative_speed > CRUISING_SPEED
-      close_proximity = lead_distance < (relative_speed * 4) # If we hit them in 4 seconds, then engage CEM.
+      # How long until we crash into them?
+      if relative_speed > 0:
+        time_to_impact = lead_distance / relative_speed
+      else:
+        time_to_impact = 1000.0 # We dont care lets set a value we dont care about later
 
-      slower_lead = closing_quickly and close_proximity and frogpilot_toggles.conditional_slower_lead
-      stopped_lead = lead_speed < 1 and frogpilot_toggles.conditional_stopped_lead
+      # Stopped leads get the GUI stop sign toggle, or 6 sec default. Moving leads get the hardcoded 4 second rate.
+      stop_time_threshold = self.get_safe_stop_time(frogpilot_toggles.conditional_model_stop_time)
+      drive_time_threshold = 4.0
 
-      self.slow_lead_filter.update(slower_lead or stopped_lead)
+      # Check if they are stopped (or < 4.5 mph)
+      is_stopped = lead.vLead < 2.0
+
+      if is_stopped:
+        # Will we hit them within N seconds (GUI stop sign toggle, or 6 sec default)
+        lead_detected = (time_to_impact < stop_time_threshold) and frogpilot_toggles.conditional_stopped_lead
+      else:
+        # We will hit them within 4 seconds, and we are going at least 11mph faster than them
+        closing_fast = relative_speed > CRUISING_SPEED
+        lead_detected = closing_fast and (time_to_impact < drive_time_threshold) and frogpilot_toggles.conditional_slower_lead
+
+      self.slow_lead_filter.update(lead_detected)
       self.slow_lead_detected = self.slow_lead_filter.x >= THRESHOLD
+
     else:
       self.slow_lead_filter.x = 0
       self.slow_lead_detected = False
@@ -102,33 +116,54 @@ class ConditionalExperimentalMode:
   def stop_sign_and_light(self, v_ego, sm, model_time):
     if not sm["frogpilotCarState"].trafficModeEnabled:
       model_stopping = self.frogpilot_planner.model_length < v_ego * model_time
+
       self.stop_light_filter.update(self.frogpilot_planner.model_stopped or model_stopping)
 
       light_detected = self.stop_light_filter.x >= THRESHOLD
 
-      unsafe_lead = False
+      # If someone in front of us is going faster than us, we dont care about them
+      lead_ignored = False
       if self.frogpilot_planner.tracking_lead:
-        lead = self.frogpilot_planner.lead_one
-        lead_distance = lead.dRel
+          lead_speed = self.frogpilot_planner.lead_one.vLead
 
-        relative_speed = v_ego - lead.vLead
+          if lead_speed > v_ego:
+              lead_ignored = True
 
-        # Stopped or < ~4.5mph
-        lead_stopped = lead.vLead < 2.0
+          if lead_speed < 2:
+              lead_ignored = True
 
-        # If we will hit them within N seconds.
-        # Basically, if we first detect a red light with the model time in the GUI set to 9 seconds.
-        # Old frog code will immediately nope out if we see a lead
-        # Now we will keep CEM on if we continue to see the red light, and we will rear-end them within the next 9 seconds.
-        closing_fast = False
-        if relative_speed > 0:
-            closing_fast = lead_distance < (relative_speed * model_time)
-
-        unsafe_lead = lead_stopped or closing_fast
-
-      # If we see a stop light and no lead, or a lead that mazda isn't going to see, CEM it
-      self.stop_light_detected = light_detected and (not self.frogpilot_planner.tracking_lead or unsafe_lead)
+      # Red light and there is not a stopped lead (or lead stopped or slower than us)
+      self.stop_light_detected = light_detected and (not self.frogpilot_planner.tracking_lead or lead_ignored)
 
     else:
       self.stop_light_filter.x = 0
       self.stop_light_detected = False
+
+  def get_safe_stop_time(self, raw_value):
+    """
+    Stop time for stopped leads and red light/stop sign. Return 6 seconds if we have a shit config. (So we dont rear-end someone)
+    """
+    fallback_value = 6
+
+    try:
+        # Null check
+        if raw_value is None:
+            return fallback_value
+
+        # Float it
+        val = float(raw_value)
+
+        # NaN inf check
+        if math.isnan(val) or math.isinf(val):
+            return fallback_value
+
+        # Guard against template val
+        if val <= 1.5:
+            return fallback_value
+
+        # Return the valid number
+        return val
+
+    except (ValueError, TypeError):
+        # We broke something, use fallback
+        return fallback_value
