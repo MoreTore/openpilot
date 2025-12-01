@@ -80,7 +80,7 @@ class ConditionalExperimentalMode:
 
   def slow_lead(self, v_ego, frogpilot_toggles):
     if self.frogpilot_planner.tracking_lead:
-      slower_lead = (v_ego - self.frogpilot_planner.lead_one.vLead) > CRUISING_SPEED and frogpilot_toggles.conditional_slower_lead
+      slower_lead = (v_ego - self.frogpilot_planner.lead_one.vLead) > 9 and frogpilot_toggles.conditional_slower_lead
       stopped_lead = self.frogpilot_planner.lead_one.vLead < 1 and frogpilot_toggles.conditional_stopped_lead
 
       self.slow_lead_filter.update(slower_lead or stopped_lead)
