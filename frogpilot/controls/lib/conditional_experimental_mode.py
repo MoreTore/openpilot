@@ -131,8 +131,8 @@ class ConditionalExperimentalMode:
         lead_is_stopped = lead.vLead < 2.0
 
         # Is the stop line closer than the lead? (They drove thru an intersection from another direction or ran the red light)
-        # Allow a 6 meter buffer to fight noise. If we miss a red light by 6 meters, we deserved it.
-        stop_is_distinct = model_length < (lead.dRel - 6)
+        # Allow a 5.5 meter buffer to fight noise. If we miss a red light by 5.5 meters, we deserved it.
+        stop_is_distinct = model_length < (lead.dRel - 5.5)
 
         # We only want to force CEM if we see a light, and either have a stopped lead or the lead is beyond the stop line
         should_stop_for_light = light_detected and (lead_is_stopped or stop_is_distinct)
