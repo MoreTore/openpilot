@@ -102,9 +102,33 @@ class ConditionalExperimentalMode:
   def stop_sign_and_light(self, v_ego, sm, model_time):
     if not sm["frogpilotCarState"].trafficModeEnabled:
       model_stopping = self.frogpilot_planner.model_length < v_ego * model_time
-
       self.stop_light_filter.update(self.frogpilot_planner.model_stopped or model_stopping)
-      self.stop_light_detected = self.stop_light_filter.x >= THRESHOLD and not self.frogpilot_planner.tracking_lead
+
+      light_detected = self.stop_light_filter.x >= THRESHOLD
+
+      unsafe_lead = False
+      if self.frogpilot_planner.tracking_lead:
+        lead = self.frogpilot_planner.lead_one
+        lead_distance = lead.dRel
+
+        relative_speed = v_ego - lead.vLead
+
+        # Stopped or < ~4.5mph
+        lead_stopped = lead.vLead < 2.0
+
+        # If we will hit them within N seconds.
+        # Basically, if we first detect a red light with the model time in the GUI set to 9 seconds.
+        # Old frog code will immediately nope out if we see a lead
+        # Now we will keep CEM on if we continue to see the red light, and we will rear-end them within the next 9 seconds.
+        closing_fast = False
+        if relative_speed > 0:
+            closing_fast = lead_distance < (relative_speed * model_time)
+
+        unsafe_lead = lead_stopped or closing_fast
+
+      # If we see a stop light and no lead, or a lead that mazda isn't going to see, CEM it
+      self.stop_light_detected = light_detected and (not self.frogpilot_planner.tracking_lead or unsafe_lead)
+
     else:
       self.stop_light_filter.x = 0
       self.stop_light_detected = False
