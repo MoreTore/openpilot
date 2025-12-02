@@ -2,7 +2,7 @@
 import math
 from openpilot.common.filter_simple import FirstOrderFilter
 from openpilot.common.realtime import DT_MDL
-
+from openpilot.selfdrive.car.interfaces import ACCEL_MIN
 from openpilot.frogpilot.common.frogpilot_variables import CITY_SPEED_LIMIT, CRUISING_SPEED, THRESHOLD, params_memory
 
 class ConditionalExperimentalMode:
@@ -177,15 +177,15 @@ class ConditionalExperimentalMode:
       Mazda can only brake at 3 m/s^2. It's possible our 9-second goal will overshoot it.
       If we won't make the destination in the target time, we can brake earlier
       """
-      # MAZDA LIMIT: ~3.07 m/s^2.
-      # We target 2.85 to allow the planner some wiggle room before the ECU panics.
-      SAFE_DECEL = 2.85
+      # Mazda limits to 3 m/ss
+      # Pull the braking limit from the car controller base (2.95 m/ss)
+      safe_decel = abs(ACCEL_MIN)
 
       # 1. Time threshold ()
       d_time = velocity * time_threshold
 
       # 2. Physics Limit (v^2 / 2a)
-      d_physics = (velocity ** 2) / (2 * SAFE_DECEL)
+      d_physics = (velocity ** 2) / (2 * safe_decel)
 
       # Return the larger distance (forcing us to engage EARLIER if we are going too fast)
       return max(d_time, d_physics)
