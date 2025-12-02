@@ -85,30 +85,27 @@ class ConditionalExperimentalMode:
       lead_distance = lead.dRel
       relative_speed = v_ego - lead.vLead
 
-      # How long until we crash into them?
-      if relative_speed > 0:
-        time_to_impact = lead_distance / relative_speed
-      else:
-        time_to_impact = 1000.0 # We dont care lets set a value we dont care about later
+      # 4 seconds (or however hard we can brake to get to 4 seconds)
+      safe_approach_dist = self.get_safe_distance(relative_speed, 4.0)
 
-      # Stopped leads get the GUI stop sign toggle, or 6 sec default. Moving leads get the hardcoded 4 second rate.
-      stop_time_threshold = self.get_safe_stop_time(frogpilot_toggles.conditional_model_stop_time)
-      drive_time_threshold = 4.0
+      closing_quickly = relative_speed > CRUISING_SPEED # are we 11mph faster than them?
+      close_proximity = lead_distance < safe_approach_dist
 
-      # Check if they are stopped (or < 4.5 mph)
-      is_stopped = lead.vLead < 2.0
+      slower_lead = closing_quickly and close_proximity and frogpilot_toggles.conditional_slower_lead
 
-      if is_stopped:
-        # Will we hit them within N seconds (GUI stop sign toggle, or 6 sec default)
-        lead_detected = (time_to_impact < stop_time_threshold) and frogpilot_toggles.conditional_stopped_lead
-      else:
-        # We will hit them within 4 seconds, and we are going at least 11mph faster than them
-        closing_fast = relative_speed > CRUISING_SPEED
-        lead_detected = closing_fast and (time_to_impact < drive_time_threshold) and frogpilot_toggles.conditional_slower_lead
 
-      self.slow_lead_filter.update(lead_detected)
+      # try to stop within N seconds to make the lead car. if we cant brake that hard, start braking sooner
+      safe_stopped_dist = self.get_safe_distance(relative_speed, self.get_safe_stop_time(frogpilot_toggles.conditional_model_stop_time))
+
+      # Is the lead stopped? Will we make it within 9 sec? Do we need to brake early?
+      lead_is_stopped = lead.vLead < 1
+      lead_is_in_range = lead_distance < safe_stopped_dist
+
+      stopped_lead = lead_is_stopped and lead_is_in_range and frogpilot_toggles.conditional_stopped_lead
+
+
+      self.slow_lead_filter.update(slower_lead or stopped_lead)
       self.slow_lead_detected = self.slow_lead_filter.x >= THRESHOLD
-
     else:
       self.slow_lead_filter.x = 0
       self.slow_lead_detected = False
@@ -116,34 +113,34 @@ class ConditionalExperimentalMode:
   def stop_sign_and_light(self, v_ego, sm, model_time):
     if not sm["frogpilotCarState"].trafficModeEnabled:
       model_length = self.frogpilot_planner.model_length
-      model_stopping = model_length < v_ego * model_time
+
+      # can we make it? stop earlier if needed
+      safe_stop_dist = self.get_safe_distance(v_ego, self.get_safe_stop_time(model_time))
+
+      model_stopping = model_length < safe_stop_dist
 
       self.stop_light_filter.update(self.frogpilot_planner.model_stopped or model_stopping)
       light_detected = self.stop_light_filter.x >= THRESHOLD
 
-      # We will stop if we see a red light (or if the model wants us to stop soon)
       should_stop_for_light = light_detected
 
       if self.frogpilot_planner.tracking_lead:
         lead = self.frogpilot_planner.lead_one
 
-        # If the lead is stopped
+        # stopped lead
         lead_is_stopped = lead.vLead < 2.0
 
-        # Is the stop line closer than the lead? (They drove thru an intersection from another direction or ran the red light)
-        # Allow a 5.5 meter buffer to fight noise. If we miss a red light by 5.5 meters, we deserved it.
+        # lead is beyond the stop point beyond 5.5m
         stop_is_distinct = model_length < (lead.dRel - 5.5)
 
-        # We only want to force CEM if we see a light, and either have a stopped lead or the lead is beyond the stop line
+        # stop if we have a lead that we dont care about
         should_stop_for_light = light_detected and (lead_is_stopped or stop_is_distinct)
 
-      # If lead, and lead is stopped or beyond the light, stop. if no lead, stop. otherwise, follow lead and trust slow/stop lead
       self.stop_light_detected = should_stop_for_light
 
     else:
       self.stop_light_filter.x = 0
       self.stop_light_detected = False
-
   def get_safe_stop_time(self, raw_value):
     """
     Stop time for stopped leads and red light/stop sign. Return 6 seconds if we have a shit config. (So we dont rear-end someone)
@@ -172,3 +169,23 @@ class ConditionalExperimentalMode:
     except (ValueError, TypeError):
         # We broke something, use fallback
         return fallback_value
+
+  def get_safe_distance(self, velocity, time_threshold):
+      """
+      Return the distance to the target.
+      Let's say we want to stop for a red light 9 seconds out.
+      Mazda can only brake at 3 m/s^2. It's possible our 9-second goal will overshoot it.
+      If we won't make the destination in the target time, we can brake earlier
+      """
+      # MAZDA LIMIT: ~3.07 m/s^2.
+      # We target 2.85 to allow the planner some wiggle room before the ECU panics.
+      SAFE_DECEL = 2.85
+
+      # 1. Time threshold ()
+      d_time = velocity * time_threshold
+
+      # 2. Physics Limit (v^2 / 2a)
+      d_physics = (velocity ** 2) / (2 * SAFE_DECEL)
+
+      # Return the larger distance (forcing us to engage EARLIER if we are going too fast)
+      return max(d_time, d_physics)
