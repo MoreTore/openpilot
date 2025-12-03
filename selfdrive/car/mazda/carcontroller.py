@@ -124,23 +124,32 @@ class CarController(CarControllerBase):
 
         if self.frame % 2 == 0:
           can_sends.extend(mazdacan.create_radar_command(self.packer, self.frame, CC.longActive, CS, hold))
-
+    # GEN2
     else:
-      raw_acc_output = (CC.actuators.accel * 200) + 2000
+      target_accel = CC.actuators.accel
+
+      # Step on brakes some more below 4.5m/s
+      if CS.out.vEgo < 4.5 and target_accel < 0:
+        # At 0 m/s = 2x multiplier
+        # At 4.5 m/s = 1x multiplier
+        brake_mult = 2.0 - (CS.out.vEgo / 4.5)
+        target_accel *= brake_mult
+
+      raw_acc_output = (target_accel * 200) + 2000
       OPlong = (self.params.get_bool("ExperimentalLongitudinalEnabled") and CC.longActive)
 
       if OPlong:
         if self.params.get_bool("BlendedACC"):
           CEStatus = self.params_memory.get_int("CEStatus")
-          
+
           if CEStatus >= 2:
-            # Fully disregard Mazda inputs if CEStatus is >= 2. 
+            # Fully disregard Mazda inputs if CEStatus is >= 2.
             # Force direct control and reset blend coeff to max.
             CS.acc["ACCEL_CMD"] = raw_acc_output
             self.blend_coeff = 1.0
           else:
             blended_acc_output = (self.blend_coeff * raw_acc_output) + ((1 - self.blend_coeff) * CS.acc["ACCEL_CMD"])
-            
+
             # blend in OP long
             if (CEStatus and self.blend_coeff < 1):
               self.blend_coeff += min((DT_CTRL / self.transition_time), (1 - self.blend_coeff))
