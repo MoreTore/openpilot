@@ -85,17 +85,18 @@ class ConditionalExperimentalMode:
       lead_distance = lead.dRel
       relative_speed = v_ego - lead.vLead
 
-      # 4 seconds (or however hard we can brake to get to 4 seconds)
-      safe_approach_dist = self.get_safe_distance(relative_speed, 4.0)
+      # 9 STOP -> 6 SLOW
+      wanted_stop_time = self.get_safe_stop_time(frogpilot_toggles.conditional_model_stop_time)
+      safe_approach_dist = self.get_safe_distance(relative_speed, wanted_stop_time * (2.0/3.0))
 
-      closing_quickly = relative_speed > CRUISING_SPEED # are we 11mph faster than them?
+      closing_quickly = relative_speed > (CRUISING_SPEED * 0.75) # are we ~8.5ishmph faster than them?
       close_proximity = lead_distance < safe_approach_dist
 
       slower_lead = closing_quickly and close_proximity and frogpilot_toggles.conditional_slower_lead
 
 
       # try to stop within N seconds to make the lead car. if we cant brake that hard, start braking sooner
-      safe_stopped_dist = self.get_safe_distance(relative_speed, self.get_safe_stop_time(frogpilot_toggles.conditional_model_stop_time))
+      safe_stopped_dist = self.get_safe_distance(relative_speed, wanted_stop_time)
 
       # Is the lead stopped? Will we make it within 9 sec? Do we need to brake early?
       lead_is_stopped = lead.vLead < 2
