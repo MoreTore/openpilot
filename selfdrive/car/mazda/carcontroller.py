@@ -134,7 +134,7 @@ class CarController(CarControllerBase):
         # At 4.5 m/s = 1x multiplier
         brake_mult = 2.0 - (CS.out.vEgo / 4.5)
         target_accel *= brake_mult
-
+      target_accel = max(-3.0, target_accel)
       raw_acc_output = (target_accel * 200) + 2000
       OPlong = (self.params.get_bool("ExperimentalLongitudinalEnabled") and CC.longActive)
 
