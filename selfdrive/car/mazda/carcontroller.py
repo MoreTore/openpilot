@@ -128,11 +128,11 @@ class CarController(CarControllerBase):
     else:
       target_accel = CC.actuators.accel
 
-      # Step on brakes some more below 4.5m/s
-      if CS.out.vEgo < 4.5 and target_accel < 0:
+      # Step on brakes some more below ~15 mph
+      if CS.out.vEgo < 6.0 and target_accel < 0:
         # At 0 m/s = 2x multiplier
-        # At 4.5 m/s = 1x multiplier
-        brake_mult = 2.0 - (CS.out.vEgo / 4.5)
+        # At 6 m/s = 1x multiplier
+        brake_mult = 2.0 - (CS.out.vEgo / 6.0)
         target_accel *= brake_mult
       target_accel = max(-3.0, target_accel)
       raw_acc_output = (target_accel * 200) + 2000
