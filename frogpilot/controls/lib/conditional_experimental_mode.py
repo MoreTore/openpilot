@@ -98,7 +98,7 @@ class ConditionalExperimentalMode:
       safe_stopped_dist = self.get_safe_distance(relative_speed, self.get_safe_stop_time(frogpilot_toggles.conditional_model_stop_time))
 
       # Is the lead stopped? Will we make it within 9 sec? Do we need to brake early?
-      lead_is_stopped = lead.vLead < 1
+      lead_is_stopped = lead.vLead < 2
       lead_is_in_range = lead_distance < safe_stopped_dist
 
       stopped_lead = lead_is_stopped and lead_is_in_range and frogpilot_toggles.conditional_stopped_lead
@@ -177,6 +177,8 @@ class ConditionalExperimentalMode:
       Mazda can only brake at 3 m/s^2. It's possible our 9-second goal will overshoot it.
       If we won't make the destination in the target time, we can brake earlier
       """
+      if velocity < 0:
+        return 0
       # Mazda limits to 3 m/ss
       # Pull the braking limit from the car controller base (2.95 m/ss)
       safe_decel = abs(ACCEL_MIN) * 0.925 # Take the car's max braking, and give a bit of wiggle room just in case
