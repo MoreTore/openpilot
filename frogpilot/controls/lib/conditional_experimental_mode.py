@@ -131,8 +131,8 @@ class ConditionalExperimentalMode:
         # stopped lead
         lead_is_stopped = lead.vLead < 2.0
 
-        # lead is beyond the stop point beyond 5.5m
-        stop_is_distinct = model_length < (lead.dRel - 5.5)
+        # lead is beyond the stop point beyond 3m
+        stop_is_distinct = model_length < (lead.dRel - 3.0)
 
         # stop if we have a lead that we dont care about
         should_stop_for_light = light_detected and (lead_is_stopped or stop_is_distinct)
