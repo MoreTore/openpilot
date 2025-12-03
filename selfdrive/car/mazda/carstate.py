@@ -328,4 +328,3 @@ class CarState(CarStateBase):
   @staticmethod
   def get_body_can_parser(CP):
     return CANParser(DBC[CP.carFingerprint]["pt"], CarState.get_ti_messages(CP), 1)
-  

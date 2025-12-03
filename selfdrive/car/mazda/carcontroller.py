@@ -169,4 +169,3 @@ class CarController(CarControllerBase):
     self.frame += 1
     Timer.tick()
     return new_actuators, can_sends
-  

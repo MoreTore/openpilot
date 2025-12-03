@@ -184,11 +184,11 @@ class ConditionalExperimentalMode:
       # Pull the braking limit from the car controller base (2.95 m/ss)
       safe_decel = abs(ACCEL_MIN) * 0.925 # Take the car's max braking, and give a bit of wiggle room just in case
 
-      # 1. Time threshold ()
+      # Time calc
       d_time = velocity * time_threshold
 
-      # 2. Physics Limit (v^2 / 2a)
+      # Physics Limit (v^2 / 2a)
       d_physics = (velocity ** 2) / (2 * safe_decel)
 
-      # Return the larger distance (forcing us to engage EARLIER if we are going too fast)
+      # Return the larger distance, so we brake early if needed
       return max(d_time, d_physics)
