@@ -146,7 +146,7 @@ class ConditionalExperimentalMode:
     """
     Stop time for stopped leads and red light/stop sign. Return 6 seconds if we have a shit config. (So we dont rear-end someone)
     """
-    fallback_value = 6
+    fallback_value = 10
 
     try:
         # Null check
@@ -160,7 +160,7 @@ class ConditionalExperimentalMode:
         if math.isnan(val) or math.isinf(val):
             return fallback_value
 
-        # Guard against template val
+        # Guard against template val (0 or 1)
         if val <= 1.5:
             return fallback_value
 
