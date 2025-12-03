@@ -1,4 +1,3 @@
-# github is doing something stupid
 import numpy as np
 from numbers import Number
 
