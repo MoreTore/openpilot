@@ -65,23 +65,22 @@ class LatControlTorque(LatControl):
       actual_lateral_accel = actual_curvature * CS.vEgo ** 2
       lateral_accel_deadzone = curvature_deadzone * CS.vEgo ** 2
 
-      # STUBBED: Always use LOW_SPEED_Y regardless of toggle since NNFF is disabled
+      # Remove NNFF stuff
       low_speed_factor = np.interp(CS.vEgo, LOW_SPEED_X, LOW_SPEED_Y)**2
       setpoint = desired_lateral_accel + low_speed_factor * desired_curvature
       measurement = actual_lateral_accel + low_speed_factor * actual_curvature
       gravity_adjusted_lateral_accel = desired_lateral_accel - roll_compensation
 
-      # --- Lane Centering Correction (Ported from new.py) ---
-      # We calculate the raw acceleration error for the correction gain to match upstream logic
+      # Backport more aggressive centering from upstream OP
       accel_error = desired_lateral_accel - actual_lateral_accel
 
       CENTERING_GAIN_BP = [0, 10, 20, 30]  # m/s breakpoints
       CENTERING_GAIN_V = [0.15, 0.12, 0.08, 0.05]  # correction gains
       centering_gain = np.interp(CS.vEgo, CENTERING_GAIN_BP, CENTERING_GAIN_V)
       lane_centering_correction = centering_gain * accel_error
-      # ------------------------------------------------------
 
-      # STUBBED: Condition set to False to always skip NNFF and go to 'else'
+
+      # Remove nnff for Mazda
       if False: # self.nnff_loaded and frogpilot_toggles.nnff or frogpilot_toggles.nnff_lite:
         pid_log, ff = self.nnff.compute_nnff(
           CS, VM, actual_lateral_accel, desired_lateral_accel, gravity_adjusted_lateral_accel, lateral_accel_deadzone,

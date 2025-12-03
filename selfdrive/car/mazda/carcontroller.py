@@ -1,4 +1,3 @@
-import numpy as np
 from cereal import car
 from opendbc.can.packer import CANPacker
 from openpilot.selfdrive.car import apply_driver_steer_torque_limits, apply_ti_steer_torque_limits
@@ -8,8 +7,6 @@ from openpilot.selfdrive.car.mazda.values import CarControllerParams, Buttons, M
 from openpilot.common.realtime import ControlsTimer as Timer, DT_CTRL
 from openpilot.common.filter_simple import FirstOrderFilter
 from openpilot.common.params import Params
-
-import cereal.messaging as messaging
 
 VisualAlert = car.CarControl.HUDControl.VisualAlert
 LongCtrlState = car.CarControl.Actuators.LongControlState
@@ -30,29 +27,12 @@ class CarController(CarControllerBase):
     self.cancel_delay = Timer(0.07) # 70ms delay to try to avoid a race condition with stock system
     self.acc_filter = FirstOrderFilter(0.0, .1, DT_CTRL, initialized=False)
     self.filtered_acc_last = 0
+    self.long_active_last = False
     self.params = Params()
     self.params_memory = Params("/dev/shm/params")
-    self.blend_coeff = 0 #factor for blending OP and stock long. 0 is fully stock, 1 is fully OP
-    self.transition_time = 2.5 #After this number of seconds, the smooth blending from stock to OP (or vice versa) is complete
-    self.distance_last = None
-    self.sm = messaging.SubMaster(['longitudinalPlan', 'radarState'])
 
 
   def update(self, CC, CS, now_nanos, frogpilot_toggles):
-    self.sm.update(0)
-    long_plan = self.sm['longitudinalPlan']
-    allow_throttle = long_plan.allowThrottle
-
-    lead_one = self.sm['radarState'].leadOne
-    lead_status = lead_one.status  # whether lead is valid
-    if lead_status:
-      lead_distance = lead_one.dRel  # relative distance in meters
-      lead_velocity = lead_one.vRel  # relative velocity in m/s
-    else:
-      lead_distance = None
-      lead_velocity = None
-
-
     can_sends = []
 
     apply_steer = 0
@@ -95,7 +75,8 @@ class CarController(CarControllerBase):
         steer_required = CC.hudControl.visualAlert == VisualAlert.steerRequired
         # TODO: find a way to silence audible warnings so we can add more hud alerts
         steer_required = steer_required and CS.lkas_allowed_speed
-        can_sends.append(mazdacan.create_alert_command(self.packer, CS.cam_laneinfo, ldw, steer_required))
+        if not self.CP.flags & MazdaFlags.NO_FSC:
+          can_sends.append(mazdacan.create_alert_command(self.packer, CS.cam_laneinfo, ldw, steer_required))
 
       if self.CP.flags & MazdaFlags.RADAR_INTERCEPTOR:
         hold = False
@@ -124,50 +105,33 @@ class CarController(CarControllerBase):
 
         if self.frame % 2 == 0:
           can_sends.extend(mazdacan.create_radar_command(self.packer, self.frame, CC.longActive, CS, hold))
-    # GEN2
+
     else:
-      target_accel = CC.actuators.accel
-
-      # Step on brakes some more below ~15 mph
-      if CS.out.vEgo < 6.0 and target_accel < 0:
-        # At 0 m/s = 2x multiplier
-        # At 6 m/s = 1x multiplier
-        brake_mult = 2.0 - (CS.out.vEgo / 6.0)
-        target_accel *= brake_mult
-      target_accel = max(-3.0, target_accel)
-      raw_acc_output = (target_accel * 200) + 2000
-      OPlong = (self.params.get_bool("ExperimentalLongitudinalEnabled") and CC.longActive)
-
-      if OPlong:
+      raw_acc_output = (CC.actuators.accel * 200) + 2000
+      if CC.longActive:
         if self.params.get_bool("BlendedACC"):
-          CEStatus = self.params_memory.get_int("CEStatus")
+          if not self.long_active_last:
+            # reset the filter when we start ACC
+            self.acc_filter.initialized = False
 
-          if CEStatus >= 2:
-            # Fully disregard Mazda inputs if CEStatus is >= 2.
-            # Force direct control and reset blend coeff to max.
-            CS.acc["ACCEL_CMD"] = raw_acc_output
-            self.blend_coeff = 1.0
+          if self.params_memory.get_int("CEStatus"):
+            self.acc_filter.update_alpha(abs(raw_acc_output-self.filtered_acc_last)/1000)
+            filtered_acc_output = int(self.acc_filter.update(raw_acc_output))
           else:
-            blended_acc_output = (self.blend_coeff * raw_acc_output) + ((1 - self.blend_coeff) * CS.acc["ACCEL_CMD"])
+            # we want to use the stock value in this case but we need a smooth transition.
+            self.acc_filter.update_alpha(abs(CS.acc["ACCEL_CMD"]-self.filtered_acc_last)/1000)
+            filtered_acc_output = int(self.acc_filter.update(CS.acc["ACCEL_CMD"]))
 
-            # blend in OP long
-            if (CEStatus and self.blend_coeff < 1):
-              self.blend_coeff += min((DT_CTRL / self.transition_time), (1 - self.blend_coeff))
-
-            # blend out to MRCC
-            elif CEStatus < 2 and self.blend_coeff > 0:
-              self.blend_coeff -= min((DT_CTRL / self.transition_time), self.blend_coeff)
-
-            if self.blend_coeff > 0:
-              CS.acc["ACCEL_CMD"] = blended_acc_output
-
-
-          self.transition_time = (0.045455 * CS.out.vEgo) + 0.5 #ramp transition time depending on vehicle speed. 0.5s at standstill, 3s at 55mph
-          self.distance_last = CS.distance_setting
+          acc_output = filtered_acc_output
+          self.filtered_acc_last = filtered_acc_output
 
         else:
-          CS.acc["ACCEL_CMD"] = raw_acc_output
+          acc_output = raw_acc_output
 
+        if self.params.get_bool("ExperimentalLongitudinalEnabled"):
+          CS.acc["ACCEL_CMD"] = acc_output
+
+      self.long_active_last = CC.longActive
       resume = False
       hold = False
       if Timer.interval(2): # send ACC command at 50hz
@@ -192,9 +156,6 @@ class CarController(CarControllerBase):
           self.hold_delay.reset() # reset the hold delay
 
         resume = self.resume_timer.active() # stay on for 0.5s to release the brake. This allows the car to move.
-        if CS.out.vEgo < 1.0 and CS.acc["ACCEL_CMD"] > 2000:
-          resume = True
-          hold = False
         can_sends.append(mazdacan.create_acc_cmd(self, self.packer, CS.acc, hold, resume))
 
     # send steering command
@@ -208,5 +169,3 @@ class CarController(CarControllerBase):
     self.frame += 1
     Timer.tick()
     return new_actuators, can_sends
-
-
