@@ -144,7 +144,7 @@ class ConditionalExperimentalMode:
       self.stop_light_detected = False
   def get_safe_stop_time(self, raw_value):
     """
-    Stop time for stopped leads and red light/stop sign. Return 6 seconds if we have a shit config. (So we dont rear-end someone)
+    Stop time for stopped leads and red light/stop sign. Return 10 seconds if we have a shit config. (So we dont rear-end someone)
     """
     fallback_value = 10
 
