@@ -32,6 +32,11 @@ DESCRIPTIONS = {
   "IsRHD": tr_noop("Use right-hand-drive driver monitoring. This follows the auto-detected side until changed manually."),
   "IsMetric": tr_noop("Display speed in km/h instead of mph."),
   "RecordAudio": tr_noop("Record and store microphone audio while driving. The audio will be included in the dashcam video in comma connect."),
+  "TorqueInterceptorEnabled": tr_noop("Enable the torque interceptor to control the steering wheel."),
+  "RadarInterceptorEnabled": tr_noop("Enable if you have installed the radar Iterceptor."),
+  "NoMRCC": tr_noop("Enable if your car does not have stock MRCC."),
+  "NoFSC": tr_noop("Enable if your car does not have stock FSC."),
+  "ManualTransmission": tr_noop("Enable if your car has a manual transmission."),
 }
 
 
@@ -102,6 +107,36 @@ class TogglesLayout(Widget):
         DESCRIPTIONS["IsMetric"],
         "metric.png",
         False,
+      ),
+      "TorqueInterceptorEnabled": (
+        lambda: tr("Enable Torque Interceptor"),
+        DESCRIPTIONS["TorqueInterceptorEnabled"],
+        "chffr_wheel.png",
+        True,
+      ),
+      "RadarInterceptorEnabled": (
+        lambda: tr("Enable Radar Interceptor"),
+        DESCRIPTIONS["RadarInterceptorEnabled"],
+        "chffr_wheel.png",
+        True,
+      ),
+      "NoMRCC": (
+        lambda: tr("Disable Stock MRCC"),
+        DESCRIPTIONS["NoMRCC"],
+        "chffr_wheel.png",
+        True,
+      ),
+      "NoFSC": (
+        lambda: tr("Disable Stock FSC"),
+        DESCRIPTIONS["NoFSC"],
+        "chffr_wheel.png",
+        True,
+      ),
+      "ManualTransmission": (
+        lambda: tr("Manual Transmission"),
+        DESCRIPTIONS["ManualTransmission"],
+        "chffr_wheel.png",
+        True,
       ),
     }
 
