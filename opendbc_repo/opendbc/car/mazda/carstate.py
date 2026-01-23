@@ -205,15 +205,14 @@ class CarState(CarStateBase):
     unit_conversion = CV.MPH_TO_MS if cp.vl["SYSTEM_SETTINGS"]["IMPERIAL_UNIT"] else CV.KPH_TO_MS
     ret.standstill = cp_cam.vl["SPEED"]["SPEED"] * unit_conversion < 0.1
     if self.CP.flags & MazdaSafetyFlags.GEN2:
-      ret.steeringAngleDeg = cp_cam.vl["STEER"]["STEER_ANGLE"]
       ret.cruiseState.speed = cp.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
       ret.cruiseState.enabled = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
       ret.cruiseState.available = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] != 0)
     else:
-      ret.steeringAngleDeg = cp.vl["STEER"]["STEER_ANGLE"]
       ret.cruiseState.speed = cp_body.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
       ret.cruiseState.enabled = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 3)
       ret.cruiseState.available = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
+    ret.steeringAngleDeg = cp.vl["STEER"]["STEER_ANGLE"]
     ret.steeringRateDeg = (ret.steeringAngleDeg - self._prev_steering_angle) / DT_CTRL
     self._prev_steering_angle = ret.steeringAngleDeg
     ret.cruiseState.standstill = ret.standstill if not self.CP.openpilotLongitudinalControl else False
