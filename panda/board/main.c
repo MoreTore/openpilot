@@ -97,7 +97,9 @@ void set_safety_mode(uint16_t mode, uint16_t param) {
       set_intercept_relay(true, false);
       heartbeat_counter = 0U;
       heartbeat_lost = false;
-      if (GET_FLAG(param, 4) && GET_FLAG(param, (1 | 4))) { // TI Enabled for GEN 1
+      const int FLAG_GEN1 = 1;
+      const int FLAG_TORQUE_INTERCEPTOR = 8;
+      if (GET_FLAG(param, 4) && GET_FLAG(param, 8)) { // TI Enabled for GEN 1
         current_board->set_can_mode(CAN_MODE_OBD_CAN2);
       } else {
         current_board->set_can_mode(CAN_MODE_NORMAL);
