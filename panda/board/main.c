@@ -113,7 +113,7 @@ void set_safety_mode(uint16_t mode, uint16_t param) {
       heartbeat_counter = 0U;
       heartbeat_lost = false;
       if (current_board->has_obd) {
-        if (GET_FLAG(param, 4) && GET_FLAG(param, (1 | 4))) { // TI Enabled for GEN 1
+        if (GET_FLAG(param, 1) && GET_FLAG(param, 8)) { // TI Enabled for GEN 1
           current_board->set_can_mode(CAN_MODE_OBD_CAN2);
         } else {
           current_board->set_can_mode(CAN_MODE_NORMAL);
