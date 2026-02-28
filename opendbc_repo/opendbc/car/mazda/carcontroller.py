@@ -38,7 +38,7 @@ class CarController(CarControllerBase):
                                                       CS.out.steeringTorque, self.ccp)
       if self.CP.flags & MazdaSafetyFlags.TORQUE_INTERCEPTOR:
         if CS.ti_lkas_allowed:
-          ti_new_torque = int(round(CC.actuators.steer * self.ccp.STEER_MAX))
+          ti_new_torque = int(round(CC.actuators.torque * self.ccp.STEER_MAX))
           ti_apply_torque = apply_driver_steer_torque_limits(ti_new_torque, self.apply_torque_last,
                                                     CS.out.steeringTorque, self.ccp)
 
