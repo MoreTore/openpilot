@@ -39,7 +39,7 @@ class CarController(CarControllerBase):
       if self.CP.flags & MazdaSafetyFlags.TORQUE_INTERCEPTOR:
         if CS.ti_lkas_allowed:
           ti_new_torque = int(round(CC.actuators.steer * self.ccp.STEER_MAX))
-          ti_apply_torque = apply_driver_steer_torque_limits(ti_new_torque, self.ti_apply_steer_last,
+          ti_apply_torque = apply_driver_steer_torque_limits(ti_new_torque, self.apply_torque_last,
                                                     CS.out.steeringTorque, self.ccp)
 
     self.apply_torque_last = apply_torque
@@ -117,8 +117,9 @@ class CarController(CarControllerBase):
 
 
     # send steering command
-    can_sends.extend(mazdacan.create_steering_control(self.packer, self.CP,
-                                                      self.frame, apply_torque, CS.cam_lkas))
+    can_sends.extend(mazdacan.create_steering_control(
+      self.packer, self.CP, self.frame, apply_torque, CS.cam_lkas,
+      ti_apply_torque if CP.flags & MazdaSafetyFlags.TORQUE_INTERCEPTOR else None))
 
     new_actuators = CC.actuators.as_builder()
     new_actuators.torque = apply_torque / self.ccp.STEER_MAX

@@ -1,7 +1,7 @@
 from opendbc.car.mazda.values import Buttons, MazdaSafetyFlags
 from numpy import clip
 
-def create_steering_control(packer, CP, frame, apply_torque, lkas):
+def create_steering_control(packer, CP, frame, apply_torque, lkas, ti_apply_torque = None):
   msgs = []
   if CP.flags & MazdaSafetyFlags.GEN1:
     if not CP.flags & MazdaSafetyFlags.NO_FSC:
@@ -60,10 +60,10 @@ def create_steering_control(packer, CP, frame, apply_torque, lkas):
       }
       msgs.append(packer.make_can_msg("CAM_LKAS", 0, values))
 
-    if CP.flags & MazdaSafetyFlags.TORQUE_INTERCEPTOR:
+    if ti_apply_torque is not None:
       values = {
-          "LKAS_REQUEST"     : apply_torque,
-          "CHKSUM"           : apply_torque,
+          "LKAS_REQUEST"     : ti_apply_torque,
+          "CHKSUM"           : ti_apply_torque,
           "KEY"              : 3294744160
       }
       msgs.append(packer.make_can_msg("CAM_LKAS2", 1, values))
