@@ -35,7 +35,7 @@ void TrainingGuide::mouseReleaseEvent(QMouseEvent *e) {
   };
 
   if (contains(boundingRect[currentIndex], e->pos())) {
-    if (currentIndex == 9) {
+    if (currentIndex == 9 && Params().get("RecordFront").empty()) {
       const QRect yes = QRect(707, 804, 531, 164);
       Params().putBool("RecordFront", contains(yes, e->pos()));
     }
