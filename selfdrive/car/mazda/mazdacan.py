@@ -1,7 +1,7 @@
 from openpilot.selfdrive.car.mazda.values import Buttons, MazdaFlags
 from openpilot.common.numpy_fast import clip
 
-def create_steering_control(packer, CP, frame, apply_steer, lkas):
+def create_steering_control(packer, CP, frame, apply_steer, lkas, ti_apply_steer = None):
   msgs = []
   if CP.flags & MazdaFlags.GEN1:
     if not CP.flags & MazdaFlags.NO_FSC:
@@ -59,10 +59,10 @@ def create_steering_control(packer, CP, frame, apply_steer, lkas):
       }
       msgs.append(packer.make_can_msg("CAM_LKAS", 0, values))
 
-    if CP.flags & MazdaFlags.TORQUE_INTERCEPTOR:
+    if ti_apply_steer is not None:
       values = {
-          "LKAS_REQUEST"     : apply_steer,
-          "CHKSUM"           : apply_steer,
+          "LKAS_REQUEST"     : ti_apply_steer,
+          "CHKSUM"           : ti_apply_steer,
           "KEY"              : 3294744160
       }
       msgs.append(packer.make_can_msg("CAM_LKAS2", 1, values))

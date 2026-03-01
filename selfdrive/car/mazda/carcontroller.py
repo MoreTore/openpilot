@@ -159,8 +159,11 @@ class CarController(CarControllerBase):
         can_sends.append(mazdacan.create_acc_cmd(self, self.packer, CS.acc, hold, resume))
 
     # send steering command
-    can_sends.extend(mazdacan.create_steering_control(self.packer, self.CP,
-                                                      self.frame, apply_steer, CS.cam_lkas))
+    can_sends.extend(mazdacan.create_steering_control(
+      self.packer, self.CP,
+      self.frame, apply_steer, CS.cam_lkas,
+      ti_apply_steer if CP.flags & MazdaSafetyFlags.TORQUE_INTERCEPTOR else None
+    ))
 
     new_actuators = CC.actuators.as_builder()
     new_actuators.steer = apply_steer / self.ccp.STEER_MAX

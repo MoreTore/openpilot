@@ -101,6 +101,15 @@ RxCheck mazda_rx_checks[] = {
 };
 
 RxCheck mazda_ti_rx_checks[] = {
+  {.msg = {{MAZDA_CRZ_CTRL,     0, 8, .frequency = 50U}, { 0 }, { 0 }}},
+  {.msg = {{MAZDA_CRZ_BTNS,     0, 8, .frequency = 10U}, { 0 }, { 0 }}},
+  {.msg = {{MAZDA_STEER_TORQUE, 0, 8, .frequency = 83U}, { 0 }, { 0 }}},
+  {.msg = {{MAZDA_ENGINE_DATA,  0, 8, .frequency = 100U}, { 0 }, { 0 }}},
+  {.msg = {{MAZDA_PEDALS,       0, 8, .frequency = 50U}, { 0 }, { 0 }}},
+  {.msg = {{TI_STEER_TORQUE,    1, 8, .frequency = 50U}, { 0 }, { 0 }}},
+};
+
+RxCheck mazda_ti_no_mrcc_rx_checks[] = {
   {.msg = {{MAZDA_CRZ_BTNS,     0, 8, .frequency = 10U}, { 0 }, { 0 }}},
   {.msg = {{MAZDA_STEER_TORQUE, 0, 8, .frequency = 83U}, { 0 }, { 0 }}},
   {.msg = {{MAZDA_ENGINE_DATA,  0, 8, .frequency = 100U}, { 0 }, { 0 }}},
@@ -314,7 +323,7 @@ static safety_config mazda_init(uint16_t param) {
     } else if (radar_interceptor) {
       SET_TX_MSGS(MAZDA_RI_TX_MSGS, ret);
     } else if (torque_interceptor) {
-      SET_RX_CHECKS(mazda_ti_rx_checks, ret);
+      SET_RX_CHECKS(no_mrcc ? mazda_ti_no_mrcc_rx_checks : mazda_ti_rx_checks, ret);
       SET_TX_MSGS(MAZDA_TI_TX_MSGS, ret);
     } else {
       SET_TX_MSGS(MAZDA_TX_MSGS, ret);
