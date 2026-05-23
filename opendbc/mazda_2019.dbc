@@ -474,6 +474,11 @@ BO_ 544 ACC: 8 XXX
  SG_ ACCEL_CMD : 16|12@0+ (1,0) [0|65535] "" XXX
  SG_ NEW_SIGNAL_12 : 17|1@0+ (1,0) [0|1] "" XXX
  SG_ ACC_ENABLED : 18|1@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_14 : 19|1@0+ (1,0) [0|1] "" XXX
+ SG_ SPEED_LIMITER_ACTIVE : 20|1@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_15 : 21|1@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_16 : 22|1@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_17 : 23|1@0+ (1,0) [0|1] "" XXX
  SG_ NEW_SIGNAL_10 : 32|1@0+ (1,0) [0|1] "" XXX
  SG_ NEW_SIGNAL_5 : 33|1@0+ (1,0) [0|1] "" XXX
  SG_ NEW_SIGNAL_1 : 34|1@0+ (1,0) [0|1] "" XXX
