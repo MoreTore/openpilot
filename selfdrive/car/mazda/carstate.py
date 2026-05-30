@@ -202,9 +202,14 @@ class CarState(CarStateBase):
 
     ret.standstill = cp_cam.vl["SPEED"]["SPEED"] * unit_conversion < 0.1
     if self.CP.flags & MazdaFlags.GEN2:
+      # ASL (Adjustable Speed Limiter) is independent of MRCC.
+      # When ASL main is on, treat that as cruise available but non-adaptive,
+      # so always-on lateral can engage but not longitudinal control.
+      asl_main_on = bool(cp.vl["ACC_STATE"]["SPEED_LIMITER_MAIN"])
       ret.cruiseState.speed = cp.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
       ret.cruiseState.enabled = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] >= 2)
-      ret.cruiseState.available = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] != 0)
+      ret.cruiseState.available = (cp.vl["CRUZE_STATE"]["CRZ_STATE"] != 0) or asl_main_on
+      ret.cruiseState.nonAdaptive = asl_main_on and not ret.cruiseState.enabled
     else:
       ret.cruiseState.speed = cp_body.vl["CRUZE_STATE"]["CRZ_SPEED"] * unit_conversion
       ret.cruiseState.enabled = (cp_body.vl["CRUZE_STATE"]["CRZ_STATE"] >= 3)
@@ -277,6 +282,7 @@ class CarState(CarStateBase):
     if CP.flags & MazdaFlags.GEN2:
       messages += [
         ("CRUZE_STATE", 10),
+        ("ACC_STATE", 10),
       ]
 
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 0)
