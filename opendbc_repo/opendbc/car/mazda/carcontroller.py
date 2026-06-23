@@ -23,6 +23,12 @@ class CarController(CarControllerBase):
     self.hold_delay = Timer(.5) # delay before we start holding as to not hit the brakes too hard
     self.resume_timer = Timer(0.5)
     self.cancel_delay = Timer(0.07) # 70ms delay to try to avoid a race condition with stock system
+    self.acc_filter = FirstOrderFilter(0.0, .1, DT_CTRL, initialized=False)
+    self.filtered_acc_last = 0
+    self.long_active_last = False
+    self.params = Params()
+    self.params_memory = Params("/dev/shm/params")
+
 
 
   def update(self, CC, CS, now_nanos, starpilot_toggles):
@@ -78,7 +84,22 @@ class CarController(CarControllerBase):
         else:
           self.hold_timer.reset()
 
-          raw_acc_output = CC.actuators.accel * 1150
+          stock_acc = CS.crz_info["ACCEL_CMD"]
+          op_acc = CC.actuators.accel * 1150
+          op_acc = max(-1000, min(op_acc, 1000))
+
+          if self.params.get_bool("BlendedACC"):
+            if CC.longActive:
+              if not self.long_active_last:
+                self.acc_filter.initialized = False
+              ce_status = self.params_memory.get_int("CEStatus")
+              target_acc = op_acc if ce_status != 0 else stock_acc
+              raw_acc_output = self.acc_filter.update(target_acc)
+            else:
+              raw_acc_output = stock_acc
+          else:
+            raw_acc_output = op_acc
+
           raw_acc_output = max(-1000, min(raw_acc_output, 1000))
           CS.crz_info["ACCEL_CMD"] = raw_acc_output
 
@@ -86,8 +107,23 @@ class CarController(CarControllerBase):
           can_sends.extend(mazdacan.create_radar_command(self.packer, self.frame, CC.longActive, CS, hold))
 
     elif self.CP.flags & MazdaSafetyFlags.GEN2:
-      if CC.longActive and self.CP.openpilotLongitudinalControl:
-        CS.acc["ACCEL_CMD"] = (CC.actuators.accel * 200) + 2000
+      if self.CP.openpilotLongitudinalControl:
+        stock_acc = CS.acc["ACCEL_CMD"]
+        op_acc = (CC.actuators.accel * 200) + 2000
+
+        if self.params.get_bool("BlendedACC"):
+          if CC.longActive:
+            if not self.long_active_last:
+              self.acc_filter.initialized = False
+            ce_status = self.params_memory.get_int("CEStatus")
+            target_acc = op_acc if ce_status != 0 else stock_acc
+            raw_acc_output = self.acc_filter.update(target_acc)
+          else:
+            raw_acc_output = stock_acc
+        else:
+          raw_acc_output = op_acc if CC.longActive else stock_acc
+
+        CS.acc["ACCEL_CMD"] = raw_acc_output
 
       resume = False
       hold = False
@@ -125,6 +161,7 @@ class CarController(CarControllerBase):
     new_actuators.torque = apply_torque / self.ccp.STEER_MAX
     new_actuators.torqueOutputCan = apply_torque
 
+    self.long_active_last = CC.longActive
     self.frame += 1
     Timer.tick()
     return new_actuators, can_sends

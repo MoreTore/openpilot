@@ -137,7 +137,6 @@ static void mazda_rx_hook(const CANPacket_t *msg) {
     if (msg->addr == MAZDA_2019_STEER_TORQUE && (gen2 || gen3)) {
       update_sample(&torque_driver, (int16_t)(msg->data[0] << 8 | msg->data[1]));
     }
-    }
 
     if (msg->addr == MAZDA_2019_CRUISE && gen3) {
       uint8_t state = msg->data[0] & 0x70U;

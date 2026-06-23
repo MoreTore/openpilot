@@ -73,6 +73,7 @@ CEM_DEMO=0
 ALERT_DEMO=0
 CSC_DEMO=0
 GALAXY=0
+LIVE_CONTROLS=0
 REPLAY_PID=""
 NAV_PID=""
 CEM_PID=""
@@ -84,6 +85,7 @@ GALAXY_PORT=""
 GALAXY_URL=""
 ONROAD_TEMP_PREFIX=""
 UI_PIDS=()
+LIVE_PIDS=()
 
 parse_args() {
   while [[ $# -gt 0 ]]; do
@@ -133,6 +135,10 @@ parse_args() {
         ;;
       -alert|--alert|--alert-demo)
         ALERT_DEMO=1
+        shift
+        ;;
+      --live|--live-controls)
+        LIVE_CONTROLS=1
         shift
         ;;
       --ui)
@@ -266,6 +272,11 @@ cleanup() {
   if [[ -n "${GPU_SYNC_PID}" ]]; then
     kill "${GPU_SYNC_PID}" >/dev/null 2>&1 || true
   fi
+  for pid in "${LIVE_PIDS[@]-}"; do
+    if [[ -n "${pid}" ]]; then
+      kill "${pid}" >/dev/null 2>&1 || true
+    fi
+  done
 
   for pid in "${UI_PIDS[@]-}"; do
     if [[ -n "${pid}" ]]; then
@@ -293,6 +304,11 @@ cleanup() {
   if [[ -n "${GPU_SYNC_PID}" ]]; then
     wait "${GPU_SYNC_PID}" >/dev/null 2>&1 || true
   fi
+  for pid in "${LIVE_PIDS[@]-}"; do
+    if [[ -n "${pid}" ]]; then
+      wait "${pid}" >/dev/null 2>&1 || true
+    fi
+  done
 
   if [[ -n "${ONROAD_TEMP_PREFIX:-}" && "${ONROAD_TEMP_PREFIX}" == desktop-onroad-* ]]; then
     echo "Cleaning up temporary prefix environment (${ONROAD_TEMP_PREFIX})..."
@@ -382,6 +398,30 @@ ensure_galaxy_replay_blocklist() {
   ensure_replay_blocklist "customReserved9"
 }
 
+ensure_live_controls_replay_blocklist() {
+  local blocked_services="carState,carParams,carControl,controlsState,sendcan,carOutput"
+  local idx=0
+
+  for ((idx=0; idx<${#REPLAY_ARGS[@]}; idx++)); do
+    case "${REPLAY_ARGS[$idx]}" in
+      -b|--block)
+        if (( idx + 1 >= ${#REPLAY_ARGS[@]} )); then
+          echo "Missing value for ${REPLAY_ARGS[$idx]}" >&2
+          exit 1
+        fi
+        REPLAY_ARGS[$((idx + 1))]="$(append_blocked_service_names "${REPLAY_ARGS[$((idx + 1))]}" "${blocked_services}")"
+        return
+        ;;
+      --block=*)
+        REPLAY_ARGS[$idx]="--block=$(append_blocked_service_names "${REPLAY_ARGS[$idx]#*=}" "${blocked_services}")"
+        return
+        ;;
+    esac
+  done
+
+  REPLAY_ARGS=(-b "${blocked_services}" "${REPLAY_ARGS[@]}")
+}
+
 prepare_env() {
   source .venv/bin/activate
 
@@ -445,7 +485,22 @@ PY
 }
 
 build_replay() {
-  SP_DISABLE_AUTO_DEVICE_SCONS=1 "${ROOT_DIR}/.venv/bin/scons" --extras -j"${jobs}" tools/replay/replay
+  local targets=(
+    tools/replay/replay
+    common/params_pyx.so
+    common/transformations/transformations.so
+    msgq_repo/msgq/ipc_pyx.so
+    msgq_repo/msgq/visionipc/visionipc_pyx.so
+  )
+  if [[ "${LIVE_CONTROLS}" == "1" ]]; then
+    targets+=(
+      selfdrive/pandad/pandad_api_impl.so
+      selfdrive/modeld/models/commonmodel_pyx.so
+      selfdrive/controls/lib/lateral_mpc_lib/c_generated_code/acados_ocp_solver_pyx.so
+      selfdrive/controls/lib/longitudinal_mpc_lib/c_generated_code/acados_ocp_solver_pyx.so
+    )
+  fi
+  "${ROOT_DIR}/.venv/bin/scons" --cache-disable --extras -j"${jobs}" "${targets[@]}"
 }
 
 prepare_c3_runtime() {
@@ -658,6 +713,10 @@ if [[ "${OFFROAD_DEMO}" == "1" && "${NAV_DEMO}" != "1" ]]; then
   exit 1
 fi
 
+if [[ "${LIVE_CONTROLS}" == "1" ]]; then
+  ensure_live_controls_replay_blocklist
+fi
+
 if [[ "${ALERT_DEMO}" == "1" ]]; then
   ensure_alert_demo_replay_blocklist
 fi
@@ -738,6 +797,14 @@ fi
 
 if [[ "${CSC_DEMO}" == "1" ]]; then
   launch_csc_demo
+fi
+
+if [[ "${LIVE_CONTROLS}" == "1" ]]; then
+  echo "Launching live card and controlsd..."
+  "${ROOT_DIR}/.venv/bin/python3" -m selfdrive.car.card &
+  LIVE_PIDS+=("$!")
+  "${ROOT_DIR}/.venv/bin/python3" -m selfdrive.controls.controlsd &
+  LIVE_PIDS+=("$!")
 fi
 
 if [[ ${#UI_TARGETS[@]} -eq 0 ]]; then

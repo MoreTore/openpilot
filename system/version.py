@@ -152,8 +152,16 @@ def get_build_metadata(path: str = BASEDIR) -> BuildMetadata:
                       build_style="unknown",
                       is_dirty=is_dirty(path)))
 
-  cloudlog.exception("unable to get build metadata")
-  raise Exception("invalid build metadata")
+  cloudlog.warning("unable to get build metadata, returning default")
+  return BuildMetadata("unknown",
+                  OpenpilotMetadata(
+                    version="unknown",
+                    release_notes="unknown",
+                    git_commit="unknown",
+                    git_origin="unknown",
+                    git_commit_date="unknown",
+                    build_style="unknown",
+                    is_dirty=True))
 
 
 if __name__ == "__main__":

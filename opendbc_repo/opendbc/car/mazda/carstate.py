@@ -225,8 +225,12 @@ class CarState(CarStateBase):
 
   @staticmethod
   def get_can_parsers(CP):
+    cam_signals = []
+    if not (CP.flags & (MazdaSafetyFlags.GEN2 | MazdaSafetyFlags.GEN3)):
+      cam_signals.append(("CAM_TRAFFIC_SIGNS", 0))
+
     return {
       Bus.pt: CANParser(DBC[CP.carFingerprint][Bus.pt], [], 0),
       Bus.body: CANParser(DBC[CP.carFingerprint][Bus.pt], [], 1),
-      Bus.cam: CANParser(DBC[CP.carFingerprint][Bus.pt], [("CAM_TRAFFIC_SIGNS", 0)], 2),
+      Bus.cam: CANParser(DBC[CP.carFingerprint][Bus.pt], cam_signals, 2),
     }
