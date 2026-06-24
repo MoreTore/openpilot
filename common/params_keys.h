@@ -751,7 +751,7 @@ inline static std::unordered_map<std::string, ParamKeyAttributes> keys = {
     {"UpdateWheelImage", {CLEAR_ON_MANAGER_START, BOOL, "0", "0"}},
     {"UseActiveTheme", {CLEAR_ON_MANAGER_START, BOOL, "0", "0"}},
     {"UseAutoSteerDelay", {PERSISTENT, BOOL, "1", "1", 3}},
-    {"UseKonikServer", {PERSISTENT, BOOL, "0", "0", 2, SETTINGS_SIMPLE}},
+    {"UseKonikServer", {PERSISTENT, BOOL, "1", "1", 2, SETTINGS_SIMPLE}},
     {"UseSI", {PERSISTENT, BOOL, "1", "1", 3}},
     {"UserFavorites", {PERSISTENT, STRING, "", "", 1}},
     {"UseVienna", {PERSISTENT, BOOL, "0", "0", 1, SETTINGS_SIMPLE}},
