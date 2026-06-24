@@ -1049,6 +1049,38 @@ def test_gpu_temp_reader_uses_hardware_gpu_values(monkeypatch):
   assert utilities._read_gpu_temp_c() == 43
 
 
+def test_power_draw_reader_uses_hardware(monkeypatch):
+  hardware_module = _simple_module(
+    "openpilot.system.hardware",
+    HARDWARE=SimpleNamespace(
+      get_current_power_draw=lambda: 12.34
+    ),
+  )
+  monkeypatch.setitem(sys.modules, "openpilot.system.hardware", hardware_module)
+
+  assert utilities._read_power_draw_w() == 12.3
+
+
+def test_device_state_power_metrics_reader(monkeypatch):
+  fake_msg = SimpleNamespace(
+    deviceState=SimpleNamespace(
+      offroadPowerUsageUwh=15000000,
+      carBatteryCapacityUwh=25000000,
+    )
+  )
+  fake_messaging = SimpleNamespace(
+    sub_sock=lambda *args, **kwargs: "fake_sock",
+    recv_sock=lambda sock, wait: fake_msg,
+  )
+  monkeypatch.setitem(sys.modules, "cereal.messaging", fake_messaging)
+  if "cereal" in sys.modules:
+    monkeypatch.setattr(sys.modules["cereal"], "messaging", fake_messaging)
+
+  metrics = utilities._read_device_state_power_metrics()
+  assert metrics["powerUsedUwh"] == 15000000
+  assert metrics["carBatteryCapacityUwh"] == 25000000
+
+
 def test_cpu_temp_reader_ignores_non_cpu_thermal_zones(tmp_path):
   cpu_zone = tmp_path / "thermal_zone0"
   cpu_zone.mkdir()
