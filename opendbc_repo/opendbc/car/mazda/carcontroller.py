@@ -4,7 +4,7 @@ from opendbc.car.lateral import apply_driver_steer_torque_limits
 from opendbc.car.interfaces import CarControllerBase
 from opendbc.car.mazda import mazdacan
 from opendbc.car.mazda.values import CarControllerParams, Buttons, MazdaSafetyFlags
-from openpilot.common.realtime import ControlsTimer as Timer, DT_CTRL
+from openpilot.common.realtime import DT_CTRL
 from openpilot.common.filter_simple import FirstOrderFilter
 from openpilot.common.params import Params
 
@@ -19,10 +19,9 @@ class CarController(CarControllerBase):
     self.packer = CANPacker(dbc_names[Bus.pt])
     self.brake_counter = 0
     self.ccp = CarControllerParams(CP)
-    self.hold_timer = Timer(6.0)
-    self.hold_delay = Timer(.5) # delay before we start holding as to not hit the brakes too hard
-    self.resume_timer = Timer(0.5)
-    self.cancel_delay = Timer(0.07) # 70ms delay to try to avoid a race condition with stock system
+    self.hold_timer_frame = 0
+    self.hold_delay_frame = 0
+    self.resume_timer_frame = 0
     self.acc_filter = FirstOrderFilter(0.0, .1, DT_CTRL, initialized=False)
     self.filtered_acc_last = 0
     self.long_active_last = False
@@ -80,9 +79,9 @@ class CarController(CarControllerBase):
       if self.CP.openpilotLongitudinalControl:
         hold = False
         if CS.out.standstill:
-          hold = self.hold_timer.active()
+          hold = (self.frame - self.hold_timer_frame) < 600
         else:
-          self.hold_timer.reset()
+          self.hold_timer_frame = self.frame
 
           stock_acc = CS.crz_info["ACCEL_CMD"]
           op_acc = CC.actuators.accel * 1150
@@ -92,16 +91,15 @@ class CarController(CarControllerBase):
             if CC.longActive:
               if not self.long_active_last:
                 self.acc_filter.initialized = False
-              ce_status = self.params_memory.get_int("CEStatus")
-              target_acc = op_acc if ce_status != 0 else stock_acc
-              raw_acc_output = self.acc_filter.update(target_acc)
+              target_acc = op_acc if self.params_memory.get_int("CEStatus") != 0 else stock_acc
+              acc_output = self.acc_filter.update(target_acc)
             else:
-              raw_acc_output = stock_acc
+              acc_output = stock_acc
           else:
-            raw_acc_output = op_acc
+            acc_output = op_acc
 
-          raw_acc_output = max(-1000, min(raw_acc_output, 1000))
-          CS.crz_info["ACCEL_CMD"] = raw_acc_output
+          acc_output = max(-1000, min(acc_output, 1000))
+          CS.crz_info["ACCEL_CMD"] = acc_output
 
         if self.frame % 2 == 0:
           can_sends.extend(mazdacan.create_radar_command(self.packer, self.frame, CC.longActive, CS, hold))
@@ -115,19 +113,18 @@ class CarController(CarControllerBase):
           if CC.longActive:
             if not self.long_active_last:
               self.acc_filter.initialized = False
-            ce_status = self.params_memory.get_int("CEStatus")
-            target_acc = op_acc if ce_status != 0 else stock_acc
-            raw_acc_output = self.acc_filter.update(target_acc)
+            target_acc = op_acc if self.params_memory.get_int("CEStatus") != 0 else stock_acc
+            acc_output = self.acc_filter.update(target_acc)
           else:
-            raw_acc_output = stock_acc
+            acc_output = stock_acc
         else:
-          raw_acc_output = op_acc if CC.longActive else stock_acc
+          acc_output = op_acc if CC.longActive else stock_acc
 
-        CS.acc["ACCEL_CMD"] = raw_acc_output
+        CS.acc["ACCEL_CMD"] = acc_output
 
       resume = False
       hold = False
-      if Timer.interval(2): # send ACC command at 50hz
+      if self.frame % 2 == 0: # send ACC command at 50hz
         """
         Without this hold/resum logic, the car will only stop momentarily.
         It will then start creeping forward again. This logic allows the car to
@@ -136,19 +133,19 @@ class CarController(CarControllerBase):
         when coming to a stop.
         """
         if CS.out.standstill: # if we're stopped
-          if not self.hold_delay.active(): # and we have been stopped for more than hold_delay duration. This prevents a hard brake if we aren't fully stopped.
+          if not ((self.frame - self.hold_delay_frame) < 50): # and we have been stopped for more than hold_delay duration. This prevents a hard brake if we aren't fully stopped.
             if ((CC.cruiseControl.resume and CC.actuators.longControlState != LongCtrlState.stopping) or
                 CC.cruiseControl.override or CS.out.gasPressed or
                 (CC.actuators.longControlState == LongCtrlState.starting) or CS.acc["RESUME"]): # if we are resuming or overriding, we want to release the brake
-              self.resume_timer.reset() # reset the resume timer so its active
+              self.resume_timer_frame = self.frame # reset the resume timer so its active
             else: # otherwise we're holding
-              hold = self.hold_timer.active() # hold for 6s. This allows the electric brake to hold the car.
+              hold = (self.frame - self.hold_timer_frame) < 600 # hold for 6s. This allows the electric brake to hold the car.
 
         else: # if we're moving
-          self.hold_timer.reset() # reset the hold timer so its active when we stop
-          self.hold_delay.reset() # reset the hold delay
+          self.hold_timer_frame = self.frame # reset the hold timer so its active when we stop
+          self.hold_delay_frame = self.frame # reset the hold delay
 
-        resume = self.resume_timer.active() # stay on for 0.5s to release the brake. This allows the car to move.
+        resume = (self.frame - self.resume_timer_frame) < 50 # stay on for 0.5s to release the brake. This allows the car to move.
         can_sends.append(mazdacan.create_acc_cmd(self.packer, CS.acc, hold, resume))
 
 
@@ -163,5 +160,4 @@ class CarController(CarControllerBase):
 
     self.long_active_last = CC.longActive
     self.frame += 1
-    Timer.tick()
     return new_actuators, can_sends
