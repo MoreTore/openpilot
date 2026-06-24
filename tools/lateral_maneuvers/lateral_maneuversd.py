@@ -17,8 +17,8 @@ STATUS_PARAM = "LateralManeuverStatus"
 
 # thresholds for starting maneuvers
 MAX_SPEED_DEV = 0.7  # deviation in m/s
-MAX_CURV = 0.002  # 500 m radius
-MAX_ROLL = 0.08  # 4.56 deg
+MAX_CURV = 0.004  # 250 m radius
+MAX_ROLL = 0.12  # 6.8°
 TIMER = 2.0  # sec stable conditions before starting maneuver
 
 
@@ -142,6 +142,12 @@ MANEUVERS = [
     initial_speed=20. * CV.MPH_TO_MS,
   ),
   Maneuver(
+    "jitter 20mph",
+    [Action([-0.5 if i % 2 == 0 else 0.5], [0.1]) for i in range(10)],
+    repeat=2,
+    initial_speed=20. * CV.MPH_TO_MS,
+  ),
+  Maneuver(
     "step right 30mph",
     [Action([0.5], [1.0]), Action([-0.5], [1.5])],
     repeat=2,
@@ -156,6 +162,12 @@ MANEUVERS = [
   Maneuver(
     "sine 0.5Hz 30mph",
     [_sine_action(1.0, 2.0, 2.0), Action([0.0], [0.5])],
+    repeat=2,
+    initial_speed=30. * CV.MPH_TO_MS,
+  ),
+  Maneuver(
+    "jitter 30mph",
+    [Action([-0.5 if i % 2 == 0 else 0.5], [0.1]) for i in range(10)],
     repeat=2,
     initial_speed=30. * CV.MPH_TO_MS,
   ),
@@ -175,6 +187,8 @@ def main():
   maneuvers = iter(MANEUVERS)
   maneuver = None
   complete_cnt = 0
+  aborted_cnt = 0
+  abort_reason = ''
   display_holdoff = 0
   prev_text = ""
   last_started_run = None
@@ -233,7 +247,13 @@ def main():
       state = "completed"
       phase = "holdoff"
     elif maneuver is not None:
-      if sm['carState'].steeringPressed or (maneuver.active and abs(v_ego - maneuver.initial_speed) > MAX_SPEED_DEV):
+      CS = sm['carState']
+      if CS.steeringPressed or CS.gasPressed:
+        aborted_cnt = int(1.0 / DT_MDL)
+        abort_reason = ('steering pressed' if CS.steeringPressed else 'gas pressed').ljust(20)
+      aborted = aborted_cnt > 0
+      speed_out_of_range = maneuver.active and abs(v_ego - maneuver.initial_speed) > MAX_SPEED_DEV
+      if aborted or speed_out_of_range:
         maneuver.reset()
 
       roll = sm['carControl'].orientationNED[0] if len(sm['carControl'].orientationNED) == 3 else 0.0
@@ -272,6 +292,12 @@ def main():
         alert_msg.alertDebug.alertText2 = maneuver.description
         state = "running"
         phase = "active"
+      elif aborted_cnt > 0:
+        aborted_cnt -= 1
+        alert_msg.alertDebug.alertText1 = abort_reason
+        alert_msg.alertDebug.alertText2 = maneuver.description
+        state = "aborted"
+        phase = "abort"
       elif not (speed_ready and lat_ready):
         alert_msg.alertDebug.alertText1 = f"Set speed to {maneuver.initial_speed * CV.MS_TO_MPH:0.0f} mph"
         alert_msg.alertDebug.alertText2 = maneuver.description
