@@ -11,10 +11,10 @@ from opendbc.car.mazda.values import CAR, LKAS_LIMITS, MazdaSafetyFlags, MazdaSa
 from openpilot.common.params import Params
 
 NON_LINEAR_TORQUE_PARAMS = {
-  CAR.MAZDA_3_2019: (3.650, 1.0, 0.13, 0.3605),
-  CAR.MAZDA_CX_30: (2.082, 1.444, 0.1, 0.238),
-  CAR.MAZDA_CX_30_2023: (5.5, 0.79999, 0.18244, 0.38763),
-  CAR.MAZDA_CX_50: (3.8818, 0.6873, 0.0999, 0.3605),
+  CAR.MAZDA_3_2019: (4.6, 0.6, 0.134, 0.3605),
+  CAR.MAZDA_CX_30: (4.68689, 0.79999, 0.18244, 0.38763),
+  CAR.MAZDA_CX_30_2023: (4.68689, 0.79999, 0.18244, 0.38763),
+  CAR.MAZDA_CX_50: (4.68689, 0.79999, 0.18244, 0.38763)
 }
 
 class CarInterface(CarInterfaceBase):
