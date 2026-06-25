@@ -46,12 +46,15 @@ def _load_status(params: Params):
   status = _default_status()
   raw = params.get(STATUS_PARAM, encoding="utf-8") or ""
   if raw:
-    try:
-      payload = json.loads(raw)
-      if isinstance(payload, dict):
-        status.update(payload)
-    except Exception:
-      pass
+    if isinstance(raw, dict):
+      status.update(raw)
+    else:
+      try:
+        payload = json.loads(raw)
+        if isinstance(payload, dict):
+          status.update(payload)
+      except Exception:
+        pass
 
   history = status.get("history")
   if not isinstance(history, list):

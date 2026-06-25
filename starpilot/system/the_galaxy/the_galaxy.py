@@ -4760,12 +4760,15 @@ def _load_longitudinal_maneuver_status():
   status = _default_longitudinal_maneuver_status()
   raw = params.get("LongitudinalManeuverStatus", encoding="utf-8") or ""
   if raw:
-    try:
-      payload = json.loads(raw)
-      if isinstance(payload, dict):
-        status.update(payload)
-    except Exception:
-      pass
+    if isinstance(raw, dict):
+      status.update(raw)
+    else:
+      try:
+        payload = json.loads(raw)
+        if isinstance(payload, dict):
+          status.update(payload)
+      except Exception:
+        pass
 
   history = status.get("history")
   if not isinstance(history, list):
@@ -4888,12 +4891,15 @@ def _load_lateral_maneuver_status():
   status = _default_lateral_maneuver_status()
   raw = params.get("LateralManeuverStatus", encoding="utf-8") or ""
   if raw:
-    try:
-      payload = json.loads(raw)
-      if isinstance(payload, dict):
-        status.update(payload)
-    except Exception:
-      pass
+    if isinstance(raw, dict):
+      status.update(raw)
+    else:
+      try:
+        payload = json.loads(raw)
+        if isinstance(payload, dict):
+          status.update(payload)
+      except Exception:
+        pass
 
   history = status.get("history")
   if not isinstance(history, list):
