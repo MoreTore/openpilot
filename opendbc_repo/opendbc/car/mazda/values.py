@@ -82,22 +82,27 @@ class MazdaPlatformConfig(PlatformConfig):
 class CAR(Platforms):
   MAZDA_CX5 = MazdaPlatformConfig(
     [MazdaCarDocs("Mazda CX-5 2017-21")],
-    MazdaCarSpecs(mass=3655 * CV.LB_TO_KG, wheelbase=2.7, steerRatio=15.5),
+    MazdaCarSpecs(mass=3655 * CV.LB_TO_KG, wheelbase=2.7, steerRatio=15.5, centerToFrontRatio=0.41),
+    flags=MazdaSafetyFlags.GEN1,
+  )
+  MAZDA_CX8 = MazdaPlatformConfig(
+    [MazdaCarDocs("Mazda CX-8 2018-23")],
+    MazdaCarSpecs(mass=4314 * CV.LB_TO_KG, wheelbase=2.930, steerRatio=15.5, centerToFrontRatio=0.41),
     flags=MazdaSafetyFlags.GEN1,
   )
   MAZDA_CX9 = MazdaPlatformConfig(
     [MazdaCarDocs("Mazda CX-9 2016-20")],
-    MazdaCarSpecs(mass=4217 * CV.LB_TO_KG, wheelbase=3.1, steerRatio=17.6),
+    MazdaCarSpecs(mass=4217 * CV.LB_TO_KG, wheelbase=3.1, steerRatio=17.6, centerToFrontRatio=0.41),
     flags=MazdaSafetyFlags.GEN1,
   )
   MAZDA_3 = MazdaPlatformConfig(
     [MazdaCarDocs("Mazda 3 2017-18")],
-    MazdaCarSpecs(mass=2875 * CV.LB_TO_KG, wheelbase=2.7, steerRatio=14.0),
+    MazdaCarSpecs(mass=2875 * CV.LB_TO_KG, wheelbase=2.7, steerRatio=14.0, centerToFrontRatio=0.41),
     flags=MazdaSafetyFlags.GEN1,
   )
   MAZDA_6 = MazdaPlatformConfig(
     [MazdaCarDocs("Mazda 6 2017-20")],
-    MazdaCarSpecs(mass=3443 * CV.LB_TO_KG, wheelbase=2.83, steerRatio=15.5),
+    MazdaCarSpecs(mass=3443 * CV.LB_TO_KG, wheelbase=2.83, steerRatio=15.5, centerToFrontRatio=0.41),
     flags=MazdaSafetyFlags.GEN1,
   )
   MAZDA_CX9_2021 = MazdaPlatformConfig(
@@ -112,27 +117,27 @@ class CAR(Platforms):
   )
   MAZDA_3_2019 = MazdaPlatformConfig(
     [MazdaCarDocs("Mazda 3 2019-24")],
-    MazdaCarSpecs(mass=3000 * CV.LB_TO_KG, wheelbase=2.725, steerRatio=18.8),
+    MazdaCarSpecs(mass=3300 * CV.LB_TO_KG, wheelbase=2.725, steerRatio=15.59, centerToFrontRatio=0.38),
     flags=MazdaSafetyFlags.GEN2,
   )
   MAZDA_CX_30 = MazdaPlatformConfig(
     [MazdaCarDocs("Mazda CX-30 2019-24")],
-    MazdaCarSpecs(mass=3375 * CV.LB_TO_KG, wheelbase=2.814, steerRatio=15.5),
+    MazdaCarSpecs(mass=3375 * CV.LB_TO_KG, wheelbase=2.814, steerRatio=15.5, centerToFrontRatio=0.38),
     flags=MazdaSafetyFlags.GEN2,
   )
   MAZDA_CX_50 = MazdaPlatformConfig(
     [MazdaCarDocs("Mazda CX-50 2022-24")],
-    MazdaCarSpecs(mass=3375 * CV.LB_TO_KG, wheelbase=2.814, steerRatio=15.5),
+    MazdaCarSpecs(mass=3375 * CV.LB_TO_KG, wheelbase=2.814, steerRatio=15.5, centerToFrontRatio=0.41),
     flags=MazdaSafetyFlags.GEN2,
   )
   MAZDA_3_2023 = MazdaPlatformConfig(
     [MazdaCarDocs("Mazda 3 2024-26")],
-    MazdaCarSpecs(mass=3000 * CV.LB_TO_KG, wheelbase=2.725, steerRatio=18.8),
+    MazdaCarSpecs(mass=3300 * CV.LB_TO_KG, wheelbase=2.725, steerRatio=15.59, centerToFrontRatio=0.38),
     flags=MazdaSafetyFlags.GEN3,
   )
   MAZDA_CX_30_2023 = MazdaPlatformConfig(
     [MazdaCarDocs("Mazda CX-30 23-26")],
-    MazdaCarSpecs(mass=3375 * CV.LB_TO_KG, wheelbase=2.814, steerRatio=15.5),
+    MazdaCarSpecs(mass=3375 * CV.LB_TO_KG, wheelbase=2.814, steerRatio=15.5, centerToFrontRatio=0.38),
     flags=MazdaSafetyFlags.GEN3,
   )
 

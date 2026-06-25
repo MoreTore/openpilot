@@ -72,15 +72,12 @@ class CarInterface(CarInterfaceBase):
 
     ret.dashcamOnly = False
 
-    ret.steerActuatorDelay = 0.1
     ret.steerLimitTimer = 0.8
 
     CarInterfaceBase.configure_torque_tune(candidate, ret.lateralTuning)
 
     if candidate not in (CAR.MAZDA_CX5_2022, CAR.MAZDA_3_2019, CAR.MAZDA_CX_30, CAR.MAZDA_CX_50, CAR.MAZDA_3_2023, CAR.MAZDA_CX_30_2023):
       ret.minSteerSpeed = LKAS_LIMITS.DISABLE_SPEED * CV.KPH_TO_MS
-
-    ret.centerToFront = ret.wheelbase * 0.41
 
     ret.enableBsm = True
 
@@ -91,6 +88,7 @@ class CarInterface(CarInterfaceBase):
       ret.transmissionType = structs.CarParams.TransmissionType.automatic
 
     if candidate in GEN1:
+      ret.steerActuatorDelay = 0.335
       ret.safetyConfigs[0].safetyParam |= MazdaSafetyFlags.GEN1.value
       if p.get_bool("TorqueInterceptorEnabled"): # Torque Interceptor Installed
         ret.flags |= MazdaSafetyFlags.TORQUE_INTERCEPTOR.value
@@ -115,9 +113,8 @@ class CarInterface(CarInterfaceBase):
         ret.flags |= MazdaSafetyFlags.NO_FSC.value
         ret.safetyConfigs[0].safetyParam |= MazdaSafetyFlags.NO_FSC.value
 
-      ret.steerActuatorDelay = 0.1
-
     if candidate in GEN2:
+      ret.steerActuatorDelay = 0.5
       ret.safetyConfigs[0].safetyParam |= MazdaSafetyFlags.GEN2.value
       ret.alphaLongitudinalAvailable = alpha_long
       ret.openpilotLongitudinalControl = True
@@ -129,13 +126,15 @@ class CarInterface(CarInterfaceBase):
       ret.longitudinalTuning.kiBP = [0., 35.]
       ret.longitudinalTuning.kiV = [0.1, 0.1]
       ret.startingState = True
-      ret.steerActuatorDelay = 0.335
       ret.steerAtStandstill = True
+      ret.enableBsm = False
 
     if candidate in GEN3:
+      ret.steerActuatorDelay = 0.5
       ret.safetyConfigs[0].safetyParam |= MazdaSafetyFlags.GEN3.value
       ret.alphaLongitudinalAvailable = False
       ret.openpilotLongitudinalControl = False
       if p.get_bool("ManualTransmission"):
         ret.flags |= MazdaSafetyFlags.MANUAL_TRANSMISSION.value
+      ret.enableBsm = False
     return ret
